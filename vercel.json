@@ -2,22 +2,25 @@
   "version": 2,
   "builds": [
     {
-      "src": "XtraROMs/*",
+      "src": "XtraROMs/asgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/media/(.*)",
-      "dest": "media/$1"
-    },
-    {
       "src": "/static/(.*)",
       "dest": "static/$1"
     },
     {
-      "src": "/.*",
-      "dest": "XtraROMs/wsgi.py"
+      "src": "/media/(.*)",
+      "dest": "media/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "XtraROMs/asgi.py",
+      "headers": {
+        "content-type": "application/json"
+      }
     }
   ],
   "env": {
