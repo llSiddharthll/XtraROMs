@@ -42,7 +42,7 @@
             <div class="card h-100 mb-4">
                 <img src="{{ rom.image.url }}" class="card-img-top img-thumbnail custom-rom-image" alt="{{ rom.name }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ rom.name }} -> {{ rom.device }}</h5>
+                    <h5 class="card-title">{{ rom.name }} -> {{ rom.device }} <br> <a href="https://telegram.me/{{ rom.credits }}" target="_blank">@{{ rom.credits }}</a></h5>
                     <div class="scrollable-description">
                         <p>{{ rom.formatted_details|safe }}</p>
                     </div>
@@ -80,7 +80,10 @@
                             <option value="Ocean">Ocean</option>
                         </select>
                     </div>
-                    
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Credits</label>
+                        <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits" name="credits" required />
+                    </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
                         <input type="file" accept="image/*" class="form-control" id="image" name="image" required />

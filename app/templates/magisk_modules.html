@@ -42,7 +42,7 @@
             <div class="card h-100 mb-4">
                 <img src="{{ mod.image.url }}" class="card-img-top img-thumbnail custom-mod-image" alt="{{ mod.name }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ mod.name }}</h5>
+                    <h5 class="card-title">{{ mod.name }} -> <a href="https://telegram.me/{{ mod.credits }}" target="_blank">@{{ mod.credits }}</a></h5>
                     <div class="scrollable-description">
                         <p>{{ mod.formatted_details|safe }}</p>
                     </div>
@@ -75,6 +75,10 @@
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
                         <input type="file" accept="image/*" class="form-control" id="image" name="image" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Credits</label>
+                        <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits" name="credits" required />
                     </div>
                     <div class="mb-3">
                         <label for="link" class="form-label">Link</label>

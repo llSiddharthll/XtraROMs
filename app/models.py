@@ -5,6 +5,7 @@ class CustomROM(models.Model):
 
     name = models.CharField(max_length=100)
     device = models.CharField(max_length=50)
+    credits = models.CharField(null=True, max_length=50)
     image = models.ImageField(upload_to="images")
     link = models.URLField(max_length=225)
     details = models.TextField()
@@ -15,6 +16,7 @@ class CustomROM(models.Model):
 class CustomMOD(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="images")
+    credits = models.CharField(null=True, max_length=50)
     link = models.URLField()
     details = models.TextField()
 

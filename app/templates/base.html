@@ -12,14 +12,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <style>
+  /* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
     body {
       padding-top: 100px;
       transition: background-color 0.3s ease;
-    }
-    @media (max-width: 700px){
-      body{
-        padding-top: 0;
-      }
     }
 
     /* Default card style */
@@ -125,17 +125,7 @@
     #magisk-modules{
       border-top:2px solid #777;
     }
-    #devices{
-      padding-right: 100px;
-    }
-    #devices h2 {
-      text-align: center;
-    }
     
-    @media (max-width: 700px){
-      #devices h2{margin-top: 60px;
-
-    }}
 
     /* Custom carousel styles */
     #carouselRedmi,
@@ -348,6 +338,18 @@
   font-size: 14px;
   color: #999;
 }
+.theme-toggle {
+    /* Your custom styles here */
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
+@media (max-width: 768px) {
+  .theme-toggle {
+    margin-left: auto;
+  }
+}
+
 
   </style>
   {% block style %}
@@ -355,7 +357,7 @@
 </head>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
+    <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="{% url 'home' %}">
         <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur" /> XtraROMs
       </a>
@@ -398,9 +400,9 @@
           </li>
           {% endif %}
         </ul>
-        <div class="form-check form-switch ms-3">
-          <input class="form-check-input" type="checkbox" id="themeToggle">
-          <label class="form-check-label" for="themeToggle">Dark Mode</label>
+        <div class="form-check form-switch ms-0">
+          <input class="form-check-input theme-toggle" type="checkbox" id="themeToggle">
+          <label class="form-check-label" for="themeToggle">Dark-Mode</label>
         </div>
       </div>
     </div>
@@ -442,10 +444,6 @@
   </div>
 </footer>
 
-  <!-- Bootstrap JS Bundle with Popper.js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
 
   <!-- Custom JavaScript -->
   <script>
@@ -495,6 +493,22 @@
 
     loadTheme();
   });
+</script>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const target = document.querySelector(this.getAttribute('href'));
+    const offset = 50; // Adjust the offset value as needed
+    const topPosition = target.offsetTop - offset;
+
+    window.scrollTo({
+      top: topPosition,
+      behavior: 'smooth'
+    });
+  });
+});
 </script>
 {% block script %}
 {% endblock %}

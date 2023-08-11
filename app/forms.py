@@ -16,12 +16,12 @@ class SignUpForm(UserCreationForm):
 class UploadROMForm(forms.ModelForm):
     class Meta:
         model = CustomROM
-        fields = ('name','device','image','link','details')
+        fields = ('name','device','credits','image','link','details')
 
 class UploadMODForm(forms.ModelForm):
     class Meta:
         model = CustomMOD
-        fields = ('name','image','link','details')
+        fields = ('name','image','credits', 'link','details')
 
 class ContactForm(forms.ModelForm):
     class Meta:
