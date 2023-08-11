@@ -2,26 +2,30 @@
   "version": 2,
   "builds": [
     {
-      "src": "XtraROMs/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles"
-      }
+      "src": "app/**/*.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
+      "src": "/app/(.*)",
+      "dest": "/app/\\1"
+    },
+    {
       "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "dest": "/app/static/\\1"
+    },
+    {
+      "src": "/media/(.*)",
+      "dest": "/app/media/\\1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/app/static/favicon.ico"
     },
     {
       "src": "/(.*)",
-      "dest": "XtraROMs/wsgi.py"
+      "dest": "/app/\\1"
     }
   ]
 }
