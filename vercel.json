@@ -2,28 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "XtraROMs/asgi.py",
-      "use": "@vercel/python"
+      "src": "XtraROMs/wsgi.py",
+      "use": "@vercel/python",
+      "config": {"maxLambdaSize":"15mb", "runtime": "python3.11"}
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "static/$1"
-    },
-    {
-      "src": "/media/(.*)",
-      "dest": "media/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "XtraROMs/asgi.py",
-      "headers": {
-        "content-type": "application/json"
-      }
+      "dest": "XtraROMs/wsgi.py"
     }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "XtraROMs.settings"
-  }
+  ]
 }
