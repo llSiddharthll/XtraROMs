@@ -1,127 +1,207 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block style %}
+{% extends 'base.html' %} {% load static %} {% block style %}
 <style>
-/* Custom CSS to style the mod details */
-.mod-details {
+  /* Custom CSS to style the mod details */
+  .mod-details {
     max-height: 100px; /* Set the maximum height for the description */
     overflow: hidden; /* Hide overflow content */
-}
+  }
 
-.scrollable-description {
+  .scrollable-description {
     overflow: auto; /* Enable scrolling if content exceeds the max height */
     max-height: 100px; /* Adjust the max height as needed */
+  }
+  .custom-search-button {
+    background-color: #db655c; /* Use a contrasting color, e.g., red */
+    color: white; /* Text color for better visibility */
+    border-color: #db655c; /* Border color to match the background color */
+    font-weight: bold;
 }
+
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container py-5">
-    <h1 class="mb-5">Magisk Modules Showcase</h1>
+  <h1 class="text-center mb-5">Magisk Modules Showcase</h1>
 
-    <!-- Search Bar -->
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <div class="input-group">
-                <input type="text" class="form-control" id="search-input" placeholder="Search...">
-                <button class="btn btn-outline-secondary" id="search-button" type="button">Search</button>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3 text-md-end">
-            <!-- Upload mod button -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
-                Upload Magisk Modules
-            </button>
-        </div>
+  <!-- Search Bar -->
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="search-input"
+          placeholder="Search..."
+        />
+        <button
+          class="btn btn-outline-secondary custom-search-button"
+          id="search-button"
+          type="button"
+        >
+          Search
+        </button>
+      </div>
     </div>
+    <div class="col-md-6 mb-3 text-md-end">
+      <!-- Upload mod button -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#uploadModal"
+      >
+        Upload Magisk Module
+      </button>
+    </div>
+  </div>
 
-    <!-- Custom mod cards -->
-    <div class="row row-cols-1 row-cols-md-3 g-4"> <!-- Use Bootstrap grid system classes -->
-        {% for mod in mods %}
-        <div class="col mod-card">
-            <div class="card h-100 mb-4">
-                <img src="{{ mod.image.url }}" class="card-img-top img-thumbnail custom-mod-image" alt="{{ mod.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ mod.name }} -> <a href="https://telegram.me/{{ mod.credits }}" target="_blank">@{{ mod.credits }}</a></h5>
-                    <div class="scrollable-description">
-                        <p>{{ mod.formatted_details|safe }}</p>
-                    </div>
-                    <a href="{{ mod.link }}" target="_blank" class="btn btn-primary">Download</a>
-                </div>
-            </div>
+  <!-- Custom mod cards -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Use Bootstrap grid system classes -->
+    {% for mod in mods %}
+    <div class="col mod-card">
+      <div class="card h-100 mb-4">
+        <img
+          src="{{ mod.image.url }}"
+          class="card-img-top img-thumbnail custom-mod-image"
+          alt="{{ mod.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ mod.name }} -> {{ mod.device }} <br />
+            <a href="https://telegram.me/{{ mod.credits }}" target="_blank"
+              >@{{ mod.credits }}</a
+            >
+          </h5>
+          <div class="scrollable-description">
+            <p>{{ mod.formatted_details|safe }}</p>
+          </div>
+          <a href="{{ mod.link }}" target="_blank" class="btn btn-primary">Download</a>
+          {% if request.user.is_staff %}
+          <a href="{% url 'edit_mod' mod.id %}" class="btn btn-primary">Edit</a>
+          {% endif %}
         </div>
-        {% endfor %}
+      </div>
     </div>
+    {% endfor %}
+  </div>
 </div>
 
 <!-- Upload mod Modal -->
-<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="uploadModalLabel">Upload Magisk modules</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-    {% if user.is_authenticated %}
-    {% if user.userprofile.is_authorized %}
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required />
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Image</label>
-                        <input type="file" accept="image/*" class="form-control" id="image" name="image" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Credits</label>
-                        <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits" name="credits" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="link" class="form-label">Link</label>
-                        <input type="url" class="form-control" id="link" name="link" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="details" class="form-label">Details</label>
-                        <textarea class="form-control" id="details" name="details" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                    {% else %}
-    <p>You are not authorized to upload mods. Kindly send a request to Siddharth or Staff Members on telegram or by other sources to get authorized.</p>
-    {% endif %}
-    {% else %}
-    <p>Please log in to upload mods.</p>
-    {% endif %}
-                </form>
-            </div>
-        </div>
+<div
+  class="modal fade"
+  id="uploadModal"
+  tabindex="-1"
+  aria-labelledby="uploadModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadModalLabel">Upload Magisk Modules</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %} {% if user.is_authenticated %} 
+          {% if user.userprofile.is_authorized %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Credits</label>
+            <input
+              placeholder="Just write telegram username ! (no '@')"
+              type="text"
+              class="form-control"
+              id="credits"
+              name="credits"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              class="form-control"
+              id="image"
+              name="image"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <input
+              type="url"
+              class="form-control"
+              id="link"
+              name="link"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="details" class="form-label">Details</label>
+            <textarea
+              class="form-control"
+              id="details"
+              name="details"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Upload</button>
+          {% else %}
+          <p class="text-warning">
+            You are not authorized to upload mods. Kindly send a request to
+            Siddharth or Staff Members on telegram or by other sources to get
+            authorized.
+          </p>
+          {% endif %}
+          {% else %}
+          <p class="text-warning">Please log in to upload mods.</p>
+          {% endif %}
+        </form>
+      </div>
     </div>
+  </div>
 </div>
-{% endblock %}
 
-{% block script %}
+{% endblock %} {% block script %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('#search-input');
-    const searchButton = document.querySelector('#search-button');
-    const modCards = document.querySelectorAll('.mod-card');
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector("#search-input");
+    const searchButton = document.querySelector("#search-button");
+    const modCards = document.querySelectorAll(".mod-card");
 
-    searchButton.addEventListener('click', function() {
-        const query = searchInput.value.toLowerCase().trim();
+    searchButton.addEventListener("click", function () {
+      const query = searchInput.value.toLowerCase().trim();
 
-        modCards.forEach(card => {
-            const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
+      modCards.forEach((card) => {
+        const cardTitle = card
+          .querySelector(".card-title")
+          .textContent.toLowerCase();
 
-            if (cardTitle.includes(query)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+        if (cardTitle.includes(query)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
     });
-});
+  });
 </script>
+
+
 {% endblock %}

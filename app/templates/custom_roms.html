@@ -1,135 +1,218 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block style %}
+{% extends 'base.html' %} {% load static %} {% block style %}
 <style>
-/* Custom CSS to style the ROM details */
-.rom-details {
+  /* Custom CSS to style the ROM details */
+  .rom-details {
     max-height: 100px; /* Set the maximum height for the description */
     overflow: hidden; /* Hide overflow content */
-}
+  }
 
-.scrollable-description {
+  .scrollable-description {
     overflow: auto; /* Enable scrolling if content exceeds the max height */
     max-height: 100px; /* Adjust the max height as needed */
+  }
+
+  .custom-search-button {
+    background-color: #db655c; /* Use a contrasting color, e.g., red */
+    color: white; /* Text color for better visibility */
+    border-color: #db655c; /* Border color to match the background color */
+    font-weight: bold;
 }
+
+
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container py-5">
-    <h1 class="text-center mb-5">Custom ROM Showcase</h1>
+  <h1 class="text-center mb-5">Custom ROM Showcase</h1>
 
-    <!-- Search Bar -->
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <div class="input-group">
-                <input type="text" class="form-control" id="search-input" placeholder="Search...">
-                <button class="btn btn-outline-secondary" id="search-button" type="button">Search</button>
+  <!-- Search Bar -->
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="search-input"
+          placeholder="Search..."
+        />
+        <button
+          class="btn btn-outline-secondary custom-search-button"
+          id="search-button"
+          type="button"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3 text-md-end">
+      <!-- Upload ROM button -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#uploadModal"
+      >
+        Upload Custom ROM
+      </button>
+    </div>
+  </div>
+
+  <!-- Custom ROM cards -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Use Bootstrap grid system classes -->
+    {% for rom in roms %}
+    <div class="col rom-card">
+      <div class="card h-100 mb-4">
+        <img
+          src="{{ rom.image.url }}"
+          class="card-img-top img-thumbnail custom-rom-image"
+          alt="{{ rom.name }}"
+        />
+        <div class="card-body">
+            <h5 class="card-title">
+                {{ rom.name }} -> {{ rom.device }} <br />
+                <a href="https://telegram.me/{{ rom.credits }}" target="_blank">@{{ rom.credits }}</a>
+            </h5>
+            <div class="scrollable-description">
+                <p>{{ rom.formatted_details|safe }}</p>
+            </div>
+            <div class="buttons-wrapper">
+                <a href="{{ rom.link }}" target="_blank" class="btn btn-primary">Download</a>
+                {% if request.user.is_staff %}
+                <a href="{% url 'edit_rom' rom.id %}" class="btn btn-primary">Edit</a>
+                {% endif %}
             </div>
         </div>
-        <div class="col-md-6 mb-3 text-md-end">
-            <!-- Upload ROM button -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
-                Upload Custom ROM
-            </button>
-        </div>
+      </div>
     </div>
-
-    <!-- Custom ROM cards -->
-    <div class="row row-cols-1 row-cols-md-3 g-4"> <!-- Use Bootstrap grid system classes -->
-        {% for rom in roms %}
-        <div class="col rom-card">
-            <div class="card h-100 mb-4">
-                <img src="{{ rom.image.url }}" class="card-img-top img-thumbnail custom-rom-image" alt="{{ rom.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ rom.name }} -> {{ rom.device }} <br> <a href="https://telegram.me/{{ rom.credits }}" target="_blank">@{{ rom.credits }}</a></h5>
-                    <div class="scrollable-description">
-                        <p>{{ rom.formatted_details|safe }}</p>
-                    </div>
-                    <a href="{{ rom.link }}" target="_blank" class="btn btn-primary">Download</a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
+  </div>
 </div>
 
 <!-- Upload ROM Modal -->
-<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="uploadModalLabel">Upload Custom ROM</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-    {% if user.is_authenticated %}
-    {% if user.userprofile.is_authorized %}
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="device" class="form-label">Device</label>
-                        <select class="form-select" id="device" name="device" required>
-                            <option value="" selected disabled>Select a Device</option>
-                            <option value="Fleur / Miel">Fleur / Miel</option>
-                            <option value="Viva / Vida">Viva / Vida</option>
-                            <option value="Ocean">Ocean</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Credits</label>
-                        <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits" name="credits" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Image</label>
-                        <input type="file" accept="image/*" class="form-control" id="image" name="image" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="link" class="form-label">Link</label>
-                        <input type="url" class="form-control" id="link" name="link" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="details" class="form-label">Details</label>
-                        <textarea class="form-control" id="details" name="details" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                    {% else %}
-    <p>You are not authorized to upload ROMs. Kindly send a request to Siddharth or Staff Members on telegram or by other sources to get authorized.</p>
-    {% endif %}
-    {% else %}
-    <p>Please log in to upload ROMs.</p>
-    {% endif %}
-                </form>
-            </div>
-        </div>
+<div
+  class="modal fade"
+  id="uploadModal"
+  tabindex="-1"
+  aria-labelledby="uploadModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadModalLabel">Upload Custom ROM</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %} {% if user.is_authenticated %} 
+          {% if user.userprofile.is_authorized %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="device" class="form-label">Device</label>
+            <select class="form-select" id="device" name="device" required>
+              <option value="" selected disabled>Select a Device</option>
+              <option value="Fleur / Miel">Fleur / Miel</option>
+              <option value="Viva / Vida">Viva / Vida</option>
+              <option value="Ocean / Sea">Ocean / Sea</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Credits</label>
+            <input
+              placeholder="Just write telegram username ! (no '@')"
+              type="text"
+              class="form-control"
+              id="credits"
+              name="credits"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              class="form-control"
+              id="image"
+              name="image"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <input
+              type="url"
+              class="form-control"
+              id="link"
+              name="link"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="details" class="form-label">Details</label>
+            <textarea
+              class="form-control"
+              id="details"
+              name="details"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Upload</button>
+          {% else %}
+          <p class="text-warning">
+            You are not authorized to upload ROMs. Kindly send a request to
+            Siddharth or Staff Members on telegram or by other sources to get
+            authorized.
+          </p>
+          {% endif %}
+          {% else %}
+          <p class="text-warning">Please log in to upload ROMs.</p>
+          {% endif %}
+        </form>
+      </div>
     </div>
+  </div>
 </div>
-{% endblock %}
 
-{% block script %}
+{% endblock %} {% block script %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('#search-input');
-    const searchButton = document.querySelector('#search-button');
-    const romCards = document.querySelectorAll('.rom-card');
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector("#search-input");
+    const searchButton = document.querySelector("#search-button");
+    const romCards = document.querySelectorAll(".rom-card");
 
-    searchButton.addEventListener('click', function() {
-        const query = searchInput.value.toLowerCase().trim();
+    searchButton.addEventListener("click", function () {
+      const query = searchInput.value.toLowerCase().trim();
 
-        romCards.forEach(card => {
-            const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
+      romCards.forEach((card) => {
+        const cardTitle = card
+          .querySelector(".card-title")
+          .textContent.toLowerCase();
 
-            if (cardTitle.includes(query)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+        if (cardTitle.includes(query)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
     });
-});
+  });
 </script>
+
+
 {% endblock %}

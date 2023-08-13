@@ -3,44 +3,64 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TFKNBPWNS5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TFKNBPWNS5');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
   <title>XtraROMs</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<style>
-  /* Smooth scrolling behavior */
-html {
-  scroll-behavior: smooth;
-}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <style>
+    /* Smooth scrolling behavior */
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      padding-top: 100px;
+      padding-top: 50px;
       transition: background-color 0.3s ease;
     }
 
     /* Default card style */
-.card {
-  border-radius: 20px;
-  border: 2px solid black;
-}
+    .card {
+      border-radius: 20px;
+      border: 2px solid black;
+    }
 
-/* Light mode */
-.light-mode {
-  background-color: #ffffff; /* Background color for light mode */
-  color: #333333; /* Text color for light mode */
-  border-color: #333333; /* Border color for light mode */
-}
+    /* Light mode */
+    .light-mode {
+      background: rgb(2,0,36);
+      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,88,172,1) 36%, rgba(0,212,255,1) 100%);
+      /* Background color for light mode */
+      color: #333333;
+      /* Text color for light mode */
+      border-color: #333333;
+      /* Border color for light mode */
+    }
 
-/* Dark mode */
-.dark-mode {
-  background-color: #000000; /* Background color for dark mode */
-  color: #ffffff; /* Text color for dark mode */
-  border-color: #ffffff; /* Border color for dark mode */
-}
+    /* Dark mode */
+    .dark-mode {
+      background-color: #000000;
+      /* Background color for dark mode */
+      color: #ffffff;
+      /* Text color for dark mode */
+      border-color: #ffffff;
+      /* Border color for dark mode */
+    }
 
 
     #new h2 {
@@ -50,7 +70,7 @@ html {
     }
 
     #new p {
-      color: #777;
+      color: #131313;
       font-size: 14px;
       font-weight: bold;
       line-height: 22px;
@@ -63,58 +83,6 @@ html {
       border-radius: 50px;
     }
 
-    .clan {
-      width: 80%;
-      margin: auto;
-      text-align: center;
-      padding-top: 100px;
-    }
-
-    .clan h1 {
-      font-size: 36px;
-      font-weight: 600;
-    }
-
-    .clan p {
-      color: #777;
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 22px;
-      padding: 10px;
-    }
-
-    .clan .row {
-      margin-top: 5%;
-      display: flex;
-      justify-content: space-evenly;
-      margin-left: -15px;
-      margin-right: 10px;
-    }
-
-    .clan .row a {
-      color: #000;
-      text-decoration: none;
-    }
-
-    .clan-col {
-      flex-basis: 30%;
-      background: rgb(220, 220, 220);
-      border-radius: 10px;
-      margin-bottom: 5%;
-      padding: 20px 12px;
-      box-sizing: content-box;
-      transition: 0.5s;
-    }
-
-    h3 {
-      text-align: center;
-      font-weight: 600;
-      margin: 10px 0;
-    }
-
-    .clan-col:hover {
-      box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
-    }
 
     @media (max-width: 700px) {
       .row {
@@ -122,10 +90,10 @@ html {
       }
     }
 
-    #magisk-modules{
-      border-top:2px solid #777;
+    #magisk-modules {
+      border-top: 2px solid #777;
     }
-    
+
 
     /* Custom carousel styles */
     #carouselRedmi,
@@ -143,7 +111,7 @@ html {
 
     /* Custom CSS to style the section */
     #about {
-      border-top:2px solid #777;
+      border-top: 2px solid #777;
       padding-top: 80px;
       /* Adjust the padding-top value as needed */
       padding-bottom: 80px;
@@ -211,6 +179,14 @@ html {
       }
     }
 
+    .only-carousel-image{
+      border-radius: 20px;
+      width: 100%;
+      height: 300px;
+      /* Increase the height of the images */
+      object-fit: cover;
+    }
+
     .custom-rom-image {
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
@@ -229,186 +205,194 @@ html {
       object-fit: cover;
     }
 
- /*    .card{
-      border-radius: 20px;
-      border-left: 2px solid black;
-      border-right: 2px solid black;
-      border-bottom: 2px solid black;
-    } */
+    /* Custom CSS to style the "Contact Us" section */
+    #contact {
+      border-top: 2px solid #777;
+    }
 
-/* Custom CSS to style the "Contact Us" section */
-#contact {
-  border-top: 2px solid #777;
-}
-#contact h2 {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
+    #contact h2 {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
 
-.contact-form {
-  padding: 30px;
-  border: 2px solid rgb(97, 97, 97);
-  border-radius: 8px;
-  box-shadow: 0 10px 20cqmax rgba(0, 0, 0, 0.1);
-}
+    .contact-form {
+      padding: 30px;
+      border: 2px solid rgb(97, 97, 97);
+      border-radius: 8px;
+      box-shadow: 0 10px 20cqmax rgba(0, 0, 0, 0.1);
+    }
 
-.contact-form label {
-  font-size: 18px;
-  font-weight: bold;
-}
+    .contact-form label {
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-.contact-form .form-control {
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
+    .contact-form .form-control {
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
 
-.contact-form textarea .form-control {
-  resize: vertical;
-}
+    .contact-form textarea .form-control {
+      resize: vertical;
+    }
 
-.contact-form button.btn-primary {
-  font-size: 18px;
-  padding: 10px 20px;
-}
+    .contact-form button.btn-primary {
+      font-size: 18px;
+      padding: 10px 20px;
+    }
 
-/* Image styles */
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+    /* Image styles */
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-/* Adjust the styles as needed */
-@media (max-width: 768px) {
-  #contact h2 {
-    font-size: 30px;
-  }
-}
+    /* Adjust the styles as needed */
+    @media (max-width: 768px) {
+      #contact h2 {
+        font-size: 30px;
+      }
+    }
 
 
-/* Custom CSS for the footer */
-.footer {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
+    /* Custom CSS for the footer */
+    .footer {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
 
-.footer h3 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 20px;
-}
+    .footer h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
 
-.footer p {
-  font-size: 16px;
-  color: #ccc;
-  margin-bottom: 10px;
-}
+    .footer p {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
 
-.footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-.footer ul li {
-  display: inline-block;
-  margin-right: 10px;
-}
+    .footer ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
 
-.footer ul li a {
-  font-size: 24px;
-  color: #ccc;
-}
+    .footer ul li a {
+      font-size: 24px;
+      color: #ccc;
+    }
 
-.footer ul li a:hover {
-  color: #fff;
-}
+    .footer ul li a:hover {
+      color: #fff;
+    }
 
-.footer hr {
-  border-top: 1px solid #555;
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
+    .footer hr {
+      border-top: 1px solid #555;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
 
-.footer p:last-child {
-  font-size: 14px;
-  color: #999;
-}
-.theme-toggle {
-    /* Your custom styles here */
-    background-color: #007bff;
-    border: none;
-    color: white;
-}
-@media (max-width: 768px) {
-  .theme-toggle {
-    margin-left: auto;
-  }
-}
+    .footer p:last-child {
+      font-size: 14px;
+      color: #999;
+    }
 
+    .theme-toggle {
+      /* Your custom styles here */
+      background-color: #007bff;
+      border: none;
+    }
 
+    @media (max-width: 768px) {
+      .theme-toggle {
+        margin-left: auto;
+      }
+    }
+
+    #btn-back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      z-index: 999;
+    }
+
+    .modal-content{
+      color: #fff;
+    }
   </style>
   {% block style %}
   {% endblock %}
 </head>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container d-flex align-items-center">
-      <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur" /> XtraROMs
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            {% if request.user.is_authenticated %}
-            <a href="#" class="nav-link" style="text-transform:uppercase;">Welcome, {{request.user.username}}</a>
-          </li>
-            {% else %}
-            <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">login</a>
-          </li>
-            {% endif %}
-            {% if request.user.is_staff %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'manage_user_profiles' %}">Manage Profiles</a>
-          </li>
-            {% endif %}
-            {% if request.user.is_superuser %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-            </li>
-            {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'custom_roms' %}">Custom Roms</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'magisk_modules' %}">Magisk Modules</a>
-          </li>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container d-flex align-items-center">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur" /> XtraROMs
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
           {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-          </li>
-          {% endif %}
-        </ul>
-        <div class="form-check form-switch ms-0">
-          <input class="form-check-input theme-toggle" type="checkbox" id="themeToggle">
-          <label class="form-check-label" for="themeToggle">Dark-Mode</label>
-        </div>
+          <a href="#" class="nav-link" style="text-transform:uppercase;">Welcome, {{request.user.username}}</a>
+        </li>
+        {% else %}
+        <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">login</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'manage_user_profiles' %}">Manage Profiles</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'custom_roms' %}">Custom Roms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'magisk_modules' %}">Magisk Modules</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+      <div class="form-check form-switch ms-0">
+        <input class="form-check-input theme-toggle" type="checkbox" id="themeToggle">
+        <label class="form-check-label" for="themeToggle">Dark-Mode</label>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-
+<!-- Back to top button -->
+<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</button>
 {% block content %}
 {% endblock %}
 <footer class="footer bg-dark text-light py-4">
@@ -417,7 +401,8 @@ html {
       <div class="col-md-4">
         <h3>About Us</h3>
         <p>
-          Your one-stop destination for custom ROMs, Magisk modules, and a supportive community to enhance your device experience!
+          Your one-stop destination for custom ROMs, Magisk modules, and a supportive community to enhance your device
+          experience!
         </p>
       </div>
       <div class="col-md-4">
@@ -427,9 +412,12 @@ html {
       <div class="col-md-4">
         <h3>Follow Us</h3>
         <ul class="list-inline text-center">
-          <li class="list-inline-item"><a href="https://telegram.me/llSiddharthll" target="_blank"><i class="fab fa-telegram"></i></a></li>
-          <li class="list-inline-item"><a href="https://github.com/llSiddharthll" target="_blank"><i class="fab fa-github"></i></a></li>
-          <li class="list-inline-item"><a href="https://discord.gg/wcA4HBUj" target="_blank"><i class="fab fa-discord"></i></a></li>
+          <li class="list-inline-item"><a href="https://telegram.me/llSiddharthll" target="_blank"><i
+                class="fab fa-telegram"></i></a></li>
+          <li class="list-inline-item"><a href="https://github.com/llSiddharthll" target="_blank"><i
+                class="fab fa-github"></i></a></li>
+          <li class="list-inline-item"><a href="https://discord.gg/wcA4HBUj" target="_blank"><i
+                class="fab fa-discord"></i></a></li>
           <!-- Add more social media links/icons here -->
         </ul>
       </div>
@@ -445,20 +433,21 @@ html {
 </footer>
 
 
-  <!-- Custom JavaScript -->
-  <script>
-    // Function to start both carousels in sync
-    function startCarouselsInSync() {
-      $("#carouselRedmi, #carouselPoco").carousel({
-        interval: 3000, // Set the interval time for sliding (e.g., 3000ms = 3 seconds)
-      });
-    }
-
-    // Start both carousels in sync when the document is ready
-    $(document).ready(function () {
-      startCarouselsInSync();
+<!-- Custom JavaScript -->
+<script>
+  // Function to start both carousels in sync
+  function startCarouselsInSync() {
+    $("#carouselRedmi, #carouselPoco").carousel({
+      interval: 3000, // Set the interval time for sliding (e.g., 3000ms = 3 seconds)
+      pause: "false"
     });
-  </script>
+  }
+
+  // Start both carousels in sync when the document is ready
+  $(document).ready(function () {
+    startCarouselsInSync();
+  });
+</script>
 
 <script>
   // Function to toggle between light and dark mode
@@ -495,56 +484,51 @@ html {
   });
 </script>
 <script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
 
-    const target = document.querySelector(this.getAttribute('href'));
-    const offset = 50; // Adjust the offset value as needed
-    const topPosition = target.offsetTop - offset;
+      const target = document.querySelector(this.getAttribute('href'));
+      const offset = 50; // Adjust the offset value as needed
+      const topPosition = target.offsetTop - offset;
 
-    window.scrollTo({
-      top: topPosition,
-      behavior: 'smooth'
+      window.scrollTo({
+        top: topPosition,
+        behavior: 'smooth'
+      });
     });
   });
-});
 </script>
+<script>
+  //Get the button
+  let mybutton = document.getElementById("btn-back-to-top");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  // When the user clicks on the button, scroll to the top of the document
+  mybutton.addEventListener("click", backToTop);
+
+  function backToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+
 {% block script %}
 {% endblock %}
-<!--   <script>
-    // Function to toggle between light and dark mode
-    function toggleTheme() {
-      const body = $('body');
-      if (body.hasClass('light-mode')) {
-        body.removeClass('light-mode').addClass('dark-mode');
-        localStorage.setItem('theme', 'dark'); // Save theme preference in Local Storage
-      } else {
-        body.removeClass('dark-mode').addClass('light-mode');
-        localStorage.setItem('theme', 'light'); // Save theme preference in Local Storage
-      }
-    }
-  </script> --> 
-
-    <!-- /* // Function to load the user's preferred theme from Local Storage
-    function loadTheme() {
-      const theme = localStorage.getItem('theme');
-      if (theme === 'dark') {
-        $('body').addClass('dark-mode');
-      } else {
-        $('body').addClass('light-mode');
-      }
-    }
-
-    // Add event listener to the theme change button
-    $(document).ready(function () {
-      $('#theme-toggle-btn').on('click', function () {
-        toggleTheme();
-      });
-
-      // Load the user's preferred theme
-      loadTheme(); -->
-  
 
 </body>
 

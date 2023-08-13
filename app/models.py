@@ -10,8 +10,20 @@ class CustomROM(models.Model):
     link = models.URLField(max_length=225)
     details = models.TextField()
 
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:  # Only set uploaded_by on initial creation
+            self.uploaded_by = User.objects.get(pk=self.user_id)
+        super(CustomROM, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
+    
+    class Meta:
+        permissions = [
+            ("can_edit_rom", "Can edit ROM"),
+        ]
     
 class CustomMOD(models.Model):
     name = models.CharField(max_length=100)
@@ -20,8 +32,20 @@ class CustomMOD(models.Model):
     link = models.URLField()
     details = models.TextField()
 
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:  # Only set uploaded_by on initial creation
+            self.uploaded_by = User.objects.get(pk=self.user_id)
+        super(CustomMOD, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
+    
+    class Meta:
+        permissions = [
+            ("can_edit_rom", "Can edit ROM"),
+        ]
 
 
 class UserProfile(models.Model):
