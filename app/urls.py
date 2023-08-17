@@ -7,6 +7,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_request, name='login'),
     path('logout/', views.logout_request, name='logout'),
+    path('profile/', views.profile, name='profile'),
     path('custom_roms/', views.custom_roms, name='custom_roms'),
     path('edit_rom/<int:rom_id>/', views.edit_rom, name='edit_rom'),
     path('edit_mod/<int:mod_id>/', views.edit_mod, name='edit_mod'),
@@ -16,4 +17,7 @@ urlpatterns = [
     path('search-mods/', search_mods, name='search_mods'),
     path('manage_user_profiles/', views.manage_user_profiles, name='manage_user_profiles'),
     path('update_user_profile/<int:profile_id>/', views.update_user_profile, name='update_user_profile'),
+    path('set-cookie/<str:interaction_data>/', views.set_cookie, name='set_cookie'),
+    path('read-cookie/', views.read_cookie, name='read_cookie'),
+    path('track-session/', views.track_session, name='track_session'),
 ]

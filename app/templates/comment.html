@@ -1,103 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block css %}
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
-    <style type="text/css">
-      .container h1{
-		text-align: center;
-	}
-	@media(max-width: 700px) {
-		.container h1{
-			font-size: x-large;
-		}
-	}
-      .container{
-        display: block;
-      }
-
-      .comment-wrapper .panel-body {
-        max-height: 650px;
-        overflow:scroll;
-      }
-
-      .comment-wrapper .media-list .media img {
-        width: 64px;
-        height: 64px;
-        border: 2px solid #e5e7e8;
-      }
-
-      .comment-wrapper .media-list .media {
-        border-bottom: 1px dashed #efefef;
-        margin-bottom: 25px;
-      }
-      @media only screen and (max-width: 600px) {
-        .container{
-            padding-top: 40px;
-            width: 98%;
-        }
-      }
-    </style>
-    {% endblock %}
-    {% block body %}
-    <div class="bootstrap-iso">
-    <div class="container">
-      <div class="row bootstrap snippets bootdeys">
-        <div class="col-md-8 col-sm-12">
-          <div class="comment-wrapper">
-            <div class="panel panel-info">
-              <div class="panel-heading">Comment panel</div>
-              <div class="panel-body">
-                <form action="" method="post">
-                  {% csrf_token %}
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="Name"
-                    placeholder="Enter your firstname..."
-                    id=""
-                  /><br />
-                  <textarea
+{% block content %}
+<div class="bootstrap-iso">
+  <div id="comment-sec" class="container">
+    <div class="row bootstrap snippets bootdeys">
+      <div class="col-md-8 col-sm-12">
+        <div class="comment-wrapper">
+          <div class="panel panel-info" style="display: flex; flex-direction: column;">
+            <div class="panel-heading">Comments</div>
+            <div class="panel-body" style="flex: 1; overflow-y: auto;">
+              <ul class="media-list">
+                {% for comment in data %}
+                <li class="media" style="margin-bottom: -10px;">
+                  <a href="#" class="pull-left">
+                    <img
+                      src="https://bootdey.com/img/Content/user_1.jpg"
+                      alt=""
+                      class="img-circle"
+                      style="height: 50px;
+                      width: 50px;"
+                    />
+                  </a>
+                  <div class="media-body">
+                    <span class="text-muted pull-right">
+                      <small class="text-muted">{{ comment.created_at }}</small>
+                    </span>
+                    <strong class="text-success">{{ comment.name }}</strong>
+                    <p style="color: black;">{{ comment.message }}</p>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+              <hr />
+              <div class="panel-footer" style="margin: -10px;">
+              <form class="row row-cols-lg-auto align-items-center" action="{% url 'comment' %}" method="post" style="bottom: 0;">
+                {% csrf_token %}
+                <div class="col-12">
+                  <div class="input-group">
+                    <textarea
                     class="form-control"
                     name="Message"
                     placeholder="write a comment..."
-                    rows="3"
-                  ></textarea>
-                  <br />
-                  <button type="submit" class="btn btn-info pull-right">
-                    Post
-                  </button>
-                </form>
-                <div class="clearfix"></div>
-                <hr />
-                <ul class="media-list">
-                  {% for i in data %}
-                  <li class="media">
-                    <a href="#" class="pull-left">
-                      <img
-                        src="https://bootdey.com/img/Content/user_1.jpg"
-                        alt=""
-                        class="img-circle"
-                      />
-                    </a>
-                    <div class="media-body">
-                      <span class="text-muted pull-right">
-                        <small class="text-muted">{{i.created_at}}</small>
-                      </span>
-                      <strong class="text-success">@{{i.name}}</strong>
-                      <p style="color: black;">{{i.message}}.</p>
-                    </div>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
+                    rows="1"
+                  ></textarea> 
+                  </div>
+                </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+              </form>
+            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript"></script>
+</div>
+
 {% endblock %}

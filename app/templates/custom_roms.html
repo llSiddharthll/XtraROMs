@@ -56,70 +56,55 @@
     </div>
   </div>
 
-  <!-- Custom ROM cards -->
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <!-- Use Bootstrap grid system classes -->
-    {% for rom in roms %}
-    <div class="col rom-card">
-      <div class="card h-100 mb-4">
-        <img
-          src="{{ rom.image.url }}"
-          class="card-img-top img-thumbnail custom-rom-image"
-          alt="{{ rom.name }}"
-        />
-        <div class="card-body">
-            <h5 class="card-title">
-                {{ rom.name }} -> {{ rom.device }} <br />
-                <a href="https://telegram.me/{{ rom.credits }}" target="_blank">@{{ rom.credits }}</a>
-            </h5>
-            <div class="scrollable-description">
-                <p>{{ rom.formatted_details|safe }}</p>
-            </div>
-            <div class="buttons-wrapper">
-                <a href="{{ rom.link }}" target="_blank" class="btn btn-primary">Download</a>
-                {% if request.user.is_staff %}
-                <a href="{% url 'edit_rom' rom.id %}" class="btn btn-primary">Edit</a>
-                {% endif %}
-            </div>
+
+<!-- Custom ROM cards -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for rom in roms %}
+  <div class="col rom-card">
+    <div class="card h-100 mb-4">
+      <img
+        src="{{ rom.image.url }}"
+        class="card-img-top img-thumbnail custom-rom-image"
+        alt="{{ rom.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ rom.name }} &rarr; {{ rom.device }} <br />
+          <a href="https://telegram.me/{{ rom.credits }}" target="_blank" style="text-decoration: none;">@{{ rom.credits }}</a>
+        </h5>
+        <div class="scrollable-description">
+          <p>{{ rom.formatted_details|safe }}</p>
+        </div>
+        <div class="buttons-wrapper">
+          <a href="{{ rom.link }}" target="_blank" class="btn btn-primary rom-link">Download</a>
+          <button class="btn btn-secondary like-button" data-rom-id="{{ rom.id }}">Like</button>
+          <span class="likes-count">{{ rom.likes }}</span> Likes
+          {% if request.user.is_staff %}
+          <a href="{% url 'edit_rom' rom.id %}" class="btn btn-primary">Edit</a>
+          {% endif %}
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </div>
 
 <!-- Upload ROM Modal -->
-<div
-  class="modal fade"
-  id="uploadModal"
-  tabindex="-1"
-  aria-labelledby="uploadModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="uploadModalLabel">Upload Custom ROM</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="post" enctype="multipart/form-data">
-          {% csrf_token %} {% if user.is_authenticated %} 
+          {% csrf_token %}
+          {% if user.is_authenticated %}
           {% if user.userprofile.is_authorized %}
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              name="name"
-              required
-            />
+            <input type="text" class="form-control" id="name" name="name" required />
           </div>
           <div class="mb-3">
             <label for="device" class="form-label">Device</label>
@@ -132,52 +117,24 @@
           </div>
           <div class="mb-3">
             <label for="image" class="form-label">Credits</label>
-            <input
-              placeholder="Just write telegram username ! (no '@')"
-              type="text"
-              class="form-control"
-              id="credits"
-              name="credits"
-              required
-            />
+            <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits" name="credits" required />
           </div>
           <div class="mb-3">
             <label for="image" class="form-label">Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              class="form-control"
-              id="image"
-              name="image"
-              required
-            />
+            <input type="file" accept="image/*" class="form-control" id="image" name="image" required />
           </div>
           <div class="mb-3">
             <label for="link" class="form-label">Link</label>
-            <input
-              type="url"
-              class="form-control"
-              id="link"
-              name="link"
-              required
-            />
+            <input type="url" class="form-control" id="link" name="link" required />
           </div>
           <div class="mb-3">
             <label for="details" class="form-label">Details</label>
-            <textarea
-              class="form-control"
-              id="details"
-              name="details"
-              rows="5"
-              required
-            ></textarea>
+            <textarea class="form-control" id="details" name="details" rows="5" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Upload</button>
           {% else %}
           <p class="text-warning">
-            You are not authorized to upload ROMs. Kindly send a request to
-            Siddharth or Staff Members on telegram or by other sources to get
-            authorized.
+            You are not authorized to upload ROMs. Kindly send a request to Siddharth or Staff Members on telegram or by other sources to get authorized.
           </p>
           {% endif %}
           {% else %}
@@ -188,7 +145,7 @@
     </div>
   </div>
 </div>
-
+</div>
 {% endblock %} {% block script %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -214,5 +171,84 @@
   });
 </script>
 
+
+
+<script>
+$(document).ready(function () {
+  // Check if the user has already liked a ROM by using cookies
+  function hasUserLiked(romId) {
+    var likedRomIds = Cookies.getJSON("liked_roms") || [];
+    return likedRomIds.includes(romId);
+  }
+
+  // Set a user's like for a ROM using cookies
+  function setUserLiked(romId) {
+    var likedRomIds = Cookies.getJSON("liked_roms") || [];
+    likedRomIds.push(romId);
+    Cookies.set("liked_roms", likedRomIds);
+  }
+
+  // Initialize likes data
+  var romLikes = {};
+  $(".like-button").each(function () {
+    var romId = $(this).data("rom-id");
+    romLikes[romId] = 0;
+  });
+
+  $(".like-button").click(function () {
+    var romId = $(this).data("rom-id");
+    var likesCountElement = $(this).siblings(".likes-count");
+
+    // Check if the user has already liked this ROM
+    if (!hasUserLiked(romId)) {
+      // Simulate an AJAX request to increment the likes count on the server
+      // In a real application, you would send an AJAX request to the server
+      // to increment the likes count for the specific ROM ID.
+
+      // Here, we're just updating the likes count in the UI for demonstration purposes.
+      romLikes[romId]++;
+      setUserLiked(romId); // Set that the user has liked this ROM
+      likesCountElement.text(romLikes[romId]);
+    } else {
+      alert("You have already liked this ROM.");
+    }
+  });
+});
+</script>
+
+<!----------------------cookie collecting in all pages---------------------------->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const romLinks = document.querySelectorAll(".rom-link");
+    
+    romLinks.forEach(romLink => {
+        romLink.addEventListener("click", function(event) {
+            const romId = event.target.dataset.romId;
+            const interactionData = `User clicked on ROM with ID ${rom.id}`;
+            
+            // Send interaction data to the set_cookie view using AJAX
+            fetch(`/set-cookie/?interaction_data=${interactionData}`)
+                .then(response => response.json())
+                .then(data => console.log(data.message));
+        });
+    });
+});
+</script>
+<!----------------------------Session Traking---------------------->
+<script>
+  document.querySelectorAll('.track-session-link').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      var url = this.getAttribute('href');
+      fetch(url).then(function(response) {
+        if (response.ok) {
+          alert('Session tracked for this ROM!');
+        } else {
+          alert('Failed to track session. Please try again later.');
+        }
+      });
+    });
+  });
+</script>
 
 {% endblock %}

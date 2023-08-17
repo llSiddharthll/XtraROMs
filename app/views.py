@@ -8,7 +8,37 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.safestring import mark_safe
 from django.http import JsonResponse
+# app/views.py
+from django.http import HttpResponse
 
+def set_cookie(request, interaction_data):
+    response = HttpResponse("Cookie set!")
+    # Append interaction data to the cookie value
+    current_cookie_data = request.COOKIES.get("user_interactions", "")
+    new_cookie_data = f"{current_cookie_data}|{interaction_data}"
+    response.set_cookie("user_interactions", new_cookie_data, max_age=3600)
+    return response
+
+def read_cookie(request):
+    user_interactions = request.COOKIES.get("user_interactions")
+    return HttpResponse(f"User Interactions: {user_interactions}")
+
+def track_session(request, obj_id, obj_type):
+    if not request.user.is_authenticated:
+        # Determine the appropriate model based on obj_type
+        model_class = CustomROM if obj_type == 'rom' else CustomMOD
+
+        # Retrieve the object using the provided obj_id
+        try:
+            obj = model_class.objects.get(id=obj_id)
+            # Perform session tracking here, e.g., updating session data
+            if 'visited_objects' not in request.session:
+                request.session['visited_objects'] = []
+            request.session['visited_objects'].append((obj_type, obj_id))
+        except model_class.DoesNotExist:
+            pass  # Handle the case where the object doesn't exist
+
+    return HttpResponse("Session tracked for {} ID: {}".format(obj_type.capitalize(), obj_id))
 
 # Create your views here.
 
@@ -134,6 +164,35 @@ def signup(request):
 
 from django.utils.safestring import mark_safe
 
+from django.shortcuts import render, redirect
+from .models import UserProfile
+from .forms import ProfilePictureForm, BioForm
+
+def profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    
+    if request.method == 'POST':
+        profile_picture_form = ProfilePictureForm(request.POST, request.FILES, instance=user_profile)
+        bio_form = BioForm(request.POST, instance=user_profile)
+        
+        if profile_picture_form.is_valid():
+            profile_picture_form.save()
+        
+        if bio_form.is_valid():
+            bio_form.save()
+    
+    else:
+        profile_picture_form = ProfilePictureForm(instance=user_profile)
+        bio_form = BioForm(instance=user_profile)
+    
+    context = {
+        'user_profile': user_profile,
+        'profile_picture_form': profile_picture_form,
+        'bio_form': bio_form,
+    }
+    
+    return render(request, 'profile.html', context)
+
 
 def custom_roms(request):
     roms = CustomROM.objects.all()
@@ -206,13 +265,17 @@ def update_user_profile(request, profile_id):
     )
 
 
+@login_required
 def comment(request):
-    if request.method == "POST":
-        n = request.POST.get("Name")
-        mess = request.POST.get("Message")
-        e = Comment.objects.create(name=n, message=mess)
-        e.save()
-        return redirect("/comment/")
+    if request.method == 'POST':
+        message = request.POST.get('Message')
+        
+        # Ensure the user is logged in before posting a comment
+        if request.user.is_authenticated:
+            username = request.user.username
+            comment = Comment.objects.create(name=username, message=message)
+            comment.save()
+            return redirect('comment')
 
     data = Comment.objects.all().values()
-    return render(request, "comment.html", {"data": data})
+    return render(request, 'comment.html', {'data': data})

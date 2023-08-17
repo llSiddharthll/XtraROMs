@@ -21,9 +21,15 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style1.css' %}" />
+
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
   <style>
     /* Smooth scrolling behavior */
     html {
@@ -32,8 +38,8 @@
 
     body {
       padding-top: 50px;
-      transition: background-color 0.3s ease;
-    }
+}
+
 
     /* Default card style */
     .card {
@@ -42,25 +48,6 @@
     }
 
     /* Light mode */
-    .light-mode {
-      background: rgb(2,0,36);
-      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,88,172,1) 36%, rgba(0,212,255,1) 100%);
-      /* Background color for light mode */
-      color: #333333;
-      /* Text color for light mode */
-      border-color: #333333;
-      /* Border color for light mode */
-    }
-
-    /* Dark mode */
-    .dark-mode {
-      background-color: #000000;
-      /* Background color for dark mode */
-      color: #ffffff;
-      /* Text color for dark mode */
-      border-color: #ffffff;
-      /* Border color for dark mode */
-    }
 
 
     #new h2 {
@@ -90,10 +77,6 @@
       }
     }
 
-    #magisk-modules {
-      border-top: 2px solid #777;
-    }
-
 
     /* Custom carousel styles */
     #carouselRedmi,
@@ -111,7 +94,6 @@
 
     /* Custom CSS to style the section */
     #about {
-      border-top: 2px solid #777;
       padding-top: 80px;
       /* Adjust the padding-top value as needed */
       padding-bottom: 80px;
@@ -206,9 +188,6 @@
     }
 
     /* Custom CSS to style the "Contact Us" section */
-    #contact {
-      border-top: 2px solid #777;
-    }
 
     #contact h2 {
       font-size: 36px;
@@ -328,19 +307,37 @@
       z-index: 999;
     }
 
+    @media (max-width: 768px) {
+      #btn-back-to-top{
+        bottom: 70px;
+      }
+    }
+
     .modal-content{
       color: #fff;
     }
+
+    
+#cb-cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    border-radius: 0;
+    display: none;
+  }
   </style>
   {% block style %}
   {% endblock %}
 </head>
 <body>
+
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container d-flex align-items-center">
     <a class="navbar-brand" href="{% url 'home' %}">
-      <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur" /> XtraROMs
+      <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur"/> XtraROMs
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -373,7 +370,7 @@
           <a class="nav-link" href="{% url 'custom_roms' %}">Custom Roms</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'magisk_modules' %}">Magisk Modules</a>
+          <a class="nav-link" href="{% url 'magisk_modules' %}">Modules</a>
         </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item">
@@ -387,30 +384,98 @@
       </div>
     </div>
   </div>
-</nav>
+</nav> -->
+<div id='stars'></div>
+<div id='stars2'></div>
+<div id='stars3'></div>
+<header class="header" id="header">
+  <nav class="nav container">
+    <a class="navbar-brand" href="{% url 'home' %}" style="padding-left: 20px;">
+    <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur"/><b style="padding-top: 5px;">  XtraROMs</b>
+  </a>
+
+      <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+              <li class="nav__item">
+                  <a href="{% url 'home' %}" class="nav__link {% if request.path == '/' %}active-link{% endif %}">
+                      <i class='bx bx-home-alt nav__icon'></i>
+                      <span class="nav__name">Home</span>
+                  </a>
+              </li>
+              
+              <li class="nav__item">
+                  <a href="{% url 'profile' %}" class="nav__link {% if request.path == '/profile/' %}active-link{% endif %}">
+                      <i class='bx bx-user nav__icon'></i>
+                      <span class="nav__name">Profile</span>
+                  </a>
+              </li>
+
+              <li class="nav__item">
+                  <a href="{% url 'custom_roms' %}" class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}">
+                      <i class='bx bx-book-alt nav__icon'></i>
+                      <span class="nav__name">Roms</span>
+                  </a>
+              </li>
+
+              <li class="nav__item">
+                  <a href="{% url 'magisk_modules' %}" class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}">
+                      <i class='bx bx-briefcase-alt nav__icon'></i>
+                      <span class="nav__name">Mods</span>
+                  </a>
+              </li>
+
+              <li class="nav__item">
+                  <a href="{% url 'comment' %}" class="nav__link {% if request.path == '/comments/' %}active-link{% endif %}">
+                      <i class='bx bx-message-square-detail nav__icon'></i>
+                      <span class="nav__name">Chit-Chat</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+
+      <img src="{% static 'assets/img/perfil.png' %}" alt="" class="nav__img">
+  </nav>
+</header>
+
+
+
+<!--------cookie collection ----------------------->
+
+<!-- Cookie Banner -->
+<div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
+  &#x1F36A; This website uses cookies to ensure you get the best experience on our website.
+  <a href="https://www.cookiesandyou.com/" target="blank">Learn more</a>
+  <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
+    I Got It
+  </button>
+</div>
+<!-- End of Cookie Banner -->
+
 
 <!-- Back to top button -->
 <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
   <i class="fas fa-arrow-up"></i>
 </button>
+
 {% block content %}
 {% endblock %}
+
 <footer class="footer bg-dark text-light py-4">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <h3>About Us</h3>
-        <p>
+        <h3 class="text-center">About Us</h3>
+        <p class="text-center">
           Your one-stop destination for custom ROMs, Magisk modules, and a supportive community to enhance your device
           experience!
         </p>
       </div>
       <div class="col-md-4">
-        <h3>Contact Us</h3>
+        <h3 class="text-center">Contact Us</h3>
         <p class="text-center">Email: siddharthgreat443@gmail.com</p>
       </div>
       <div class="col-md-4">
-        <h3>Follow Us</h3>
+        <h3 class="text-center">Follow Us</h3>
         <ul class="list-inline text-center">
           <li class="list-inline-item"><a href="https://telegram.me/llSiddharthll" target="_blank"><i
                 class="fab fa-telegram"></i></a></li>
@@ -433,6 +498,76 @@
 </footer>
 
 
+<script>
+const navLinks = document.querySelectorAll('.nav__link');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.forEach(otherLink => otherLink.classList.remove('active-link'));
+        link.classList.add('active-link');
+    });
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+<!---------Collecting cookies ---------------->
+
+<script>
+/**
+ * @description Shows the cookie banner
+ */
+function showCookieBanner(){
+    let cookieBanner = document.getElementById("cb-cookie-banner");
+    cookieBanner.style.display = "block";
+}
+
+/**
+ * @description Hides the Cookie banner and saves the value to localstorage
+ */
+function hideCookieBanner(){
+    localStorage.setItem("cb_isCookieAccepted", "yes");
+
+    let cookieBanner = document.getElementById("cb-cookie-banner");
+    cookieBanner.style.display = "none";
+
+    // Call the set_cookie view using AJAX
+    fetch('/set-cookie/')
+    fetch('/read-cookie/')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message); // Print the response from the server
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+/**
+ * @description Checks the localstorage and shows Cookie banner based on it.
+ */
+function initializeCookieBanner(){
+    let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+    if(isCookieAccepted === null)
+    {
+        localStorage.setItem("cb_isCookieAccepted", "no");
+        showCookieBanner();
+    }
+    if(isCookieAccepted === "no"){
+        showCookieBanner();
+    }
+}
+
+// Assigning values to window object
+window.onload = initializeCookieBanner();
+window.cb_hideCookieBanner = hideCookieBanner;
+
+  </script>
+
+
+
+
 <!-- Custom JavaScript -->
 <script>
   // Function to start both carousels in sync
@@ -449,7 +584,7 @@
   });
 </script>
 
-<script>
+<!-- <script>
   // Function to toggle between light and dark mode
   function toggleTheme() {
     const body = $('body');
@@ -482,7 +617,7 @@
 
     loadTheme();
   });
-</script>
+</script> -->
 <script>
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -499,6 +634,8 @@
     });
   });
 </script>
+
+<!------------------------Scroll To Top ------------------------------>
 <script>
   //Get the button
   let mybutton = document.getElementById("btn-back-to-top");

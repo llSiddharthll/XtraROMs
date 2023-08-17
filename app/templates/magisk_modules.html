@@ -10,6 +10,7 @@
     overflow: auto; /* Enable scrolling if content exceeds the max height */
     max-height: 100px; /* Adjust the max height as needed */
   }
+
   .custom-search-button {
     background-color: #db655c; /* Use a contrasting color, e.g., red */
     color: white; /* Text color for better visibility */
@@ -17,10 +18,11 @@
     font-weight: bold;
 }
 
+
 </style>
 {% endblock %} {% block content %}
 <div class="container py-5">
-  <h1 class="text-center mb-5">Magisk Modules Showcase</h1>
+  <h1 class="text-center mb-5">Custom mod Showcase</h1>
 
   <!-- Search Bar -->
   <div class="row">
@@ -49,124 +51,90 @@
         data-bs-toggle="modal"
         data-bs-target="#uploadModal"
       >
-        Upload Magisk Module
+        Upload Custom mod
       </button>
     </div>
   </div>
 
-  <!-- Custom mod cards -->
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <!-- Use Bootstrap grid system classes -->
-    {% for mod in mods %}
-    <div class="col mod-card">
-      <div class="card h-100 mb-4">
-        <img
-          src="{{ mod.image.url }}"
-          class="card-img-top img-thumbnail custom-mod-image"
-          alt="{{ mod.name }}"
-        />
-        <div class="card-body">
-          <h5 class="card-title">
-            {{ mod.name }} -> {{ mod.device }} <br />
-            <a href="https://telegram.me/{{ mod.credits }}" target="_blank"
-              >@{{ mod.credits }}</a
-            >
-          </h5>
-          <div class="scrollable-description">
-            <p>{{ mod.formatted_details|safe }}</p>
-          </div>
-          <a href="{{ mod.link }}" target="_blank" class="btn btn-primary">Download</a>
+
+<!-- Custom mod cards -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for mod in mods %}
+  <div class="col mod-card">
+    <div class="card h-100 mb-4">
+      <img
+        src="{{ mod.image.url }}"
+        class="card-img-top img-thumbnail custom-mod-image"
+        alt="{{ mod.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ mod.name }} &rarr; {{ mod.device }} <br />
+          <a href="https://telegram.me/{{ mod.credits }}" target="_blank" style="text-decoration: none;">@{{ mod.credits }}</a>
+        </h5>
+        <div class="scrollable-description">
+          <p>{{ mod.formatted_details|safe }}</p>
+        </div>
+        <div class="buttons-wrapper">
+          <a href="{{ mod.link }}" target="_blank" class="btn btn-primary mod-link">Download</a>
+          <button class="btn btn-secondary like-button" data-mod-id="{{ mod.id }}">Like</button>
+          <span class="likes-count">{{ mod.likes }}</span> Likes
           {% if request.user.is_staff %}
           <a href="{% url 'edit_mod' mod.id %}" class="btn btn-primary">Edit</a>
           {% endif %}
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </div>
 
 <!-- Upload mod Modal -->
-<div
-  class="modal fade"
-  id="uploadModal"
-  tabindex="-1"
-  aria-labelledby="uploadModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="uploadModalLabel">Upload Magisk Modules</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <h5 class="modal-title" id="uploadModalLabel">Upload Custom mod</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="post" enctype="multipart/form-data">
-          {% csrf_token %} {% if user.is_authenticated %} 
+          {% csrf_token %}
+          {% if user.is_authenticated %}
           {% if user.userprofile.is_authorized %}
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              name="name"
-              required
-            />
+            <input type="text" class="form-control" id="name" name="name" required />
+          </div>
+          <div class="mb-3">
+            <label for="device" class="form-label">Device</label>
+            <select class="form-select" id="device" name="device" required>
+              <option value="" selected disabled>Select a Device</option>
+              <option value="Fleur / Miel">Fleur / Miel</option>
+              <option value="Viva / Vida">Viva / Vida</option>
+              <option value="Ocean / Sea">Ocean / Sea</option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="image" class="form-label">Credits</label>
-            <input
-              placeholder="Just write telegram username ! (no '@')"
-              type="text"
-              class="form-control"
-              id="credits"
-              name="credits"
-              required
-            />
+            <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits" name="credits" required />
           </div>
           <div class="mb-3">
             <label for="image" class="form-label">Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              class="form-control"
-              id="image"
-              name="image"
-              required
-            />
+            <input type="file" accept="image/*" class="form-control" id="image" name="image" required />
           </div>
           <div class="mb-3">
             <label for="link" class="form-label">Link</label>
-            <input
-              type="url"
-              class="form-control"
-              id="link"
-              name="link"
-              required
-            />
+            <input type="url" class="form-control" id="link" name="link" required />
           </div>
           <div class="mb-3">
             <label for="details" class="form-label">Details</label>
-            <textarea
-              class="form-control"
-              id="details"
-              name="details"
-              rows="5"
-              required
-            ></textarea>
+            <textarea class="form-control" id="details" name="details" rows="5" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Upload</button>
           {% else %}
           <p class="text-warning">
-            You are not authorized to upload mods. Kindly send a request to
-            Siddharth or Staff Members on telegram or by other sources to get
-            authorized.
+            You are not authorized to upload mods. Kindly send a request to Siddharth or Staff Members on telegram or by other sources to get authorized.
           </p>
           {% endif %}
           {% else %}
@@ -177,7 +145,7 @@
     </div>
   </div>
 </div>
-
+</div>
 {% endblock %} {% block script %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -203,5 +171,84 @@
   });
 </script>
 
+
+
+<script>
+$(document).ready(function () {
+  // Check if the user has already liked a mod by using cookies
+  function hasUserLiked(modId) {
+    var likedmodIds = Cookies.getJSON("liked_mods") || [];
+    return likedmodIds.includes(modId);
+  }
+
+  // Set a user's like for a mod using cookies
+  function setUserLiked(modId) {
+    var likedmodIds = Cookies.getJSON("liked_mods") || [];
+    likedmodIds.push(modId);
+    Cookies.set("liked_mods", likedmodIds);
+  }
+
+  // Initialize likes data
+  var modLikes = {};
+  $(".like-button").each(function () {
+    var modId = $(this).data("mod-id");
+    modLikes[modId] = 0;
+  });
+
+  $(".like-button").click(function () {
+    var modId = $(this).data("mod-id");
+    var likesCountElement = $(this).siblings(".likes-count");
+
+    // Check if the user has already liked this mod
+    if (!hasUserLiked(modId)) {
+      // Simulate an AJAX request to increment the likes count on the server
+      // In a real application, you would send an AJAX request to the server
+      // to increment the likes count for the specific mod ID.
+
+      // Here, we're just updating the likes count in the UI for demonstration purposes.
+      modLikes[modId]++;
+      setUserLiked(modId); // Set that the user has liked this mod
+      likesCountElement.text(modLikes[modId]);
+    } else {
+      alert("You have already liked this mod.");
+    }
+  });
+});
+</script>
+
+<!----------------------cookie collecting in all pages---------------------------->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const modLinks = document.querySelectorAll(".mod-link");
+    
+    modLinks.forEach(modLink => {
+        modLink.addEventListener("click", function(event) {
+            const modId = event.target.dataset.modId;
+            const interactionData = `User clicked on mod with ID ${mod.id}`;
+            
+            // Send interaction data to the set_cookie view using AJAX
+            fetch(`/set-cookie/?interaction_data=${interactionData}`)
+                .then(response => response.json())
+                .then(data => console.log(data.message));
+        });
+    });
+});
+</script>
+<!----------------------------Session Traking---------------------->
+<script>
+  document.querySelectorAll('.track-session-link').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      var url = this.getAttribute('href');
+      fetch(url).then(function(response) {
+        if (response.ok) {
+          alert('Session tracked for this mod!');
+        } else {
+          alert('Failed to track session. Please try again later.');
+        }
+      });
+    });
+  });
+</script>
 
 {% endblock %}

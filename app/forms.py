@@ -30,3 +30,13 @@ class ContactForm(forms.ModelForm):
         widgets = {
             'message': forms.Textarea(attrs={'rows': 4}),  # Adjust the rows value as needed
         }
+
+class ProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_picture']
+
+class BioForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['bio']
