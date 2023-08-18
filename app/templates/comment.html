@@ -33,7 +33,7 @@
               </ul>
               <hr />
               <div class="panel-footer" style="margin: -10px;">
-              <form class="row row-cols-lg-auto align-items-center" action="{% url 'comment' %}" method="post" style="bottom: 0;">
+              <form class="row row-cols-lg-auto align-items-center" action="{% url 'app:comment' %}" method="post" style="bottom: 0;">
                 {% csrf_token %}
                 <div class="col-12">
                   <div class="input-group">

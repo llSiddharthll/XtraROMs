@@ -23,20 +23,28 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <link rel="stylesheet" href="{% static 'style1.css' %}" />
 
     <!--=============== BOXICONS ===============-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+    </style>
+
   <style>
     /* Smooth scrolling behavior */
-    html {
+    html{
       scroll-behavior: smooth;
     }
 
     body {
+      font-family: 'Poppins';
+      background: linear-gradient(to bottom, #033138, #000303);
       padding-top: 50px;
 }
 
@@ -57,7 +65,7 @@
     }
 
     #new p {
-      color: #131313;
+      color: #5a5a5a;
       font-size: 14px;
       font-weight: bold;
       line-height: 22px;
@@ -239,6 +247,7 @@
 
     /* Custom CSS for the footer */
     .footer {
+      background-color: #000;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -287,6 +296,12 @@
       color: #999;
     }
 
+    @media screen and (max-width: 767px) {
+      .footer{
+        padding-bottom: 50px;
+      }
+    }
+
     .theme-toggle {
       /* Your custom styles here */
       background-color: #007bff;
@@ -305,11 +320,13 @@
       right: 20px;
       display: none;
       z-index: 999;
+      border-radius: 50%;
     }
 
     @media (max-width: 768px) {
       #btn-back-to-top{
         bottom: 70px;
+        font-size: 10px;
       }
     }
 
@@ -327,109 +344,74 @@
     border-radius: 0;
     display: none;
   }
+
   </style>
   {% block style %}
   {% endblock %}
 </head>
 <body>
 
-<!-- Navbar -->
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container d-flex align-items-center">
-    <a class="navbar-brand" href="{% url 'home' %}">
-      <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur"/> XtraROMs
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          {% if request.user.is_authenticated %}
-          <a href="#" class="nav-link" style="text-transform:uppercase;">Welcome, {{request.user.username}}</a>
-        </li>
-        {% else %}
-        <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">login</a>
-        </li>
-        {% endif %}
-        {% if request.user.is_staff %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'manage_user_profiles' %}">Manage Profiles</a>
-        </li>
-        {% endif %}
-        {% if request.user.is_superuser %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'custom_roms' %}">Custom Roms</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'magisk_modules' %}">Modules</a>
-        </li>
-        {% if request.user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
-        {% endif %}
-      </ul>
-      <div class="form-check form-switch ms-0">
-        <input class="form-check-input theme-toggle" type="checkbox" id="themeToggle">
-        <label class="form-check-label" for="themeToggle">Dark-Mode</label>
-      </div>
-    </div>
-  </div>
-</nav> -->
-<div id='stars'></div>
+<!-- <div id='stars'></div>
 <div id='stars2'></div>
-<div id='stars3'></div>
+<div id='stars3'></div> -->
+
 <header class="header" id="header">
   <nav class="nav container">
-    <a class="navbar-brand" href="{% url 'home' %}" style="padding-left: 20px;">
+    <a class="navbar-brand" href="{% url 'app:home' %}" style="padding-left: 20px;">
     <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur"/><b style="padding-top: 5px;">  XtraROMs</b>
   </a>
 
       <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
               <li class="nav__item">
-                  <a href="{% url 'home' %}" class="nav__link {% if request.path == '/' %}active-link{% endif %}">
+                  <a href="{% url 'app:home' %}" class="nav__link {% if request.path == '/' %}active-link{% endif %}">
                       <i class='bx bx-home-alt nav__icon'></i>
                       <span class="nav__name">Home</span>
                   </a>
               </li>
-              
+              {% if request.user.is_authenticated %}
               <li class="nav__item">
-                  <a href="{% url 'profile' %}" class="nav__link {% if request.path == '/profile/' %}active-link{% endif %}">
+                  <a href="{% url 'app:profile' %}" class="nav__link {% if request.path == 'customers:profile' %}active-link{% endif %}">
                       <i class='bx bx-user nav__icon'></i>
-                      <span class="nav__name">Profile</span>
+                      <span class="nav__name">Welcome {{request.user.username}}</span>
                   </a>
               </li>
-
+              {% else %}
               <li class="nav__item">
-                  <a href="{% url 'custom_roms' %}" class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}">
+                <a href="{% url 'app:signup' %}" class="nav__link {% if request.path == 'app:signup' %}active-link{% endif %}">
+                  <i class='bx bxs-receipt nav__icon' ></i>
+                    <span class="nav__name">SignUp</span>
+                </a>
+              </li>
+              {% endif %}
+              <li class="nav__item">
+                  <a href="{% url 'app:custom_roms' %}" class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}">
                       <i class='bx bx-book-alt nav__icon'></i>
                       <span class="nav__name">Roms</span>
                   </a>
               </li>
 
               <li class="nav__item">
-                  <a href="{% url 'magisk_modules' %}" class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}">
+                  <a href="{% url 'app:magisk_modules' %}" class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}">
                       <i class='bx bx-briefcase-alt nav__icon'></i>
                       <span class="nav__name">Mods</span>
                   </a>
               </li>
-
+              {% if request.user.is_authenticated %}
               <li class="nav__item">
-                  <a href="{% url 'comment' %}" class="nav__link {% if request.path == '/comments/' %}active-link{% endif %}">
+                  <a href="{% url 'app:comment' %}" class="nav__link {% if request.path == '/comments/' %}active-link{% endif %}">
                       <i class='bx bx-message-square-detail nav__icon'></i>
                       <span class="nav__name">Chit-Chat</span>
                   </a>
               </li>
+              {% else %}
+              <li class="nav__item">
+                <a href="{% url 'app:login' %}" class="nav__link {% if request.path == 'app:login' %}active-link{% endif %}">
+                  <i class='bx bx-receipt nav__icon'></i>
+                    <span class="nav__name">Login</span>
+                </a>
+            </li>
+            {% endif %}
           </ul>
       </div>
 
@@ -438,8 +420,8 @@
 </header>
 
 
-
 <!--------cookie collection ----------------------->
+
 
 <!-- Cookie Banner -->
 <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
@@ -457,11 +439,12 @@
   <i class="fas fa-arrow-up"></i>
 </button>
 
+
 {% block content %}
 {% endblock %}
 
-<footer class="footer bg-dark text-light py-4">
-  <div class="container">
+<footer class="footer text-light py-4">
+  <div class="container" style="padding-bottom: 50px; background-color: #000;">
     <div class="row">
       <div class="col-md-4">
         <h3 class="text-center">About Us</h3>
@@ -496,7 +479,6 @@
     </div>
   </div>
 </footer>
-
 
 <script>
 const navLinks = document.querySelectorAll('.nav__link');

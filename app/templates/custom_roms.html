@@ -80,7 +80,7 @@
           <button class="btn btn-secondary like-button" data-rom-id="{{ rom.id }}">Like</button>
           <span class="likes-count">{{ rom.likes }}</span> Likes
           {% if request.user.is_staff %}
-          <a href="{% url 'edit_rom' rom.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'app:edit_rom' rom.id %}" class="btn btn-primary">Edit</a>
           {% endif %}
         </div>
       </div>

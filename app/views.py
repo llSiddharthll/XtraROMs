@@ -162,36 +162,31 @@ def signup(request):
     return render(request, "app_userprofile/signup.html", {"form": form})
 
 
-from django.utils.safestring import mark_safe
-
-from django.shortcuts import render, redirect
-from .models import UserProfile
-from .forms import ProfilePictureForm, BioForm
 
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     
     if request.method == 'POST':
-        profile_picture_form = ProfilePictureForm(request.POST, request.FILES, instance=user_profile)
-        bio_form = BioForm(request.POST, instance=user_profile)
+        profile_picture_form = ProfilePictureForm(request.POST, request.FILES)
         
         if profile_picture_form.is_valid():
-            profile_picture_form.save()
-        
-        if bio_form.is_valid():
-            bio_form.save()
-    
+            new_image = profile_picture_form.cleaned_data['profile_picture']
+            user_profile.profile_picture = new_image
+            user_profile.save()
+            
+            return redirect('profile')
     else:
         profile_picture_form = ProfilePictureForm(instance=user_profile)
-        bio_form = BioForm(instance=user_profile)
     
     context = {
         'user_profile': user_profile,
         'profile_picture_form': profile_picture_form,
-        'bio_form': bio_form,
     }
     
     return render(request, 'profile.html', context)
+
+
+
 
 
 def custom_roms(request):
@@ -279,3 +274,4 @@ def comment(request):
 
     data = Comment.objects.all().values()
     return render(request, 'comment.html', {'data': data})
+

@@ -80,7 +80,7 @@
           <button class="btn btn-secondary like-button" data-mod-id="{{ mod.id }}">Like</button>
           <span class="likes-count">{{ mod.likes }}</span> Likes
           {% if request.user.is_staff %}
-          <a href="{% url 'edit_mod' mod.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'app:edit_mod' mod.id %}" class="btn btn-primary">Edit</a>
           {% endif %}
         </div>
       </div>
