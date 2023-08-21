@@ -23,7 +23,7 @@ To experience XtraROMs locally, follow these steps:
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-username/XtraROMs.git
+   git clone https://github.com/llSiddharthll/XtraROMs.git
    ```
 
 2. Navigate to the project directory:
