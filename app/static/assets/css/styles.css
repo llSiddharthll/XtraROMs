@@ -52,11 +52,6 @@ a {
   text-decoration: none;
 }
 
-/* img {
-  max-width: 100%;
-  height: auto;
-} */
-
 
 .section__title {
   font-size: var(--h1-font-size);
@@ -70,11 +65,6 @@ a {
 }
 
 /*=============== LAYOUT ===============*/
-#header .container {
-  max-width: 968px;
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
 
 /*=============== HEADER ===============*/
 .header {
@@ -106,6 +96,9 @@ a {
 }
 
 @media screen and (max-width: 767px) {
+  .nav__name{
+    display: none;
+  }
   .nav__menu {
     position: fixed;
     bottom: 0;
@@ -120,6 +113,7 @@ a {
     border-radius: 1.25rem 1.25rem 0 0;
     transition: .4s;
   }
+  
 }
 
 .nav__list, 
@@ -139,9 +133,11 @@ a {
   justify-content: space-around;
 }
 
+
+
 .nav__name {
   font-size: var(--tiny-font-size);
-  /* display: none;*/ /* Minimalist design, hidden labels */
+  /* display: none; */ /* Minimalist design, hidden labels */
 }
 
 .nav__icon {
@@ -171,19 +167,11 @@ a {
   box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
 }
 
-@media only screen and (max-width: 767px) {
-  .nav__name {
-    display: none;
-  }
- }
+
 /*=============== MEDIA QUERIES ===============*/
 /* For small devices */
 /* Remove if you choose, the minimalist design */
-@media screen and (max-width: 320px) {
-  .nav__name {
-    display: none;
-  }
-}
+
 
 /* For medium devices */
 @media screen and (min-width: 576px) {

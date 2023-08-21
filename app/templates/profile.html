@@ -1,11 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} 
 {% block css %}
 <style>
-#Pic img{
-  width: 50%;
-  height: 50%;
-  object-fit: cover;
-}
 </style>
 {% endblock %} {% block content %}
 <section id="profile">
@@ -17,89 +12,72 @@
             <div class="profile-picture-container" id="Pic">
               <img
                 src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
-                alt="avatar"
+                alt="No avatar"
                 class="img-fluid profile-picture img-thumbnail"
-                style="width: 150px"
                 id="new_image"
+                style="max-height: 158px;
+                max-width: 158px;
+                min-height: 157px;
+                min-width: 157px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 3px solid rgb(52, 184, 147);"
               />
-            </div>
-            <div class="overlay">
-              <label for="profile-picture-upload" class="camera-icon">
-                <a href="#" id="change-image-link">Change Image</a>
-              </label>
             </div>
 
             <!-- Modal -->
-            <div
-              class="modal"
-              id="profilePictureModal"
-              tabindex="-1"
-              aria-labelledby="profilePictureModalLabel"
-              aria-hidden="true"
-            >
+            <div class="modal fade" id="profilePictureModal" tabindex="-1" aria-labelledby="profilePictureModalLabel" aria-hidden="true">
               <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="profilePictureModalLabel">
-                      Upload or Change Profile Picture
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="profilePictureModalLabel">Upload or Change Profile Picture</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <div class="mb-3">
+                                  {{ profile_picture_form|crispy }}
+                              </div>
+                              <div class="mb-3">
+                                  {{ update_username_form|crispy }}
+                              </div>
+                              <div class="text-center">
+                                  <button type="submit" class="btn btn-primary">Upload</button>
+                              </div>
+                          </form>
+                      </div>
                   </div>
-                  <div class="modal-body">
-                    <form
-                      action="{% url 'app:profile' %}"
-                      method="post"
-                      enctype="multipart/form-data"
-                    >
-                      {% csrf_token %} {{ profile_picture_form|crispy }}
-                      <button type="submit" class="btn btn-primary">
-                        Upload
-                      </button>
-                    </form>
-                  </div>
-                </div>
               </div>
-            </div>
-            <h5 class="my-3">John Wick</h5>
+          </div>
+          
+            <h5 class="my-3"><b>{{request.user.username}}</b></h5>
             <p class="text-muted mb-4"></p>
             <div class="d-flex justify-content-center mb-2">
-              <a href="{% url 'app:logout' %}"></a>
-              <!-- <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
+              <button type="button" id="change-image-link" class="btn btn-outline-primary ms-1">Update Profile</button>
+              <button type="button" id="change-image-link" class="btn btn-outline-primary ms-1"><a href="{% url 'logout' %}">Logout</a></button>
             </div>
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
-            <ul class="list-group list-group-flush rounded-3">
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center p-3"
-              >
+            <ul class=" list-group-flush rounded-3">
+              <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fas fa-globe fa-lg text-warning"></i>
                 <p class="mb-0">https://mdbootstrap.com</p>
-              </li>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center p-3"
-              >
+              </div>
+              <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-github fa-lg" style="color: #333333"></i>
                 <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center p-3"
-              >
+              </div>
+              <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-twitter fa-lg" style="color: #55acee"></i>
                 <p class="mb-0">@mdbootstrap</p>
-              </li>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center p-3"
-              >
+              </div>
+              <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-instagram fa-lg" style="color: #ac2bac"></i>
                 <p class="mb-0">mdbootstrap</p>
-              </li>
+              </div>
             </ul>
           </div>
         </div>
@@ -121,16 +99,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
+                <p class="text-muted mb-0">{{request.user.email}}</p>
               </div>
             </div>
             <hr />
@@ -139,7 +108,7 @@
                 <p class="mb-0">Telegram</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(098) 765-4321</p>
+                <p class="text-muted mb-0">Not Provided</p>
               </div>
             </div>
             <hr />
@@ -156,7 +125,7 @@
                   {% elif user.is_authorised %}
                     You can only upload stuffs
                   {% else %}
-                    Contact staff or admin to upload data
+                    You are not authorized Contact Staff to upload data
                   {% endif %}
                 </p>
               </div>

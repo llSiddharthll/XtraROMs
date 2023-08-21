@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'app',
     'crispy_forms',
     'crispy_bootstrap5',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -106,6 +110,38 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    # Default backend for Django authentication.
+    'django.contrib.auth.backends.ModelBackend',
+
+    # Allauth specific authentication methods, such as login by e-mail.
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Setup allauth parameters
+SITE_ID = 2
+# LOGIN_REDIRECT_URL :- destination of login page in your urls.py
+LOGIN_REDIRECT_URL = '/'
+# ACCOUNT_LOGOUT_REDIRECT :- where to redirect when user logout
+ACCOUNT_LOGOUT_REDIRECT = '/'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
+
+
+""" SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '89774872463-jcjjvvt7flvhnps8b6t79fljpjvt85cf.apps.googleusercontent.com',
+            'secret': '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',
+            'key': '',
+        }
+    }
+} """
 
 
 # Internationalization

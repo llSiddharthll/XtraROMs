@@ -1,0 +1,48 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for rom in roms %}
+    <div class="col rom-card">
+        <div class="card h-100 mb-4">
+            <img
+                src="{{ image_url }}"
+                class="img-thumbnail custom-rom-image"
+                alt="{{ rom.name }}"
+            />
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ name }} &rarr; {{ device }} <br />
+                    <a
+                        href="https://telegram.me/{{ credits }}"
+                        target="_blank"
+                        style="text-decoration: none"
+                        >@{{ credits }}</a
+                    >
+                </h5>
+                <div class="scrollable-description">
+                    <p>{{ details }}</p>
+                </div>
+                <div class="buttons-wrapper">
+                    <a
+                        href="{{ link }}"
+                        target="_blank"
+                        class="btn btn-primary rom-link"
+                        >Download</a
+                    >
+                    <button
+                        class="btn btn-secondary like-button"
+                        data-rom-id="{{ id }}"
+                    >
+                        Like
+                    </button>
+                    <span class="likes-count">{{ likes }}</span> Likes 
+                    {% if request.user.is_staff %}
+                    <a href="{% url 'edit_rom' id %}" class="btn btn-primary"
+                        >Edit</a
+                    >
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+

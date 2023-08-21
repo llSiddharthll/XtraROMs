@@ -1,0 +1,11 @@
+[
+    {
+        "id": 12,
+        "name": "LineageOS 20.0",
+        "device": "Viva / Vida",
+        "details": "Changelog\r\n* June security patch\r\n\r\nBugs\r\n* No known bugs\r\n\r\nNotes\r\n* SELinux is Enforcing\r\n* Only LineageOS Recovery is supported\r\n* Custom kernels are NOT supported\r\n* OTA Updates are suppored",
+        "link": "https://github.com/xiaomi-mt6781-devs/releases/releases",
+        "image_url": "https://lbucketl.s3.eu-north-1.amazonaws.com/images/5ef30583-c868-411e-8680-0f716d9bf6a4.jpg",
+        "is_staff": true
+    }
+]

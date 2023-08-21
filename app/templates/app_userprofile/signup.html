@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
 {% load crispy_forms_tags %}  <!-- Load crispy_forms_tags -->
 {% block content %}
+
 <div class="container py-5">
     <h1 class="text-center mb-5">User Registration</h1>
     <div class="row justify-content-center">
@@ -15,6 +17,9 @@
                         {{ form|crispy }}  <!-- Apply the crispy filter -->
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
+                    <a href="{% provider_signup_url 'google' %}" class="btn btn-danger mt-3">
+                        <i class="fab fa-google"></i> Login with Google
+                    </a>
                 </div>
             </div>
         </div>

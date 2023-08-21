@@ -1,572 +1,683 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-TFKNBPWNS5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TFKNBPWNS5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-TFKNBPWNS5');
-  </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
-  <title>XtraROMs</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+      gtag("config", "G-TFKNBPWNS5");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="google-signin-client_id"
+      content="34681433841-70rbngv1rrpdojle7ih7ck75ek3ap57d.apps.googleusercontent.com"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
+    <title>XtraROMs</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
     <link rel="stylesheet" href="{% static 'style.css' %}" />
 
     <!--=============== BOXICONS ===============-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+    />
 
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap");
     </style>
 
-  <style>
-    /* Smooth scrolling behavior */
-    html{
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Poppins';
-      background: linear-gradient(to bottom, #033138, #000303);
-      padding-top: 50px;
-}
-
-
-    /* Default card style */
-    .card {
-      border-radius: 20px;
-      border: 2px solid black;
-    }
-
-    /* Light mode */
-
-
-    #new h2 {
-      font-size: 36px;
-      font-weight: 600;
-      text-align: center
-    }
-
-    #new p {
-      color: #5a5a5a;
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 22px;
-      text-align: center;
-      padding: 10px
-    }
-
-    .navbar-brand img {
-      height: 30px;
-      border-radius: 50px;
-    }
-
-
-    @media (max-width: 700px) {
-      .row {
-        flex-direction: column;
+    <style>
+      /* Smooth scrolling behavior */
+      html {
+        scroll-behavior: smooth;
       }
-    }
 
+      body {
+        font-family: "Poppins";
+        background: linear-gradient(to bottom, #033138, #000303);
+        padding-top: 50px;
+      }
 
-    /* Custom carousel styles */
-    #carouselRedmi,
-    #carouselPoco {
-      height: 250px;
-      /* Increase the height of the carousel */
-    }
+      /* Default card style */
+      .card {
+        background-color: #3b3b4f3a;
+        border-radius: 20px;
+        border: none;
+      }
+      .img-thumbnail {
+        padding: 0;
+      }
 
-    #carouselRedmi .carousel-inner .carousel-item,
-    #carouselPoco .carousel-inner .carousel-item {
-      align-items: center;
-      height: 100%;
-    }
+      /* Light mode */
 
+      #new h2 {
+        font-size: 36px;
+        font-weight: 600;
+        text-align: center;
+      }
 
-    /* Custom CSS to style the section */
-    #about {
-      padding-top: 80px;
-      /* Adjust the padding-top value as needed */
-      padding-bottom: 80px;
-      /* Adjust the padding-bottom value as needed */
-    }
+      #new p {
+        color: #5a5a5a;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 22px;
+        text-align: center;
+        padding: 10px;
+      }
 
-    #about img {
-      max-width: 100%;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-    }
+      .navbar-brand img {
+        height: 30px;
+        border-radius: 50px;
+      }
 
-    #about h2 {
-      font-size: 42px;
-      font-weight: bold;
-      margin-bottom: 30px;
-    }
+      @media (max-width: 700px) {
+        .row {
+          flex-direction: column;
+        }
+      }
 
-    #about p {
-      font-size: 20px;
-      line-height: 1.8;
-    }
+      /* Custom carousel styles */
+      #carouselRedmi,
+      #carouselPoco {
+        height: 250px;
+        /* Increase the height of the carousel */
+      }
 
-    #about .btn-primary {
-      background-color: #ff6600;
-      border-color: #ff6600;
-      font-size: 22px;
-      padding: 12px 40px;
-      margin-top: 30px;
-      border-radius: 50px;
-      text-transform: uppercase;
-      transition: background-color 0.3s ease-in-out;
-    }
+      #carouselRedmi .carousel-inner .carousel-item,
+      #carouselPoco .carousel-inner .carousel-item {
+        align-items: center;
+        height: 100%;
+      }
 
-    #about .btn-primary:hover {
-      background-color: #ff8533;
-      border-color: #ff8533;
-    }
+      /* Custom CSS to style the section */
+      #about {
+        padding-top: 80px;
+        /* Adjust the padding-top value as needed */
+        padding-bottom: 80px;
+        /* Adjust the padding-bottom value as needed */
+      }
 
-    #about .container {
-      position: relative;
-    }
-
-    #about .bg-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
-    }
-
-    @media (max-width: 768px) {
       #about img {
-        margin-top: 20px;
+        max-width: 100%;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
       }
 
       #about h2 {
-        font-size: 32px;
+        font-size: 42px;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      #about p {
+        font-size: 20px;
+        line-height: 1.8;
       }
 
       #about .btn-primary {
-        font-size: 20px;
-        padding: 10px 30px;
+        background-color: #ff6600;
+        border-color: #ff6600;
+        font-size: 22px;
+        padding: 12px 40px;
+        margin-top: 30px;
+        border-radius: 50px;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease-in-out;
       }
-    }
 
-    .only-carousel-image{
-      border-radius: 20px;
-      width: 100%;
-      height: 300px;
-      /* Increase the height of the images */
-      object-fit: cover;
-    }
+      #about .btn-primary:hover {
+        background-color: #ff8533;
+        border-color: #ff8533;
+      }
 
-    .custom-rom-image {
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      width: 100%;
-      height: 300px;
-      /* Increase the height of the images */
-      object-fit: cover;
-    }
+      #about .container {
+        position: relative;
+      }
 
-    .custom-mod-image {
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      width: 100%;
-      height: 250px;
-      /* Increase the height of the images */
-      object-fit: cover;
-    }
+      #about .bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0)
+        );
+      }
 
-    /* Custom CSS to style the "Contact Us" section */
+      @media (max-width: 768px) {
+        #about img {
+          margin-top: 20px;
+        }
 
-    #contact h2 {
-      font-size: 36px;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
+        #about h2 {
+          font-size: 32px;
+        }
 
-    .contact-form {
-      padding: 30px;
-      border: 2px solid rgb(97, 97, 97);
-      border-radius: 8px;
-      box-shadow: 0 10px 20cqmax rgba(0, 0, 0, 0.1);
-    }
+        #about .btn-primary {
+          font-size: 20px;
+          padding: 10px 30px;
+        }
+      }
 
-    .contact-form label {
-      font-size: 18px;
-      font-weight: bold;
-    }
+      .only-carousel-image {
+        border-radius: 20px;
+        width: 100%;
+        height: 300px;
+        /* Increase the height of the images */
+        object-fit: cover;
+      }
 
-    .contact-form .form-control {
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
+      .custom-rom-image {
+        border: none;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%;
+        height: 250px;
+        /* Increase the height of the images */
+        object-fit: cover;
+      }
 
-    .contact-form textarea .form-control {
-      resize: vertical;
-    }
+      .custom-mod-image {
+        border: none;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%;
+        height: 250px;
+        /* Increase the height of the images */
+        object-fit: cover;
+      }
 
-    .contact-form button.btn-primary {
-      font-size: 18px;
-      padding: 10px 20px;
-    }
+      /* Custom CSS to style the "Contact Us" section */
 
-    /* Image styles */
-    .img-fluid {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Adjust the styles as needed */
-    @media (max-width: 768px) {
       #contact h2 {
-        font-size: 30px;
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 20px;
       }
-    }
 
-
-    /* Custom CSS for the footer */
-    .footer {
-      background-color: #000;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-    }
-
-    .footer h3 {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .footer p {
-      font-size: 16px;
-      color: #ccc;
-      margin-bottom: 10px;
-    }
-
-    .footer ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer ul li {
-      display: inline-block;
-      margin-right: 10px;
-    }
-
-    .footer ul li a {
-      font-size: 24px;
-      color: #ccc;
-    }
-
-    .footer ul li a:hover {
-      color: #fff;
-    }
-
-    .footer hr {
-      border-top: 1px solid #555;
-      margin-top: 30px;
-      margin-bottom: 20px;
-    }
-
-    .footer p:last-child {
-      font-size: 14px;
-      color: #999;
-    }
-
-    @media screen and (max-width: 767px) {
-      .footer{
-        padding-bottom: 50px;
+      .contact-form {
+        padding: 30px;
+        border: 2px solid rgb(97, 97, 97);
+        border-radius: 8px;
+        box-shadow: 0 10px 20cqmax rgba(0, 0, 0, 0.1);
       }
-    }
 
-    .theme-toggle {
-      /* Your custom styles here */
-      background-color: #007bff;
-      border: none;
-    }
+      .contact-form label {
+        font-size: 18px;
+        font-weight: bold;
+      }
 
-    @media (max-width: 768px) {
+      .contact-form .form-control {
+        border-radius: 4px;
+        margin-bottom: 20px;
+      }
+
+      .contact-form textarea .form-control {
+        resize: vertical;
+      }
+
+      .contact-form button.btn-primary {
+        font-size: 18px;
+        padding: 10px 20px;
+      }
+
+      /* Image styles */
+      .img-fluid {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Adjust the styles as needed */
+      @media (max-width: 768px) {
+        #contact h2 {
+          font-size: 30px;
+        }
+      }
+
+      /* Custom CSS for the footer */
+      .footer {
+        background-color: #000;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      .footer h3 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .footer p {
+        font-size: 16px;
+        color: #ccc;
+        margin-bottom: 10px;
+      }
+
+      .footer ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer ul li {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .footer ul li a {
+        font-size: 24px;
+        color: #ccc;
+      }
+
+      .footer ul li a:hover {
+        color: #fff;
+      }
+
+      .footer hr {
+        border-top: 1px solid #555;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      .footer p:last-child {
+        font-size: 14px;
+        color: #999;
+      }
+
+      @media screen and (max-width: 767px) {
+        .footer {
+          padding-bottom: 50px;
+        }
+      }
+
       .theme-toggle {
-        margin-left: auto;
+        /* Your custom styles here */
+        background-color: #007bff;
+        border: none;
       }
-    }
 
-    #btn-back-to-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: none;
-      z-index: 999;
-      border-radius: 50%;
-    }
-
-    @media (max-width: 768px) {
-      #btn-back-to-top{
-        bottom: 70px;
-        font-size: 10px;
+      @media (max-width: 768px) {
+        .theme-toggle {
+          margin-left: auto;
+        }
       }
-    }
 
-    .modal-content{
-      color: #fff;
-    }
+      #btn-back-to-top {
+        position: fixed;
+        bottom: 25px;
+        right: 20px;
+        display: none;
+        z-index: 999;
+      }
 
-    
-#cb-cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    border-radius: 0;
-    display: none;
-  }
+      @media (max-width: 768px) {
+        #btn-back-to-top {
+          bottom: 70px;
+          font-size: 10px;
+        }
+      }
 
-  </style>
-  {% block style %}
-  {% endblock %}
-</head>
-<body>
+      .modal-content {
+        color: #fff;
+      }
 
-<!-- <div id='stars'></div>
+      #cb-cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        border-radius: 0;
+        display: none;
+      }
+
+      .nav__list {
+        list-style: none;
+        list-style-type: none;
+      }
+      @media only screen and (max-width: 757px) {
+        .nav__list {
+          list-style: none;
+          list-style-type: none;
+          margin-left: -30px;
+        }
+        .nav__name {
+          display: none;
+        }
+        .active-link::before {
+          content: "";
+          position: absolute;
+          bottom: -0.5rem;
+          width: 4px;
+          height: 4px;
+          background-color: var(--first-color);
+          border-radius: 50%;
+        }
+      }
+    </style>
+    {% block style %} {% endblock %}
+  </head>
+  <body>
+    <!-- <div id='stars'></div>
 <div id='stars2'></div>
 <div id='stars3'></div> -->
 
-<header class="header" id="header">
-  <nav class="nav container">
-    <a class="navbar-brand" href="{% url 'app:home' %}" style="padding-left: 20px;">
-    <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur"/><b style="padding-top: 5px;">  XtraROMs</b>
-  </a>
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a
+          class="navbar-brand"
+          href="{% url 'home' %}"
+          style="padding-left: 20px"
+        >
+          <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur" /><b
+            style="padding-top: 5px"
+          >
+            XtraROMs</b
+          >
+        </a>
 
-      <div class="nav__menu" id="nav-menu">
+        <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
-              <li class="nav__item">
-                  <a href="{% url 'app:home' %}" class="nav__link {% if request.path == '/' %}active-link{% endif %}">
-                      <i class='bx bx-home-alt nav__icon'></i>
-                      <span class="nav__name">Home</span>
-                  </a>
-              </li>
-              {% if request.user.is_authenticated %}
-              <li class="nav__item">
-                  <a href="{% url 'app:profile' %}" class="nav__link {% if request.path == 'customers:profile' %}active-link{% endif %}">
-                      <i class='bx bx-user nav__icon'></i>
-                      <span class="nav__name">Welcome {{request.user.username}}</span>
-                  </a>
-              </li>
-              {% else %}
-              <li class="nav__item">
-                <a href="{% url 'app:signup' %}" class="nav__link {% if request.path == 'app:signup' %}active-link{% endif %}">
-                  <i class='bx bxs-receipt nav__icon' ></i>
-                    <span class="nav__name">SignUp</span>
-                </a>
-              </li>
-              {% endif %}
-              <li class="nav__item">
-                  <a href="{% url 'app:custom_roms' %}" class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}">
-                      <i class='bx bx-book-alt nav__icon'></i>
-                      <span class="nav__name">Roms</span>
-                  </a>
-              </li>
+            <li class="nav__item">
+              <a
+                href="{% url 'home' %}"
+                class="nav__link {% if request.path == '/' %}active-link{% endif %}"
+              >
+                <i class="bx bx-home-alt nav__icon"></i>
+                <span class="nav__name">Home</span>
+              </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav__item">
+              <a
+                href="{% url 'profile' %}"
+                class="nav__link {% if request.path == '/profile/' %}active-link{% endif %}"
+              >
+                <i class="bx bx-user nav__icon"></i>
+                <span class="nav__name">{{request.user.username}}</span>
+              </a>
+            </li>
+            {% else %}
+            <li class="nav__item">
+              <a
+                href="{% url 'socialaccount_signup' %}"
+                class="nav__link {% if request.path == '/signup/' %}active-link{% endif %}"
+              >
+                <i class="bx bxs-receipt nav__icon"></i>
+                <span class="nav__name">SignUp</span>
+              </a>
+            </li>
+            {% endif %}
+            <li class="nav__item">
+              <a
+                href="{% url 'custom_roms' %}"
+                class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}"
+              >
+                <i class="bx bx-book-alt nav__icon"></i>
+                <span class="nav__name">Roms</span>
+              </a>
+            </li>
 
-              <li class="nav__item">
-                  <a href="{% url 'app:magisk_modules' %}" class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}">
-                      <i class='bx bx-briefcase-alt nav__icon'></i>
-                      <span class="nav__name">Mods</span>
-                  </a>
-              </li>
-              {% if request.user.is_authenticated %}
-              <li class="nav__item">
-                  <a href="{% url 'app:comment' %}" class="nav__link {% if request.path == '/comments/' %}active-link{% endif %}">
-                      <i class='bx bx-message-square-detail nav__icon'></i>
-                      <span class="nav__name">Chit-Chat</span>
-                  </a>
-              </li>
-              {% else %}
-              <li class="nav__item">
-                <a href="{% url 'app:login' %}" class="nav__link {% if request.path == 'app:login' %}active-link{% endif %}">
-                  <i class='bx bx-receipt nav__icon'></i>
-                    <span class="nav__name">Login</span>
-                </a>
+            <li class="nav__item">
+              <a
+                href="{% url 'magisk_modules' %}"
+                class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}"
+              >
+                <i class="bx bx-briefcase-alt nav__icon"></i>
+                <span class="nav__name">Mods</span>
+              </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav__item">
+              <a
+                href="{% url 'comment' %}"
+                class="nav__link {% if request.path == '/comment/' %}active-link{% endif %}"
+              >
+                <i class="bx bx-message-square-detail nav__icon"></i>
+                <span class="nav__name">Chit-Chat</span>
+              </a>
+            </li>
+            {% else %}
+            <li class="nav__item">
+              <a
+                href="{% url 'login' %}"
+                class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
+              >
+                <i class="bx bx-receipt nav__icon"></i>
+                <span class="nav__name">Login</span>
+              </a>
             </li>
             {% endif %}
           </ul>
-      </div>
+        </div>
 
-      <img src="{% static 'assets/img/perfil.png' %}" alt="" class="nav__img">
-  </nav>
-</header>
+        <img
+          src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
+          alt=""
+          class="nav__img"
+          style="max-height: 35px;
+                max-width: 35px;
+                min-height: 35px;
+                min-width: 35px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 3px solid rgb(35, 41, 59);"
+        />
+      </nav>
+    </header>
 
+    <!--------cookie collection ----------------------->
 
-<!--------cookie collection ----------------------->
-
-
-<!-- Cookie Banner -->
-<div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
-  &#x1F36A; This website uses cookies to ensure you get the best experience on our website.
-  <a href="https://www.cookiesandyou.com/" target="blank">Learn more</a>
-  <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
-    I Got It
-  </button>
-</div>
-<!-- End of Cookie Banner -->
-
-
-<!-- Back to top button -->
-<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-
-{% block content %}
-{% endblock %}
-
-<footer class="footer text-light py-4">
-  <div class="container" style="padding-bottom: 50px; background-color: #000;">
-    <div class="row">
-      <div class="col-md-4">
-        <h3 class="text-center">About Us</h3>
-        <p class="text-center">
-          Your one-stop destination for custom ROMs, Magisk modules, and a supportive community to enhance your device
-          experience!
-        </p>
-      </div>
-      <div class="col-md-4">
-        <h3 class="text-center">Contact Us</h3>
-        <p class="text-center">Email: siddharthgreat443@gmail.com</p>
-      </div>
-      <div class="col-md-4">
-        <h3 class="text-center">Follow Us</h3>
-        <ul class="list-inline text-center">
-          <li class="list-inline-item"><a href="https://telegram.me/llSiddharthll" target="_blank"><i
-                class="fab fa-telegram"></i></a></li>
-          <li class="list-inline-item"><a href="https://github.com/llSiddharthll" target="_blank"><i
-                class="fab fa-github"></i></a></li>
-          <li class="list-inline-item"><a href="https://discord.gg/wcA4HBUj" target="_blank"><i
-                class="fab fa-discord"></i></a></li>
-          <!-- Add more social media links/icons here -->
-        </ul>
-      </div>
+    <!-- Cookie Banner -->
+    <div
+      id="cb-cookie-banner"
+      class="alert alert-dark text-center mb-0"
+      role="alert"
+    >
+      &#x1F36A; This website uses cookies to ensure you get the best experience
+      on our website.
+      <a href="https://www.cookiesandyou.com/" target="blank">Learn more</a>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm ms-3"
+        onclick="window.cb_hideCookieBanner()"
+      >
+        I Got It
+      </button>
     </div>
-    <hr class="my-4">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <p>&copy; 2023 XtraROMs. All rights reserved.</p>
-        <p>Made with love By Siddharth <i class="fas fa-heart"></i> <i class="fas fa-heart"></i> </p>
+    <!-- End of Cookie Banner -->
+
+    <!-- Back to top button -->
+    <a
+      id="btn-back-to-top"
+      href="#"
+      class="btn btn-light btn-lg back-to-top"
+      role="button"
+      ><i class="fas fa-chevron-up"></i
+    ></a>
+
+    {% block content %} {% endblock %}
+
+    <footer class="footer text-light py-4">
+      <div
+        class="container"
+        style="padding-bottom: 50px; background-color: #000"
+      >
+        <div class="row">
+          <div class="col-md-4">
+            <h3 class="text-center">About Us</h3>
+            <p class="text-center">
+              Your one-stop destination for custom ROMs, Magisk modules, and a
+              supportive community to enhance your device experience!
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h3 class="text-center">Contact Us</h3>
+            <p class="text-center">Email: siddharthgreat443@gmail.com</p>
+          </div>
+          <div class="col-md-4">
+            <h3 class="text-center">Follow Us</h3>
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="https://telegram.me/llSiddharthll" target="_blank"
+                  ><i class="fab fa-telegram"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/llSiddharthll" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://discord.gg/wcA4HBUj" target="_blank"
+                  ><i class="fab fa-discord"></i
+                ></a>
+              </li>
+              <!-- Add more social media links/icons here -->
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>&copy; 2023 XtraROMs. All rights reserved.</p>
+            <p>
+              Made with love By Siddharth <i class="fas fa-heart"></i>
+              <i class="fas fa-heart"></i>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
-<script>
-const navLinks = document.querySelectorAll('.nav__link');
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+      const navLinks = document.querySelectorAll(".nav__link");
 
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.forEach(otherLink => otherLink.classList.remove('active-link'));
-        link.classList.add('active-link');
-    });
-});
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
-<!---------Collecting cookies ---------------->
-
-<script>
-/**
- * @description Shows the cookie banner
- */
-function showCookieBanner(){
-    let cookieBanner = document.getElementById("cb-cookie-banner");
-    cookieBanner.style.display = "block";
-}
-
-/**
- * @description Hides the Cookie banner and saves the value to localstorage
- */
-function hideCookieBanner(){
-    localStorage.setItem("cb_isCookieAccepted", "yes");
-
-    let cookieBanner = document.getElementById("cb-cookie-banner");
-    cookieBanner.style.display = "none";
-
-    // Call the set_cookie view using AJAX
-    fetch('/set-cookie/')
-    fetch('/read-cookie/')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.message); // Print the response from the server
-        })
-        .catch(error => {
-            console.error('Error:', error);
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.forEach((otherLink) =>
+            otherLink.classList.remove("active-link")
+          );
+          link.classList.add("active-link");
         });
-}
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <!---------Collecting cookies ---------------->
 
-/**
- * @description Checks the localstorage and shows Cookie banner based on it.
- */
-function initializeCookieBanner(){
-    let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
-    if(isCookieAccepted === null)
-    {
-        localStorage.setItem("cb_isCookieAccepted", "no");
-        showCookieBanner();
-    }
-    if(isCookieAccepted === "no"){
-        showCookieBanner();
-    }
-}
+    <script>
+      /**
+       * @description Shows the cookie banner
+       */
+      function showCookieBanner() {
+        let cookieBanner = document.getElementById("cb-cookie-banner");
+        cookieBanner.style.display = "block";
+      }
 
-// Assigning values to window object
-window.onload = initializeCookieBanner();
-window.cb_hideCookieBanner = hideCookieBanner;
+      /**
+       * @description Hides the Cookie banner and saves the value to localstorage
+       */
+      function hideCookieBanner() {
+        localStorage.setItem("cb_isCookieAccepted", "yes");
 
-  </script>
+        let cookieBanner = document.getElementById("cb-cookie-banner");
+        cookieBanner.style.display = "none";
 
+        // Call the set_cookie view using AJAX
+        fetch("/set-cookie/");
+        fetch("/read-cookie/")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message); // Print the response from the server
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
 
+      /**
+       * @description Checks the localstorage and shows Cookie banner based on it.
+       */
+      function initializeCookieBanner() {
+        let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+        if (isCookieAccepted === null) {
+          localStorage.setItem("cb_isCookieAccepted", "no");
+          showCookieBanner();
+        }
+        if (isCookieAccepted === "no") {
+          showCookieBanner();
+        }
+      }
 
+      // Assigning values to window object
+      window.onload = initializeCookieBanner();
+      window.cb_hideCookieBanner = hideCookieBanner;
+    </script>
 
-<!-- Custom JavaScript -->
-<script>
-  // Function to start both carousels in sync
-  function startCarouselsInSync() {
-    $("#carouselRedmi, #carouselPoco").carousel({
-      interval: 3000, // Set the interval time for sliding (e.g., 3000ms = 3 seconds)
-      pause: "false"
-    });
-  }
+    <!-- Custom JavaScript -->
+    <script>
+      // Function to start both carousels in sync
+      function startCarouselsInSync() {
+        $("#carouselRedmi, #carouselPoco").carousel({
+          interval: 3000, // Set the interval time for sliding (e.g., 3000ms = 3 seconds)
+          pause: "false",
+        });
+      }
 
-  // Start both carousels in sync when the document is ready
-  $(document).ready(function () {
-    startCarouselsInSync();
-  });
-</script>
+      // Start both carousels in sync when the document is ready
+      $(document).ready(function () {
+        startCarouselsInSync();
+      });
+    </script>
 
-<!-- <script>
+    <!-- <script>
   // Function to toggle between light and dark mode
   function toggleTheme() {
     const body = $('body');
@@ -600,55 +711,52 @@ window.cb_hideCookieBanner = hideCookieBanner;
     loadTheme();
   });
 </script> -->
-<script>
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
 
-      const target = document.querySelector(this.getAttribute('href'));
-      const offset = 50; // Adjust the offset value as needed
-      const topPosition = target.offsetTop - offset;
+          const target = document.querySelector(this.getAttribute("href"));
+          const offset = 50; // Adjust the offset value as needed
+          const topPosition = target.offsetTop - offset;
 
-      window.scrollTo({
-        top: topPosition,
-        behavior: 'smooth'
+          window.scrollTo({
+            top: topPosition,
+            behavior: "smooth",
+          });
+        });
       });
-    });
-  });
-</script>
+    </script>
 
-<!------------------------Scroll To Top ------------------------------>
-<script>
-  //Get the button
-  let mybutton = document.getElementById("btn-back-to-top");
+    <!------------------------Scroll To Top ------------------------------>
+    <script>
+      //Get the button
+      let mybutton = document.getElementById("btn-back-to-top");
 
-  // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function () {
-    scrollFunction();
-  };
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction();
+      };
 
-  function scrollFunction() {
-    if (
-      document.body.scrollTop > 20 ||
-      document.documentElement.scrollTop > 20
-    ) {
-      mybutton.style.display = "block";
-    } else {
-      mybutton.style.display = "none";
-    }
-  }
-  // When the user clicks on the button, scroll to the top of the document
-  mybutton.addEventListener("click", backToTop);
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+      // When the user clicks on the button, scroll to the top of the document
+      mybutton.addEventListener("click", backToTop);
 
-  function backToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
-</script>
+      function backToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
 
-{% block script %}
-{% endblock %}
-
-</body>
-
+    {% block script %} {% endblock %}
+  </body>
 </html>

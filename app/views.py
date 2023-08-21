@@ -10,6 +10,7 @@ from django.utils.safestring import mark_safe
 from django.http import JsonResponse
 # app/views.py
 from django.http import HttpResponse
+from django.db.models import Q
 
 def set_cookie(request, interaction_data):
     response = HttpResponse("Cookie set!")
@@ -53,7 +54,7 @@ def edit_rom(request, rom_id):
             return redirect('custom_roms') # Successful, no content
 
     context = {"edit_form": edit_form, "rom": rom, "rom_id": rom_id}
-    return render(request, "edit_rom.html", context)
+    return render(request, "edit_form.html", context)
 
 def edit_mod(request, mod_id):
     mod = get_object_or_404(CustomMOD, id=mod_id)
@@ -68,23 +69,50 @@ def edit_mod(request, mod_id):
     context = {"edit_form": edit_form, "mod": mod, "mod_id": mod_id}
     return render(request, "edit_mod.html", context)
 
-def search_roms(request):
-    query = request.GET.get("query", "").lower().strip()
 
-    filtered_roms = CustomROM.objects.filter(name__icontains=query)
+def search_custom_roms(request):
+    query = request.GET.get('q', '')
+    if query:
+        filtered_roms = CustomROM.objects.filter(
+            Q(name__icontains=query) |   # Search by name
+            Q(device__icontains=query) |  # Search by device
+            Q(credits__icontains=query) |  # Search by credits
+            Q(details__icontains=query)    # Search by details
+        )
 
-    roms_data = []
-    for rom in filtered_roms:
-        rom_data = {
-            "name": rom.name,
-            "device": rom.device,
-            "details": rom.details,
-            "link": rom.link,
-            "image_url": rom.image.url,
-        }
-        roms_data.append(rom_data)
+        roms_data = []
+        for rom in filtered_roms:
+            rom_data = {
+                "id": rom.id,
+                "name": rom.name,
+                "device": rom.device,
+                "details": rom.details,
+                "link": rom.link,
+                "credits":rom.credits,
+                "image_url": rom.image.url,
+                "is_staff": request.user.is_staff,
+            }
+            roms_data.append(rom_data)
+    else:
+        roms_data = []
 
-    return JsonResponse({"roms": roms_data})
+    """ if not roms_data:  # Check if roms_data is empty
+        print("No results found")
+
+    print("Saving response data")
+    import json
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(roms_data, f, ensure_ascii=False, indent=4) """
+
+    return JsonResponse({'results': roms_data})
+
+    
+
+
+
+def results_template(request):
+    return render(request, 'results.html')
+
 
 
 def search_mods(request):
@@ -103,7 +131,7 @@ def search_mods(request):
         }
         mods_data.append(mod_data)
 
-    return JsonResponse({"roms": mods_data})
+    return JsonResponse({"mods": mods_data})
 
 
 def home(request):
@@ -116,6 +144,7 @@ def home(request):
     else:
         form = ContactForm()
     return render(request, "home.html", {"form": form})
+
 
 
 def login_request(request):
@@ -165,9 +194,14 @@ def signup(request):
 
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
+    user = request.user
     
     if request.method == 'POST':
         profile_picture_form = ProfilePictureForm(request.POST, request.FILES)
+        update_username_form = UpdateUsernameForm(request.POST, instance=user)
+
+        if update_username_form.is_valid():
+            update_username_form.save()
         
         if profile_picture_form.is_valid():
             new_image = profile_picture_form.cleaned_data['profile_picture']
@@ -177,10 +211,12 @@ def profile(request):
             return redirect('profile')
     else:
         profile_picture_form = ProfilePictureForm(instance=user_profile)
+        update_username_form = UpdateUsernameForm(instance=user)
     
     context = {
         'user_profile': user_profile,
         'profile_picture_form': profile_picture_form,
+        'update_username_form': update_username_form,
     }
     
     return render(request, 'profile.html', context)
@@ -191,6 +227,7 @@ def profile(request):
 
 def custom_roms(request):
     roms = CustomROM.objects.all()
+    user_profile = UserProfile.objects.get(user=request.user)
 
     if request.method == "POST":
         form = UploadROMForm(request.POST, request.FILES)
@@ -209,7 +246,7 @@ def custom_roms(request):
             rom.details.replace("\n", "<br>").replace("-", "&#8226;")
         )
 
-    return render(request, "custom_roms.html", {"roms": roms, "form": form})
+    return render(request, "custom_roms.html", {"roms": roms,"user_profile": user_profile, "form": form})
 
 
 def magisk_modules(request):
