@@ -227,26 +227,29 @@ def profile(request):
 
 def custom_roms(request):
     roms = CustomROM.objects.all()
-    user_profile = UserProfile.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
 
-    if request.method == "POST":
-        form = UploadROMForm(request.POST, request.FILES)
-        if form.is_valid():
-            rom = form.save(commit=False)
-            rom.uploaded_by = request.user
-            rom.save()
-            return redirect("custom_roms")  # Redirect back to the same page
+        if request.method == "POST":
+            form = UploadROMForm(request.POST, request.FILES)
+            if form.is_valid():
+                rom = form.save(commit=False)
+                rom.uploaded_by = request.user
+                rom.save()
+                return redirect("custom_roms")  # Redirect back to the same page
 
-    else:
-        form = UploadROMForm()
+        else:
+            form = UploadROMForm()
 
-    # Format description for each ROM
-    for rom in roms:
-        rom.formatted_details = mark_safe(
-            rom.details.replace("\n", "<br>").replace("-", "&#8226;")
-        )
+        # Format description for each ROM
+        for rom in roms:
+            rom.formatted_details = mark_safe(
+                rom.details.replace("\n", "<br>").replace("-", "&#8226;")
+            )
+        
+        return render(request, "custom_roms.html", {"roms": roms,"user_profile": user_profile, "form": form})
 
-    return render(request, "custom_roms.html", {"roms": roms,"user_profile": user_profile, "form": form})
+    return render(request, "custom_roms.html", {"roms": roms})
 
 
 def magisk_modules(request):

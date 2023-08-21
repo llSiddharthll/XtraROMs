@@ -81,15 +81,18 @@ color: #b8b9bc;
 
 </style>
 {% endblock %} {% block content %}
+
 <div class="container py-5">
   <h1 class="text-center mb-5">Custom ROM Showcase</h1>
 
   <!-- Search Bar -->
   <section id="searching">
   <div class="d-flex justify-content-between align-items-center">
-
-    <span class="font-weight-bold">Weekly Tasks</span>
-
+    {% if user.is_authenticated and user.userprofile.is_authorized %}
+    <span class="font-weight-bold">You can upload stuffs &rarr;</span>
+    {% else %}
+    <span class="font-weight-bold">You are not authorised to upload Roms</span>
+    {% endif %}
     <div class="d-flex flex-row">
 
       <a class="btn btn-primary rom-link" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Roms</a>
@@ -104,13 +107,12 @@ color: #b8b9bc;
       id="search-input"
       type="text"
       class="form-control live-search"
-      placeholder="Search Tasks..."
+      placeholder="Search Custom ROMs..."
       style="border-radius: 10px; background-color: #3b3b4f3a; color: #eee;">
 </div>
 
 <div id="search-results" class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom: 20px;">
 </div>
-
 
 </section>
 

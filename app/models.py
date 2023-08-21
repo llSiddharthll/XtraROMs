@@ -40,8 +40,6 @@ class UserProfile(models.Model):
     is_authorized = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True)
     bio = models.TextField(null=True, blank=True)
-    google_username = models.CharField(max_length=100, blank=True)
-    local_username = models.CharField(max_length=100, blank=True)
     email = models.EmailField(blank=True)
     # Add other fields as needed
 
