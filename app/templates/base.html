@@ -1,4 +1,6 @@
 {% load static %}
+
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
   <head>
@@ -16,6 +18,10 @@
 
       gtag("config", "G-TFKNBPWNS5");
     </script>
+    <meta
+      name="google-site-verification"
+      content="HG5Iqv7fGGM9wP9MMMnHdqR73hvQuJWad43N8TbrTpg"
+    />
     <meta charset="UTF-8" />
     <meta
       name="google-signin-client_id"
@@ -46,18 +52,45 @@
     />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets-1/css/styles.css' %}" />
 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
     />
+    <!-- Include FontAwesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Include Owl Carousel CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'owl.theme.default.css' %}" />
+    <link rel="stylesheet" href="{% static 'style2.css' %}" />
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap");
     </style>
 
     <style>
+      :root {
+        --text: #e7f8f9;
+        --background: #071b1c;
+        --primary: #278f96;
+        --secondary: #0a2729;
+        --accent: #34c1cb;
+      }
+
+      .btn {
+        background-color: var(--accent) !important;
+        color: var(--background) !important;
+        border: none !important;
+        border-radius: 20px !important;
+      }
+
       /* Smooth scrolling behavior */
       html {
         scroll-behavior: smooth;
@@ -65,18 +98,24 @@
 
       body {
         font-family: "Poppins";
-        background: linear-gradient(to bottom, #033138, #000303);
+        background: var(--background);
         padding-top: 50px;
+        color: var(--text);
       }
 
       /* Default card style */
       .card {
-        background-color: #3b3b4f3a;
+        background-color: var(--secondary);
         border-radius: 20px;
         border: none;
+        overflow: hidden !important;
       }
       .img-thumbnail {
         padding: 0;
+      }
+
+      a {
+        color: var(--accent);
       }
 
       /* Light mode */
@@ -104,93 +143,6 @@
       @media (max-width: 700px) {
         .row {
           flex-direction: column;
-        }
-      }
-
-      /* Custom carousel styles */
-      #carouselRedmi,
-      #carouselPoco {
-        height: 250px;
-        /* Increase the height of the carousel */
-      }
-
-      #carouselRedmi .carousel-inner .carousel-item,
-      #carouselPoco .carousel-inner .carousel-item {
-        align-items: center;
-        height: 100%;
-      }
-
-      /* Custom CSS to style the section */
-      #about {
-        padding-top: 80px;
-        /* Adjust the padding-top value as needed */
-        padding-bottom: 80px;
-        /* Adjust the padding-bottom value as needed */
-      }
-
-      #about img {
-        max-width: 100%;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-      }
-
-      #about h2 {
-        font-size: 42px;
-        font-weight: bold;
-        margin-bottom: 30px;
-      }
-
-      #about p {
-        font-size: 20px;
-        line-height: 1.8;
-      }
-
-      #about .btn-primary {
-        background-color: #ff6600;
-        border-color: #ff6600;
-        font-size: 22px;
-        padding: 12px 40px;
-        margin-top: 30px;
-        border-radius: 50px;
-        text-transform: uppercase;
-        transition: background-color 0.3s ease-in-out;
-      }
-
-      #about .btn-primary:hover {
-        background-color: #ff8533;
-        border-color: #ff8533;
-      }
-
-      #about .container {
-        position: relative;
-      }
-
-      #about .bg-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0),
-          rgba(255, 255, 255, 0.8),
-          rgba(255, 255, 255, 0)
-        );
-      }
-
-      @media (max-width: 768px) {
-        #about img {
-          margin-top: 20px;
-        }
-
-        #about h2 {
-          font-size: 32px;
-        }
-
-        #about .btn-primary {
-          font-size: 20px;
-          padding: 10px 30px;
         }
       }
 
@@ -248,7 +200,7 @@
 
       .contact-form .form-control {
         border-radius: 4px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
       }
 
       .contact-form textarea .form-control {
@@ -277,7 +229,7 @@
 
       /* Custom CSS for the footer */
       .footer {
-        background-color: #000;
+        background-color: var(--background);
         bottom: 0;
         left: 0;
         width: 100%;
@@ -359,10 +311,6 @@
         }
       }
 
-      .modal-content {
-        color: #fff;
-      }
-
       #cb-cookie-banner {
         position: fixed;
         bottom: 0;
@@ -376,6 +324,7 @@
       .nav__list {
         list-style: none;
         list-style-type: none;
+        padding-top: 20px;
       }
       @media only screen and (max-width: 757px) {
         .nav__list {
@@ -403,7 +352,62 @@
     <!-- <div id='stars'></div>
 <div id='stars2'></div>
 <div id='stars3'></div> -->
+    <style>
+      .header {
+        background-color: var(--background);
+        opacity: 0.9;
+        padding: 0.5em 1em;
+        align-items: center;
+      }
+      @media only screen and (max-width: 757px) {
+        .header {
+          opacity: 1;
+        }
+      }
 
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand img {
+        margin-right: 1em;
+      }
+
+      b {
+        font-size: 1.5em;
+        color: var(--accent);
+      }
+
+      .nav__item span {
+        color: var(--text);
+      }
+
+      .decor {
+        color: var(--accent);
+        opacity: 0;
+      }
+
+      .nav__item span:hover .decor {
+        opacity: 1;
+        transition: opacity 0.3s ease-out;
+      }
+
+      .text-center {
+        font-size: 2em;
+        font-weight: bold;
+        color: var(--text);
+        background: linear-gradient(120deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @media only screen and (max-width: 757px) {
+        .text-center {
+          font-size: 1.5em;
+        }
+      }
+    </style>
     <header class="header" id="header">
       <nav class="nav container">
         <a
@@ -411,11 +415,8 @@
           href="{% url 'home' %}"
           style="padding-left: 20px"
         >
-          <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur" /><b
-            style="padding-top: 5px"
-          >
-            XtraROMs</b
-          >
+          <img src="{% static 'images/logo.jpg' %}" alt="SidXFleur" />
+          <b style="padding-top: 5px">XtraROMs</b>
         </a>
 
         <div class="nav__menu" id="nav-menu">
@@ -426,7 +427,11 @@
                 class="nav__link {% if request.path == '/' %}active-link{% endif %}"
               >
                 <i class="bx bx-home-alt nav__icon"></i>
-                <span class="nav__name">Home</span>
+                <span class="nav__name"
+                  ><span class="decor">< </span>Home<span class="decor">
+                    /></span
+                  ></span
+                >
               </a>
             </li>
             {% if request.user.is_authenticated %}
@@ -436,17 +441,27 @@
                 class="nav__link {% if request.path == '/profile/' %}active-link{% endif %}"
               >
                 <i class="bx bx-user nav__icon"></i>
-                <span class="nav__name">{{request.user.username}}</span>
+                <span class="nav__name"
+                  ><span class="decor">< </span>{{request.user.username}}<span
+                    class="decor"
+                  >
+                    /></span
+                  ></span
+                >
               </a>
             </li>
             {% else %}
             <li class="nav__item">
               <a
-                href="{% url 'socialaccount_signup' %}"
+                href="{% url 'signup' %}"
                 class="nav__link {% if request.path == '/signup/' %}active-link{% endif %}"
               >
                 <i class="bx bxs-receipt nav__icon"></i>
-                <span class="nav__name">SignUp</span>
+                <span class="nav__name"
+                  ><span class="decor">< </span>SignUp<span class="decor">
+                    /></span
+                  ></span
+                >
               </a>
             </li>
             {% endif %}
@@ -455,8 +470,12 @@
                 href="{% url 'custom_roms' %}"
                 class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}"
               >
-                <i class="bx bx-book-alt nav__icon"></i>
-                <span class="nav__name">Roms</span>
+                <i class="bx bx-mobile-alt nav__icon"></i>
+                <span class="nav__name"
+                  ><span class="decor">< </span>Roms<span class="decor">
+                    /></span
+                  ></span
+                >
               </a>
             </li>
 
@@ -465,18 +484,26 @@
                 href="{% url 'magisk_modules' %}"
                 class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}"
               >
-                <i class="bx bx-briefcase-alt nav__icon"></i>
-                <span class="nav__name">Mods</span>
+                <i class="bx bxs-paint nav__icon"></i>
+                <span class="nav__name"
+                  ><span class="decor">< </span>Mods<span class="decor">
+                    /></span
+                  ></span
+                >
               </a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav__item">
               <a
-                href="{% url 'comment' %}"
-                class="nav__link {% if request.path == '/comment/' %}active-link{% endif %}"
+                href="{% url 'get_comments' %}"
+                class="nav__link {% if request.path == '/get_comments/' %}active-link{% endif %}"
               >
                 <i class="bx bx-message-square-detail nav__icon"></i>
-                <span class="nav__name">Chit-Chat</span>
+                <span class="nav__name"
+                  ><span class="decor">< </span>Chit-Chat<span class="decor">
+                    /></span
+                  ></span
+                >
               </a>
             </li>
             {% else %}
@@ -486,7 +513,11 @@
                 class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
               >
                 <i class="bx bx-receipt nav__icon"></i>
-                <span class="nav__name">Login</span>
+                <span class="nav__name"
+                  ><span class="decor">< </span>Login<span class="decor">
+                    /></span
+                  ></span
+                >
               </a>
             </li>
             {% endif %}
@@ -497,13 +528,15 @@
           src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
           alt=""
           class="nav__img"
-          style="max-height: 35px;
-                max-width: 35px;
-                min-height: 35px;
-                min-width: 35px;
-                object-fit: cover;
-                border-radius: 50%;
-                border: 3px solid rgb(35, 41, 59);"
+          style="
+            max-height: 35px;
+            max-width: 35px;
+            min-height: 35px;
+            min-width: 35px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgb(35, 41, 59);
+          "
         />
       </nav>
     </header>
@@ -543,7 +576,7 @@
     <footer class="footer text-light py-4">
       <div
         class="container"
-        style="padding-bottom: 50px; background-color: #000"
+        style="padding-bottom: 50px; background-color: var(--background)"
       >
         <div class="row">
           <div class="col-md-4">
@@ -556,12 +589,15 @@
           <div class="col-md-4">
             <h3 class="text-center">Contact Us</h3>
             <p class="text-center">Email: siddharthgreat443@gmail.com</p>
+            <p class="text-center">
+              <a href="{% url 'privacy-policy' %}">Privacy-Policy</a>
+            </p>
           </div>
           <div class="col-md-4">
             <h3 class="text-center">Follow Us</h3>
             <ul class="list-inline text-center">
               <li class="list-inline-item">
-                <a href="https://telegram.me/llSiddharthll" target="_blank"
+                <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl" target="_blank"
                   ><i class="fab fa-telegram"></i
                 ></a>
               </li>
@@ -571,7 +607,7 @@
                 ></a>
               </li>
               <li class="list-inline-item">
-                <a href="https://discord.gg/wcA4HBUj" target="_blank"
+                <a href="https://discord.gg/8khZkvJC" target="_blank"
                   ><i class="fab fa-discord"></i
                 ></a>
               </li>
@@ -593,6 +629,8 @@
     </footer>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
       const navLinks = document.querySelectorAll(".nav__link");
 

@@ -1,26 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% block style %}
 <style>
-  /* Custom CSS to style the ROM details */
-  .rom-details {
-    max-height: 150px; /* Set the maximum height for the description */
-    overflow: hidden; /* Hide overflow content */
-  }
-
-  .scrollable-description {
-    overflow: auto; /* Enable scrolling if content exceeds the max height */
-    max-height: 100px; /* Adjust the max height as needed */
-  }
-
-  .custom-search-button {
-    background-color: #db655c; /* Use a contrasting color, e.g., red */
-    color: white; /* Text color for better visibility */
-    border-color: #db655c; /* Border color to match the background color */
-    font-weight: bold;
-  }
 
  #searching .btn{
 
-border-radius: 25px;
+border-radius: 10px;
+background-color: var(--primary);
+border: none;
+color: var(--text);
 
 }
 
@@ -28,7 +14,7 @@ border-radius: 25px;
 
 #searching .active{
 
-background: #3b3b4f3a ;
+background: var(--secondary) ;
 border-color: #3b3b4f3a ;
 color: #ffffff ;
     font-size: 12px;
@@ -79,6 +65,20 @@ left: 4px;
 color: #b8b9bc;
 }
 
+.text-center {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--text);
+    background: linear-gradient(120deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media only screen and (max-width: 757px) {
+    .text-center{
+      font-size: 1.5em;
+    }
+  }
 </style>
 {% endblock %} {% block content %}
 
@@ -94,21 +94,19 @@ color: #b8b9bc;
     <span class="font-weight-bold">You are not authorised to upload Roms</span>
     {% endif %}
     <div class="d-flex flex-row">
-
-      <a class="btn btn-primary rom-link" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Roms</a>
+    </div>
+      <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Roms</a>
       
     </div>
 
-</div>
-
 <div class="mt-3 inputs" style="padding-bottom: 40px;">
-  <i class="fa fa-search"></i>
+  <i class="fa fa-search" style="margin-left: 1em;"></i>
   <input
       id="search-input"
       type="text"
       class="form-control live-search"
       placeholder="Search Custom ROMs..."
-      style="border-radius: 10px; background-color: #3b3b4f3a; color: #eee;">
+      style="padding: 1em 2em; border-radius: 10px; border: none; background-color: var(--secondary); color: var(--text)">
 </div>
 
 <div id="search-results" class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom: 20px;">
@@ -117,11 +115,13 @@ color: #b8b9bc;
 </section>
 
 
-  <!-- Custom ROM cards -->
+<!------------------------------------ Custom ROM cards ----------------------------------------------------->
+ 
+ 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for rom in roms %}
     <div class="col rom-card">
-      <div class="card h-100 mb-4">
+      <div class="card h-100">
         <img
           src="{{ rom.image.url }}"
           class="img-thumbnail custom-rom-image"
@@ -137,28 +137,39 @@ color: #b8b9bc;
               >@{{rom.credits}}</a
             >
           </h5>
-          <div class="scrollable-description">
-            <p>{{ rom.formatted_details|safe }}</p>
-          </div>
+          <h5 class="card-title">
+            Date: {{rom.upload_date}}
+          </h5>
+          <h5 class="card-title">
+            Details : <a href="{% url 'rom_details' rom.id %}">Visit Here</a>
+          </h5>
           <div class="buttons-wrapper">
             <a
               href="{{ rom.link }}"
               target="_blank"
               class="btn btn-primary rom-link"
-              >Download</a
-            >
-            <button
-              class="btn btn-secondary like-button"
-              data-rom-id="{{ rom.id }}"
-            >
-              Like
-            </button>
-            <span class="likes-count">{{ rom.likes }}</span> Likes 
+              style="background-color: var(--accent); border: none;"
+              >Download</a>
             {% if request.user.is_staff %}
             <a href="{% url 'edit_rom' rom.id %}" class="btn btn-primary"
-              >Edit</a
-            >
-            {% endif %}
+              >Edit</a>{% endif %}
+              {% if request.user.is_authenticated %}
+                  <button class="btn btn-secondary rom-link like-button"
+                          data-rom-id="{{ rom.id }}"
+                          style="float: right; margin-left: 5px;">
+                      <i class="far fa-thumbs-up"></i>
+                  </button>
+                  <span class="btn btn-secondary rom-link likes-count" style="float: right;">
+                      {{ rom.likes.count }}
+                  </span>
+              {% else %}
+                  <button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
+                      <i class="far fa-thumbs-up"></i>
+                  </button>
+                  <span class="btn btn-secondary rom-link likes-count">
+                      {{ rom.likes.count }}
+                  </span>
+              {% endif %}
           </div>
         </div>
       </div>
@@ -166,7 +177,30 @@ color: #b8b9bc;
     {% endfor %}
   </div>
 
-  <!-- Upload ROM Modal -->
+
+  
+<!----------------------------------- Login Modal -------------------------------------------------->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Please log in to use this feature and various other features.
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!---------------------------------- Upload ROM Modal ---------------------------------------------->
+  
+  
   <div
     class="modal fade"
     id="uploadModal"
@@ -207,6 +241,9 @@ color: #b8b9bc;
                 <option value="Viva / Vida">Viva / Vida</option>
                 <option value="Ocean / Sea">Ocean / Sea</option>
                 <option value="Ocean / Sea">Blossom</option>
+                <option value="Ocean / Sea">Lavander</option>
+                <option value="Ocean / Sea">Ginkgo / Willow</option>
+                <option value="Ocean / Sea">X01BD</option>
               </select>
             </div>
             <div class="mb-3">
@@ -232,7 +269,7 @@ color: #b8b9bc;
               />
             </div>
             <div class="mb-3">
-              <label for="link" class="form-label">Link</label>
+              <label for="link" class="form-label">ROM / Recovery Link</label>
               <input
                 type="url"
                 class="form-control"
@@ -240,6 +277,25 @@ color: #b8b9bc;
                 name="link"
                 required
               />
+                <div class="mb-3">
+                  <label for="link" class="form-label">Boot-Img Link (optional)</label>
+                  <input
+                    type="url"
+                    class="form-control"
+                    id="boot_link"
+                    name="boot_link"
+                    required
+                  />
+              <div>
+                <label for="date" class="form-label">Release Date</label>
+                <input
+                type="date"
+                class="form-control"
+                id="upload_date"
+                name="upload_date"
+                required
+              />
+              </div>
             </div>
             <div class="mb-3">
               <label for="details" class="form-label">Details</label>
@@ -247,7 +303,7 @@ color: #b8b9bc;
                 class="form-control"
                 id="details"
                 name="details"
-                rows="5"
+                rows="3"
                 required
               ></textarea>
             </div>
@@ -268,7 +324,11 @@ color: #b8b9bc;
     </div>
   </div>
 </div>
-{% endblock %} {% block script %}
+{% endblock %} 
+
+<!----------------------------------------JAVASCRIPT code---------------------------------------------------------->
+
+{% block script %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector("#search-input");
@@ -322,55 +382,73 @@ document.addEventListener("DOMContentLoaded", function ()  {
           }
       });
   }
+  
   function displaySearchResults(results) {
     searchResults.empty();
     if (results.length > 0) {
-        for (const result of results) {
-            const editLink = result.is_staff ? `
-                <a href="" class="btn btn-primary edit-link" data-rom-id="${result.id}">Edit</a>
-            ` : '';
+      const searchResults = document.getElementById('search-results'); // Replace with your actual element ID
+      
+for (const result of results) {
+    const editLink = result.is_staff ? `
+        <a href="" class="btn btn-primary edit-link" data-rom-id="${result.id}">Edit</a>
+    ` : '';
+    const likeBtn = result.is_authenticated ?
+    `<button class="btn btn-secondary rom-link like-button"
+             data-rom-id="${result.id}"
+             style="float: right; margin-left: 5px;">
+        <i class="far fa-thumbs-up"></i>
+    </button>` :
+    '<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">';
+    const likeCnt = result.is_authenticated ?
+    `<span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%; float: right;">
+                            ${result.likes}
+                        </span>` :
+    `<span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%; float: right;">
+                            ${result.likes}
+                        </span>`;
+    const romDetails =`<h5 class="card-title">
+            Details : <a href="" class="rom-details" data-rom-id="${result.id}">Visit Here</a>
+          </h5>`
 
-            const resultHtml = `
-                <div class="col rom-card">
-                    <div class="card h-100 mb-4">
-                        <img
-                            src="${result.image_url}"
-                            class="img-thumbnail custom-rom-image"
-                            alt="${result.name}"
-                        />
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                ${result.name} &rarr; ${result.device} <br />
-                                <a
-              href="https://telegram.me/${result.credits}"
-              target="_blank"
-              style="text-decoration: none"
-              >@${result.credits}</a>
-                            </h5>
-                            <div class="scrollable-description">
-                                <p>${result.details}</p>
-                            </div>
-                            <div class="buttons-wrapper">
-                                <a
-                                    href="${result.link}"
-                                    target="_blank"
-                                    class="btn btn-primary rom-link"
-                                >Download</a>
-                                <button
-                                    class="btn btn-secondary like-button"
-                                    data-rom-id="${result.id}"
-                                >
-                                    Like
-                                </button>
-                                <span class="likes-count">${result.likes}</span> Likes 
-                                ${editLink}
-                            </div>
-                        </div>
+
+    const resultHtml = `
+    <div class="col rom-card">
+        <div class="card h-100">
+            <img
+                src="${result.image_url}"
+                class="img-thumbnail custom-rom-image"
+                alt="${result.name}"
+            />
+            <div class="card-body">
+                <h5 class="card-title">
+                    ${result.name} &rarr; ${result.device} <br />
+                    <a
+                        href="https://telegram.me/${result.credits}"
+                        target="_blank"
+                    >@${result.credits}</a>
+                </h5>
+                <h5 class="card-title">
+                    Date: ${result.upload_date}
+                </h5>
+                ${romDetails}
+                <div class="buttons-wrapper">
+                        <a
+                            href="${result.link}"
+                            target="_blank"
+                            class="btn btn-primary rom-link"
+                            style="background-color: var(--accent); border: none;"
+                        >Download</a>
+                        ${editLink}
+                        ${likeBtn}
+                        ${likeCnt}
                     </div>
-                </div>
-            `;
-            searchResults.append(resultHtml);
-        }
+            </div>
+        </div>
+    </div>
+`;
+    searchResults.innerHTML += resultHtml;
+}
+
     } else {
         searchResults.append("<p>No results found (Check Typos..)</p>");
     }
@@ -378,6 +456,12 @@ document.addEventListener("DOMContentLoaded", function ()  {
         e.preventDefault();
         const romId = $(this).data('rom-id');
         const editUrl = `{% url 'edit_rom' 0 %}`.replace('0', romId);
+        window.location.href = editUrl;
+    });
+    $('.rom-details').click(function(e) {
+        e.preventDefault();
+        const romId = $(this).data('rom-id');
+        const editUrl = `{% url 'rom_details' 0 %}`.replace('0', romId);
         window.location.href = editUrl;
     });
 }
@@ -389,51 +473,42 @@ document.addEventListener("DOMContentLoaded", function ()  {
 
 </script>
 
+<!-------------------------------------ROM likes count Script---------------------------------------------------->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function () {
-    // Check if the user has already liked a ROM by using cookies
-    function hasUserLiked(romId) {
-      var likedRomIds = Cookies.getJSON("liked_roms") || [];
-      return likedRomIds.includes(romId);
-    }
-
-    // Set a user's like for a ROM using cookies
-    function setUserLiked(romId) {
-      var likedRomIds = Cookies.getJSON("liked_roms") || [];
-      likedRomIds.push(romId);
-      Cookies.set("liked_roms", likedRomIds);
-    }
-
-    // Initialize likes data
-    var romLikes = {};
-    $(".like-button").each(function () {
-      var romId = $(this).data("rom-id");
-      romLikes[romId] = 0;
-    });
-
-    $(".like-button").click(function () {
+    $(document).on("click", ".like-button", function () { 
       var romId = $(this).data("rom-id");
       var likesCountElement = $(this).siblings(".likes-count");
+      var icon = $(this).find("i");
 
-      // Check if the user has already liked this ROM
-      if (!hasUserLiked(romId)) {
-        // Simulate an AJAX request to increment the likes count on the server
-        // In a real application, you would send an AJAX request to the server
-        // to increment the likes count for the specific ROM ID.
+      $.ajax({
+        type: "POST",
+        url: window.location.href,
+        data: {
+          'rom_id': romId,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function (data) {
+          // Update the displayed likes count directly
+          likesCountElement.text(data.likes);
 
-        // Here, we're just updating the likes count in the UI for demonstration purposes.
-        romLikes[romId]++;
-        setUserLiked(romId); // Set that the user has liked this ROM
-        likesCountElement.text(romLikes[romId]);
-      } else {
-        alert("You have already liked this ROM.");
-      }
+          // Toggle the filled/empty thumbs-up icon based on the response
+          if (icon.hasClass("far")) {
+            icon.removeClass("far").addClass("fas");
+          } else {
+            icon.removeClass("fas").addClass("far");
+          }
+        }
+      });
     });
   });
 </script>
 
-<!----------------------cookie collecting in all pages---------------------------->
+
+
+<!------------------------------------cookie collecting in all pages------------------------------------------------>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const romLinks = document.querySelectorAll(".rom-link");
@@ -451,7 +526,9 @@ document.addEventListener("DOMContentLoaded", function ()  {
     });
   });
 </script>
-<!----------------------------Session Traking---------------------->
+
+<!-----------------------------------------Session Traking--------------------------------------------------------->
+
 <script>
   document.querySelectorAll(".track-session-link").forEach(function (link) {
     link.addEventListener("click", function (event) {

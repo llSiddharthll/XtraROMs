@@ -10,7 +10,7 @@
                     <h2 class="text-center">Do The Required Changes</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ edit_form|crispy }}  <!-- Apply the crispy filter -->
                         <input type="hidden" name="mod_id" value="{{ mod_id }}">

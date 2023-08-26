@@ -1,357 +1,609 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<!-- Carousel Section -->
-<section id="devices" class="py-5">
-  <div class="container">
-    <div class="row">
-      <!-- Large Display Carousels -->
-      <div class="col-md-6 d-none d-md-block">
-        <div id="carouselRedmi" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <!-- Redmi Carousel items here -->
-            <div class="carousel-item active">
-              <img
-                src="{% static 'images/Redmi-Note-11S-2.jpg' %}"
-                class="d-block w-100 custom-rom-image rounded-pill"
-                alt="Redmi Carousel 1"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="{% static 'images/POCO-M4-PRO-4G.png' %}"
-                class="d-block w-100 custom-rom-image rounded-pill"
-                alt="Redmi Carousel 2"
-              />
-            </div>
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselRedmi"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselRedmi"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
-      <div class="col-md-6 d-none d-md-block">
-        <div id="carouselPoco" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner rounded">
-            <!-- Poco Carousel items here -->
-            <div class="carousel-item active">
-              <img
-                src="{% static 'images/Redmi-Note-11-Pro.png' %}"
-                class="d-block w-100 custom-rom-image rounded-pill"
-                alt="Poco Carousel 1"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="{% static 'images/REDMI-NOTE-12S.jpeg' %}"
-                class="d-block w-100 custom-rom-image rounded-pill"
-                alt="Poco Carousel 2"
-              />
-            </div>
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselPoco"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselPoco"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
+{% block css %}
 
-      <!-- Small Display Carousel (Mobile) -->
-      <div class="col-md-6 d-md-none" style="align-items: center">
-        <div id="carouselMobile" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <!-- Mobile Carousel items here -->
-            <div class="carousel-item active">
-              <img
-                src="{% static 'images/Redmi-Note-11S-2.jpg' %}"
-                class="d-block w-100 only-carousel-image"
-                alt="Redmi Carousel 1"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="{% static 'images/POCO-M4-PRO-4G.png' %}"
-                class="d-block w-100 only-carousel-image"
-                alt="Redmi Carousel 2"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="{% static 'images/Redmi-Note-11-Pro.png' %}"
-                class="d-block w-100 only-carousel-image"
-                alt="Redmi Carousel 1"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="{% static 'images/REDMI-NOTE-12S.jpeg' %}"
-                class="d-block w-100 only-carousel-image"
-                alt="Redmi Carousel 2"
-              />
-            </div>
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselRedmi"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselRedmi"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+<style>
+
+:root {
+        --text: #e7f8f9;
+        --background: #071b1c;
+        --primary: #278f96;
+        --secondary: #0a2729;
+        --accent: #34c1cb;
+      }
+
+body{
+  margin-top: 50px;
+}
+/*----------------- Credits--------------------- */
+#news-slider{
+    margin-top: 80px;
+}
+#mods-slider{
+    margin-top: 80px;
+}
+#roms-slider{
+    margin-top: 80px;
+}
+.post-slide{
+    background: var(--secondary);
+    margin: 20px 15px 20px;
+    border-radius: 15px;
+    padding-top: 1px;
+    box-shadow: 0px 14px 22px -9px #bbcbd8;
+}
+.post-slide .post-img{
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: -12px 15px 8px 15px;
+}
+.post-slide .post-img img{
+  border: none;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%;
+        height: 250px;
+        /* Increase the height of the images */
+        object-fit: cover;
+    transform: scale(1,1);
+    transition:transform 0.2s linear;
+}
+.post-slide:hover .post-img img{
+    transform: scale(1.1,1.1);
+}
+.post-slide .over-layer{
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    background: linear-gradient(-45deg, rgba(6,190,244,0.75) 0%, rgba(45,112,253,0.6) 100%);
+    transition:all 0.50s linear;
+}
+.post-slide:hover .over-layer{
+    opacity:1;
+    text-decoration:none;
+}
+.post-slide .over-layer i{
+    position: relative;
+    top:45%;
+    text-align:center;
+    display: block;
+    color:var(--text);
+    font-size:25px;
+}
+.post-slide .post-content{
+    background:var(--secondary);
+    padding: 2px 20px 40px;
+    border-radius: 15px;
+}
+.post-slide .post-title a{
+    font-size:15px;
+    font-weight:bold;
+    color:#333;
+    display: inline-block;
+    text-transform:uppercase;
+    transition: all 0.3s ease 0s;
+}
+.post-slide .post-title a:hover{
+    text-decoration: none;
+    color: var(--accent);
+}
+.post-slide .post-description{
+    line-height:24px;
+    color:#b7b7b7;
+    margin-bottom:25px;
+    display: flex;
+    justify-content: center;
+}
+.post-slide .post-date{
+    color:#a9a9a9;
+    font-size: 14px;
+}
+.post-slide .post-date i{
+    font-size:20px;
+    margin-right:8px;
+    color: #CFDACE;
+}
+.post-slide .read-more{
+    padding: 7px 20px;
+    float: right;
+    font-size: 12px;
+    background: #3498db;
+    color: #ffffff;
+    border-radius: 25px;
+    text-transform: uppercase;
+}
+.post-slide .read-more:hover{
+    background: #3498db;
+    text-decoration:none;
+    color:#fff;
+}
+
+@media only screen and (max-width:1280px) {
+   .post-slide .post-content{
+        padding: 0px 15px 25px 15px;
+    }
+}
+#one{
+  background: url("{% static 'images/POCO-M4-PRO-4G-2.png' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#two{
+  background: url("{% static 'images/Redmi-Note-11S-2.jpg' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#three{
+  background: url("{% static 'images/pc_onyx_black.png' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#four{
+  background: url("{% static 'images/r9.jpg' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#five{
+  background: url("{% static 'images/rn11pro.png' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#six{
+  background: url("{% static 'images/rn7s.jpg' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#seven{
+  background: url("{% static 'images/rn8.png' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#eight{
+  background: url("{% static 'images/asus.jpg' %}");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.game-section h1 {
+  padding-bottom: 48px;
+}
+</style>
+{% endblock %}
+
+<section class="game-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+  <h1 class="text-center">XTRAROMS AVAILABLE FOR</h1>
+  <div id="game" class="owl-carousel custom-carousel">
+    <div id="one" class="item active">
+      <div class="item-desc">
+        <h3>Fleur</h3>
+        <p>Performance
+          Octa core (2.05 GHz, Dual Core + 2 GHz, Hexa Core)MediaTek Helio G966 GB RAM	
+          Display
+          6.43 inches (16.33 cm)409 PPI, AMOLED90 Hz Refresh Rate	
+          Camera
+          64 MP + 8 MP + 2 MP Triple Primary CamerasLED Flash16 MP Front Camera</p>
       </div>
+    </div>
+    <div id="two" class="item">
+      <div class="item-desc">
+        <h3>Miel</h3>
+        <p>Performance: Octa core (2.05 GHz, Dual Core + 2 GHz, Hexa Core)MediaTek Helio G96,
+          Display: 6.43 inches (16.33 cm)409 PPI, AMOLED90 Hz Refresh Rate,
+          Camera: 108 + 8 + 2 + 2 MP Quad Primary CamerasLED Flash16 MP Front Camera</p>
+      </div>
+    </div>
+    <div id="three" class="item">
+      <div class="item-desc">
+        <h3>Sea/Ocean</h3>
+        <p>Performance: Octa core (2.05 GHz, Dual Core + 2 GHz, Hexa Core)MediaTek Helio G96,
+          Display: 6.43 inches (16.33 cm)409 PPI, AMOLED90 Hz Refresh Rate,	
+          Camera: 108 MP + 8 MP + 2 MP Triple Primary CamerasLED Flash16 MP Front Camera</p>
+      </div>
+    </div>
+    <div id="four" class="item">
+      <div class="item-desc">
+        <h3>Blossom</h3>
+        <p>Performance: Octa core (2 GHz, Quad Core + 1.5 GHz, Quad core)MediaTek Helio G252 GB RAM,
+          Display: 6.53 inches (16.59 cm)269 PPI, IPS LCD,
+          Camera: 13 MP Primary CameraLED Flash5 MP Front Camera</p>
+      </div>
+    </div>
+    <div id="five" class="item">
+      <div class="item-desc">
+        <h3>Vida/Viva</h3>
+        <p>Performance: Octa core (2.05 GHz, Dual Core + 2 GHz, Hexa Core)MediaTek Helio G966 GB RAM,	
+          Display: 6.67 inches (16.94 cm)395 PPI, AMOLED120 Hz Refresh Rate,
+          Camera: 108 + 8 + 2 + 2 MP Quad Primary CamerasLED Flash16 MP Front Camera</p>
+      </div>
+    </div>
+    <div id="six" class="item" >
+      <div class="item-desc">
+        <h3>Lavander</h3>
+        <p>Performance: Octa core (2.2 GHz, Quad Core + 1.8 GHz, Quad core)Snapdragon 6603 GB RAM	
+          Display: 6.3 inches (16 cm)409 PPI, IPS LCD	
+          Camera: 12 MP + 2 MP Dual Primary CamerasLED Flash13 MP Front Camera</p>
+      </div>
+    </div>
+    <div id="seven" class="item" >
+      <div class="item-desc">
+        <h3>Ginkgo/Willow</h3>
+        <p>Performance: Octa core (2 GHz, Quad Core + 1.8 GHz, Quad core)Snapdragon 6654 GB RAM,
+          Display: 6.3 inches (16 cm)409 PPI, IPS LCD	,
+          Camera: 48 + 8 + 2 + 2 MP Quad Primary CamerasDual LED Flash13 MP Front Camera</p>
+      </div>
+    </div>
+    <div id="eight" class="item" >
+      <div class="item-desc">
+        <h3>X01BD</h3>
+        <p>Performance: Octa core (1.95 GHz, Quad Core + 1.8 GHz, Quad core)Snapdragon 6604 GB RAM,	
+          Display: 6.26 inches (15.9 cm)403 PPI, IPS LCD,
+          Camera: 12 MP + 5 MP Dual Primary CamerasLED Flash13 MP Front Camera</p>
+      </div>
+    </div>
+  </div>
+  </div>
     </div>
   </div>
 </section>
 
+
 <!-- Custom ROMs Section -->
-<section id="custom-roms" class="py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div id="new">
-          <h2>Popular Custom ROMs</h2>
-          <p>Custom Roms are eazy to Digest</p>
+<section id="owl" class="roms">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">POPULAR CUSTOM ROMS & RECOVERY</h1>
+      <div id="roms-slider" class="owl-carousel owl-controls owl-buttons">
+        {% for rom in roms %}
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{{rom.image.url}}" alt="">
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="#">{{rom.name}}</a>
+            </h3>
+            <span class="post-date"><i class="far fa-clock"></i>{{rom.upload_date}}</span>
+            <a href="{{rom.link}}" class="read-more">read more</a>
+          </div>
         </div>
-        <!-- Add information and links about different custom ROMs -->
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="{% static 'images/Evox.png' %}"
-                class="card-img-top img-thumbnail custom-rom-image"
-                alt="Custom ROM 1"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Evolution X</h5>
-                <p class="card-text">
-                  Evolution X is a popular custom ROM for Android devices, known
-                  for its performance optimization, extensive customization
-                  options. It offers a stable and feature-rich experience.
-                </p>
-                <a
-                  href="https://evolution-x.org/"
-                  target="_blank"
-                  class="btn btn-primary"
-                  >Learn More</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="{% static 'images/cr.png' %}"
-                class="card-img-top img-thumbnail custom-rom-image"
-                alt="Custom ROM 2"
-              />
-              <div class="card-body">
-                <h5 class="card-title">CrDroid</h5>
-                <p class="card-text">
-                  crDroid is a feature-packed custom ROM for Android devices,
-                  based on LineageOS, offering a balance between stability and
-                  customization, with regular updates and device support.
-                </p>
-                <a
-                  href="https://crdroid.net/"
-                  target="_blank"
-                  class="btn btn-primary"
-                  >Learn More</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="{% static 'images/cherishos.jpg' %}"
-                class="card-img-top img-thumbnail custom-rom-image"
-                alt="Custom ROM 2"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Cherish OS</h5>
-                <p class="card-text">
-                  Cherish OS is a well-rounded custom ROM for Android devices,
-                  providing a smooth and highly customizable experience, backed
-                  by regular updates and a friendly community.
-                </p>
-                <a
-                  href="https://cherishos.com/"
-                  target="_blank"
-                  class="btn btn-primary"
-                  >Learn More</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Add more custom ROM cards here -->
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- Magisk Modules Section -->
-<section id="magisk-modules" class="py-5">
-  <div class="container">
-    <div id="new">
-      <h2 class="text-center">Magisk Modules</h2>
-      <p class="text-center">
-        Enhance your Android experience with these powerful Magisk modules.
-      </p>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img
-            src="{% static 'images/theme.jpg' %}"
-            alt="Magisk Module 1"
-            class="card-img-top img-thumbnail custom-mod-image"
-          />
-          <div class="card-body">
-            <h4 class="card-title">Module 1</h4>
-            <p class="card-text">
-              This Magisk module change the boring xiaomi theme app to modded
-              version.
-            </p>
-            <a href="#" class="btn btn-primary">Learn More</a>
+<section id="owl" class="mods">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">POPULAR MODS & TOOLS</h1>
+      <div id="mods-slider" class="owl-carousel">
+        {% for mod in mods %}
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{{mod.image.url}}" alt="">
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="#">{{mod.name}}</a>
+            </h3>
+            <span class="post-date"><i class="far fa-clock"></i>{{mod.upload_date}}</span>
+            <a href="{{mod.link}}" class="read-more">read more</a>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img
-            src="{% static 'images/system_ui.jpg' %}"
-            alt="Magisk Module 2"
-            class="card-img-top img-thumbnail custom-mod-image"
-          />
-          <div class="card-body">
-            <h4 class="card-title">Module 2</h4>
-            <p class="card-text">
-              This Magisk module changes the boring old control center to new
-              amazing one.
-            </p>
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img
-            src="{% static 'images/launcher.jpg' %}"
-            alt="Magisk Module 3"
-            class="card-img-top img-thumbnail custom-mod-image"
-          />
-          <div class="card-body">
-            <h4 class="card-title">Module 3</h4>
-            <p class="card-text">
-              Customize your device's UI and unlock new themes with this module.
-            </p>
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
+</div>
 </section>
+
 
 <section id="about" class="py-5">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6">
         <img
-          src="{% static 'images/community.jpeg' %}"
-          alt="Fleur Device"
-          class="img-fluid rounded-circle mb-4"
+        src="{% static 'images/about.png' %}"
+        alt="Community"
+        class="img-fluid mb-4"
         />
       </div>
       <div class="col-md-6">
         <h2 class="text-center mb-4">About Us</h2>
         <p>
-          At Fleur, we are passionate about empowering users with the freedom to
-          customize and optimize their devices. We provide a wide range of
-          custom ROMs and Magisk modules, tailored to meet the unique needs of
-          each individual.
+          Empowering users with device customization. Discover custom ROMs and Magisk modules for unique needs.
         </p>
         <p>
-          Our thriving community is always ready to offer support, guidance, and
-          solutions to any questions or issues you might encounter while
-          exploring the world of customization. Whether you are a seasoned
-          modder or a newbie, Fleur welcomes you with open arms.
+          Our community offers support, guidance, and solutions. Fleur welcomes modders and newbies alike.
         </p>
         <p>
-          Join our community today and take your device experience to new
-          heights. Together, we'll unlock the full potential of your device and
-          bring out its beauty, inside and out.
+          Join us today to elevate your device experience. Unleash potential and beauty, inside and out.
         </p>
-        <p class="text-center">
-          <a href="#" class="btn btn-primary btn-lg">Join the Community</a>
+        <p style="text-align: center;">
+          <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl" class="btn btn-primary btn-lg">Join the Community</a>
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Contact Form Section -->
-{% load crispy_forms_tags %}
-<section id="contact">
-  <div class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header text-center">
-            <h2>Contact Us</h2>
+
+<div id="owl" class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">My Helping Hands</h1>
+      <div id="news-slider" class="owl-carousel">
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/sid.jpg' %}" alt="">
+            <a href="https://telegram.me/llSiddharthll" class="over-layer" target="_blank"><i class="fa fa-link"></i></a>
           </div>
-          <div class="card-body">
-            <form method="post">
-              {% csrf_token %} {{ form|crispy }}
-              <!-- Apply the crispy filter -->
-              <div class="text-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-            </form>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://telegram.me/llSiddharthll" target="_blank">SIDDHARTH</a>
+            </h3>
+            <p class="post-description">Main developer 😅</p>
+          </div>
+        </div>
+        
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/nshad.jpg' %}" alt="">
+            <a href="https://telegram.me/NSHAD03" class="over-layer"><i class="fa fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://telegram.me/NSHAD03" target="_blank">NSHAD03</a>
+            </h3>
+            <p class="post-description">theming and various frontend styles</p>
+          </div>
+        </div>
+        
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/rohit.jpg' %}" alt="">
+            <a href="https://telegram.me/RT1648" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://telegram.me/RT1648" target="_blank">ROHIT</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Fleur / Miel, X01BD</p>
+          </div>
+        </div>
+
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/nemix.jpg' %}" alt="">
+            <a href="https://telegram.me/nem1x" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://telegram.me/nem1x" target="_blank">NEMIX</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Fleur / Miel</p>
+          </div>
+        </div>
+
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/shazu.jpg' %}" alt="">
+            <a href="https://t.me/ShazuxD" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://t.me/ShazuxD" target="_blank">SHAZU KHAN</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Fleur / Miel</p>
+          </div>
+        </div>
+
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/emifer.jpg' %}" alt="">
+            <a href="https://telegram.me/emiferpro" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://telegram.me/emiferpro" target="_blank">EMIFER</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Vida / Viva</p>
+          </div>
+        </div>
+
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/fajar.jpg' %}" alt="">
+            <a href="https://telegram.me/fajarIbrahim31" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://telegram.me/fajarIbrahim31" target="_blank">FAJAR IBRAHIM</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Fleur / miel</p>
+          </div>
+        </div>
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/woome.jpg' %}" alt="">
+            <a href="https://t.me/woomymy" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://t.me/woomymy" target="_blank">WOOMYMY</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Vida / Viva</p>
+          </div>
+        </div>
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/erico.jpg' %}" alt="">
+            <a href="https://t.me/Erico_Cristiant" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://t.me/Erico_Cristiant" target="_blank">ERICO CRISTIANT</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Vida / Viva</p>
+          </div>
+        </div>
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{% static 'images/rnd.jpg' %}" alt="">
+            <a href="https://t.me/RndwnZ" class="over-layer"><i class="fas fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title text-center">
+              <a href="https://t.me/RndwnZ" target="_blank">RNDWNZ</a>
+            </h3>
+            <p class="post-description">Provided ROMs for - Vida / Viva</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
+
+
+
+{% endblock %}
+{% block script %}
+<!-- Include jQuery from CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Owl Carousel script from CDN -->
+<script src="{% static 'owl.carousel.js' %}"></script>
+<script>
+  $(document).ready(function() {
+    $("#news-slider").owlCarousel({
+      responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            loop:true
+        },
+        550:{
+            items:2,
+            loop:true
+        },
+        800:{
+            items:3,
+            loop:true
+        }},
+      autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $("#mods-slider").owlCarousel({
+      responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            loop:true
+        },
+        550:{
+            items:2,
+            loop:true
+        },
+        800:{
+            items:3,
+            loop:true
+        }},
+      autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true
+    });
+  });
+</script>
+  <script>
+    $(document).ready(function() {
+      $("#roms-slider").owlCarousel({
+        responsiveClass:true,
+      responsive:{
+          0:{
+              items:1,
+              loop:true
+          },
+          550:{
+              items:2,
+              loop:true
+          },
+          800:{
+              items:3,
+              loop:true
+          }},
+        autoplay:true,
+      autoplayTimeout:3000,
+      });
+    });
+  </script>
+
+
+<!-- Your custom JavaScript code -->
+<script>
+$(document).ready(function () {
+  $("#game").owlCarousel({
+    autoWidth: true,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            loop:true
+        },
+        550:{
+            items:2,
+            loop:true
+        },
+        800:{
+            loop:true
+        }},
+    loop: true,
+    autoplay:true,
+    autoplayTimeout:3000,
+    autoplayHoverPause:true
+  });
+  // Add custom styles for navigation buttons
+  $(".owl-nav-btn").css({
+        fontSize: "24px",  // Change the color
+        position: "absolute",
+        top:"130px"      // Position from the top
+    });
+    $(".owl-prev").css({
+        left: "10px"  // Position the left arrow
+    });
+
+    $(".owl-next").css({
+        right: "10px" // Position the right arrow
+    });
+
+  $(".custom-carousel .item").click(function () {
+    $(".custom-carousel .item").not($(this)).removeClass("active");
+    $(".custom-carousel .item").not($(this)).addClass("btn")
+    $(this).toggleClass("active");
+  });
+});
+</script>
 {% endblock %}

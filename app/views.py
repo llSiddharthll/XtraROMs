@@ -45,16 +45,20 @@ def track_session(request, obj_id, obj_type):
 
 def edit_rom(request, rom_id):
     rom = get_object_or_404(CustomROM, id=rom_id)
-    edit_form = UploadROMForm(instance=rom)
-
+    
     if request.method == "POST":
         edit_form = UploadROMForm(request.POST, request.FILES, instance=rom)
         if edit_form.is_valid():
-            edit_form.save()
-            return redirect('custom_roms') # Successful, no content
-
+            new_image = edit_form.cleaned_data['image']
+            edit_form.image = new_image
+            edit_form.save()  # Handle image update and upload date retention
+            return redirect('custom_roms')  # Successful, redirect back to ROM listing
+    else:
+        edit_form = UploadROMForm(instance=rom)
+    
     context = {"edit_form": edit_form, "rom": rom, "rom_id": rom_id}
     return render(request, "edit_form.html", context)
+
 
 def edit_mod(request, mod_id):
     mod = get_object_or_404(CustomMOD, id=mod_id)
@@ -76,12 +80,12 @@ def search_custom_roms(request):
         filtered_roms = CustomROM.objects.filter(
             Q(name__icontains=query) |   # Search by name
             Q(device__icontains=query) |  # Search by device
-            Q(credits__icontains=query) |  # Search by credits
-            Q(details__icontains=query)    # Search by details
+            Q(credits__icontains=query)   # Search by credits
         )
 
         roms_data = []
         for rom in filtered_roms:
+            likes_count = rom.likes.count()
             rom_data = {
                 "id": rom.id,
                 "name": rom.name,
@@ -89,61 +93,60 @@ def search_custom_roms(request):
                 "details": rom.details,
                 "link": rom.link,
                 "credits":rom.credits,
+                "likes":likes_count,
                 "image_url": rom.image.url,
                 "is_staff": request.user.is_staff,
+                "is_authenticated": request.user.is_authenticated,
             }
             roms_data.append(rom_data)
     else:
         roms_data = []
 
-    """ if not roms_data:  # Check if roms_data is empty
+    if not roms_data:  # Check if roms_data is empty
         print("No results found")
 
     print("Saving response data")
     import json
     with open('data.json', 'w', encoding='utf-8') as f:
-        json.dump(roms_data, f, ensure_ascii=False, indent=4) """
+        json.dump(roms_data, f, ensure_ascii=False, indent=4) 
 
     return JsonResponse({'results': roms_data})
 
-    
+def search_custom_mods(request):
+    query = request.GET.get('q', '')
+    if query:
+        filtered_mods = CustomMOD.objects.filter(
+            Q(name__icontains=query) |   # Search by name
+            Q(credits__icontains=query)   # Search by credits
+        )
 
+        mods_data = []
+        for mod in filtered_mods:
+            likes_count = mod.likes.count()
+            mod_data = {
+                "id": mod.id,
+                "name": mod.name,
+                "details": mod.details,
+                "link": mod.link,
+                "credits":mod.credits,
+                "likes":likes_count,
+                "image_url": mod.image.url,
+                "is_staff": request.user.is_staff,
+                "is_authenticated": request.user.is_authenticated,
+            }
+            mods_data.append(mod_data)
+    else:
+        mods_data = []
 
+    return JsonResponse({'results': mods_data})
 
-def results_template(request):
-    return render(request, 'results.html')
-
-
-
-def search_mods(request):
-    query = request.GET.get("query", "").lower().strip()
-
-    filtered_mods = CustomMOD.objects.filter(name__icontains=query)
-
-    mods_data = []
-    for mod in filtered_mods:
-        mod_data = {
-            "name": mod.name,
-            "device": mod.device,
-            "details": mod.details,
-            "link": mod.link,
-            "image_url": mod.image.url,
-        }
-        mods_data.append(mod_data)
-
-    return JsonResponse({"mods": mods_data})
 
 
 def home(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            # Add any additional logic or notifications here
-            return redirect("home")  # Redirect to the same page after submission
-    else:
-        form = ContactForm()
-    return render(request, "home.html", {"form": form})
+    user_profile = UserProfile.objects.all()
+    roms = CustomROM.objects.all()
+    mods = CustomMOD.objects.all()
+    return render(request, "home.html", {'user_profile':user_profile,'roms':roms,'mods':mods})
 
 
 
@@ -226,17 +229,32 @@ def profile(request):
 
 
 def custom_roms(request):
-    roms = CustomROM.objects.all()
+    roms = CustomROM.objects.all().order_by('-upload_date')
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
 
         if request.method == "POST":
             form = UploadROMForm(request.POST, request.FILES)
             if form.is_valid():
-                rom = form.save(commit=False)
+                rom = form.save()
                 rom.uploaded_by = request.user
                 rom.save()
                 return redirect("custom_roms")  # Redirect back to the same page
+            
+            # Handle like action
+            
+            rom_id = request.POST.get('rom_id')
+            if rom_id:
+                rom = CustomROM.objects.get(pk=rom_id)
+                user_liked = rom.likes.filter(id=request.user.id).exists()
+                
+                if user_liked:
+                    rom.likes.remove(request.user)
+                else:
+                    rom.likes.add(request.user)
+
+                return JsonResponse({'likes': rom.likes.count()})
+
 
         else:
             form = UploadROMForm()
@@ -246,33 +264,56 @@ def custom_roms(request):
             rom.formatted_details = mark_safe(
                 rom.details.replace("\n", "<br>").replace("-", "&#8226;")
             )
-        
+        rom.save()
         return render(request, "custom_roms.html", {"roms": roms,"user_profile": user_profile, "form": form})
 
     return render(request, "custom_roms.html", {"roms": roms})
 
+def rom_details(request, rom_id):
+    rom = get_object_or_404(CustomROM, id=rom_id)
+    formatted_details = mark_safe(rom.details.replace("\n", "<br>").replace("-", "&#8226;"))
+    return render(request, 'rom_details.html', {'rom': rom, 'formatted_details': formatted_details})
 
 def magisk_modules(request):
-    mods = CustomMOD.objects.all()
+    mods = CustomMOD.objects.all().order_by('-upload_date')
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
 
-    if request.method == "POST":
-        form = UploadMODForm(request.POST, request.FILES)
-        if form.is_valid():
-            mod = form.save(commit=False)
-            mod.uploaded_by = request.user
-            mod.save()
-            return redirect("magisk_modules")  # Redirect back to the same page
+        if request.method == "POST":
+            form = UploadMODForm(request.POST, request.FILES)
+            if form.is_valid():
+                mod = form.save()
+                mod.uploaded_by = request.user
+                mod.save()
+                return redirect("magisk_modules")  # Redirect back to the same page
+            
+            # Handle like action
+            
+            mod_id = request.POST.get('mod_id')
+            if mod_id:
+                mod = CustomMOD.objects.get(pk=mod_id)
+                user_liked = mod.likes.filter(id=request.user.id).exists()
+                
+                if user_liked:
+                    mod.likes.remove(request.user)
+                else:
+                    mod.likes.add(request.user)
 
-    else:
-        form = UploadMODForm()
+                return JsonResponse({'likes': mod.likes.count()})
 
-    # Format description for each ROM
-    for mod in mods:
-        mod.formatted_details = mark_safe(
-            mod.details.replace("\n", "<br>").replace("-", "&#8226;")
-        )
 
-    return render(request, "magisk_modules.html", {"mods": mods, "form": form})
+        else:
+            form = UploadMODForm()
+
+        # Format description for each mod
+        for mod in mods:
+            mod.formatted_details = mark_safe(
+                mod.details.replace("\n", "<br>").replace("-", "&#8226;")
+            )
+        
+        return render(request, "magisk_modules.html", {"mods": mods,"user_profile": user_profile, "form": form})
+
+    return render(request, "magisk_modules.html", {"mods": mods})
 
 
 @login_required
@@ -301,17 +342,20 @@ def update_user_profile(request, profile_id):
 
 
 @login_required
-def comment(request):
-    if request.method == 'POST':
-        message = request.POST.get('Message')
-        
-        # Ensure the user is logged in before posting a comment
-        if request.user.is_authenticated:
-            username = request.user.username
-            comment = Comment.objects.create(name=username, message=message)
-            comment.save()
-            return redirect('comment')
+def get_comments(request):
+    # Fetch existing comments from your database and return as HTML
+    comments = Comment.objects.all()
+    return render(request, "comments/comments_list.html", {"comments": comments})
 
-    data = Comment.objects.all().values()
-    return render(request, 'comment.html', {'data': data})
+@login_required
+def add_comment(request):
+    if request.method == "POST":
+        username = request.user
+        comment_text = request.POST.get("comment")
+        # Create a new Comment object and save it to the database
+        Comment.objects.create(username=username, comment_text=comment_text)
+        return JsonResponse({"status": "success"})
 
+
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')

@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import os
 from pathlib import Path
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'cloudinary',
     'crispy_forms',
     'crispy_bootstrap5',
     'allauth',
@@ -81,6 +84,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'XtraROMs.wsgi.application'
 
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"  # For development only
+    }
+}
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -90,6 +99,27 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# Access environment variables
+CLOUDINARY_CLOUD_NAME = "durdi1oak"
+CLOUDINARY_API_KEY = "164254991127435"
+CLOUDINARY_API_SECRET = "i8Lzr2SSRJCAlHS_6l0NVqrDkc4"
+
+
+import cloudinary
+# Import the cloudinary.api for managing assets
+import cloudinary.api
+# Import the cloudinary.uploader for uploading assets
+import cloudinary.uploader
+
+cloudinary.config(
+    cloud_name="durdi1oak",
+    api_key="164254991127435",
+    api_secret="i8Lzr2SSRJCAlHS_6l0NVqrDkc4",
+    secure=True,
+)
+
 
 
 # Password validation
@@ -118,8 +148,10 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+
+
 # Setup allauth parameters
-SITE_ID = 2
+SITE_ID = 1
 # LOGIN_REDIRECT_URL :- destination of login page in your urls.py
 LOGIN_REDIRECT_URL = '/'
 # ACCOUNT_LOGOUT_REDIRECT :- where to redirect when user logout
@@ -165,19 +197,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-AWS_STORAGE_BUCKET_NAME = 'lbucketl'
-AWS_ACCESS_KEY_ID = 'AKIASOXRGWNYBISCUT5A'
-AWS_S3_REGION_NAME = 'eu-north-1'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_S3_SIGNATURE_NAME = 's3v4'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-AWS_S3_VERITY = True
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
-
 # Media files
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+
+MEDIA_URL = f"https://res.cloudinary.com/{CLOUDINARY_CLOUD_NAME}/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type

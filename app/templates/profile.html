@@ -8,8 +8,8 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="card mb-4">
-          <div class="card-body text-center">
-            <div class="profile-picture-container" id="Pic">
+          <div class="card-body">
+            <div class="profile-picture-container text-center" id="Pic">
               <img
                 src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
                 alt="No avatar"
@@ -30,7 +30,7 @@
               <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h5 class="modal-title" id="profilePictureModalLabel">Upload or Change Profile Picture</h5>
+                          <h5 class="modal-title">Upload or Change Profile Picture</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
@@ -51,11 +51,12 @@
               </div>
           </div>
           
-            <h5 class="my-3"><b>{{request.user.username}}</b></h5>
+            <h5 class="my-3" style="display: flex;
+            justify-content: center;"><b>{{request.user.username}}</b></h5>
             <p class="text-muted mb-4"></p>
             <div class="d-flex justify-content-center mb-2">
               <button type="button" id="change-image-link" class="btn btn-outline-primary ms-1">Update Profile</button>
-              <button type="button" id="change-image-link" class="btn btn-outline-primary ms-1"><a href="{% url 'logout' %}">Logout</a></button>
+              <a href="{% url 'logout' %}"><button type="button" id="change-image-link" class="btn btn-outline-primary ms-1">Logout</button></a>
             </div>
           </div>
         </div>
@@ -64,19 +65,19 @@
             <ul class=" list-group-flush rounded-3">
               <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
+                <p class="mb-0">-</p>
               </div>
               <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-github fa-lg" style="color: #333333"></i>
-                <p class="mb-0">mdbootstrap</p>
+                <p class="mb-0">-</p>
               </div>
               <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-twitter fa-lg" style="color: #55acee"></i>
-                <p class="mb-0">@mdbootstrap</p>
+                <p class="mb-0">-</p>
               </div>
               <div class=" d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-instagram fa-lg" style="color: #ac2bac"></i>
-                <p class="mb-0">mdbootstrap</p>
+                <p class="mb-0">-</p>
               </div>
             </ul>
           </div>
@@ -105,10 +106,10 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Telegram</p>
+                <p class="mb-0">Update</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Not Provided</p>
+                <p class="text-muted mb-0">(Site in maintainance some features might not work)</p>
               </div>
             </div>
             <hr />
@@ -119,7 +120,7 @@
               <div class="col-sm-9">
                 <p class="text-muted mb-0">
                   {% if user.is_superuser %}
-                    You are the god, can do anything
+                    You are the god, can do anything (<a href="{% url 'admin:index' %}">Here</a>)
                   {% elif user.is_staff %}
                     You can manage other users as well as upload stuffs
                   {% elif user.is_authorised %}
@@ -138,10 +139,9 @@
             <div class="card mb-4 mb-md-0">
               <div class="card-body">
                 <p class="mb-4">
-                  <span class="text-primary font-italic me-1">assigment</span>
-                  Project Status
+                  <span class="text-primary font-italic me-1">Your Past Activity</span>
                 </p>
-                <p class="mb-1" style="font-size: 0.77rem">Web Design</p>
+                <p class="mb-1" style="font-size: 0.77rem">--</p>
                 <div class="progress rounded" style="height: 5px">
                   <div
                     class="progress-bar"
@@ -153,7 +153,7 @@
                   ></div>
                 </div>
                 <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                  Website Markup
+                  --
                 </p>
                 <div class="progress rounded" style="height: 5px">
                   <div
@@ -165,7 +165,7 @@
                     aria-valuemax="100"
                   ></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: 0.77rem">One Page</p>
+                <p class="mt-4 mb-1" style="font-size: 0.77rem">--</p>
                 <div class="progress rounded" style="height: 5px">
                   <div
                     class="progress-bar"
@@ -177,7 +177,7 @@
                   ></div>
                 </div>
                 <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                  Mobile Template
+                  --
                 </p>
                 <div class="progress rounded" style="height: 5px">
                   <div
@@ -189,7 +189,7 @@
                     aria-valuemax="100"
                   ></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: 0.77rem">Backend API</p>
+                <p class="mt-4 mb-1" style="font-size: 0.77rem">--</p>
                 <div class="progress rounded mb-2" style="height: 5px">
                   <div
                     class="progress-bar"
@@ -207,10 +207,9 @@
             <div class="card mb-4 mb-md-0">
               <div class="card-body">
                 <p class="mb-4">
-                  <span class="text-primary font-italic me-1">assigment</span>
-                  Project Status
+                  <span class="text-primary font-italic me-1">Liked Items</span>
                 </p>
-                <p class="mb-1" style="font-size: 0.77rem">Web Design</p>
+                <p class="mb-1" style="font-size: 0.77rem">--</p>
                 <div class="progress rounded" style="height: 5px">
                   <div
                     class="progress-bar"
@@ -222,7 +221,7 @@
                   ></div>
                 </div>
                 <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                  Website Markup
+                  --
                 </p>
                 <div class="progress rounded" style="height: 5px">
                   <div
@@ -234,7 +233,7 @@
                     aria-valuemax="100"
                   ></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: 0.77rem">One Page</p>
+                <p class="mt-4 mb-1" style="font-size: 0.77rem">--</p>
                 <div class="progress rounded" style="height: 5px">
                   <div
                     class="progress-bar"
@@ -246,7 +245,7 @@
                   ></div>
                 </div>
                 <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                  Mobile Template
+                  --
                 </p>
                 <div class="progress rounded" style="height: 5px">
                   <div
@@ -258,7 +257,7 @@
                     aria-valuemax="100"
                   ></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: 0.77rem">Backend API</p>
+                <p class="mt-4 mb-1" style="font-size: 0.77rem">--</p>
                 <div class="progress rounded mb-2" style="height: 5px">
                   <div
                     class="progress-bar"

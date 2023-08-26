@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Comments</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <form id="comment-form">
+                {% csrf_token %}
+                <!-- Since only logged-in users can access comments, we won't show the Name field -->
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Comment</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <h3>Previous Comments</h3>
+            <ul id="comment-list" class="list-group">
+                <!-- Comments will be displayed here dynamically -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Load existing comments on page load
+        loadComments();
+
+        // Handle form submission
+        $("#comment-form").submit(function (event) {
+            event.preventDefault();
+            submitComment();
+        });
+
+        // Load comments using AJAX
+        function loadComments() {
+            $.ajax({
+                url: "/get_comments/",  // Replace with your Django endpoint to fetch comments
+                method: "GET",
+                success: function (data) {
+                    $("#comment-list").html(data);
+                }
+            });
+        }
+
+        // Submit comment using AJAX
+        function submitComment() {
+            var formData = $("#comment-form").serialize();
+            $.ajax({
+                url: "/add_comment/",  // Replace with your Django endpoint to add comments
+                method: "POST",
+                data: formData,
+                success: function () {
+                    $("#comment").val("");  // Clear the comment field after submission
+                    loadComments();
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
