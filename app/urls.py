@@ -26,6 +26,5 @@ urlpatterns = [
     path('accounts/signup/', account_views.signup, name="account_signup"),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
     path('chatbot/', chatbot, name='chatbot'),
-    path('telegram/webhook/', views.TelegramWebhookView.as_view(), name='telegram_webhook'),
     
 ]
