@@ -456,7 +456,7 @@ def post(self, request, *args, **kwargs):
 
 
 # Set up the Telegram webhook URL
-TELEGRAM_WEBHOOK_URL = f'https://a199-2405-201-6008-6b50-754c-b71c-e7b1-5a1e.ngrok.io/telegram/webhook/'  # Replace with your actual URL
+TELEGRAM_WEBHOOK_URL = f'https://xtra-roms-l428s43yu-llsiddharthll.vercel.app/telegram/webhook/'  # Replace with your actual URL
 webhook_response = requests.post(TELEGRAM_API_URL + 'setWebhook', data={'url': TELEGRAM_WEBHOOK_URL})
 if webhook_response.status_code == 200:
     print("Webhook setup successful")
