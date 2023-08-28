@@ -476,20 +476,6 @@
             {% else %}
             <li class="nav__item">
               <a
-                href="{% url 'chatbot' %}"
-
-                class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
-              >
-                <i class="bx bx-message-square-detail nav__icon"></i>
-                <span class="nav__name"
-                  ><span class="decor">< </span>Chit-Chat<span class="decor">
-                    /></span
-                  ></span
-                >
-              </a>
-            </li>
-            <!-- <li class="nav__item">
-              <a
                 href="{% url 'login' %}"
                 class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
               >
@@ -500,7 +486,7 @@
                   ></span
                 >
               </a>
-            </li> -->
+            </li>
             {% endif %}
           </ul>
         </div>
