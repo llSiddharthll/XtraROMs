@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*",".vercel.app",".now.sh"]
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_telegram_login',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -103,7 +104,6 @@ DATABASES = {
         'PORT': '5580',       # Default PostgreSQL port
     }
 }
-
 
 
 # Access environment variables
