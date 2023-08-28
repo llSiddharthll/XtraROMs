@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="canonical" href="https://telegram.me/XtraROMsOfficial">
+<style>
+    /* Customize the size of the Comments App widget */
+    .comments-container {
+        max-height: 500px; /* Adjust the desired height */
+        overflow-y: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>XtraROMs Chatbot</h1>
+</div>
+<div id="chat-container">
+    <div class="chat-box">
+        <!-- Your chat messages will be displayed here -->
+    </div>
+</div>
+
+<script>
+    // Get the CSRF token from the cookie
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+    
+    var csrfToken = getCookie('csrftoken');
+    var chatForm = document.querySelector('#chat-form');
+    var userInput = document.querySelector('#user-input');
+
+    // Attach the CSRF token to the request headers and handle form submission
+    chatForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var message = userInput.value.trim();
+        if (message) {
+            fetch("{% url 'chatbot' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ user_message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle response data if needed
+            })
+            .catch(error => {
+                // Handle error
+            });
+
+            // Clear the input field after sending
+            userInput.value = '';
+        }
+    });
+
+    // Allow "Enter" key to send the message
+    userInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevents line break
+            chatForm.dispatchEvent(new Event('submit'));
+        }
+    });
+
+    // Scroll to the bottom of the chatbox to show the latest messages
+    var chatContainer = document.getElementById('chat-container');
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+</script>
+<script async src="https://comments.app/js/widget.js?3" data-comments-app-website="n63QwUVv" data-limit="5" data-height="500" data-dislikes="1" data-colorful="1" data-dark="1"></script>
+{% endblock %}

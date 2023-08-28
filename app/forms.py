@@ -3,7 +3,6 @@ from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 class UpdateUsernameForm(forms.ModelForm):
     class Meta:
@@ -57,3 +56,4 @@ class BioForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['bio']
+

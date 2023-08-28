@@ -2,22 +2,19 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-class CustomROMs(admin.ModelAdmin):
-    list_display=('name', 'device')
-admin.site.register(CustomROM,CustomROMs)
+class CustomROMAdmin(admin.ModelAdmin):
+    list_display = ('name', 'device', 'credits', 'upload_date')
+    search_fields = ('name', 'device', 'credits')
+admin.site.register(CustomROM, CustomROMAdmin)
 
-class CustomMODs(admin.ModelAdmin):
-    list_display=('name',)
-admin.site.register(CustomMOD,CustomMODs)
+class CustomMODAdmin(admin.ModelAdmin):
+    list_display = ('name', 'credits', 'upload_date')
+    search_fields = ('name', 'credits')
+admin.site.register(CustomMOD, CustomMODAdmin)
 
-class UserProfiles(admin.ModelAdmin):
-    list_display=('user',)
-admin.site.register(UserProfile,UserProfiles)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'is_authorized')
+admin.site.register(UserProfile, UserProfileAdmin)
 
-class Contacts(admin.ModelAdmin):
-    list_display=('name',)
-admin.site.register(Contact,Contacts)
 
-class Comments(admin.ModelAdmin):
-    list_display=('name',)
-admin.site.register(Comment,Comments)
+admin.site.register(ChatMessage)

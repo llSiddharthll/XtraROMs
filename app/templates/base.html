@@ -43,7 +43,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style2.css' %}" />
 
     <!--=============== BOXICONS ===============-->
     <link
@@ -176,40 +176,6 @@
         height: 250px;
         /* Increase the height of the images */
         object-fit: cover;
-      }
-
-      /* Custom CSS to style the "Contact Us" section */
-
-      #contact h2 {
-        font-size: 36px;
-        font-weight: 600;
-        margin-bottom: 20px;
-      }
-
-      .contact-form {
-        padding: 30px;
-        border: 2px solid rgb(97, 97, 97);
-        border-radius: 8px;
-        box-shadow: 0 10px 20cqmax rgba(0, 0, 0, 0.1);
-      }
-
-      .contact-form label {
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .contact-form .form-control {
-        border-radius: 4px;
-        margin-bottom: 40px;
-      }
-
-      .contact-form textarea .form-control {
-        resize: vertical;
-      }
-
-      .contact-form button.btn-primary {
-        font-size: 18px;
-        padding: 10px 20px;
       }
 
       /* Image styles */
@@ -495,8 +461,9 @@
             {% if request.user.is_authenticated %}
             <li class="nav__item">
               <a
-                href="{% url 'get_comments' %}"
-                class="nav__link {% if request.path == '/get_comments/' %}active-link{% endif %}"
+                href="{% url 'chatbot' %}"
+
+                class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
               >
                 <i class="bx bx-message-square-detail nav__icon"></i>
                 <span class="nav__name"
@@ -509,6 +476,20 @@
             {% else %}
             <li class="nav__item">
               <a
+                href="{% url 'chatbot' %}"
+
+                class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
+              >
+                <i class="bx bx-message-square-detail nav__icon"></i>
+                <span class="nav__name"
+                  ><span class="decor">< </span>Chit-Chat<span class="decor">
+                    /></span
+                  ></span
+                >
+              </a>
+            </li>
+            <!-- <li class="nav__item">
+              <a
                 href="{% url 'login' %}"
                 class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
               >
@@ -519,7 +500,7 @@
                   ></span
                 >
               </a>
-            </li>
+            </li> -->
             {% endif %}
           </ul>
         </div>
@@ -546,7 +527,7 @@
     <!-- Cookie Banner -->
     <div
       id="cb-cookie-banner"
-      class="alert alert-dark text-center mb-0"
+      class="alert alert-dark mb-0"
       role="alert"
     >
       &#x1F36A; This website uses cookies to ensure you get the best experience

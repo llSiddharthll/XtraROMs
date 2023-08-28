@@ -3,7 +3,7 @@ from . import views
 from .views import *
 from allauth.account import views as account_views
 
-
+appname = 'app'
 urlpatterns = [
     path('', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
@@ -15,8 +15,6 @@ urlpatterns = [
     path('edit_rom/editing_rom_<int:rom_id>/', views.edit_rom, name='edit_rom'),
     path('edit_mod/editing_mod_<int:mod_id>/', views.edit_mod, name='edit_mod'),
     path('magisk_modules/', views.magisk_modules, name='magisk_modules'),
-    path("comments/", views.get_comments, name="get_comments"),
-    path("add_comment/", views.add_comment, name="add_comment"),
     path('search/', search_custom_roms, name='search_custom_roms'),
     path('search-mods/', search_custom_mods, name='search_custom_mods'),
     path('manage_user_profiles/', views.manage_user_profiles, name='manage_user_profiles'),
@@ -27,4 +25,7 @@ urlpatterns = [
     path('accounts/', include('allauth.account.urls')),
     path('accounts/signup/', account_views.signup, name="account_signup"),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
+    path('chatbot/', chatbot, name='chatbot'),
+    path('telegram/webhook/', views.TelegramWebhookView.as_view(), name='telegram_webhook'),
+    
 ]

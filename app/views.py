@@ -11,6 +11,7 @@ from django.http import JsonResponse
 # app/views.py
 from django.http import HttpResponse
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 
 def set_cookie(request, interaction_data):
     response = HttpResponse("Cookie set!")
@@ -264,7 +265,7 @@ def custom_roms(request):
             rom.formatted_details = mark_safe(
                 rom.details.replace("\n", "<br>").replace("-", "&#8226;")
             )
-        rom.save()
+            rom.save()
         return render(request, "custom_roms.html", {"roms": roms,"user_profile": user_profile, "form": form})
 
     return render(request, "custom_roms.html", {"roms": roms})
@@ -340,22 +341,124 @@ def update_user_profile(request, profile_id):
         request, "app_userprofile/update_user_profile.html", {"profile": profile}
     )
 
-
-@login_required
-def get_comments(request):
-    # Fetch existing comments from your database and return as HTML
-    comments = Comment.objects.all()
-    return render(request, "comments/comments_list.html", {"comments": comments})
-
-@login_required
-def add_comment(request):
-    if request.method == "POST":
-        username = request.user
-        comment_text = request.POST.get("comment")
-        # Create a new Comment object and save it to the database
-        Comment.objects.create(username=username, comment_text=comment_text)
-        return JsonResponse({"status": "success"})
-
-
 def privacy_policy(request):
-    return render(request, 'privacy_policy.html')
+    return render(request,'privacy_policy.html')
+
+""" @login_required
+def chat_page(request):
+    if request.method == 'POST':
+        form = ChatMessageForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            direction = ChatMessage.OUTGOING  # The message sender is the logged-in user
+            ChatMessage.objects.create(user=request.user, message=message, message_direction=direction)
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error_message': 'Invalid form data'})
+
+    form = ChatMessageForm()
+    messages = ChatMessage.objects.order_by('-timestamp')[:50]
+    user_profile = UserProfile.objects.get(user=request.user)  # Assuming one profile per user
+    return render(request, 'chat_page.html', {'messages': messages, 'form': form, 'user_profile': user_profile})
+
+from django.utils.html import escape
+
+from django.http import JsonResponse
+
+from django.utils.html import escape
+from app.models import UserProfile  # Make sure to import the UserProfile model
+
+def load_messages(request):
+    message_data = []  # Define an empty list outside the branching logic  
+
+    if request.method == 'GET':
+        messages = ChatMessage.objects.order_by('-timestamp')[:50]
+        for message in messages:
+            if message.message_direction == ChatMessage.INCOMING:
+                sender_profile = UserProfile.objects.all()
+            else:
+                sender_profile = None  # Set sender_profile to None for outgoing messages
+            message_data.append({
+                'content': escape(message.message),
+                'timestamp': message.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                'direction': message.message_direction,
+                'user_profile': sender_profile,
+            })
+        return JsonResponse({'messages': message_data})
+    else:
+        return JsonResponse({'messages': []})
+
+ """
+from django.shortcuts import render
+
+@csrf_exempt  # Temporarily disable CSRF protection for demonstration purposes
+def chatbot(request):
+    user_message = ""
+    bot_response = ""
+
+    if request.method == 'POST':
+        user_message = request.POST.get('user_message')
+        # Process user_message and generate a bot response
+        bot_response = "XtraBot: I am writing things and he's not giving responses"
+        
+        return render(request, 'chatbot.html', {'user_message': user_message, 'bot_response': bot_response})
+
+    # For GET requests or other methods, simply render the template
+    return render(request, 'chatbot.html', {'user_message': user_message, 'bot_response': bot_response})
+
+import json
+import requests
+from django.http import JsonResponse
+from django.views import View
+from django.utils.decorators import method_decorator
+from django.conf import settings
+
+TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
+TELEGRAM_API_URL = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/'
+
+@method_decorator(csrf_exempt, name='dispatch')
+class TelegramWebhookView(View):
+    def get(self, request, *args, **kwargs):
+        # Handle the GET request here
+        # This is where you can respond to Telegram's verification request
+
+        return JsonResponse({'status': 'ok'})
+
+def post(self, request, *args, **kwargs):
+    update = json.loads(request.body.decode('utf-8'))
+    
+    # Print the received update for debugging
+    print("Received update:", update)
+    
+    if 'message' in update and 'chat' in update['message']:
+        chat_id = update['message']['chat']['id']
+        user_message = update['message']['text']
+        
+        # Process user_message and generate a response
+        
+        response_message = "You said: " + user_message
+        
+        # Send the response back to the user
+        response_url = TELEGRAM_API_URL + 'sendMessage'
+        data = {
+            'chat_id': chat_id,
+            'text': response_message
+        }
+
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(response_url, json=data, headers=headers)
+        
+        return JsonResponse({'status': 'ok'})
+    else:
+        print("Unexpected update structure:", update)
+        return JsonResponse({'status': 'error', 'message': 'Invalid update structure'})
+
+
+
+# Set up the Telegram webhook URL
+TELEGRAM_WEBHOOK_URL = f'https://a199-2405-201-6008-6b50-754c-b71c-e7b1-5a1e.ngrok.io/telegram/webhook/'  # Replace with your actual URL
+webhook_response = requests.post(TELEGRAM_API_URL + 'setWebhook', data={'url': TELEGRAM_WEBHOOK_URL})
+if webhook_response.status_code == 200:
+    print("Webhook setup successful")
+else:
+    print("Webhook setup failed")
