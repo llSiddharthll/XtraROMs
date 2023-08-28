@@ -95,10 +95,15 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'z7K3H3EN5oiTcxg77dgG',
+        'HOST': 'containers-us-west-195.railway.app',  # Change to your PostgreSQL host
+        'PORT': '5580',       # Default PostgreSQL port
     }
 }
+
 
 
 # Access environment variables
