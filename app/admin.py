@@ -15,3 +15,5 @@ admin.site.register(CustomMOD, CustomMODAdmin)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'is_authorized')
 admin.site.register(UserProfile, UserProfileAdmin)
+
+admin.site.register(UserCookie)

@@ -20,35 +20,53 @@ def email_valid(email):
     if(re.fullmatch(regex, email)): return True
     return False
 
-class UserCookie(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    interaction_data = models.TextField()
+from .models import UserCookie  # Import your UserCookie model
 
-    def __str__(self):
-        return f"{self.user.username} - Cookie"
+def set_cookie_data(user, interaction_data):
+    try:
+        user_cookie, created = UserCookie.objects.get_or_create(user=user)
+        user_cookie.interaction_data += f"|{interaction_data}"
+        user_cookie.save()
+        return True
+    except Exception as e:
+        return False
+
+def get_user_interactions(user):
+    try:
+        user_cookie = UserCookie.objects.get(user=user)
+        return user_cookie.interaction_data
+    except UserCookie.DoesNotExist:
+        return "No interactions recorded."
+
+def set_cookie(request):
+    interaction_type = request.POST.get('interaction_type')
+    interaction_data = request.POST.get('interaction_data')
     
-def set_cookie(request, interaction_data):
+    if not interaction_type or not interaction_data:
+        return JsonResponse({"message": "Invalid request."})
+    
     if request.user.is_authenticated:
         user = request.user
-        current_cookie_data = UserCookie.objects.filter(user=user).first()
-        if current_cookie_data:
-            current_cookie_data.interaction_data += f"|{interaction_data}"
-            current_cookie_data.save()
+        if interaction_type == 'page_view':
+            interaction_data = f"Page View: {interaction_data}"
+        elif interaction_type == 'click':
+            interaction_data = f"Clicked: {interaction_data}"
+        elif interaction_type == 'form_submission':
+            interaction_data = f"Form Submitted: {interaction_data}"
+        # Add more cases for other interaction types (e.g., events, searches, etc.)
+        
+        if set_cookie_data(user, interaction_data):
+            return JsonResponse({"message": "Cookie set!"})
         else:
-            UserCookie.objects.create(user=user, interaction_data=interaction_data)
-    return HttpResponse("Cookie set!")
-
+            return JsonResponse({"message": "Error setting cookie."})
+    return JsonResponse({"message": "User not authenticated."})
 
 def read_cookie(request):
     if request.user.is_authenticated:
-        user = request.user
-        user_cookie = UserCookie.objects.filter(user=user).first()
-        if user_cookie:
-            user_interactions = user_cookie.interaction_data
-        else:
-            user_interactions = "No interactions recorded."
-        return HttpResponse(f"User Interactions: {user_interactions}")
-    return HttpResponse("User not authenticated.")
+        user_interactions = get_user_interactions(request.user)
+        return JsonResponse({"message": user_interactions})
+    return JsonResponse({"message": "User not authenticated."})
+
 
 
 def track_session(request, obj_id, obj_type):
