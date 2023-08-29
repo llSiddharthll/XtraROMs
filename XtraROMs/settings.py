@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*",".vercel.app",".now.sh"]
+ALLOWED_HOSTS = ["*",".vercel.app",".now.sh",'eea7-2405-201-6008-6b50-754c-b71c-e7b1-5a1e.ngrok-free.app']
 
 
 # Application definition
@@ -62,7 +62,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'app.middleware.SessionTrackingMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'XtraROMs.urls'
@@ -147,38 +146,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 AUTHENTICATION_BACKENDS = [
     # Default backend for Django authentication.
     'django.contrib.auth.backends.ModelBackend',
 
     # Allauth specific authentication methods, such as login by e-mail.
     'allauth.account.auth_backends.AuthenticationBackend',
+]
 
-    'allauth.socialaccount.backends.github.GithubOAuth2',
-    'allauth.socialaccount.backends.telegram.TelegramOAuth2',
-] 
+
 
 # Setup allauth parameters
 SITE_ID = 1
 # LOGIN_REDIRECT_URL :- destination of login page in your urls.py
 LOGIN_URL = '/'
 LOGOUT_URL = '/'
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-    },
-    'github': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-    },
-    'telegram': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-    }
-}
-
 
 
 # Internationalization
