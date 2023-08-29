@@ -12,18 +12,44 @@ from django.http import JsonResponse
 from django.http import HttpResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
+import re
 
+
+def email_valid(email):
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    if(re.fullmatch(regex, email)): return True
+    return False
+
+class UserCookie(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    interaction_data = models.TextField()
+
+    def __str__(self):
+        return f"{self.user.username} - Cookie"
+    
 def set_cookie(request, interaction_data):
-    response = HttpResponse("Cookie set!")
-    # Append interaction data to the cookie value
-    current_cookie_data = request.COOKIES.get("user_interactions", "")
-    new_cookie_data = f"{current_cookie_data}|{interaction_data}"
-    response.set_cookie("user_interactions", new_cookie_data, max_age=3600)
-    return response
+    if request.user.is_authenticated:
+        user = request.user
+        current_cookie_data = UserCookie.objects.filter(user=user).first()
+        if current_cookie_data:
+            current_cookie_data.interaction_data += f"|{interaction_data}"
+            current_cookie_data.save()
+        else:
+            UserCookie.objects.create(user=user, interaction_data=interaction_data)
+    return HttpResponse("Cookie set!")
+
 
 def read_cookie(request):
-    user_interactions = request.COOKIES.get("user_interactions")
-    return HttpResponse(f"User Interactions: {user_interactions}")
+    if request.user.is_authenticated:
+        user = request.user
+        user_cookie = UserCookie.objects.filter(user=user).first()
+        if user_cookie:
+            user_interactions = user_cookie.interaction_data
+        else:
+            user_interactions = "No interactions recorded."
+        return HttpResponse(f"User Interactions: {user_interactions}")
+    return HttpResponse("User not authenticated.")
+
 
 def track_session(request, obj_id, obj_type):
     if not request.user.is_authenticated:
@@ -150,27 +176,27 @@ def home(request):
     return render(request, "home.html", {'user_profile':user_profile,'roms':roms,'mods':mods})
 
 
-
 def login_request(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
-            if user is not None:
+    logout(request)
+    context = {}
+
+
+    if request.POST:
+        email = request.POST['email']
+        password = request.POST['password']
+        
+        user = authenticate(username=email, password=password)
+        
+        if user is not None:
+            if user.is_active:
                 login(request, user)
-                return redirect("/")
-            else:
-                messages.error(request, "Invalid username or password.")
+                return redirect('/')
         else:
-            messages.error(request, "Invalid username or password.")
-    form = AuthenticationForm()
-    return render(
-        request=request,
-        template_name="app_userprofile/login.html",
-        context={"form": form},
-    )
+            context = {
+            "error": 'Email or Password was wrong.',
+            }    
+        
+    return render(request, 'app_userprofile/login.html',context)
 
 
 def logout_request(request):
@@ -178,21 +204,35 @@ def logout_request(request):
     return redirect("/")
 
 
-def signup(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+def signup_view(request):
+    logout(request)
 
-            # Create a UserProfile instance for the new user
-            UserProfile.objects.create(user=user)
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        error = ''
 
-            # Log the user in after registration
-            login(request, user)
-            return redirect("home")  # Redirect to the home page or a different URL
-    else:
-        form = SignUpForm()
-    return render(request, "app_userprofile/signup.html", {"form": form})
+        if not email_valid(email):
+            error = "Wrong email address."
+        try:
+            if User.objects.get(username=email) is not None:
+                error = 'This email is already used.'
+        except:
+            pass
+
+        if error:
+            return render(request, "app_userprofile/signup.html", context={'error': error})
+
+        user = User.objects.create_user(
+            username=email,
+            email=email,
+            password=password,
+        )
+
+        login(request, user, backend='allauth.account.auth_backends.AuthenticationBackend')
+        return redirect('/')
+
+    return render(request, 'app_userprofile/signup.html')
 
 
 

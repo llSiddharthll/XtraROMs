@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*",".vercel.app",".now.sh",'eea7-2405-201-6008-6b50-754c-b71c-e7b1-5a1e.ngrok-free.app']
+ALLOWED_HOSTS = ["*",".vercel.app",".now.sh"]
 
 
 # Application definition

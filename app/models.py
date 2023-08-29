@@ -34,10 +34,7 @@ class CustomMOD(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     is_authorized = models.BooleanField(default=False)
-    is_online = models.BooleanField(default=False)
     profile_picture = CloudinaryField('profile_pictures', blank=True)
-    bio = models.TextField(null=True, blank=True)
-    email = models.EmailField(blank=True)
     # Add other fields as needed
 
     def __str__(self):

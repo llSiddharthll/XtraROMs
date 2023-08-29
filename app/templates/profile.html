@@ -122,11 +122,11 @@
                   {% if user.is_superuser %}
                     You are the god, can do anything (<a href="{% url 'admin:index' %}">Here</a>)
                   {% elif user.is_staff %}
-                    You can manage other users as well as upload stuffs
+                    You can manage other users as well as upload data
                   {% elif user.is_authorised %}
-                    You can only upload stuffs
+                    You can only upload data
                   {% else %}
-                    You are not authorized Contact Staff to upload data
+                    You are not authorized, kindly Contact Staff's to upload data
                   {% endif %}
                 </p>
               </div>

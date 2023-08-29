@@ -2,11 +2,12 @@ from django.urls import path, include
 from . import views
 from .views import *
 from allauth.account import views as account_views
+from allauth.socialaccount import views as socialaccount_views
 
 appname = 'app'
 urlpatterns = [
     path('', views.home, name='home'),
-    path('signup/', views.signup, name='signup'),
+    path('signup/', views.signup_view, name='signup'),
     path('login/', views.login_request, name='login'),
     path('logout/', views.logout_request, name='logout'),
     path('profile/', views.profile, name='profile'),
@@ -19,8 +20,8 @@ urlpatterns = [
     path('search-mods/', search_custom_mods, name='search_custom_mods'),
     path('manage_user_profiles/', views.manage_user_profiles, name='manage_user_profiles'),
     path('update_user_profile/<int:profile_id>/', views.update_user_profile, name='update_user_profile'),
-    path('set-cookie/<str:interaction_data>/', views.set_cookie, name='set_cookie'),
-    path('read-cookie/', views.read_cookie, name='read_cookie'),
+    path('set-cookie/', views.set_cookie, name='set-cookie'),
+    path('read-cookie/', views.read_cookie, name='read-cookie'),
     path('track-session/', views.track_session, name='track_session'),
     path('accounts/', include('allauth.account.urls')),
     path('accounts/signup/', account_views.signup, name="account_signup"),
