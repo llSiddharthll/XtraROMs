@@ -156,7 +156,7 @@ AUTHENTICATION_BACKENDS = [
 
     'allauth.socialaccount.backends.github.GithubOAuth2',
     'allauth.socialaccount.backends.telegram.TelegramOAuth2',
-]
+] 
 
 # Setup allauth parameters
 SITE_ID = 1
