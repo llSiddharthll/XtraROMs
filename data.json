@@ -1,0 +1,2021 @@
+[
+    {
+        "model": "admin.logentry",
+        "pk": 1,
+        "fields": {
+            "action_time": "2023-08-10T19:35:38.699Z",
+            "user": 1,
+            "content_type": 3,
+            "object_id": "2",
+            "object_repr": "llSiddharthll",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Staff status\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 2,
+        "fields": {
+            "action_time": "2023-08-10T19:35:51.704Z",
+            "user": 1,
+            "content_type": 9,
+            "object_id": "1",
+            "object_repr": "llSiddharthll",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Is authorized\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 3,
+        "fields": {
+            "action_time": "2023-08-10T20:02:57.890Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "CrDroid",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Device\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 4,
+        "fields": {
+            "action_time": "2023-08-10T20:03:19.343Z",
+            "user": 1,
+            "content_type": 9,
+            "object_id": "2",
+            "object_repr": "Ryukk",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 5,
+        "fields": {
+            "action_time": "2023-08-10T21:02:14.160Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "1",
+            "object_repr": "Xiaomi Themes",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 6,
+        "fields": {
+            "action_time": "2023-08-10T21:26:38.379Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "7",
+            "object_repr": "MIUI System UI Plugin",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 7,
+        "fields": {
+            "action_time": "2023-08-10T21:26:38.384Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "6",
+            "object_repr": "Xiaomi Themes",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 8,
+        "fields": {
+            "action_time": "2023-08-10T21:26:38.388Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "5",
+            "object_repr": "Xiaomi Themes",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 9,
+        "fields": {
+            "action_time": "2023-08-10T21:26:38.394Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "4",
+            "object_repr": "Xiaomi Themes",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 10,
+        "fields": {
+            "action_time": "2023-08-10T21:34:54.900Z",
+            "user": 1,
+            "content_type": 6,
+            "object_id": "1",
+            "object_repr": "Siddharth Tiwari",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 11,
+        "fields": {
+            "action_time": "2023-08-11T22:13:33.454Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "6",
+            "object_repr": "Arrow OS",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 12,
+        "fields": {
+            "action_time": "2023-08-11T22:13:33.459Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "5",
+            "object_repr": "PitchBlack Recovery",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 13,
+        "fields": {
+            "action_time": "2023-08-11T22:13:33.464Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "4",
+            "object_repr": "Arrow OS",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 14,
+        "fields": {
+            "action_time": "2023-08-11T22:13:33.468Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "3",
+            "object_repr": "Arrow OS",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 15,
+        "fields": {
+            "action_time": "2023-08-11T22:13:33.473Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "EvolutionX",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 16,
+        "fields": {
+            "action_time": "2023-08-11T22:13:33.478Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "CrDroid",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 17,
+        "fields": {
+            "action_time": "2023-08-11T22:13:53.331Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "3",
+            "object_repr": "Xiaomi Launcher Mod",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 18,
+        "fields": {
+            "action_time": "2023-08-11T22:13:53.335Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "2",
+            "object_repr": "MIUI System UI Plugin",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 19,
+        "fields": {
+            "action_time": "2023-08-11T22:13:53.337Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "1",
+            "object_repr": "Xiaomi Themes",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 20,
+        "fields": {
+            "action_time": "2023-08-12T00:13:12.593Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "5",
+            "object_repr": "Leica cam for AOSP (64/108MPX)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Credits\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 21,
+        "fields": {
+            "action_time": "2023-08-12T10:43:23.564Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "10",
+            "object_repr": "AwakenOS",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 22,
+        "fields": {
+            "action_time": "2023-08-12T17:38:08.808Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "15",
+            "object_repr": "Pixel Experience Plus.",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Credits\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 23,
+        "fields": {
+            "action_time": "2023-08-12T17:41:05.143Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "15",
+            "object_repr": "Pixel Experience Plus.",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 24,
+        "fields": {
+            "action_time": "2023-08-12T17:58:14.103Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "15",
+            "object_repr": "Pixel Experience Plus.",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Details\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 25,
+        "fields": {
+            "action_time": "2023-08-13T20:52:13.993Z",
+            "user": 1,
+            "content_type": 3,
+            "object_id": "8",
+            "object_repr": "popo",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Staff status\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 26,
+        "fields": {
+            "action_time": "2023-08-13T20:53:29.443Z",
+            "user": 1,
+            "content_type": 3,
+            "object_id": "5",
+            "object_repr": "ehexdsbrother",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Staff status\"]}}]"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 1,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 1,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 1,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 1,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 2,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 2,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 2,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 2,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 3,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 3,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 3,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 3,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 4,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 4,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 4,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 4,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add comment",
+            "content_type": 5,
+            "codename": "add_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change comment",
+            "content_type": 5,
+            "codename": "change_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete comment",
+            "content_type": 5,
+            "codename": "delete_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view comment",
+            "content_type": 5,
+            "codename": "view_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add contact",
+            "content_type": 6,
+            "codename": "add_contact"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change contact",
+            "content_type": 6,
+            "codename": "change_contact"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete contact",
+            "content_type": 6,
+            "codename": "delete_contact"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view contact",
+            "content_type": 6,
+            "codename": "view_contact"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add custom mod",
+            "content_type": 7,
+            "codename": "add_custommod"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change custom mod",
+            "content_type": 7,
+            "codename": "change_custommod"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete custom mod",
+            "content_type": 7,
+            "codename": "delete_custommod"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view custom mod",
+            "content_type": 7,
+            "codename": "view_custommod"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add custom rom",
+            "content_type": 8,
+            "codename": "add_customrom"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change custom rom",
+            "content_type": 8,
+            "codename": "change_customrom"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete custom rom",
+            "content_type": 8,
+            "codename": "delete_customrom"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view custom rom",
+            "content_type": 8,
+            "codename": "view_customrom"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add user profile",
+            "content_type": 9,
+            "codename": "add_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change user profile",
+            "content_type": 9,
+            "codename": "change_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete user profile",
+            "content_type": 9,
+            "codename": "delete_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view user profile",
+            "content_type": 9,
+            "codename": "view_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 10,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 10,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 10,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 10,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 11,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 11,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 11,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 11,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can edit custom ROM",
+            "content_type": 8,
+            "codename": "can_edit_rom"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can edit ROM",
+            "content_type": 7,
+            "codename": "can_edit_rom"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$dDrb1QH4AcnvkIuBtUOfPJ$ZttAqbNwz1zOLuNBh3Or3ai39hBBn1JvV9WWJPlGnrI=",
+            "last_login": "2023-08-19T04:58:52.408Z",
+            "is_superuser": true,
+            "username": "Ryukk",
+            "first_name": "",
+            "last_name": "",
+            "email": "sid123@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-08-10T19:33:44.895Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$GylMVWAyadvnr79ZtG9EJs$Rs9B3hpPehUE06QAncQR1K0CTeOupgHjLk8s3FiM6NI=",
+            "last_login": "2023-08-12T11:26:04.373Z",
+            "is_superuser": false,
+            "username": "llSiddharthll",
+            "first_name": "",
+            "last_name": "",
+            "email": "siddharthgreat443@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-08-10T19:34:23Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$7iKgPR3auDhsMtOgoojiZb$h3yqztrkFTsHsAenQj7RRpBJNDnftQ65DndwpxVuViM=",
+            "last_login": "2023-08-12T00:03:00.064Z",
+            "is_superuser": false,
+            "username": "emiferpro",
+            "first_name": "",
+            "last_name": "",
+            "email": "emiferpro@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T00:02:59.397Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$Kp2KtgXCPTHfR6ozj7XFjl$zrMi/u8IFQrtt6XhoJNS8dMBETxUalP+qMX+XfbUWAY=",
+            "last_login": "2023-08-13T23:45:52.659Z",
+            "is_superuser": false,
+            "username": "SamC",
+            "first_name": "",
+            "last_name": "",
+            "email": "samuelchristianb8@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T07:47:23.369Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$0002r4KK2yaddkTEqXNGVj$uWbklCor8jIhMpxDDrY+4PWGabVxjJwoKCxKoaA1how=",
+            "last_login": "2023-08-16T16:52:28.195Z",
+            "is_superuser": false,
+            "username": "ehexdsbrother",
+            "first_name": "",
+            "last_name": "",
+            "email": "ehexd@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-08-12T08:12:30Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$WArnWmTGJM6O4TJrEFJPC1$7s4D9KBOaxW7N/bdqm2uMRbAZRiTex0wOIF9tGWl2ac=",
+            "last_login": "2023-08-12T08:49:38.512Z",
+            "is_superuser": false,
+            "username": "BloxetPL",
+            "first_name": "",
+            "last_name": "",
+            "email": "bloxetpl.yt@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T08:49:37.929Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$YTwj0iVEv6jEJ58QoteNfl$g2NqhLl+OPAL0Zj2n1sANKmlBK3kCrV7epEiG7cjGjk=",
+            "last_login": "2023-08-12T09:14:38.048Z",
+            "is_superuser": false,
+            "username": "Rohit",
+            "first_name": "",
+            "last_name": "",
+            "email": "tixevoh939@tiuas.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T09:14:37.354Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$3cicurhn5voSwAfwEGv2Wh$5NX6Bd68s6MR5t4FE9B8Va4LGypAuUTsqaCjSTkzW1Q=",
+            "last_login": "2023-08-12T11:15:15Z",
+            "is_superuser": false,
+            "username": "popo",
+            "first_name": "",
+            "last_name": "",
+            "email": "creekpasta@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-08-12T11:15:15Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$485C8rHxhoaKFy4wiR59mH$iNoSvEiE8Gj0wi/ke0w6LMhhMvWpGq9CzK4FWjm1Vn8=",
+            "last_login": "2023-08-12T15:30:20.841Z",
+            "is_superuser": false,
+            "username": "ShazuxD",
+            "first_name": "",
+            "last_name": "",
+            "email": "shazuxd@proton.me",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T15:30:20.349Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$SjW7g4I0HyBhT3CcWwGDKK$+pGBvXtNB21XIcY4GmHVHdy8H3f9DdV8XI/vEIv9Zeo=",
+            "last_login": "2023-08-12T15:37:07.011Z",
+            "is_superuser": false,
+            "username": "RndwnZ",
+            "first_name": "",
+            "last_name": "",
+            "email": "vectorid19@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T15:37:06.327Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$ktIyBwIUlULHA2VYnryn0d$x79b1otr3PiiYiMgC2i9MPDxza9NowcJc1yUzHx9Nhs=",
+            "last_login": "2023-08-14T13:47:43.702Z",
+            "is_superuser": false,
+            "username": "Liten",
+            "first_name": "",
+            "last_name": "",
+            "email": "gamesliten@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T16:58:24.924Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$ZTAAz3WfnH5jg086AiUl84$Jh9rIMVb1SLpP7pdnsRlIMXHULCIWyZ9lidjofMf47g=",
+            "last_login": "2023-08-12T17:31:03.269Z",
+            "is_superuser": false,
+            "username": "EricoProject",
+            "first_name": "",
+            "last_name": "",
+            "email": "christiantoriko227@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-12T17:31:02.448Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$l02g1IZO5vWi3xqJ4EyDV6$p2HhK83vbyotLTJOCz+lp7FDfmbCErQMx3D1T9sGEvg=",
+            "last_login": "2023-08-13T08:16:15.175Z",
+            "is_superuser": false,
+            "username": "Vimal227",
+            "first_name": "",
+            "last_name": "",
+            "email": "vpdse009@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-13T08:16:14.664Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 14,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$sKv6D1BGCCOTyWTySh6fmt$qZqa5Xs11PMlB1Vn5PXXNmpR1NDSFUXk5D5EM+U/jeo=",
+            "last_login": "2023-08-13T12:15:04.831Z",
+            "is_superuser": false,
+            "username": "Xellyzz",
+            "first_name": "",
+            "last_name": "",
+            "email": "banyusejati14@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-13T12:15:04.061Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 15,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$nl6XANScYdOppq0OF4vmKg$rNJQqSGw+oW9u8eMRNVbXMmCqOLj7duWuVzsYytUQrE=",
+            "last_login": "2023-08-13T20:51:07.258Z",
+            "is_superuser": false,
+            "username": "Ryukendo",
+            "first_name": "",
+            "last_name": "",
+            "email": "siddharthgreat443@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-13T20:51:06.810Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 16,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$E4YNGaA3jmaapBCnqQs1wg$ux7n8cobfA0EI3SAq4HpP3FVSa9D9FX28lHAwGpCgO8=",
+            "last_login": "2023-08-14T10:43:03.329Z",
+            "is_superuser": false,
+            "username": "Impit",
+            "first_name": "",
+            "last_name": "",
+            "email": "pitambersingh379@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-14T10:43:02.553Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 17,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$jVNhrYTKSiTkoYSSGsJnAt$cG4LZ6jlsjIzyZyAwX3l2qIBrFX5nXH0F6Csia4QcpQ=",
+            "last_login": "2023-08-15T14:11:09.874Z",
+            "is_superuser": false,
+            "username": "Vimal123",
+            "first_name": "",
+            "last_name": "",
+            "email": "vpdse009@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-15T14:11:09.056Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 18,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$dSo4x4pImfo30gjixMEzhm$hO8ArY7KAqVLZGGwOq/XxxbFvjWUN+4dhPoULEzXr0M=",
+            "last_login": "2023-08-15T14:17:22.185Z",
+            "is_superuser": false,
+            "username": "Atul977",
+            "first_name": "",
+            "last_name": "",
+            "email": "atulverma9321@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-15T14:17:21.381Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 19,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$j28K4h6Q8jEjoYKExh2gft$FUCvtyVXclNSkkZE12GXMyLewoIPzxZXtjdQvdDOHU4=",
+            "last_login": "2023-08-15T15:33:55.306Z",
+            "is_superuser": false,
+            "username": "bonlui",
+            "first_name": "",
+            "last_name": "",
+            "email": "bonlui.team32@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-15T15:33:54.820Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 20,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$JIjToMUsvFosQk3v7NgFEZ$6aX4qoOL0yst6hUZ47GREBmqI3NnLuy0ev1Optro370=",
+            "last_login": "2023-08-17T14:47:04.288Z",
+            "is_superuser": false,
+            "username": "rusyd4",
+            "first_name": "",
+            "last_name": "",
+            "email": "naufalrs9708@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-17T14:47:03.217Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 21,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$DEKaTAHpqFwJeL6CGITdsr$DxHWZxSzBoFQb7yzDLCW1mnV0zuAIAwIgKOHgsPtQpQ=",
+            "last_login": "2023-08-19T04:53:55.010Z",
+            "is_superuser": false,
+            "username": "MarkRamirez2003",
+            "first_name": "",
+            "last_name": "",
+            "email": "markdavidramirez77@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-19T04:53:54.489Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 22,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$VPB6uV5u6IO00F24NIOUHY$kaCwk3QfaIyApylaXJjzxUoQ50xlZvrB08rMU2J8jNs=",
+            "last_login": "2023-08-19T16:58:03.554Z",
+            "is_superuser": false,
+            "username": "Faizzz",
+            "first_name": "",
+            "last_name": "",
+            "email": "firmansyahfaiz30@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-08-19T16:58:02.986Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "2h1b2ac4s93xe07tq1c8dafk2snag971",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hCGgeC4dO8ZyABTqRqalHZlvLtt0oVu_3vvv1Xkdalx7TLHsaiL8ur0uyXOT2k7KA9u90nnqS3zmPSu6IN2fZuKvK6H-3dQudetRkZx1mULQOhdkuLEU8LsAtFZLHoTNswBShrQo8nGEBgEPzCBI_X5AsKFNqU:1qWJky:EsEDxdUy2Gib1ZrncEzzOk63qaf6FxyD0apw2rRzChc",
+            "expire_date": "2023-08-30T16:52:28.217Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "2pf12p1mmtx2dn75mazllmrzlp5m9xqt",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hAYKENduvcMZIahUjVtUtqV8e7apAvd_vfef6lE21rT1sqSRlFnZYM6_Y5M-VGmncidptus8zyty8h6V_RBm77OUp6Xw_07qNTqt8ZAwmA7Ym_9AIQ-5Gh6CV0QluwGy70tBADOACI6RvKljwYdIMWs3h8E5Ted:1qVV2N:DB9NCHaGgKUn8DE4z0czhyow-33zxaYo6iZv5zzwAgg",
+            "expire_date": "2023-08-28T10:43:03.349Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "85q6fqlxp2bnhnd5gitsry6fk38e182l",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGllZf8KGkj5niHa9Ng4gW4qTCnF3iJQC2jcz76Um2tY8bS0u0yzqopw6_W5M4RHLDuRO5VZ1qGVdZta7og_a9FglPq-H-3eQqeVv7Zmo50SCHgm7wThC7wdyEFD6M3vuPCQLFlHAGLBOCDlZMckJAKj3B-cSN5M:1qVKmO:SXHOWi4WxRPlSNxpkd0P_r5TRIdJ3um2vru20ztczJU",
+            "expire_date": "2023-08-27T23:45:52.680Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "8jmh3nh34f0j0x1kf3d0fmeylsmv23o6",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnZBH-Wkp4zWOtdGweQI8VJhbg7iZQC2pl5760CrUsJa0tzGEVdFIA6_cJI_Ex1N_Kgep80T3WZx6j3RB-26dsk6XU92r-DQq1s6xzPAAbQOssOfSLIZFHEdr1H4WiH3BswUQabO8PiIHmGjUdEj86rzxcAnDf1:1qUrwX:5JAPWNnxUzphfggQLJH9PJ6PxqlfczijT3me45nmTDc",
+            "expire_date": "2023-08-26T16:58:25.541Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "8putzalcwbk6d5x7dzg6wr7b61pgul4x",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hCGgeC4dO8ZyABTqRqalHZlvLtt0oVu_3vvv1Xkdalx7TLHsaiL8ur0uyXOT2k7KA9u90nnqS3zmPSu6IN2fZuKvK6H-3dQudetRkZx1mULQOhdkuLEU8LsAtFZLHoTNswBShrQo8nGEBgEPzCBI_X5AsKFNqU:1qV5tR:f1HqMzoKdIFOTCQP5SmJmzKWTAx8XOv095GsnGGLLrg",
+            "expire_date": "2023-08-27T07:52:09.810Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "8xbt20ot7l1uhfugo3enmlta340tkk12",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hCBwhSX7nsGMjCDVA0kpV0Z765NutDtf-_9lwi4rSVsnZcwk7gINYrT7xgxPbjuhO5Yb02mVtdljnJX5EG7nBrx83q4fwcFe_nWMQ0jgTlrT4NRBNlma4w1KScgBo9owFsXKXtlmQCTI-U4RuW0djiI9wcT7Th1:1qVurK:YBr5lPlVwqfSVsa4r0F3PMjsk8Ne2vrxDJ6kN3YMMKI",
+            "expire_date": "2023-08-29T14:17:22.209Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "96u05qc5v6lo0gd8r35agn94nl7blxej",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGln-fyjpOYPlXa9xADlSnFSIu0OkFNC-mXkvlvK2trQNWtJU2JlJxU6_I2R8UN9Jued-mznOfV0m4LvCDzr4dS70vBzu30HLo31ryFZaFRFFBF0BtdEyUCYRMYhiNRrvrAkgFJCvFb0zkkooKmpHgYC9Pw9WOGo:1qUsS7:JWgdhFqXl_n4hIwdzBESRxo24y9J4b4K00jr7z3EJLA",
+            "expire_date": "2023-08-26T17:31:03.286Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "a9pp97ju4dyw4jztyogmx1rmk8nhjr23",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnZBH-Wkp4zWOtdGweQI8VJhbg7iZQC2pl5760CrUsJa0tzGEVdFIA6_cJI_Ex1N_Kgep80T3WZx6j3RB-26dsk6XU92r-DQq1s6xzPAAbQOssOfSLIZFHEdr1H4WiH3BswUQabO8PiIHmGjUdEj86rzxcAnDf1:1qV9BH:y9KvH5KPMbuIiVTx1u-NP_AOGzUEIm0FzSDvIWlncSA",
+            "expire_date": "2023-08-27T11:22:47.281Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "aau0awngkve6zzuax7mntsme7pojh6l6",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hAYKBWX7nsGMsyAVA0kpV0Z765NutDtf-_9lwi4rSVsPS1hZnERTpx-t4j0SHUHfMd6a5JaXZc5yl2RB-1yapye18P9OyjYy7fO-ZyMGilrYKXR2myTHSATJAfkIilvGICB0I8-MzuFitCpaLUZLIr3B_qvOEk:1qUkJW:gT-o7L0GOxGyF4Mh7ctBe7xNKt0CR-7oc3LYqdqTfw8",
+            "expire_date": "2023-08-26T08:49:38.531Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "clsfgo5p0w170vmiuon965ttstdhhfel",
+        "fields": {
+            "session_data": ".eJxVjEsOwjAMBe-SNYqc9BOHJXvOENmxSwqolZp2hbg7VOoCtm9m3ssk2taStqpLGsWcjTOn340pP3Tagdxpus02z9O6jGx3xR602uss-rwc7t9BoVq-dWBEaAJ0wYnDngjiIEyAoESuZc0A2HmA3mmkoW2iNt5L7ANzh4rm_QHMVzdl:1qUqPl:O5xCm7SHJc5abfDYxekv_8L9fVn41LP3axz_5S-snSc",
+            "expire_date": "2023-08-26T15:20:29.484Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "dnjkrzfbc18gzosz7z7ssj6l9y1v7hrk",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlm2N87alPQ5g7XejXEAJVI-FeLuJFIKaGfmvbdKtK01bUs_p0HUVTl1-WWZ-NmPh5AHjfdJ8zSu85D1kejTLrqbpH_dzvbvoNJS93WObFigBGLExrRZpCBEYEMeaOdesHGhddbaaMGjYQ9YsDQuCvugPl_nETdO:1qUxpv:FLQTbIAJDhADLNQ79t5D_yBKLUB2_9bfYK8w3AELorM",
+            "expire_date": "2023-08-26T23:15:59.344Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "e56q8u3pq35arqsxdsgx9gb7ugr9bejs",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAQRf-FtSEUpjxcuvcbCDAzUjU0Ke3K-O_apAvd3nPOfYmYtrXGrdMSJxRnEcTpd8upPKjtAO-p3WZZ5rYuU5a7Ig_a5XVGel4O9--gpl6_NQFQ8IiDyuQ5GdIBiEcumlEVRzwYh9ZaUBYNF2SnPIA3o3NaO2_E-wMK-Tf4:1qUqZI:9UZR7Gvh8AOXOp6a050xkeJyMjHwFB6SRM-9HtZx19M",
+            "expire_date": "2023-08-26T15:30:20.856Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "e9cu7qil7qalruv3nmdf6ffrvrnndoco",
+        "fields": {
+            "session_data": ".eJxVjEsOwjAMBe-SNYqc9BOHJXvOENmxSwqolZp2hbg7VOoCtm9m3ssk2taStqpLGsWcjTOn340pP3Tagdxpus02z9O6jGx3xR602uss-rwc7t9BoVq-dWBEaAJ0wYnDngjiIEyAoESuZc0A2HmA3mmkoW2iNt5L7ANzh4rm_QHMVzdl:1qXE31:QahABxi7_kME7HhpfgaCGs518GLvciYIpkYD8hv5mlQ",
+            "expire_date": "2023-09-02T04:58:51.105Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "eaquv413tvbsn5vw9vcm7nxkx6xvdwmh",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlk2_q0p6TmDtV5vcAA5UpxUiLuTSCmgfTPz3iLhutS0dp7TWMRFgDj9bhnpyW0H5YHtPkma2jKPWe6KPGiXt6nw63q4fwcVe91q8uCJjCJyUXEGFVlrb53BbLxHRi6oh0hWMZ-1hVCABg0ubK7JOojPF_QHODk:1qUmaR:ijYzBdZG-Nt0nZMyY4cvPEQtK8ZGIHj3Lb0oC5fdBQY",
+            "expire_date": "2023-08-26T11:15:15.711Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "gc6tbly3n8zu0r4dlysnlxbi6kbawivd",
+        "fields": {
+            "session_data": ".eJxVjEsOwjAMBe-SNYqc9BOHJXvOENmxSwqolZp2hbg7VOoCtm9m3ssk2taStqpLGsWcjTOn340pP3Tagdxpus02z9O6jGx3xR602uss-rwc7t9BoVq-dWBEaAJ0wYnDngjiIEyAoESuZc0A2HmA3mmkoW2iNt5L7ANzh4rm_QHMVzdl:1qVI3a:clk-VDDwsZBhpl4HByNZzQRtfpGFTY2vPfDwu1127b0",
+            "expire_date": "2023-08-27T20:51:26.407Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "hczb706ff2xtnu3lsn50k3x2xakocb00",
+        "fields": {
+            "session_data": ".eJxVjEsOwjAMBe-SNYqc9BOHJXvOENmxSwqolZp2hbg7VOoCtm9m3ssk2taStqpLGsWcjTOn340pP3Tagdxpus02z9O6jGx3xR602uss-rwc7t9BoVq-dWBEaAJ0wYnDngjiIEyAoESuZc0A2HmA3mmkoW2iNt5L7ANzh4rm_QHMVzdl:1qWiXK:Sa2ujJTAb9lLfLEyUEMPAtnwZ1ZRpKkFtw4KAwOBQLI",
+            "expire_date": "2023-08-31T19:20:02.447Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "hry8qhcql7bjno8mz7i8ahm1tpiwqpom",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGln-fyjpOYO1a69xADlSnFSIu0OkFNC-mXkvlmBbW9oGLWkq7MyUYqffESE_qO-k3KHfZp7nvi4T8l3hBx38Ohd6Xg7376DBaN_aaQ_FkIVSnQuWELVGVQL5LLyxTkEUWUYhtaAaarWIESwAGeMjSWDvDxcnOJU:1qXPH1:wAYfdytPSGeXOrPl1LDx5L2i7saaWy4thQl7XZunHvA",
+            "expire_date": "2023-09-02T16:58:03.575Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "i2srsct5rw5wedpayucbkklzaagsfj9y",
+        "fields": {
+            "session_data": ".eJxVjDEOwjAMRe-SGUVJTOLCyM4ZKsd2SAG1UtNOiLtDpQ6w_vfef5me1qX2a9O5H8ScTfDm8Dtm4oeOG5E7jbfJ8jQu85DtptidNnudRJ-X3f07qNTqt46AyBQLCzIkSKVAQO9ZnYIPQAIS1XWIMYejOlKUzsNJUmFViWLeHwqFOJU:1qXDyF:y-1SKZFWH4TdwSRBZJsytYmmOvW9w2h7XMfTtyxp5d4",
+            "expire_date": "2023-09-02T04:53:55.027Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "i5u8h61meh97u2mwl2c2wk8sm8sey00j",
+        "fields": {
+            "session_data": ".eJxVjEsOwjAMBe-SNYqc9BOHJXvOENmxSwqolZp2hbg7VOoCtm9m3ssk2taStqpLGsWcjTOn340pP3Tagdxpus02z9O6jGx3xR602uss-rwc7t9BoVq-dWBEaAJ0wYnDngjiIEyAoESuZc0A2HmA3mmkoW2iNt5L7ANzh4rm_QHMVzdl:1qUY1k:9G39aD8tOF37nVrYQXTNNWSpjKlDukeDTspvVP1rbxc",
+            "expire_date": "2023-08-25T19:42:28.865Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "l3utqg8oc6n9j7sbopncrers5h2pbu8i",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAURP-FtSFc5OnSfb-BXLggVUOT0q6M_64kXehuMufMvFjAfath73kNM7ELA8tOv2XE9MhtELpjuy08LW1b58iHwg_a-bRQfl4P9--gYq_fdZTeQzbWg0FdQFujlDijFKBRFYuURzbaCQTK0jiIPhUllXMFSHn2_gDfUzcV:1qVulJ:BUH-8SxnAFNFsZLBoAJLc_QO2Fg-1BBlddbzpfJuv8Q",
+            "expire_date": "2023-08-29T14:11:09.895Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "mey7ao2pwgtvq8bo9d5v2f68skum49g5",
+        "fields": {
+            "session_data": ".eJxVjDsOwyAQRO9CHSFYvk6Z3mdACyzBSYQlY1dR7h5bcpF0o3lv5s0CbmsNW6clTJldGQh2-S0jpie1g-QHtvvM09zWZYr8UPhJOx_nTK_b6f4dVOx1X1tPTkOEFAuQ0sXt2aP1GYwhgdKBzN4qzBZVccalAQqAVnJAUgKJfb7-9jfL:1qWeHA:kVLl4W0Ml6GLk6NhU-Pi2vmC35Hn6DJQdxOKue_pDUQ",
+            "expire_date": "2023-08-31T14:47:04.306Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "mtetbttfrmull4yuz7g2t04tw5q02yzm",
+        "fields": {
+            "session_data": ".eJxVjEsOwjAMBe-SNYqc9BOHJXvOENmxSwqolZp2hbg7VOoCtm9m3ssk2taStqpLGsWcjTOn340pP3Tagdxpus02z9O6jGx3xR602uss-rwc7t9BoVq-dWBEaAJ0wYnDngjiIEyAoESuZc0A2HmA3mmkoW2iNt5L7ANzh4rm_QHMVzdl:1qXE32:GxEKMNgs91coRE3jO5NuPnY3oHzM66hNAsnDnvPVHlI",
+            "expire_date": "2023-09-02T04:58:52.428Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "n5sspey9gtg5l5c4ossz7x65r53hmvqw",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnZBH-Wkp4zWOtdGweQI8VJhbg7iZQC2pl5760CrUsJa0tzGEVdFIA6_cJI_Ex1N_Kgep80T3WZx6j3RB-26dsk6XU92r-DQq1s6xzPAAbQOssOfSLIZFHEdr1H4WiH3BswUQabO8PiIHmGjUdEj86rzxcAnDf1:1qVXv5:vo3OOkv0ZamZBAccUix4u0vzTY3tCw8hFZ6Ox2Y7ssw",
+            "expire_date": "2023-08-28T13:47:43.720Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "o8e9ewm51a2khj6dha7fqnygu47xip0h",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGllZf8KGkj5niHa9Ng4gW4qTCnF3iJQC2jcz76Um2tY8bS0u0yzqopw6_W5M4RHLDuRO5VZ1qGVdZta7og_a9FglPq-H-3eQqeVv7Zmo50SCHgm7wThC7wdyEFD6M3vuPCQLFlHAGLBOCDlZMckJAKj3B-cSN5M:1qUjLH:xhxBnaDyDl5R9mG9d2HbWmHRTnT7IAyIxNj_hT83d9I",
+            "expire_date": "2023-08-26T07:47:23.994Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "ouw1mu5rbpego3dxaa2tq6wg3qhmsjwl",
+        "fields": {
+            "session_data": ".eJxVjEsOwjAMBe-SNYqc9BOHJXvOENmxSwqolZp2hbg7VOoCtm9m3ssk2taStqpLGsWcjTOn340pP3Tagdxpus02z9O6jGx3xR602uss-rwc7t9BoVq-dWBEaAJ0wYnDngjiIEyAoESuZc0A2HmA3mmkoW2iNt5L7ANzh4rm_QHMVzdl:1qUsE1:aGIgPzqcavvzBD2hxh1tc2N5jzIgTGLMIFinbJiKgTQ",
+            "expire_date": "2023-08-26T17:16:29.966Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "pd2apkdc91o7udha85fth87211k1hw1j",
+        "fields": {
+            "session_data": ".eJxVjDEOwjAMRe-SGUWuSRTCyM4ZIie2SQGlUtNOiLtDpQ6w_vfef5lE61LT2mVOI5uzGaI5_I6ZykPaRvhO7TbZMrVlHrPdFLvTbq8Ty_Oyu38HlXr91tkNwIolqnDxLFSEI0aOnEFRw9GDArkAQcETYkHJUVhJVE7eqXl_AE14Oes:1qVw3P:6nwT65zLrsbEKnW-A08xvD9HraRe7TS6UsJUvhotMvw",
+            "expire_date": "2023-08-29T15:33:55.326Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "s2mdgdmxa07f79dpv5qjrnaod2c4gk8g",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hCxwwAu3XsGMjBTqRpISrsy3l2bdKHb_977LxVpXUpcu8xxYnVWgzr8bonyQ-oG-E711nRudZmnpDdF77Tra2N5Xnb376BQL986yAgGAUJ2mTElpjR4PI0UBMl59gbEg2NnA4E4zNYimjTIEXzI6NT7A_PVN9E:1qUc5s:lt90sfGFufsHwsQ3AEmnBSeABwAn-BIXKOAAKuS3CEg",
+            "expire_date": "2023-08-26T00:03:00.081Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "vmucefqfwebhi2181q9nw8dv9wupo145",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hCgUBiX7nsGMsOgVA0kpV0Z765NutDtf-_9l4i4rSVuPS9xZnEWXpx-N8L0yHUHfMd6azK1ui4zyV2RB-1yapyfl8P9OyjYy7cGgz4pALCOtAJiVqM2wbCx4xA8XxUBBx6csy6hQUXBanQELgW0yor3B8RQNxM:1qUkhi:A8ET7FUSQ94UcMxcQkM9XRYZdjTlLigXlQKBRx4lL24",
+            "expire_date": "2023-08-26T09:14:38.071Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "wfyuiict9iqm2z40oq2uuh8z5yfesifl",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hBAKIxL956BDDMgVUOT0q6Md7dNutDtf-_9t4i4LjWuPc9xZHER2orT75iQnrnthB_Y7pOkqS3zmOSuyIN2eZs4v66H-3dQsdetzqAAyGbw2ZxZObSsi2KDPiAETVC8KjikBJqTpiEgGweO0VOAjYrPFxPaOLE:1qV9zs:xTLATeawyh2h1oFWTQFwXDnM4EQve_pTobsWWY0o8XI",
+            "expire_date": "2023-08-27T12:15:04.853Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "zmeoxg8g8l23tqx99jyo5yuy4j1b9dez",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAQRf-FtSHAQAGX7vsNzcwwStXQpI-V8d-1SRe6veec-1IDbmsdtkXmYSzqrCyo0-9IyA9pOyl3bLdJ89TWeSS9K_qgi-6nIs_L4f4dVFzqt_Y5ec_GJ0xEkSUaJ9axJLp2AD4wBnDkbCgQClInBsFFtmQcZCNZvT_9mje7:1qV6Gl:R-0srkfDhyPHqlqqKrTLGNFjLjBgPC2sKDp4IECT1AE",
+            "expire_date": "2023-08-27T08:16:15.195Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "zw8t0usv3dua4mvjr0cst6nal5iwjnv7",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAQRf-FtSHAIDAu3fcbCI9BqgaS0q6M_65NutDtPefcF_NhW6vfBi1-zuzCpGCn3zGG9KC2k3wP7dZ56m1d5sh3hR908Klnel4P9--ghlG_tcGcHTijk3Q6BUFCFhUNYAEFCBQhoSpIyhVnkZwuaKW2WQp5pigMe38A80M3YA:1qUqfr:m70R8NjmVGYA9sz7sBXXkNRTLueSfZjBfOGkhvopccQ",
+            "expire_date": "2023-08-26T15:37:07.028Z"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 7,
+        "fields": {
+            "name": "Arrow OS",
+            "device": "Fleur / Miel",
+            "credits": "nem1x",
+            "image": "images/40351870_aKJcCVL.png",
+            "link": "https://t.me/nem1xbuilds/132?single",
+            "details": "#ROM #arrowos #arrow #Unofficial #T #A13 \r\nArrowOS 13.0 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\n\r\nUpdated: 27/06/'23"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 8,
+        "fields": {
+            "name": "CrDroid",
+            "device": "Fleur / Miel",
+            "credits": "gabutuniverse",
+            "image": "images/cr.jpg",
+            "link": "https://devuploads.com/in9hjex88njh",
+            "details": "#ROM #crdroid #crd #Unofficial #T #A13\r\ncrDroid 9.7 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\nReleased : 03/07/23"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 9,
+        "fields": {
+            "name": "Derpfest",
+            "device": "Fleur / Miel",
+            "credits": "ShazuxD",
+            "image": "images/85926c08816a1475d2bd1986b6e47cc54a00892463c24a3541e21ea90d392980ff62.jpg",
+            "link": "https://wetransfer.com/downloads/d756c2ab3d23f2af8fd065bb4f51d38f20230218094302/09748c",
+            "details": "#DerpFest #Unofficial #ROM #Tango\r\nDerpFest 13 - Unofficial | fleur\r\nUpdated: 02/08/23"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 10,
+        "fields": {
+            "name": "AwakenOS",
+            "device": "Fleur / Miel",
+            "credits": "gabutuniverse",
+            "image": "images/cookie-dark.png",
+            "link": "https://telegram.me/pocom4proidupdate/114",
+            "details": "AwakenOS v3.8 triton_void | Android 13 | UNOFFICIAL\r\n\r\nBuild date: 30/07/\"23\r\nby @gabutuniverse (X)"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 11,
+        "fields": {
+            "name": "BananaDroid",
+            "device": "Viva / Vida",
+            "credits": "emiferpro",
+            "image": "images/IMG_20230811_210512_392.jpg",
+            "link": "https://github.com/Emiferpro/releases/releases/latest",
+            "details": "• Android version: 13.0\r\n• Device: Redmi Note 11 Pro (4G)\r\n• Build date: 29-07-2023\r\n\r\nThis TWRP should work : https://github.com/Emiferpro/android_device_xiaomi_viva-twrp/releases/tag/01"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 12,
+        "fields": {
+            "name": "LineageOS 20.0",
+            "device": "Viva / Vida",
+            "credits": "woomymy",
+            "image": "images/5ef30583-c868-411e-8680-0f716d9bf6a4.jpg",
+            "link": "https://github.com/xiaomi-mt6781-devs/releases/releases",
+            "details": "Changelog\r\n* June security patch\r\n\r\nBugs\r\n* No known bugs\r\n\r\nNotes\r\n* SELinux is Enforcing\r\n* Only LineageOS Recovery is supported\r\n* Custom kernels are NOT supported\r\n* OTA Updates are suppored"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 13,
+        "fields": {
+            "name": "PitchBlack Recovery",
+            "device": "Fleur / Miel",
+            "credits": "ShazuxD",
+            "image": "images/Gradient-Red-Logo-1.png",
+            "link": "https://sourceforge.net/projects/pbrp/files/fleur/",
+            "details": "#PBRP #Recovery #S #T #Fleur\r\nPitchBlack V4.0 Official\r\nBased on TWRP 3.7.0_12\r\nBuild Date: 2023/08/11\r\nDevice: Redmi Note 11S / Poco M4 Pro 4G"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 14,
+        "fields": {
+            "name": "Evolution X",
+            "device": "Viva / Vida",
+            "credits": "RndwnZ",
+            "image": "images/evolution.jpeg",
+            "link": "https://github.com/RndwnZ/releases/releases/tag/1688756729",
+            "details": "Evolution X 7.9.5 - UNOFFICIAL | Android 13\r\n\r\nDevice: Redmi Note 11 Pro 4G (viva/vida)\r\nBy @RndwnZ\r\nAndroid Version: 13\r\nInstall: TWRP/LOS"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 15,
+        "fields": {
+            "name": "Pixel Experience Plus.",
+            "device": "Fleur / Miel",
+            "credits": "Erico_Cristiant",
+            "image": "images/photo_2023-08-12_23-10-25.jpg",
+            "link": "https://devuploads.com/ojhr73inkwa0",
+            "details": "#ROM #PixelExperiencePlus #Unoffcial #Android13 \r\nPixel Experience Plus | Unofficial | Android 13 | Poco M4 Pro 4G/Redmi Note 11 4G\r\n\r\nBuild date: 13/8/23\r\n\r\nChangelogs: \r\n- Update August Security patch\r\n- Improve Peformance\r\n- Fix Speaker Issue"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 16,
+        "fields": {
+            "name": "CherishOS v4.11",
+            "device": "Fleur / Miel",
+            "credits": "rafaelpratama",
+            "image": "images/photo_2023-08-12_20-09-14_ArJk7K0.jpg",
+            "link": "https://sourceforge.net/projects/rafaelprojects/files/fleur/CherishOS/Cherish-OS-v4.11-20230812-0217-fleur-UNOFFICIAL-GApps.zip/download",
+            "details": "CherishOS v4.11 | Android 13 | UNOFFICIAL | Poco M4 Pro 4G/Redmi Note 11s 4G\r\n\r\nBy : @rafaelpratama\r\nBuild date : 12/08/23"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 17,
+        "fields": {
+            "name": "Havoc-OS 6.0",
+            "device": "Viva / Vida",
+            "credits": "RndwnZ",
+            "image": "images/e700faa9-c253-4ede-bede-129b185b9504.jpg",
+            "link": "https://drive.google.com/uc?id=1gzR6VNW0s0dQo_TT2b7Wnqa1ABLZUk0e&export=download",
+            "details": "Havoc-OS 6.0 - UNOFFICIAL | Android 13\r\n\r\nDevice: Redmi Note 11 Pro 4G (viva/vida)\r\nMaintainer: @RndwnZ\r\nAndroid Version: 13\r\nInstall: Recovery"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 18,
+        "fields": {
+            "name": "Superior OS  VANILLA",
+            "device": "Viva / Vida",
+            "credits": "RndwnZ",
+            "image": "images/indir.png",
+            "link": "https://sourceforge.net/projects/zanarchives/",
+            "details": "Superior OS  VANILLA | UNOFFICIAL | Android 13\r\nDevice: Redmi Note 11 Pro 4G (viva/vida)\r\n\r\nMaintainer: @RndwnZ\r\nTester: @AxelionAxell\r\n\r\nAndroid Version: 13\r\nInstall: Recovery/Twrp"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 19,
+        "fields": {
+            "name": "TWRP",
+            "device": "Fleur / Miel",
+            "credits": "ShazuxD",
+            "image": "images/IMG_20230813_141050_364.jpg",
+            "link": "https://twrp.me/xiaomi/xiaomi_pocom4pro_redminote11s.html",
+            "details": "TWRP For Fleur"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 20,
+        "fields": {
+            "name": "TWRP | OFOX Android 11",
+            "device": "Fleur / Miel",
+            "credits": "ShazuxD",
+            "image": "images/IMG_20230813_141431_172.jpg",
+            "link": "https://t.me/Fleur_Miel/86",
+            "details": "OFOX 11 https://t.me/Fleur_Miel/83\r\n\r\nFor Android 11"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 21,
+        "fields": {
+            "name": "crDroid 9.7",
+            "device": "Viva / Vida",
+            "credits": "Grimanos",
+            "image": "images/81f96664-f4fa-4ce4-b5bc-a61d11a047da.jpg",
+            "link": "https://github.com/grimanos/releases/releases/tag/1689437560",
+            "details": "crDroid 9.7 - UNOFFICIAL | Android 13    \r\n\r\n#crDroid #viva #Gapps #T #Unofficial                                                                                                                                                                                             \r\n                                                                                                                                                            \r\nOTA Update available\r\n\r\nChangelog in GH repo"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 22,
+        "fields": {
+            "name": "risingOS - Babylon",
+            "device": "Viva / Vida",
+            "credits": "emiferpro",
+            "image": "images/8806b2c4-8ce3-4086-88ae-45199da10747.jpg",
+            "link": "https://github.com/Emiferpro/releases/releases/tag/1688337599",
+            "details": "Changelog it's in GH repo"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 23,
+        "fields": {
+            "name": "DerpFest-Tango",
+            "device": "Viva / Vida",
+            "credits": "RndwnZ",
+            "image": "images/cf1f43f3-5ee2-4e7d-9ab1-3056e243ba28.jpg",
+            "link": "https://sourceforge.net/projects/zanarchives/files/",
+            "details": "DerpFest-Tango - UNOFFICIAL | Android 13\r\n\r\nDevice: Redmi Note 11 Pro 4G (viva/vida)\r\nMaintainer: @RndwnZ\r\nTester: @AxelionAxell\r\nAndroid Version: 13\r\n\r\nInstall: Recovery/Twrp\r\nBug: Faceunlock"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 24,
+        "fields": {
+            "name": "AlphaDroid [13]",
+            "device": "Viva / Vida",
+            "credits": "RndwnZ",
+            "image": "images/maxresdefault.jpg",
+            "link": "https://forum.xda-developers.com/t/rom-alphadroid-13-viva-vida-unofficial-redmi-note-11-pro-4g.4600205/",
+            "details": "Android_version : 13\r\nBuild_Date: 2023-06-18\r\nKnown Bugs:\r\nNfc\r\nclock are little bit offset, settings on miscellaneous\r\nAudio over 80% are little bit broken, manually settings to bottom speakers over the top one"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 25,
+        "fields": {
+            "name": "Alpha Droid",
+            "device": "Fleur / Miel",
+            "credits": "rusyd4",
+            "image": "images/alphadroid.webp",
+            "link": "https://litentechno-my.sharepoint.com/:u:/g/personal/litentechno_litentechno_onmicrosoft_com/EZ-KTln8W1tPtCjyypKSCaYB918JmU_gJMeKwcRsZhdTIw?download=1",
+            "details": "Alpha Droid \r\nBased on Android 13 \r\n\r\nversion- 1.7.9\r\n\r\nGapps build."
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 26,
+        "fields": {
+            "name": "Voltage OS",
+            "device": "Fleur / Miel",
+            "credits": "gabutuniverse",
+            "image": "images/voltage.jpg",
+            "link": "https://litentechno-my.sharepoint.com/:u:/g/personal/litentechno_litentechno_onmicrosoft_com/EUJRS4pXDf9MtH2F43XR0R4BdzOJiwzGTm0dZfZt4HAIHQ?download=1",
+            "details": "VoltageOS Android 13 - UNOFFICIAL(GAPPS)\r\n\r\nBuild date: 21/07/\"23 (latepost)\r\n\r\n• SELinux is enforcing\r\n• Recommended firmware is V13.0.9.0.SKEMIXM\r\n• Clean flash recommended"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 27,
+        "fields": {
+            "name": "SuperiorOS",
+            "device": "Blossom",
+            "credits": "Vimal227",
+            "image": "images/IMG_20230815_194502_199.jpg",
+            "link": "https://github.com/Vimal227/releases/releases/download/SuperiorOS/SuperiorOS-Thirteen-blossom-COMMUNITY-20230814-0847.zip",
+            "details": "Changelogs:-\r\n• Changes from previous Rising OS build.\r\n• Add BesLoudness .\r\n• Bump CPU frequency.\r\n• Update IMS blobs.\r\n• Reduce INTERACTION uclamp value down to 50%.\r\n• Drop useless services.\r\n\r\nNotes :-\r\n• Vanilla Build\r\n• August Security Patch\r\n• Safetynet Passes By Default"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 28,
+        "fields": {
+            "name": "ProtonAOSP",
+            "device": "Fleur / Miel",
+            "credits": "rusyd4",
+            "image": "images/randomAOSP.webp",
+            "link": "https://sourceforge.net/projects/project-fleur/files/collection/ProtonPlus-13.2-Stable-fleur-COMMUNITY-Vanilla-20230813-112926.zip/download",
+            "details": "ProtonAOSP \r\nAndroid 13 based\r\n\r\nVanilla Build\r\nBitgapps recommended\r\n\r\nPoco M4 pro 4g/Redmi note 11s 4G"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 29,
+        "fields": {
+            "name": "YAAP UNOFFICIAL",
+            "device": "Fleur / Miel",
+            "credits": "rabikishan",
+            "image": "images/yaap.jpg",
+            "link": "https://sourceforge.net/projects/fleur/files/YAAPOS/YAAP-13-HOMEMADE-fleur-20230804-GAPPS.zip/download",
+            "details": "#YaapOS #Rom #Fleur #Unoffical\r\nYaapOS | A13 | GAPPS\r\nDevice: Redmi Note 11S/Poco M4 Pro\r\nBuild Status: UNOFFICIAL"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 30,
+        "fields": {
+            "name": "RisingOS",
+            "device": "Fleur / Miel",
+            "credits": "rusyd4",
+            "image": "images/risingos.webp",
+            "link": "https://sourceforge.net/projects/project-fleur/files/collection/risingOS-v1.3-Dvaraka-RELEASE-202308151224-fleur-GAPPS-COMMUNITY.zip/download",
+            "details": "RisingOS\r\nAndroid 13 based\r\n\r\nGAPPS build\r\n\r\n\r\nbuild date= 15/08/23"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 31,
+        "fields": {
+            "name": "Cherish OS V4.10",
+            "device": "Fleur / Miel",
+            "credits": "@gabutuniverse",
+            "image": "images/photo_2023-08-16_09-55-50.jpg",
+            "link": "https://www.pling.com/p/2059566/",
+            "details": "Cheris OS v4.10\r\n\r\nandroid 13 based\r\n#Unofficial\r\n\r\ngabutuniverse(fajar)\r\n\r\nGAPPS build"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 32,
+        "fields": {
+            "name": "NusantaraProject 5.8",
+            "device": "Fleur / Miel",
+            "credits": "gabutuniverse",
+            "image": "images/nusa.jpg",
+            "link": "https://nusantararom.org/device/fleur/",
+            "details": "NusantaraProject 5.8 Tangkuban | OFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\n\r\nGAPPS BUILD \r\nANDROID !# \r\n\r\nOFFICIAL"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 33,
+        "fields": {
+            "name": "HavocOS 6.0",
+            "device": "Fleur / Miel",
+            "credits": "gabutuniverse",
+            "image": "images/havoc.jpg",
+            "link": "https://sourceforge.net/projects/gabutbuild/files/fleur/havoc/",
+            "details": "Initial Build\r\n- Configure SQLite to operate in MEMORY mode\r\n- Remove IO read_ahead_kb tune\r\n- Kill IMS log spam \r\n- Prefer hwcodecs for thumbnails\r\n- Update SF props from cheetah \r\n- Compact and Allow cached app heaps in the background\r\n- Set Correct INTERACTION uclamp value down to 50% \r\n- Boost schedtune during bootup \r\n- Add blkio tuning from sunfish \r\n- Improved Performance and Stability\r\n\r\n#ROM #HavocOS #havoc #Unofficial #T #A13\r\nHavocOS 6.0 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 34,
+        "fields": {
+            "name": "CrDroid 9.8",
+            "device": "Fleur / Miel",
+            "credits": "rusyd4",
+            "image": "images/crdroid.jpg",
+            "link": "https://sourceforge.net/projects/project-fleur/files/collection/crDroidAndroid-13.0-20230814-fleur-v9.8.zip/download",
+            "details": "CrDroid v9.8 |  Vanilla | Unofficial\r\n\r\nDevice: Poco M4 Pro 4G / Redmi Note 11S\r\n\r\nBuild Date: 17/08/\"23"
+        }
+    },
+    {
+        "model": "app.customrom",
+        "pk": 35,
+        "fields": {
+            "name": "CrDroid",
+            "device": "Fleur / Miel",
+            "credits": "By Rohit, ShazuxD, and Nem1x",
+            "image": "images/images.jpeg",
+            "link": "https://sourceforge.net/projects/fleur/files/DerpFest/DerpFest-13-Community-Tango-fleur-20230818-1743.zip/download",
+            "details": "#Tiramisu #Fleur #Miel #Rom\r\nDerpFest-AOSP | Tango | GAPPS\r\nDevice: Redmi Note 11S/Poco M4 Pro\r\n\r\nRelease Date: 19-08-23"
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 4,
+        "fields": {
+            "name": "Xiaomi Themes",
+            "image": "images/theme.jpg",
+            "credits": "kashis_cringey_stuffs",
+            "link": "https://www.pling.com/p/1971217/",
+            "details": "Patched Theme Manager V3 for MIUI\r\nNote:\r\n• Users with Global/CN ROMs based on Android 13 are required to disable signature verification, and it is recommended to use Core Patch LSPosed module.\r\n• Magisk delta may not be compatible."
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 5,
+        "fields": {
+            "name": "Leica cam for AOSP (64/108MPX)",
+            "image": "images/Camera_round.png",
+            "credits": "mi6781_chat",
+            "link": "https://t.me/mi6781_chat/33319",
+            "details": "MIUI CORE IS NEEDED!!!\r\n\r\nInstallation:\r\nFlash MIUI Camera (don't open it)\r\nReboot\r\nFlash MIUi Core\r\nReboot\r\nNow you can use MIUi camera"
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 6,
+        "fields": {
+            "name": "MIUI CORE",
+            "image": "images/0a21d04f819feaa19a6012df62006310741514fd78aee51f37eee2e3d448b1f617cd.png",
+            "credits": "reiryuki",
+            "link": "https://www.pling.com/p/1537512/",
+            "details": "Needed for some miui apps to run in AOSP"
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 7,
+        "fields": {
+            "name": "Fullscreen/Immersive Gesture",
+            "image": "images/68747470733a2f2f692e696d6775722e636f6d2f7663584172654a2e706e67.png",
+            "credits": "danmgk",
+            "link": "https://github.com/Magisk-Modules-Repo/HideNavBar/releases/tag/v13.0",
+            "details": "This Magisk Module lets you tweak Android 10-13's gestures.\r\n\r\nRequirements\r\nAndroid 10-13\r\nMagisk 20+\r\n\r\nInstallation:\r\nFlash the module\r\nSelect the desired options on the volume selector\r\nReboot\r\nEnjoy!\r\n\r\nTerminal Setup:\r\nRun on a terminal app the following command su -c hn"
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 8,
+        "fields": {
+            "name": "Unbrickez",
+            "image": "images/how-to-fix-a-bricked-android-phone-1.png",
+            "credits": "emiferpro",
+            "link": "https://telegram.me/llbucket_modll/16",
+            "details": "This Module Have three options :\r\n1. Run\r\n2. Driver\r\n3. SP Flash"
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 9,
+        "fields": {
+            "name": "SP Flash Tool V5",
+            "image": "images/sp-flash-tool.jpg",
+            "credits": "Media Tek Inc.",
+            "link": "https://spflashtools.com/windows/sp-flash-tool-v5-2316",
+            "details": "P flash tool is an application which mainly helps you to flash Stock ROM, Custom recovery and fixing in some extreme cases ( firmware update, Flash recovery, unbrick bricked Android device etc.). SmartPhone FlashTool is working with MediaTek Android smartphones (MTK based) You can Download SPFlashTool from our downloading section. You need to load scatter file for MTK based device for functioning."
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 10,
+        "fields": {
+            "name": "SP Flash Tool V6",
+            "image": "images/sp-flash-tool_vecDnPZ.jpg",
+            "credits": "@Mediatek Inc.",
+            "link": "https://spflashtools.com/windows/sp-flash-tool-v6-2316",
+            "details": "SP flash tool is an application which mainly helps you to flash Stock ROM, Custom recovery and fixing in some extreme cases ( firmware update, Flash recovery, unbrick bricked Android device etc.). SmartPhone FlashTool is working with MediaTek Android smartphones (MTK based) You can Download SPFlashTool from our downloading section. You need to load scatter file for MTK based device for functioning."
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 11,
+        "fields": {
+            "name": "MI Flash Tool",
+            "image": "images/xiaomi-flash-tool-20220507.png",
+            "credits": "Media Tek Inc.",
+            "link": "https://xiaomiflashtool.com/download/xiaomi-flash-tool-20220507",
+            "details": "The Xiaomi Flash Tool is completely free, thus removing the necessity for any payment to utilize this tool. Secure. The Xiaomi Flash Tools are 100% secure"
+        }
+    },
+    {
+        "model": "app.custommod",
+        "pk": 12,
+        "fields": {
+            "name": "Magisk Delta V26.1",
+            "image": "images/222942594-63336f63-6a26-492e-a1d1-a356b5f777b3.png",
+            "credits": "magiskdelta",
+            "link": "https://huskydg.github.io/magisk-files/app-debug.apk",
+            "details": "Magisk is a suite of open source software for customizing Android, supporting devices higher than Android 6.0.\r\nSome highlight features:\r\n\r\n- MagiskSU: Provide root access for applications\r\n- Magisk Modules: Modify read-only partitions by installing modules\r\n- MagiskBoot: The most complete tool for unpacking and repacking Android boot images\r\n- Zygisk: Run code in every Android applications' processes"
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 1,
+        "fields": {
+            "user": 2,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "is_authorized": false
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 5,
+        "fields": {
+            "user": 5,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 6,
+        "fields": {
+            "user": 6,
+            "is_authorized": false
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 7,
+        "fields": {
+            "user": 7,
+            "is_authorized": false
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 8,
+        "fields": {
+            "user": 8,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 9,
+        "fields": {
+            "user": 9,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 10,
+        "fields": {
+            "user": 10,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 11,
+        "fields": {
+            "user": 11,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 12,
+        "fields": {
+            "user": 12,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 13,
+        "fields": {
+            "user": 13,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 14,
+        "fields": {
+            "user": 14,
+            "is_authorized": false
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 15,
+        "fields": {
+            "user": 15,
+            "is_authorized": false
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 16,
+        "fields": {
+            "user": 16,
+            "is_authorized": false
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 17,
+        "fields": {
+            "user": 17,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 18,
+        "fields": {
+            "user": 18,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 19,
+        "fields": {
+            "user": 19,
+            "is_authorized": false
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 20,
+        "fields": {
+            "user": 20,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 21,
+        "fields": {
+            "user": 21,
+            "is_authorized": true
+        }
+    },
+    {
+        "model": "app.userprofile",
+        "pk": 22,
+        "fields": {
+            "user": 22,
+            "is_authorized": false
+        }
+    }
+]
