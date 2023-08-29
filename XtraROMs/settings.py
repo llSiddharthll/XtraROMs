@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.telegram',
+    'allauth.socialaccount.providers.github',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'app.middleware.SessionTrackingMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'XtraROMs.urls'
@@ -150,16 +153,16 @@ AUTHENTICATION_BACKENDS = [
 
     # Allauth specific authentication methods, such as login by e-mail.
     'allauth.account.auth_backends.AuthenticationBackend',
+
+    'allauth.socialaccount.backends.github.GithubOAuth2',
+    'allauth.socialaccount.backends.telegram.TelegramOAuth2',
 ]
-
-
 
 # Setup allauth parameters
 SITE_ID = 1
 # LOGIN_REDIRECT_URL :- destination of login page in your urls.py
-LOGIN_REDIRECT_URL = '/'
-# ACCOUNT_LOGOUT_REDIRECT :- where to redirect when user logout
-ACCOUNT_LOGOUT_REDIRECT = '/'
+LOGIN_URL = '/'
+LOGOUT_URL = '/'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -168,16 +171,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
-""" SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '89774872463-jcjjvvt7flvhnps8b6t79fljpjvt85cf.apps.googleusercontent.com',
-            'secret': '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',
-            'key': '',
-        }
-    }
-} """
 
 
 # Internationalization

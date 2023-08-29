@@ -405,3 +405,5 @@ def chatbot(request):
 
     # For GET requests or other methods, simply render the template
     return render(request, 'chatbot.html', {'user_message': user_message, 'bot_response': bot_response})
+
+

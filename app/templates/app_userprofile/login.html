@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load socialaccount %}
+{% provider_login_js 'github' %}
+{% provider_login_js 'telegram' %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container py-5">
@@ -16,8 +18,10 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form|crispy }}  <!-- Apply the crispy filter -->
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary">Log In</button>
+                        <a class="btn" href="{% provider_login_url 'github' %}">Login with Github</a>
+                        <a class="btn" href="{% provider_login_url 'telegram' %}">Login with Telegram</a>
                     </div>
                     </form>
                 </div>

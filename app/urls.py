@@ -26,5 +26,4 @@ urlpatterns = [
     path('accounts/signup/', account_views.signup, name="account_signup"),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
     path('chatbot/', chatbot, name='chatbot'),
-    
 ]
