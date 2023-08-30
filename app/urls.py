@@ -1,8 +1,6 @@
 from django.urls import path, include
 from . import views
 from .views import *
-from allauth.account import views as account_views
-from allauth.socialaccount import views as socialaccount_views
 
 appname = 'app'
 urlpatterns = [
@@ -16,15 +14,11 @@ urlpatterns = [
     path('edit_rom/editing_rom_<int:rom_id>/', views.edit_rom, name='edit_rom'),
     path('edit_mod/editing_mod_<int:mod_id>/', views.edit_mod, name='edit_mod'),
     path('magisk_modules/', views.magisk_modules, name='magisk_modules'),
-    path('search/', search_custom_roms, name='search_custom_roms'),
-    path('search-mods/', search_custom_mods, name='search_custom_mods'),
+    path('search/', views.search_custom_roms, name='search_custom_roms'),
+    path('search-mods/', views.search_custom_mods, name='search_custom_mods'),
     path('manage_user_profiles/', views.manage_user_profiles, name='manage_user_profiles'),
     path('update_user_profile/<int:profile_id>/', views.update_user_profile, name='update_user_profile'),
-    path('set-cookie/', views.set_cookie, name='set-cookie'),
-    path('read-cookie/', views.read_cookie, name='read-cookie'),
     path('track-session/', views.track_session, name='track_session'),
-    path('accounts/', include('allauth.account.urls')),
-    path('accounts/signup/', account_views.signup, name="account_signup"),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
     path('chatbot/', chatbot, name='chatbot'),
 ]

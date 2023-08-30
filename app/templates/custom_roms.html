@@ -118,7 +118,7 @@ color: #b8b9bc;
 <!------------------------------------ Custom ROM cards ----------------------------------------------------->
  
  
-  <div id="rom-list" class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for rom in roms %}
     <div class="col rom-card">
       <div class="card h-100">
@@ -324,9 +324,6 @@ color: #b8b9bc;
     </div>
   </div>
 </div>
-<!-- Bot response display -->
-<div id="bot-response"></div>
-
 {% endblock %} 
 
 <!----------------------------------------JAVASCRIPT code---------------------------------------------------------->
@@ -512,67 +509,22 @@ for (const result of results) {
 
 
 <!------------------------------------cookie collecting in all pages------------------------------------------------>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('search-inpput');
-    const romList = document.getElementById('rom-list');
-    const botResponseDiv = document.getElementById('bot-response');
+  document.addEventListener("DOMContentLoaded", function () {
+    const romLinks = document.querySelectorAll(".rom-link");
 
-    // Live search functionality
-    searchInput.addEventListener('input', function() {
-        const searchTerm = searchInput.value.toLowerCase();
-        // Implement your live search logic here
+    romLinks.forEach((romLink) => {
+      romLink.addEventListener("click", function (event) {
+        const romId = event.target.dataset.romId;
+        const interactionData = `User clicked on ROM with ID ${rom.id}`;
+
+        // Send interaction data to the set_cookie view using AJAX
+        fetch(`/set-cookie/?interaction_data=${interactionData}`)
+          .then((response) => response.json())
+          .then((data) => console.log(data.message));
+      });
     });
-
-    // Track clicks on ROMs
-    romList.addEventListener('click', function(event) {
-        if (event.target.classList.contains('rom-item')) {
-            const interactionType = 'rom_click';
-            const interactionData = event.target.dataset.romName;
-            sendInteractionData(interactionType, interactionData);
-        }
-    });
-
-    function sendInteractionData(interactionType, interactionData) {
-        fetch('/set-cookie/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': getCookie('csrftoken'),
-            },
-            body: `interaction_type=${interactionType}&interaction_data=${encodeURIComponent(interactionData)}`,
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message === 'Cookie set!') {
-                botResponseDiv.textContent = `XtraBot: Interaction recorded for ${interactionData}`;
-            } else {
-                botResponseDiv.textContent = 'XtraBot: An error occurred.';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            botResponseDiv.textContent = 'XtraBot: An error occurred.';
-        });
-    }
-
-    // Function to get CSRF token cookie
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.startsWith(name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-});
+  });
 </script>
 
 <!-----------------------------------------Session Traking--------------------------------------------------------->

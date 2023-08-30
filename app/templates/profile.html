@@ -120,9 +120,9 @@
               <div class="col-sm-9">
                 <p class="text-muted mb-0">
                   {% if user.is_superuser %}
-                    You are the god, can do anything (<a href="{% url 'admin:index' %}">Here</a>)
+                    You are the god, can do anything (<a href="{% url 'admin:index' %}">Here</a>)(<a href="{% url 'manage_user_profiles' %}">Manage Users</a>)
                   {% elif user.is_staff %}
-                    You can manage other users as well as upload data
+                    You can manage other users as well as upload data (<a href="{% url 'manage_user_profiles' %}">Manage Users</a>)
                   {% elif user.is_authorised %}
                     You can only upload data
                   {% else %}

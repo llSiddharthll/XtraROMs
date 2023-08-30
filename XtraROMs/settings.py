@@ -44,12 +44,6 @@ INSTALLED_APPS = [
     'cloudinary',
     'crispy_forms',
     'crispy_bootstrap5',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.telegram',
-    'allauth.socialaccount.providers.github',
 ]
 
 MIDDLEWARE = [
@@ -95,16 +89,14 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'jjZdQYcu5UIdYWQWtVVD',
-        'HOST': 'containers-us-west-205.railway.app',  # Change to your PostgreSQL host
-        'PORT': '6033',       # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Access environment variables
@@ -150,18 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     # Default backend for Django authentication.
     'django.contrib.auth.backends.ModelBackend',
-
-    # Allauth specific authentication methods, such as login by e-mail.
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
-
-
-# Setup allauth parameters
-SITE_ID = 1
-# LOGIN_REDIRECT_URL :- destination of login page in your urls.py
-LOGIN_URL = '/'
-LOGOUT_URL = '/'
 
 
 # Internationalization
