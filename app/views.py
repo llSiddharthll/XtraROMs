@@ -221,7 +221,7 @@ def signup_view(request):
         )
 
         # Log in the user
-        login(request, user, backend='allauth.account.auth_backends.AuthenticationBackend')
+        login(request, user)
         return redirect('/')
 
     return render(request, 'app_userprofile/signup.html')
