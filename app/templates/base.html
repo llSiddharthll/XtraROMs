@@ -63,6 +63,7 @@
     />
     <link rel="stylesheet" href="{% static 'owl.theme.default.css' %}" />
     <link rel="stylesheet" href="{% static 'style2.css' %}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap");
@@ -239,7 +240,7 @@
 
       @media screen and (max-width: 767px) {
         .footer {
-          padding-bottom: 50px;
+          padding-bottom: 60px !important;
         }
       }
 
@@ -533,20 +534,17 @@
 
     {% block content %} {% endblock %}
 
-    <footer class="footer text-light py-4">
-      <div
-        class="container"
-        style="padding-bottom: 50px; background-color: var(--background)"
-      >
+    <footer class="footer text-light py-4 d-none d-md-block">
+      <div class="container" style="background-color: var(--background)">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 mb-4">
             <h3 class="text-center">About Us</h3>
             <p class="text-center">
               Your one-stop destination for custom ROMs, Magisk modules, and a
               supportive community to enhance your device experience!
             </p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 mb-4">
             <h3 class="text-center">Contact Us</h3>
             <p class="text-center">Email: siddharthgreat443@gmail.com</p>
             <p class="text-center">
@@ -588,9 +586,57 @@
       </div>
     </footer>
 
+<!-- Footer for Smaller Devices (Hidden on Larger Screens) -->
+<footer class="footer text-light py-4 d-md-none">
+  <div class="container" style="background-color: var(--background)">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="text-center">Follow Us</h3>
+        <ul class="list-inline text-center">
+          <li class="list-inline-item">
+            <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl" target="_blank"
+              ><i class="fab fa-telegram"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://github.com/llSiddharthll" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://discord.gg/8khZkvJC" target="_blank"
+              ><i class="fab fa-discord"></i
+            ></a>
+          </li>
+          <!-- Add more social media links/icons here -->
+        </ul>
+      </div>
+      <div class=" col-sm-6">
+        <h3 class="text-center">About Us</h3>
+        <p class="text-center">
+          Your one-stop destination for custom ROMs, Magisk modules, and a
+          supportive community to enhance your device experience!
+        </p>
+      </div>
+    </div>
+    <hr class="my-4" />
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>&copy; 2023 XtraROMs. All rights reserved.</p>
+        <p>
+          Made with love By Siddharth <i class="fas fa-heart"></i>
+          <i class="fas fa-heart"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
     <script>
       const navLinks = document.querySelectorAll(".nav__link");
 

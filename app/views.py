@@ -181,32 +181,54 @@ def signup_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        username = request.POST.get('username')
         error = ''
 
+        # Check for valid email
         if not email_valid(email):
             error = "Wrong email address."
+
+        # Check if email is already used
         try:
-            if User.objects.get(username=email) is not None:
+            if User.objects.get(email=email) is not None:
                 error = 'This email is already used.'
-        except:
+        except User.DoesNotExist:
             pass
 
+        # Check if username is already taken
+        try:
+            if User.objects.get(username=username) is not None:
+                error = 'This username is already taken.'
+        except User.DoesNotExist:
+            pass
+
+        # Check if user is already logged in with this username
+        if username == request.user.username:
+            error = 'You are already logged in with this username.'
+
+        # If there's an error, render the signup page with the error message
         if error:
             return render(request, "app_userprofile/signup.html", context={'error': error})
 
+        # If no errors, create the new user and user profile
         user = User.objects.create_user(
-            username=email,
-            email=email,
+            username=username,
             password=password,
+            email=email  # It's better to use the email as well
+        )
+        user_profile = UserProfile.objects.create(
+            user=user,
         )
 
+        # Log in the user
         login(request, user, backend='allauth.account.auth_backends.AuthenticationBackend')
-        return redirect('/')
+        return redirect('profile')
 
     return render(request, 'app_userprofile/signup.html')
 
 
 
+@login_required
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     user = request.user

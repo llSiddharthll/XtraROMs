@@ -1,4 +1,9 @@
 {% extends 'base.html' %} {% load static %} {% block style %}
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+<!-- Include Select2 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 <style>
 
  #searching .btn{
@@ -244,6 +249,7 @@ color: #b8b9bc;
                 <option value="Ocean / Sea">Lavander</option>
                 <option value="Ocean / Sea">Ginkgo / Willow</option>
                 <option value="Ocean / Sea">X01BD</option>
+                <option value="Vince">Vince</option>
               </select>
             </div>
             <div class="mb-3">
@@ -329,6 +335,21 @@ color: #b8b9bc;
 <!----------------------------------------JAVASCRIPT code---------------------------------------------------------->
 
 {% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Initialize Select2 on the select element
+    $('#device').select2({
+  matcher: function(term, text, option) {
+    return text.toUpperCase().indexOf(term.toUpperCase())>=0 || option.val().toUpperCase().indexOf(term.toUpperCase())>=0;
+  }
+});
+  });
+</script>
+
+
+<!---------------------------------------Searching Content----------------------------------------------->
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector("#search-input");
@@ -398,7 +419,7 @@ for (const result of results) {
              style="float: right; margin-left: 5px;">
         <i class="far fa-thumbs-up"></i>
     </button>` :
-    '<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">';
+    `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">`;
     const likeCnt = result.is_authenticated ?
     `<span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%; float: right;">
                             ${result.likes}
@@ -426,12 +447,12 @@ for (const result of results) {
                         href="https://telegram.me/${result.credits}"
                         target="_blank"
                     >@${result.credits}</a>
-                </h5>
-                <h5 class="card-title">
-                    Date: ${result.upload_date}
-                </h5>
-                ${romDetails}
-                <div class="buttons-wrapper">
+                    </h5>
+                    <h5 class="card-title">
+                        Date: ${result.upload_date}
+                    </h5>
+                    ${romDetails}
+                    <div class="buttons-wrapper">
                         <a
                             href="${result.link}"
                             target="_blank"

@@ -126,7 +126,7 @@
                                 <li><strong>Format Data</strong></li>
                                 <li><strong>Reboot to system</strong></li>
                             </ul>
-                            {% elif rom.device == 'Lavander' %}
+                            {% elif rom.device == 'Lavander' o rom.device == 'Vince' %}
                             <ul class="list-unstyled" style="list-style-type: '- ';">
                                 <li><strong>For Non-Dynamic ROM:</strong></li>
                                 <li>Wipe <strong>dalvik/art cache</strong>, cache, system, vendor, data</li>
@@ -173,6 +173,8 @@
                                 <li>Change data & cache fs to ext4</li>
                                 <li>Reboot and Enjoy</li>
                             </ul>
+                            {% else %}
+                            <h5><strong>Steps Are Not provided by anyone, please contact us if you know them.. !!</strong></h5>
                             {% endif %}
                         </div>
                         </div>
