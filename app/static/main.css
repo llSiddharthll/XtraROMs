@@ -1,0 +1,41 @@
+/* styles.css */
+
+/* Hero Section Styles */
+.hero {
+    background-image: url('your-background-image.jpg'); /* Add the path to your background image */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0; /* Adjust the padding to your liking */
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-headline {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-subheadline {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #007bff; /* Customize the button color */
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Change the button color on hover */
+}

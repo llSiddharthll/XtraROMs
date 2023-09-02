@@ -1,76 +1,76 @@
 {% extends 'base.html' %} {% load static %} {% block style %}
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+
 <!-- Include Select2 CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 <style>
 
- #searching .btn{
+#jas .btn {
+        background-color: var(--accent) !important ;
+        color: var(--background) !important;
+        border: none !important;
+        border-radius: 20px !important;
+      }
 
-border-radius: 10px;
-background-color: var(--primary);
-border: none;
-color: var(--text);
+  #searching .active {
 
-}
-
-
-
-#searching .active{
-
-background: var(--secondary) ;
-border-color: #3b3b4f3a ;
-color: #ffffff ;
+    background: var(--secondary);
+    border-color: #3b3b4f3a;
+    color: #ffffff;
     font-size: 12px;
-}
+  }
 
-#searching .inputs{
+  #searching .inputs {
 
-position: relative;
+    position: relative;
 
-}
-#searching .inputs .input-wrapper {
+  }
+
+  #searching .inputs .input-wrapper {
     opacity: 1;
-}
-.bg-primary {
-    background-color: #3b3b4f3a; /* Replace with your desired color */
-}
-#searching .inputs input {
-    opacity: 1;
-}
+  }
 
-#searching .form-control {
+  .bg-primary {
+    background-color: #3b3b4f3a;
+    /* Replace with your desired color */
+  }
+
+  #searching .inputs input {
+    opacity: 1;
+  }
+
+  #searching .form-control {
     text-indent: 15px;
-border: none;
-height: 45px;
-border-radius: 0px;
-border-bottom: 1px solid #eee;
-}
+    border: none;
+    height: 45px;
+    border-radius: 0px;
+    border-bottom: 1px solid #eee;
+  }
 
-#searching .form-control:focus {
-color: #495057;
-background-color: #fff;
-border-color: #eee;
-outline: 0;
-box-shadow: none;
-border-bottom: 1px solid blue;
-}
+  #searching .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #eee;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid blue;
+  }
 
 
-#searching .form-control:focus  {
-color: blue;
-}
+  #searching .form-control:focus {
+    color: blue;
+  }
 
-#searching .inputs i{
+  #searching .inputs i {
 
     position: absolute;
-top: 14px;
-left: 4px;
-color: #b8b9bc;
-}
+    top: 14px;
+    left: 4px;
+    color: #b8b9bc;
+  }
 
-.text-center {
+  .text-center {
     font-size: 3em;
     font-weight: bold;
     color: var(--text);
@@ -80,8 +80,16 @@ color: #b8b9bc;
   }
 
   @media only screen and (max-width: 757px) {
-    .text-center{
+    .text-center {
       font-size: 1.5em;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .side-text {
+      display: none;
     }
   }
 </style>
@@ -92,55 +100,41 @@ color: #b8b9bc;
 
   <!-- Search Bar -->
   <section id="searching">
-  <div class="d-flex justify-content-between align-items-center">
-    {% if user.is_authenticated and user.userprofile.is_authorized %}
-    <span class="font-weight-bold">You can upload stuffs &rarr;</span>
-    {% else %}
-    <span class="font-weight-bold">You are not authorised to upload Roms</span>
-    {% endif %}
-    <div class="d-flex flex-row">
-    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      {% if user.is_authenticated and user.userprofile.is_authorized %}
+      <span class="font-weight-bold side-text">You can upload stuffs &rarr;</span>
+      {% else %}
+      <span class="font-weight-bold side-text">You are not authorised to upload Roms</span>
+      {% endif %}
+      <div class="d-flex flex-row">
+      </div>
       <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Roms</a>
-      
     </div>
 
-<div class="mt-3 inputs" style="padding-bottom: 40px;">
-  <i class="fa fa-search" style="margin-left: 1em;"></i>
-  <input
-      id="search-input"
-      type="text"
-      class="form-control live-search"
-      placeholder="Search Custom ROMs..."
-      style="padding: 1em 2em; border-radius: 10px; border: none; background-color: var(--secondary); color: var(--text)">
-</div>
+    <div class="mt-3 inputs" style="padding-bottom: 40px;">
+      <i class="fa fa-search" style="margin-left: 1em;"></i>
+      <input id="search-input" type="text" class="form-control live-search" placeholder="Search Custom ROMs..."
+        style="padding: 1em 2em; border-radius: 10px; border: none; background-color: var(--secondary); color: var(--text)">
+    </div>
+  </section>
 
-<div id="search-results" class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom: 20px;">
-</div>
-
-</section>
+  <div id="search-results" class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom: 20px;">
+  </div>
 
 
-<!------------------------------------ Custom ROM cards ----------------------------------------------------->
- 
- 
+  <!------------------------------------ Custom ROM cards ----------------------------------------------------->
+
+
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for rom in roms %}
     <div class="col rom-card">
       <div class="card h-100">
-        <img
-          src="{{ rom.image.url }}"
-          class="img-thumbnail custom-rom-image"
-          alt="{{ rom.name }}"
-        />
+        <img src="{{ rom.image.url }}" class="img-thumbnail custom-rom-image" alt="{{ rom.name }}" />
         <div class="card-body">
           <h5 class="card-title">
             {{ rom.name }} &rarr; {{ rom.device }} <br />
-            <a
-              href="https://telegram.me/{{rom.credits}}"
-              target="_blank"
-              style="text-decoration: none"
-              >@{{rom.credits}}</a
-            >
+            <a href="https://telegram.me/{{rom.credits}}" target="_blank"
+              style="text-decoration: none">@{{rom.credits}}</a>
           </h5>
           <h5 class="card-title">
             Date: {{rom.upload_date}}
@@ -149,32 +143,26 @@ color: #b8b9bc;
             Details : <a href="{% url 'rom_details' rom.id %}">Visit Here</a>
           </h5>
           <div class="buttons-wrapper">
-            <a
-              href="{{ rom.link }}"
-              target="_blank"
-              class="btn btn-primary rom-link"
-              style="background-color: var(--accent); border: none;"
-              >Download</a>
+            <a href="{{ rom.link }}" target="_blank" class="btn btn-primary rom-link"
+              style="background-color: var(--accent); border: none;">Download</a>
             {% if request.user.is_staff %}
-            <a href="{% url 'edit_rom' rom.id %}" class="btn btn-primary"
-              >Edit</a>{% endif %}
-              {% if request.user.is_authenticated %}
-                  <button class="btn btn-secondary rom-link like-button"
-                          data-rom-id="{{ rom.id }}"
-                          style="float: right; margin-left: 5px;">
-                      <i class="far fa-thumbs-up"></i>
-                  </button>
-                  <span class="btn btn-secondary rom-link likes-count" style="float: right;">
-                      {{ rom.likes.count }}
-                  </span>
-              {% else %}
-                  <button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
-                      <i class="far fa-thumbs-up"></i>
-                  </button>
-                  <span class="btn btn-secondary rom-link likes-count">
-                      {{ rom.likes.count }}
-                  </span>
-              {% endif %}
+            <a href="{% url 'edit_rom' rom.id %}" class="btn btn-primary">Edit</a>{% endif %}
+            {% if request.user.is_authenticated %}
+            <button class="btn btn-secondary rom-link like-button" data-rom-id="{{ rom.id }}"
+              style="float: right; margin-left: 5px;">
+              <i class="far fa-thumbs-up"></i>
+            </button>
+            <span class="btn btn-secondary rom-link likes-count" style="float: right;">
+              {{ rom.likes.count }}
+            </span>
+            {% else %}
+            <button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="far fa-thumbs-up"></i>
+            </button>
+            <span class="btn btn-secondary rom-link likes-count">
+              {{ rom.likes.count }}
+            </span>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -183,60 +171,43 @@ color: #b8b9bc;
   </div>
 
 
-  
-<!----------------------------------- Login Modal -------------------------------------------------->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              Please log in to use this feature and various other features.
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
-          </div>
-      </div>
-  </div>
-</div>
 
-<!---------------------------------- Upload ROM Modal ---------------------------------------------->
-  
-  
-  <div
-    class="modal fade"
-    id="uploadModal"
-    tabindex="-1"
-    aria-labelledby="uploadModalLabel"
-    aria-hidden="true"
-  >
+  <!----------------------------------- Login Modal -------------------------------------------------->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Please log in to use this feature and various other features.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!---------------------------------- Upload ROM Modal ---------------------------------------------->
+
+
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="uploadModalLabel">Upload Custom ROM</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form method="post" enctype="multipart/form-data">
-            {% csrf_token %} {% if user.is_authenticated %} 
+            {% csrf_token %} {% if user.is_authenticated %}
             {% if user.userprofile.is_authorized %}
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                required
-              />
+              <input type="text" class="form-control" id="name" name="name" required />
             </div>
             <div class="mb-3">
               <label for="device" class="form-label">Device</label>
@@ -254,101 +225,64 @@ color: #b8b9bc;
             </div>
             <div class="mb-3">
               <label for="image" class="form-label">Credits</label>
-              <input
-                placeholder="Just write telegram username ! (no '@')"
-                type="text"
-                class="form-control"
-                id="credits"
-                name="credits"
-                required
-              />
+              <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits"
+                name="credits" required />
             </div>
             <div class="mb-3">
               <label for="image" class="form-label">Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                class="form-control"
-                id="image"
-                name="image"
-                required
-              />
+              <input type="file" accept="image/*" class="form-control" id="image" name="image" required />
             </div>
             <div class="mb-3">
               <label for="link" class="form-label">ROM / Recovery Link</label>
-              <input
-                type="url"
-                class="form-control"
-                id="link"
-                name="link"
-                required
-              />
-                <div class="mb-3">
-                  <label for="link" class="form-label">Boot-Img Link (optional)</label>
-                  <input
-                    type="url"
-                    class="form-control"
-                    id="boot_link"
-                    name="boot_link"
-                    required
-                  />
-              <div>
-                <label for="date" class="form-label">Release Date</label>
-                <input
-                type="date"
-                class="form-control"
-                id="upload_date"
-                name="upload_date"
-                required
-              />
+              <input type="url" class="form-control" id="link" name="link" required />
+              <div class="mb-3">
+                <label for="link" class="form-label">Boot-Img Link (optional)</label>
+                <input type="url" class="form-control" id="boot_link" name="boot_link" required />
+                <div>
+                  <label for="date" class="form-label">Release Date</label>
+                  <input type="date" class="form-control" id="upload_date" name="upload_date" required />
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <label for="details" class="form-label">Details</label>
-              <textarea
-                class="form-control"
-                id="details"
-                name="details"
-                rows="3"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-            {% else %}
-            <p class="text-warning">
-              You are not authorized to upload ROMs. Kindly send a request to
-              Siddharth or Staff Members on telegram or by other sources to get
-              authorized.
-            </p>
-            {% endif %} 
-            {% else %}
-            <p class="text-warning">Please log in to upload ROMs.</p>
-            {% endif %}
+              <div class="mb-3">
+                <label for="details" class="form-label">Details</label>
+                <textarea class="form-control" id="details" name="details" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Upload</button>
+              {% else %}
+              <p class="text-warning">
+                You are not authorized to upload ROMs. Kindly send a request to
+                Siddharth or Staff Members on telegram or by other sources to get
+                authorized.
+              </p>
+              {% endif %}
+              {% else %}
+              <p class="text-warning">Please log in to upload ROMs.</p>
+              {% endif %}
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-{% endblock %} 
+{% endblock %}
 
-<!----------------------------------------JAVASCRIPT code---------------------------------------------------------->
+<!-----------------------------JAVASCRIP code---------------------------------------------------------->
 
 {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     // Initialize Select2 on the select element
     $('#device').select2({
-  matcher: function(term, text, option) {
-    return text.toUpperCase().indexOf(term.toUpperCase())>=0 || option.val().toUpperCase().indexOf(term.toUpperCase())>=0;
-  }
-});
+      matcher: function (term, text, option) {
+        return text.toUpperCase().indexOf(term.toUpperCase()) >= 0 || option.val().toUpperCase().indexOf(term.toUpperCase()) >= 0;
+      }
+    });
   });
 </script>
 
 
-<!---------------------------------------Searching Content----------------------------------------------->
+<!-------------------------------------Searching Content----------------------------------------------->
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -377,62 +311,62 @@ color: #b8b9bc;
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function ()  {
-  const searchInput = $('#search-input');
-  const searchResults = $('#search-results');
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = $('#search-input');
+    const searchResults = $('#search-results');
 
-  searchInput.on('input', function() {
+    searchInput.on('input', function () {
       const query = $(this).val().trim();
       if (query.length >= 2) {
-          fetchSearchResults(query);
+        fetchSearchResults(query);
       } else {
-          clearSearchResults();
+        clearSearchResults();
       }
-  });
+    });
 
-  function fetchSearchResults(query) {
+    function fetchSearchResults(query) {
       $.ajax({
-          url: "{% url 'search_custom_roms' %}",
-          data: {'q': query},
-          dataType: 'json',  // Expect JSON response
-          success: function(data) {
-              displaySearchResults(data.results); // Pass the results array
-          },
-          error: function() {
-              console.log("An error occurred while fetching search results.");
-          }
+        url: "{% url 'search_custom_roms' %}",
+        data: { 'q': query },
+        dataType: 'json',  // Expect JSON response
+        success: function (data) {
+          displaySearchResults(data.results); // Pass the results array
+        },
+        error: function () {
+          console.log("An error occurred while fetching search results.");
+        }
       });
-  }
-  
-  function displaySearchResults(results) {
-    searchResults.empty();
-    if (results.length > 0) {
-      const searchResults = document.getElementById('search-results'); // Replace with your actual element ID
-      
-for (const result of results) {
-    const editLink = result.is_staff ? `
-        <a href="" class="btn btn-primary edit-link" data-rom-id="${result.id}">Edit</a>
-    ` : '';
-    const likeBtn = result.is_authenticated ?
-    `<button class="btn btn-secondary rom-link like-button"
-             data-rom-id="${result.id}"
-             style="float: right; margin-left: 5px;">
-        <i class="far fa-thumbs-up"></i>
-    </button>` :
-    `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">`;
-    const likeCnt = result.is_authenticated ?
-    `<span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%; float: right;">
-                            ${result.likes}
-                        </span>` :
-    `<span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%; float: right;">
-                            ${result.likes}
-                        </span>`;
-    const romDetails =`<h5 class="card-title">
+    }
+
+    function displaySearchResults(results) {
+      searchResults.empty();
+      if (results.length > 0) {
+        const searchResults = document.getElementById('search-results'); // Replace with your actual element ID
+
+        for (const result of results) {
+          const editLink = result.is_staff ? `
+            <a href="" class="btn btn-primary edit-link" data-rom-id="${result.id}">Edit</a>
+        ` : '';
+
+        const likeBtn = result.is_authenticated ?
+            `<button class="btn btn-secondary rom-link like-button" data-rom-id="${result.id}">
+                <i class="far fa-thumbs-up"></i> Like
+            </button>` :
+            `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="far fa-thumbs-up"></i> Like
+            </button>`;
+
+        const likeCnt = `
+            <span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%;">
+                ${result.likes}
+            </span>`;
+
+        const romDetails = `<h5 class="card-title">
             Details : <a href="" class="rom-details" data-rom-id="${result.id}">Visit Here</a>
-          </h5>`
+        </h5>`;
 
 
-    const resultHtml = `
+          const resultHtml = `
     <div class="col rom-card">
         <div class="card h-100">
             <img
@@ -467,39 +401,39 @@ for (const result of results) {
         </div>
     </div>
 `;
-    searchResults.innerHTML += resultHtml;
-}
+          searchResults.innerHTML += resultHtml;
+        }
 
-    } else {
+      } else {
         searchResults.append("<p>No results found (Check Typos..)</p>");
-    }
-    $('.edit-link').click(function(e) {
+      }
+      $('.edit-link').click(function (e) {
         e.preventDefault();
         const romId = $(this).data('rom-id');
         const editUrl = `{% url 'edit_rom' 0 %}`.replace('0', romId);
         window.location.href = editUrl;
-    });
-    $('.rom-details').click(function(e) {
+      });
+      $('.rom-details').click(function (e) {
         e.preventDefault();
         const romId = $(this).data('rom-id');
         const editUrl = `{% url 'rom_details' 0 %}`.replace('0', romId);
         window.location.href = editUrl;
-    });
-}
+      });
+    }
 
-  function clearSearchResults() {
+    function clearSearchResults() {
       searchResults.empty();
-  }
-});
+    }
+  });
 
 </script>
 
-<!-------------------------------------ROM likes count Script---------------------------------------------------->
+<!---------------------------ROM likes count Script---------------------------------------------------->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function () {
-    $(document).on("click", ".like-button", function () { 
+    $(document).on("click", ".like-button", function () {
       var romId = $(this).data("rom-id");
       var likesCountElement = $(this).siblings(".likes-count");
       var icon = $(this).find("i");
@@ -529,7 +463,7 @@ for (const result of results) {
 
 
 
-<!------------------------------------cookie collecting in all pages------------------------------------------------>
+<!-----------------------cookie collecting in all pages------------------------------------------------>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const romLinks = document.querySelectorAll(".rom-link");
@@ -548,7 +482,7 @@ for (const result of results) {
   });
 </script>
 
-<!-----------------------------------------Session Traking--------------------------------------------------------->
+<!------------------------------Session Traking--------------------------------------------------------->
 
 <script>
   document.querySelectorAll(".track-session-link").forEach(function (link) {

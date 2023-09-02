@@ -1,71 +1,76 @@
 {% extends 'base.html' %} {% load static %} {% block style %}
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Select2 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 <style>
 
- #searching .btn{
+#jas .btn {
+        background-color: var(--accent) !important ;
+        color: var(--background) !important;
+        border: none !important;
+        border-radius: 20px !important;
+      }
 
-border-radius: 10px;
-background-color: var(--primary);
-border: none;
-color: var(--text);
+  #searching .active {
 
-}
-
-
-
-#searching .active{
-
-background: var(--secondary) ;
-border-color: #3b3b4f3a ;
-color: #ffffff ;
+    background: var(--secondary);
+    border-color: #3b3b4f3a;
+    color: #ffffff;
     font-size: 12px;
-}
+  }
 
-#searching .inputs{
+  #searching .inputs {
 
-position: relative;
+    position: relative;
 
-}
-#searching .inputs .input-wrapper {
+  }
+
+  #searching .inputs .input-wrapper {
     opacity: 1;
-}
-.bg-primary {
-    background-color: #3b3b4f3a; /* Replace with your desired color */
-}
-#searching .inputs input {
-    opacity: 1;
-}
+  }
 
-#searching .form-control {
+  .bg-primary {
+    background-color: #3b3b4f3a;
+    /* Replace with your desired color */
+  }
+
+  #searching .inputs input {
+    opacity: 1;
+  }
+
+  #searching .form-control {
     text-indent: 15px;
-border: none;
-height: 45px;
-border-radius: 0px;
-border-bottom: 1px solid #eee;
-}
+    border: none;
+    height: 45px;
+    border-radius: 0px;
+    border-bottom: 1px solid #eee;
+  }
 
-#searching .form-control:focus {
-color: #495057;
-background-color: #fff;
-border-color: #eee;
-outline: 0;
-box-shadow: none;
-border-bottom: 1px solid blue;
-}
+  #searching .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #eee;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid blue;
+  }
 
 
-#searching .form-control:focus  {
-color: blue;
-}
+  #searching .form-control:focus {
+    color: blue;
+  }
 
-#searching .inputs i{
+  #searching .inputs i {
 
     position: absolute;
-top: 14px;
-left: 4px;
-color: #b8b9bc;
-}
+    top: 14px;
+    left: 4px;
+    color: #b8b9bc;
+  }
 
-.text-center {
+  .text-center {
     font-size: 3em;
     font-weight: bold;
     color: var(--text);
@@ -75,99 +80,86 @@ color: #b8b9bc;
   }
 
   @media only screen and (max-width: 757px) {
-    .text-center{
+    .text-center {
       font-size: 1.5em;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .side-text {
+      display: none;
     }
   }
 </style>
 {% endblock %} {% block content %}
 
 <div class="container py-5">
-  <h1 class="text-center mb-5">Mods And Tools Showcase</h1>
+  <h1 class="text-center mb-5">Mods & Tools Showcase</h1>
 
   <!-- Search Bar -->
   <section id="searching">
-  <div class="d-flex justify-content-between align-items-center">
-    {% if user.is_authenticated and user.userprofile.is_authorized %}
-    <span class="font-weight-bold">You can upload stuffs &rarr;</span>
-    {% else %}
-    <span class="font-weight-bold">You are not authorised to upload mods</span>
-    {% endif %}
-    <div class="d-flex flex-row">
-    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      {% if user.is_authenticated and user.userprofile.is_authorized %}
+      <span class="font-weight-bold side-text">You can upload stuffs &rarr;</span>
+      {% else %}
+      <span class="font-weight-bold side-text">You are not authorised to upload mods</span>
+      {% endif %}
+      <div class="d-flex flex-row">
+      </div>
       <a class="btn btn-primary mod-link button" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload mods</a>
-      
     </div>
 
-<div class="mt-3 inputs" style="padding-bottom: 40px;">
-  <i class="fa fa-search" style="margin-left: 1em;"></i>
-  <input
-      id="search-input"
-      type="text"
-      class="form-control live-search"
-      placeholder="Search Custom mods..."
-      style="padding: 1em 2em; border-radius: 10px; border: none; background-color: var(--secondary); color: var(--text)">
-</div>
+    <div class="mt-3 inputs" style="padding-bottom: 40px;">
+      <i class="fa fa-search" style="margin-left: 1em;"></i>
+      <input id="search-input" type="text" class="form-control live-search" placeholder="Search Custom mods..."
+        style="padding: 1em 2em; border-radius: 10px; border: none; background-color: var(--secondary); color: var(--text)">
+    </div>
+  </section>
 
-<div id="search-results" class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom: 20px;">
-</div>
-
-</section>
+  <div id="search-results" class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom: 20px;">
+  </div>
 
 
   <!------------------------------------ Custom mod cards ----------------------------------------------------->
- 
- 
+
+
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for mod in mods %}
     <div class="col mod-card">
       <div class="card h-100">
-        <img
-          src="{{ mod.image.url }}"
-          class="img-thumbnail custom-mod-image"
-          alt="{{ mod.name }}"
-        />
+        <img src="{{ mod.image.url }}" class="img-thumbnail custom-mod-image" alt="{{ mod.name }}" />
         <div class="card-body">
           <h5 class="card-title">
             {{ mod.name }} &rarr; {{ mod.device }} <br />
-            <a
-              href="https://telegram.me/{{mod.credits}}"
-              target="_blank"
-              style="text-decoration: none"
-              >@{{mod.credits}}</a
-            >
+            <a href="https://telegram.me/{{mod.credits}}" target="_blank"
+              style="text-decoration: none">@{{mod.credits}}</a>
           </h5>
           <h5 class="card-title">
             Date: {{mod.upload_date}}
           </h5>
           <div class="buttons-wrapper">
-            <a
-              href="{{ mod.link }}"
-              target="_blank"
-              class="btn btn-primary mod-link"
-              style="background-color: var(--accent); border: none;"
-              >Download</a>
+            <a href="{{ mod.link }}" target="_blank" class="btn btn-primary mod-link"
+              style="background-color: var(--accent); border: none;">Download</a>
             {% if request.user.is_staff %}
-            <a href="{% url 'edit_mod' mod.id %}" class="btn btn-primary"
-              >Edit</a
-            > </span>{% endif %}
-              {% if request.user.is_authenticated %}
-                  <button class="btn btn-secondary mod-link like-button"
-                          data-mod-id="{{ mod.id }}"
-                          style="float: right; margin-left: 5px;">
-                      <i class="far fa-thumbs-up"></i>
-                  </button>
-                  <span class="btn btn-secondary mod-link likes-count" style="border-radius: 50%; float: right;">
-                      {{ mod.likes.count }}
-                  </span>
-              {% else %}
-                  <button class="btn btn-secondary mod-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
-                      <i class="far fa-thumbs-up"></i>
-                  </button>
-                  <span class="btn btn-secondary mod-link likes-count" style="border-radius: 50%;">
-                      {{ mod.likes.count }}
-                  </span>
-              {% endif %}
+            <a href="{% url 'edit_mod' mod.id %}" class="btn btn-primary">Edit</a>{% endif %}
+            {% if request.user.is_authenticated %}
+            <button class="btn btn-secondary mod-link like-button" data-mod-id="{{ mod.id }}"
+              style="float: right; margin-left: 5px;">
+              <i class="far fa-thumbs-up"></i>
+            </button>
+            <span class="btn btn-secondary mod-link likes-count" style="float: right;">
+              {{ mod.likes.count }}
+            </span>
+            {% else %}
+            <button class="btn btn-secondary mod-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="far fa-thumbs-up"></i>
+            </button>
+            <span class="btn btn-secondary mod-link likes-count">
+              {{ mod.likes.count }}
+            </span>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -176,192 +168,202 @@ color: #b8b9bc;
   </div>
 
 
-  
-<!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              Please log in to use this feature and various other features.
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
-          </div>
-      </div>
-  </div>
-</div>
 
+  <!----------------------------------- Login Modal -------------------------------------------------->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Please log in to use this feature and various other features.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!---------------------------------- Upload mod Modal ---------------------------------------------->
-  
-  
-  <div
-    class="modal fade"
-    id="uploadModal"
-    tabindex="-1"
-    aria-labelledby="uploadModalLabel"
-    aria-hidden="true"
-  >
+
+
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="uploadModalLabel">Upload Custom mod</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form method="post" enctype="multipart/form-data">
-            {% csrf_token %} {% if user.is_authenticated %} 
+            {% csrf_token %} {% if user.is_authenticated %}
             {% if user.userprofile.is_authorized %}
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                required
-              />
+              <input type="text" class="form-control" id="name" name="name" required />
+            </div>
+            <div class="mb-3">
+              <label for="device" class="form-label">Device</label>
+              <select class="form-select" id="device" name="device" required>
+                <option value="" selected disabled>Select a Device</option>
+                <option value="Fleur / Miel">Fleur / Miel</option>
+                <option value="Viva / Vida">Viva / Vida</option>
+                <option value="Ocean / Sea">Ocean / Sea</option>
+                <option value="Ocean / Sea">Blossom</option>
+                <option value="Ocean / Sea">Lavander</option>
+                <option value="Ocean / Sea">Ginkgo / Willow</option>
+                <option value="Ocean / Sea">X01BD</option>
+                <option value="Vince">Vince</option>
+              </select>
             </div>
             <div class="mb-3">
               <label for="image" class="form-label">Credits</label>
-              <input
-                placeholder="Just write telegram username ! (no '@')"
-                type="text"
-                class="form-control"
-                id="credits"
-                name="credits"
-                required
-              />
+              <input placeholder="Just write telegram username ! (no '@')" type="text" class="form-control" id="credits"
+                name="credits" required />
             </div>
             <div class="mb-3">
               <label for="image" class="form-label">Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                class="form-control"
-                id="image"
-                name="image"
-                required
-              />
+              <input type="file" accept="image/*" class="form-control" id="image" name="image" required />
             </div>
             <div class="mb-3">
-              <label for="link" class="form-label">MOD / Tool Link</label>
-              <input
-                type="url"
-                class="form-control"
-                id="link"
-                name="link"
-                required
-              />
-              <div>
-                <label for="date" class="form-label">Release Date</label>
-                <input
-                type="date"
-                class="form-control"
-                id="upload_date"
-                name="upload_date"
-                required
-              />
+              <label for="link" class="form-label">mod / Recovery Link</label>
+              <input type="url" class="form-control" id="link" name="link" required />
+              <div class="mb-3">
+                <label for="link" class="form-label">Boot-Img Link (optional)</label>
+                <input type="url" class="form-control" id="boot_link" name="boot_link" required />
+                <div>
+                  <label for="date" class="form-label">Release Date</label>
+                  <input type="date" class="form-control" id="upload_date" name="upload_date" required />
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <label for="details" class="form-label">Details</label>
-              <textarea
-                class="form-control"
-                id="details"
-                name="details"
-                rows="3"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-            {% else %}
-            <p class="text-warning">
-              You are not authorized to upload mods. Kindly send a request to
-              Siddharth or Staff Members on telegram or by other sources to get
-              authorized.
-            </p>
-            {% endif %} 
-            {% else %}
-            <p class="text-warning">Please log in to upload mods.</p>
-            {% endif %}
+              <div class="mb-3">
+                <label for="details" class="form-label">Details</label>
+                <textarea class="form-control" id="details" name="details" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Upload</button>
+              {% else %}
+              <p class="text-warning">
+                You are not authorized to upload mods. Kindly send a request to
+                Siddharth or Staff Members on telegram or by other sources to get
+                authorized.
+              </p>
+              {% endif %}
+              {% else %}
+              <p class="text-warning">Please log in to upload mods.</p>
+              {% endif %}
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-{% endblock %} 
+{% endblock %}
 
-<!----------------------------------------JAVASCRIPT code---------------------------------------------------------->
+<!-----------------------------JAVASCRIP code---------------------------------------------------------->
 
 {% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Initialize Select2 on the select element
+    $('#device').select2({
+      matcher: function (term, text, option) {
+        return text.toUpperCase().indexOf(term.toUpperCase()) >= 0 || option.val().toUpperCase().indexOf(term.toUpperCase()) >= 0;
+      }
+    });
+  });
+</script>
+
+
+<!-------------------------------------Searching Content----------------------------------------------->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector("#search-input");
+    const searchButton = document.querySelector("#search-button");
+    const modCards = document.querySelectorAll(".mod-card");
+
+    searchButton.addEventListener("click", function () {
+      const query = searchInput.value.toLowerCase().trim();
+
+      modCards.forEach((card) => {
+        const cardTitle = card
+          .querySelector(".card-title")
+          .textContent.toLowerCase();
+
+        if (cardTitle.includes(query)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function ()  {
-  const searchInput = $('#search-input');
-  const searchResults = $('#search-results');
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = $('#search-input');
+    const searchResults = $('#search-results');
 
-  searchInput.on('input', function() {
+    searchInput.on('input', function () {
       const query = $(this).val().trim();
       if (query.length >= 2) {
-          fetchSearchResults(query);
+        fetchSearchResults(query);
       } else {
-          clearSearchResults();
+        clearSearchResults();
       }
-  });
+    });
 
-  function fetchSearchResults(query) {
+    function fetchSearchResults(query) {
       $.ajax({
-          url: "{% url 'search_custom_mods' %}",
-          data: {'q': query},
-          dataType: 'json',  // Expect JSON response
-          success: function(data) {
-              displaySearchResults(data.results); // Pass the results array
-          },
-          error: function() {
-              console.log("An error occurred while fetching search results.");
-          }
+        url: "{% url 'search_custom_mods' %}",
+        data: { 'q': query },
+        dataType: 'json',  // Expect JSON response
+        success: function (data) {
+          displaySearchResults(data.results); // Pass the results array
+        },
+        error: function () {
+          console.log("An error occurred while fetching search results.");
+        }
       });
-  }
-  function displaySearchResults(results) {
-    searchResults.empty();
-    if (results.length > 0) {
-      const searchResults = document.getElementById('search-results'); // Replace with your actual element ID
-      
-for (const result of results) {
-    const editLink = result.is_staff ? `
-        <a href="" class="btn btn-primary edit-link" data-mod-id="${result.id}">Edit</a>
-    ` : '';
-    const likeBtn = result.is_authenticated ?
-    `<button class="btn btn-secondary mod-link like-button"
-             data-mod-id="${result.id}"
-             style="float: right; margin-left: 5px;">
-        <i class="far fa-thumbs-up"></i>
-    </button>` :
-    `<button class="btn btn-secondary mod-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">`;
-    const likeCnt = result.is_authenticated ?
-    `<span class="btn btn-secondary mod-link likes-count" style="border-radius: 50%; float: right;">
-                            ${result.likes}
-                        </span>` :
-    `<span class="btn btn-secondary mod-link likes-count" style="border-radius: 50%; float: right;">
-                            ${result.likes}
-                        </span>`;
+    }
+
+    function displaySearchResults(results) {
+      searchResults.empty();
+      if (results.length > 0) {
+        const searchResults = document.getElementById('search-results'); // Replace with your actual element ID
+
+        for (const result of results) {
+          const editLink = result.is_staff ? `
+            <a href="" class="btn btn-primary edit-link" data-mod-id="${result.id}">Edit</a>
+        ` : '';
+
+        const likeBtn = result.is_authenticated ?
+            `<button class="btn btn-secondary mod-link like-button" data-mod-id="${result.id}">
+                <i class="far fa-thumbs-up"></i> Like
+            </button>` :
+            `<button class="btn btn-secondary mod-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="far fa-thumbs-up"></i> Like
+            </button>`;
+
+        const likeCnt = `
+            <span class="btn btn-secondary mod-link likes-count" style="border-radius: 50%;">
+                ${result.likes}
+            </span>`;
+
+        const modDetails = `<h5 class="card-title">
+            Details : <a href="" class="mod-details" data-mod-id="${result.id}">Visit Here</a>
+        </h5>`;
 
 
-    const resultHtml = `
+          const resultHtml = `
     <div class="col mod-card">
         <div class="card h-100">
             <img
@@ -376,11 +378,12 @@ for (const result of results) {
                         href="https://telegram.me/${result.credits}"
                         target="_blank"
                     >@${result.credits}</a>
-                </h5>
-                <h5 class="card-title">
-                    Date: ${result.upload_date}
-                </h5>
-                <div class="buttons-wrapper">
+                    </h5>
+                    <h5 class="card-title">
+                        Date: ${result.upload_date}
+                    </h5>
+                    ${modDetails}
+                    <div class="buttons-wrapper">
                         <a
                             href="${result.link}"
                             target="_blank"
@@ -395,27 +398,28 @@ for (const result of results) {
         </div>
     </div>
 `;
-    searchResults.innerHTML += resultHtml;
-}
-    } else {
+          searchResults.innerHTML += resultHtml;
+        }
+
+      } else {
         searchResults.append("<p>No results found (Check Typos..)</p>");
-    }
-    $('.edit-link').click(function(e) {
+      }
+      $('.edit-link').click(function (e) {
         e.preventDefault();
         const modId = $(this).data('mod-id');
         const editUrl = `{% url 'edit_mod' 0 %}`.replace('0', modId);
         window.location.href = editUrl;
-    });
-}
+      });
+    }
 
-  function clearSearchResults() {
+    function clearSearchResults() {
       searchResults.empty();
-  }
-});
+    }
+  });
 
 </script>
 
-<!-------------------------------------mod likes count Script---------------------------------------------------->
+<!---------------------------mod likes count Script---------------------------------------------------->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -450,7 +454,7 @@ for (const result of results) {
 
 
 
-<!------------------------------------cookie collecting in all pages------------------------------------------------>
+<!-----------------------cookie collecting in all pages------------------------------------------------>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const modLinks = document.querySelectorAll(".mod-link");
@@ -469,7 +473,7 @@ for (const result of results) {
   });
 </script>
 
-<!-----------------------------------------Session Traking--------------------------------------------------------->
+<!------------------------------Session Traking--------------------------------------------------------->
 
 <script>
   document.querySelectorAll(".track-session-link").forEach(function (link) {

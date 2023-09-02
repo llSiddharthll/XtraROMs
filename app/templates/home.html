@@ -153,7 +153,7 @@ body{
     background-repeat: no-repeat;
 }
 #five{
-  background: url("{% static 'images/rn11pro.png' %}");
+  background: url("{% static 'images/rn11pro.jpeg' %}");
   background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -188,7 +188,7 @@ body{
       <div class="col-md-12">
   <h1 class="text-center">XTRAROMS AVAILABLE FOR</h1>
   <div id="game" class="owl-carousel custom-carousel">
-    <div id="one" class="item active">
+    <div id="one" class="item ">
       <div class="item-desc">
         <h3>Fleur</h3>
         <p>Performance
@@ -262,7 +262,7 @@ body{
 </section>
 
 
-<!-- Custom ROMs Section -->
+<!---------------------------------- Custom ROMs Section --------------------------------------------->
 <section id="owl" class="roms">
 <div class="container-fluid">
   <div class="row">
@@ -289,7 +289,7 @@ body{
 </div>
 </section>
 
-<!-- Magisk Modules Section -->
+<!--------------------------------- Magisk Modules Section --------------------------------------------->
 <section id="owl" class="mods">
 <div class="container-fluid">
   <div class="row">
@@ -316,7 +316,7 @@ body{
 </div>
 </section>
 
-
+<!----------------------------------About--------------------------------------------------------->
 <section id="about" class="py-5">
   <div class="container">
     <div class="row align-items-center">
@@ -574,12 +574,22 @@ $(document).ready(function () {
             loop:true
         },
         550:{
-            items:2,
+            items:1,
             loop:true
         },
-        800:{
+        757:{
+          items:1,
             loop:true
-        }},
+        },
+        1000:{
+          items:2,
+          loop:true
+        },
+        1200:{
+          items:3,
+          loop:true
+        }
+      },
     loop: true,
     autoplay:true,
     autoplayTimeout:3000,

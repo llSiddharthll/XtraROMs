@@ -1,196 +1,270 @@
 {% extends "base.html" %} {% load static %} {% block css %}
 <style>
-    #all {
-        padding-top: 50px;
-    }
+  #all {
+    padding-top: 50px;
+  }
 
-    /* Hide the default scrollbar and style the custom scrollbar */ 
-    .rom-details::-webkit-scrollbar { width: 0.5em; /* Set a width for the invisible scrollbar */
-    }
+  /* Hide the default scrollbar and style the custom scrollbar */
+  .rom-details::-webkit-scrollbar {
+    width: 0.5em; /* Set a width for the invisible scrollbar */
+  }
 
-    .rom-details::-webkit-scrollbar-thumb {
-        background-color: transparent;
-        /* Make the thumb transparent */
-    }
+  .rom-details::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Make the thumb transparent */
+  }
 
-    .rom-details::-webkit-scrollbar-track {
-        background-color: transparent;
-        /* Make the track transparent */
-    }
+  .rom-details::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Make the track transparent */
+  }
 
-    /* Add some styling to the card elements */
-    .card {
-        border-radius: 10px;
-        box-shadow: 0 0 10px #afd7ff;
-    }
-    .card:hover {
-        border-radius: 10px;
-        box-shadow: 0 0 20px #afd7ff;
-    }
+  /* Add some styling to the card elements */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px #afd7ff;
+  }
+  .card:hover {
+    border-radius: 10px;
+    box-shadow: 0 0 20px #afd7ff;
+  }
 
-    .card-img-top {
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
+  .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 
-    .card-body {
-        padding: 20px;
-    }
+  .card-body {
+    padding: 20px;
+  }
 
-    .card-title {
-        font-weight: bold;
-        font-size: 20px;
-    }
+  .card-title {
+    font-weight: bold;
+    font-size: 20px;
+  }
 
-    .card-text {
-        font-size: 16px;
-    }
+  .card-text {
+    font-size: 16px;
+  }
 
-    /* Add some color to the links */
-    a {
-        color: #007bff;
-    }
+  /* Add some color to the links */
+  a {
+    color: #007bff;
+  }
 
-    a:hover {
-        color: #0056b3;
-    }
-    .rom-card-title {
-        margin: 0;
-        font-size: 1.5rem;
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-radius: 10px 10px 0 0;
-    }
-    .rom-card-content {
-        padding: 15px;
-        max-height: 400px;
-        overflow-y: auto;
-    }
-    .rom-card-content ul {
-        list-style: none;
-        padding-left: 0;
-        font-size: 0.9rem;
-    }
-    .rom-card-content li {
-        position: relative;
-        padding-left: 1.5em;
-        margin-bottom: 10px;
-    }
-    .rom-card-content li::before {
-        content: "\2022";
-        position: absolute;
-        left: 0;
-        top: 0;
-        font-size: 1.2em;
-        color: #007bff;
-    }
+  a:hover {
+    color: #0056b3;
+  }
+  .rom-card-title {
+    margin: 0;
+    font-size: 1.5rem;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px 10px 0 0;
+  }
+  .rom-card-content {
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .rom-card-content ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.9rem;
+  }
+  .rom-card-content li {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 10px;
+  }
+  .rom-card-content li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+    color: #007bff;
+  }
 </style>
- {% endblock %} {% block content %} <div id="all" class="container py-5">
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card " style="max-height: 30em;height: 25em;border-radius: 10px;
-            box-shadow: 0 0 10px #afd7ff;">
-                <div class="card-body text-center"> <img src="{{rom.image.url}}" class="card-img-top img-fluid" alt="ROM
-                        Image"> </div>
-                <div class="card-body text-center">
-                    <h2 class="card-title">{{ rom.name }} → {{ rom.device }}</h2> <a
-                        href="https://telegram.me/{{rom.credits}}" target="_blank">@{{rom.credits}}</a>
-                </div>
-            </div>
+{% endblock %} {% block content %}
+<div id="all" class="container py-5">
+  <div class="row">
+    <div class="col-lg-4 mb-4">
+      <div
+        class="card"
+        style="
+          max-height: 30em;
+          height: 25em;
+          border-radius: 10px;
+          box-shadow: 0 0 10px #afd7ff;
+        "
+      >
+        <div class="card-body text-center">
+          <img
+            src="{{rom.image.url}}"
+            class="card-img-top img-fluid"
+            alt="ROM
+                        Image"
+          />
         </div>
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card" style="box-shadow: 0 0 10px #afd7ff;">
-                        <div class="rom-details card-body overflow-auto" style="max-height: 30em;
-                        height: 25em;border-radius: 10px;
-        box-shadow: 0 0 10px #afd7ff;">
-                            <h4 class="rom-card-title" style="
-                            position: absolute;
-                            top: 0;
-                            width: 100%;
-                            padding: 10px;
-                            padding-left: 0;
-                            background-color: var(--secondary);
-                            display: flex;
-                            justify-content: center;">------ Flashing Steps ------</h4> 
-                            <div class="rom-card-content" style="padding: 10px; padding-top: 30px;">
-                            {% if rom.device == 'Fleur / Miel' or rom.device == 'Viva / Vida' %}
-                            <ul class="list-unstyled" style="list-style-type: '- ';">
-                                <li><strong>Clean Flash</strong></li>
-                                <li>Flash any recovery</li>
-                                <li><code>(fastboot flash boot boot.img)</code></li>
-                                <li><strong>Reboot to recovery</strong></li>
-                                <li><strong>Flash ROM</strong></li>
-                                <li><strong>Flash Current TWRP</strong></li>
-                                <li><strong>Format Data</strong></li>
-                                <li><strong>Reboot to system</strong></li>
-                            </ul>
-                            {% elif rom.device == 'Lavander' o rom.device == 'Vince' %}
-                            <ul class="list-unstyled" style="list-style-type: '- ';">
-                                <li><strong>For Non-Dynamic ROM:</strong></li>
-                                <li>Wipe <strong>dalvik/art cache</strong>, cache, system, vendor, data</li>
-                                <li>Flash global firmware</li>
-                                <li>Flash ROM</li>
-                                <li>Format Data</li>
-                                <li>Reboot</li>
-                            </ul>
-                            
-                            <ul class="list-unstyled" style="list-style-type: '- ';">
-                                <li><strong>Instructions to Flash Newer ROMs with Retrofit Dynamic Partitions:</strong></li>
-                                <li><em>(Please Ignore recovery errors at the first installation, they're normal)</em></li>
-                                <li>Flash recovery with Retrofit Dynamic Partitions support (<a href="recovery.img">open twrp.img in recovery and select recovery partition from list, scroll down if you can't find recovery partition</a>)</li>
-                                <li>Enter the newly flashed recovery</li>
-                                <li>Wipe system, vendor, cache & metadata partition</li>
-                                <li>Flash the ROM (<em>Ignore system mount error</em>)</li>
-                                <li>If Vanilla ROM (<em>Reboot to recovery and then flash GApps</em>)</li>
-                                <li>Factory Reset (<em>Format data is recommended</em>)</li>
-                                <li>Reboot and Enjoy</li>
-                            </ul>
-                            
-                            <ul class="list-unstyled" style="list-style-type: '- ';">
-                                <li><strong>Flash ROM Updates:</strong></li>
-                                <li>Enter recovery</li>
-                                <li>Flash the update</li>
-                                <li>Wipe dalvik, cache</li>
-                                <li>Reboot and Enjoy</li>
-                            </ul>
-                            
-                            <ul class="list-unstyled" style="list-style-type: '- ';">
-                                <li><strong>Switch to Another Retrofit Dynamic Partitions ROM:</strong></li>
-                                <li>Enter recovery</li>
-                                <li>Flash the ROM</li>
-                                <li>Factory Reset (<em>Format data is recommended</em>)</li>
-                                <li>Reboot and Enjoy</li>
-                            </ul>
-                            
-                            <ul class="list-unstyled" style="list-style-type: '- ';">
-                                <li><strong>Go Back to Standard Partition ROM:</strong></li>
-                                <li>Install Standard recovery</li>
-                                <li>Wipe system & vendor partition</li>
-                                <li>Flash the ROM</li>
-                                <li>Factory Reset (<em>Format data is recommended</em>)</li>
-                                <li>Change data & cache fs to ext4</li>
-                                <li>Reboot and Enjoy</li>
-                            </ul>
-                            {% else %}
-                            <h5><strong>Steps Are Not provided by anyone, please contact us if you know them.. !!</strong></h5>
-                            {% endif %}
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card" style="box-shadow: 0 0 10px #afd7ff;">
-                        <div class="card-body overflow-auto" style="max-height: 30em;height: 25em;border-radius: 10px;
-                        box-shadow: 0 0 10px #afd7ff;">
-                            <h4 class="card-title">ROM Details:</h4>
-                            <p class="card-text">{{ formatted_details|safe }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="card-body text-center">
+          <h2 class="card-title">{{ rom.name }} → {{ rom.device }}</h2>
+          <a href="https://telegram.me/{{rom.credits}}" target="_blank"
+            >@{{rom.credits}}</a
+          >
         </div>
+      </div>
     </div>
-</div> 
+    <div class="col-lg-8">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card" style="box-shadow: 0 0 10px #afd7ff">
+            <div
+              class="rom-details card-body overflow-auto"
+              style="
+                max-height: 30em;
+                height: 25em;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #afd7ff;
+              "
+            >
+              <h4
+                class="rom-card-title"
+                style="
+                  position: absolute;
+                  top: 0;
+                  width: 100%;
+                  padding: 10px;
+                  padding-left: 0;
+                  background-color: var(--secondary);
+                  display: flex;
+                  justify-content: center;
+                "
+              >
+                ------ Flashing Steps ------
+              </h4>
+              <div
+                class="rom-card-content"
+                style="padding: 10px; padding-top: 30px"
+              >
+                {% if rom.device == 'Fleur / Miel' or rom.device == 'Viva /
+                Vida' %}
+                <ul class="list-unstyled" style="list-style-type: '- '">
+                  <li><strong>Clean Flash</strong></li>
+                  <li>Flash any recovery</li>
+                  <li><code>(fastboot flash boot boot.img)</code></li>
+                  <li><strong>Reboot to recovery</strong></li>
+                  <li><strong>Flash ROM</strong></li>
+                  <li><strong>Flash Current TWRP</strong></li>
+                  <li><strong>Format Data</strong></li>
+                  <li><strong>Reboot to system</strong></li>
+                </ul>
+                {% elif rom.device == 'Lavander' or rom.device == 'Vince' %}
+                <ul class="list-unstyled" style="list-style-type: '- '">
+                  <li><strong>For Non-Dynamic ROM:</strong></li>
+                  <li>
+                    Wipe <strong>dalvik/art cache</strong>, cache, system,
+                    vendor, data
+                  </li>
+                  <li>Flash global firmware</li>
+                  <li>Flash ROM</li>
+                  <li>Format Data</li>
+                  <li>Reboot</li>
+                </ul>
+
+                <ul class="list-unstyled" style="list-style-type: '- '">
+                  <li>
+                    <strong
+                      >Instructions to Flash Newer ROMs with Retrofit Dynamic
+                      Partitions:</strong
+                    >
+                  </li>
+                  <li>
+                    <em
+                      >(Please Ignore recovery errors at the first installation,
+                      they're normal)</em
+                    >
+                  </li>
+                  <li>
+                    Flash recovery with Retrofit Dynamic Partitions support (<a
+                      href="recovery.img"
+                      >open twrp.img in recovery and select recovery partition
+                      from list, scroll down if you can't find recovery
+                      partition</a
+                    >)
+                  </li>
+                  <li>Enter the newly flashed recovery</li>
+                  <li>Wipe system, vendor, cache & metadata partition</li>
+                  <li>Flash the ROM (<em>Ignore system mount error</em>)</li>
+                  <li>
+                    If Vanilla ROM (<em
+                      >Reboot to recovery and then flash GApps</em
+                    >)
+                  </li>
+                  <li>Factory Reset (<em>Format data is recommended</em>)</li>
+                  <li>Reboot and Enjoy</li>
+                </ul>
+
+                <ul class="list-unstyled" style="list-style-type: '- '">
+                  <li><strong>Flash ROM Updates:</strong></li>
+                  <li>Enter recovery</li>
+                  <li>Flash the update</li>
+                  <li>Wipe dalvik, cache</li>
+                  <li>Reboot and Enjoy</li>
+                </ul>
+
+                <ul class="list-unstyled" style="list-style-type: '- '">
+                  <li>
+                    <strong
+                      >Switch to Another Retrofit Dynamic Partitions
+                      ROM:</strong
+                    >
+                  </li>
+                  <li>Enter recovery</li>
+                  <li>Flash the ROM</li>
+                  <li>Factory Reset (<em>Format data is recommended</em>)</li>
+                  <li>Reboot and Enjoy</li>
+                </ul>
+
+                <ul class="list-unstyled" style="list-style-type: '- '">
+                  <li><strong>Go Back to Standard Partition ROM:</strong></li>
+                  <li>Install Standard recovery</li>
+                  <li>Wipe system & vendor partition</li>
+                  <li>Flash the ROM</li>
+                  <li>Factory Reset (<em>Format data is recommended</em>)</li>
+                  <li>Change data & cache fs to ext4</li>
+                  <li>Reboot and Enjoy</li>
+                </ul>
+                {% else %}
+                <h5>
+                  <strong
+                    >Steps Are Not provided by anyone, please contact us if you
+                    know them.. !!</strong
+                  >
+                </h5>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card" style="box-shadow: 0 0 10px #afd7ff">
+            <div
+              class="card-body overflow-auto"
+              style="
+                max-height: 30em;
+                height: 25em;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #afd7ff;
+              "
+            >
+              <h4 class="card-title">ROM Details:</h4>
+              <p class="card-text">{{ formatted_details|safe }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

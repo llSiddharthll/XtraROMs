@@ -17,9 +17,15 @@
 
       gtag("config", "G-TFKNBPWNS5");
     </script>
-    <meta name="google-site-verification" content="R7qK2vfnB-zoNMi6P74FMMpD7Zmdo50YXJUdTQdJ1Pw" />
+    <meta
+      name="google-site-verification"
+      content="R7qK2vfnB-zoNMi6P74FMMpD7Zmdo50YXJUdTQdJ1Pw"
+    />
     <meta charset="UTF-8" />
-    <meta name="google-signin-client_id" content="181248088073-lh3mnt1d264iltq7sepgec17qu9b3d11.apps.googleusercontent.com">
+    <meta
+      name="google-signin-client_id"
+      content="181248088073-lh3mnt1d264iltq7sepgec17qu9b3d11.apps.googleusercontent.com"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
     <title>XtraROMs</title>
@@ -63,7 +69,10 @@
     />
     <link rel="stylesheet" href="{% static 'owl.theme.default.css' %}" />
     <link rel="stylesheet" href="{% static 'style2.css' %}" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css"
+      rel="stylesheet"
+    />
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap");
@@ -79,10 +88,10 @@
       }
 
       .btn {
-        background-color: var(--accent) !important;
-        color: var(--background) !important;
-        border: none !important;
-        border-radius: 20px !important;
+        background-color: var(--accent) ;
+        color: var(--background);
+        border: none ;
+        border-radius: 20px ;
       }
 
       /* Smooth scrolling behavior */
@@ -267,7 +276,7 @@
       @media (max-width: 768px) {
         #btn-back-to-top {
           bottom: 70px;
-          font-size: 10px;
+          font-size: 12px;
         }
       }
 
@@ -293,7 +302,7 @@
           margin-left: -30px;
         }
         .nav__name {
-          display: none;
+          display: block;
         }
         .active-link::before {
           content: "";
@@ -303,6 +312,19 @@
           height: 4px;
           background-color: var(--first-color);
           border-radius: 50%;
+        }
+      }
+      /* For large screens */
+      @media screen and (min-width: 757px) {
+        .small-screen-text {
+          display: none; /* Hide the small screen text */
+        }
+      }
+
+      /* For small screens */
+      @media screen and (max-width: 756px) {
+        .large-screen-text {
+          display: none; /* Hide the large screen text */
         }
       }
     </style>
@@ -316,10 +338,10 @@
       .header {
         background-color: var(--background);
         opacity: 0.9;
-        padding: 0.5em 1em;
+        padding: 0em 1em;
         align-items: center;
       }
-      @media only screen and (max-width: 757px) {
+      @media only screen and (max-width: 990px) {
         .header {
           opacity: 1;
         }
@@ -402,10 +424,9 @@
               >
                 <i class="bx bx-user nav__icon"></i>
                 <span class="nav__name"
-                  ><span class="decor">< </span>{{request.user.username}}<span
-                    class="decor"
-                  >
-                    /></span
+                  ><span class="decor">< </span
+                  ><span class="small-screen-text">profile</span><span class="large-screen-text"
+                    >{{request.user.username}}</span
                   ></span
                 >
               </a>
@@ -456,7 +477,6 @@
             <li class="nav__item">
               <a
                 href="{% url 'chatbot' %}"
-
                 class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
               >
                 <i class="bx bx-message-square-detail nav__icon"></i>
@@ -505,11 +525,7 @@
     <!--------cookie collection ----------------------->
 
     <!-- Cookie Banner -->
-    <div
-      id="cb-cookie-banner"
-      class="alert alert-dark mb-0"
-      role="alert"
-    >
+    <div id="cb-cookie-banner" class="alert alert-dark mb-0" role="alert">
       &#x1F36A; This website uses cookies to ensure you get the best experience
       on our website.
       <a href="https://www.cookiesandyou.com/" target="blank">Learn more</a>
@@ -586,57 +602,49 @@
       </div>
     </footer>
 
-<!-- Footer for Smaller Devices (Hidden on Larger Screens) -->
-<footer class="footer text-light py-4 d-md-none">
-  <div class="container" style="background-color: var(--background)">
-    <div class="row">
-      <div class="col-sm-6">
-        <h3 class="text-center">Follow Us</h3>
-        <ul class="list-inline text-center">
-          <li class="list-inline-item">
-            <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl" target="_blank"
-              ><i class="fab fa-telegram"></i
-            ></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://github.com/llSiddharthll" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://discord.gg/8khZkvJC" target="_blank"
-              ><i class="fab fa-discord"></i
-            ></a>
-          </li>
-          <!-- Add more social media links/icons here -->
-        </ul>
+    <!-- Footer for Smaller Devices (Hidden on Larger Screens) -->
+    <footer class="footer text-light py-4 d-md-none">
+      <div class="container" style="background-color: var(--background)">
+        <div class="row">
+          <div class="col-sm-6">
+            <h3 class="text-center">Follow Us</h3>
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl" target="_blank"
+                  ><i class="fab fa-telegram"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/llSiddharthll" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://discord.gg/8khZkvJC" target="_blank"
+                  ><i class="fab fa-discord"></i
+                ></a>
+              </li>
+              <!-- Add more social media links/icons here -->
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="row">
+          <div class="col-12 text-center">
+            <p>&copy; 2023 XtraROMs. All rights reserved.</p>
+            <p>
+              Made with love By Siddharth <i class="fas fa-heart"></i>
+              <i class="fas fa-heart"></i>
+            </p>
+          </div>
+        </div>
       </div>
-      <div class=" col-sm-6">
-        <h3 class="text-center">About Us</h3>
-        <p class="text-center">
-          Your one-stop destination for custom ROMs, Magisk modules, and a
-          supportive community to enhance your device experience!
-        </p>
-      </div>
-    </div>
-    <hr class="my-4" />
-    <div class="row">
-      <div class="col-12 text-center">
-        <p>&copy; 2023 XtraROMs. All rights reserved.</p>
-        <p>
-          Made with love By Siddharth <i class="fas fa-heart"></i>
-          <i class="fas fa-heart"></i>
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
-
+    </footer>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    
+
     <script>
       const navLinks = document.querySelectorAll(".nav__link");
 
@@ -656,7 +664,7 @@
     ></script>
     <!---------Collecting cookies ---------------->
 
-<!--     <script>
+    <!--     <script>
       /**
        * @description Shows the cookie banner
        */

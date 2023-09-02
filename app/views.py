@@ -141,7 +141,7 @@ def search_custom_mods(request):
 
 
 def home(request):
-    user_profile = UserProfile.objects.all()
+    user_profile = UserProfile.objects.get(user=request.user)
     roms = CustomROM.objects.all()
     mods = CustomMOD.objects.all()
     return render(request, "home.html", {'user_profile':user_profile,'roms':roms,'mods':mods})

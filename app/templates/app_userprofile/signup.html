@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block css %}
+<style>
+    @media only screen and (max-width:767px){
 
+    #signup-btn{
+        display: flex;
+        margin-left: -50px !important;
+    }
+}
+</style>
   
 {% endblock %}
 {% block content %}
@@ -40,18 +48,25 @@
                                 padding:15px;
                                 border-radius:15px;
                                 border:0;
-                                margin-bottom: 40px;
+                                margin-bottom: 20px;
                                 box-shadow:4px 4px 10px rgba(137, 235, 255, 0.06);" required>
                                 </button>
                             </div>
                         </div>
-                        {% if error %}
-                        <p class="text-danger">{{ error }}</p>
-                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
-                        {% else %}
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
-                        {% endif %} Or,  
-                        <button href="{% url 'login' %}" class="btn btn-primary">Log in</button>
+                        <div style="text-align: center;">
+                            {% if error %}
+                                <p class="text-danger">{{ error }}</p>
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            {% endif %}
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <strong>Already have an account?</strong>
+                            <a href="{% url 'login' %}" class="text-center" style="font-size: 1.5em;">Log in</a>
+                        </div>
+                        
                     </form>
                 </div>
             </div>

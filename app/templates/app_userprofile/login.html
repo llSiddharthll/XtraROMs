@@ -32,18 +32,24 @@
                                 padding:15px;
                                 border-radius:15px;
                                 border:0;
-                                margin-bottom: 40px;
+                                margin-bottom: 20px;
                                 box-shadow:4px 4px 10px rgba(137, 235, 255, 0.06);">
                                 </button>
                             </div>
                         </div>
-                        {% if error %}
-                        <p class="text-danger">{{ error }}</p>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        {% else %}
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        {% endif %} Or,
-                        <button href="{% url 'login' %}" class="btn btn-primary">SignUo</button>
+                        <div style="text-align: center;">
+                            {% if error %}
+                                <p class="text-danger">{{ error }}</p>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            {% endif %}
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <strong>Don't have account?</strong>
+                            <a href="{% url 'signup' %}" class="text-center" style="font-size: 1.5em;">SignUp</a>
+                        </div>
                     </form>
                 </div>
             </div>

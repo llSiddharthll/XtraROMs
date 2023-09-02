@@ -1,50 +1,14 @@
 [
     {
-        "id": 8,
-        "name": "CrDroid",
+        "id": 7,
+        "name": "Arrow OS",
         "device": "Fleur / Miel",
-        "details": "#ROM #crdroid #crd #Unofficial #T #A13\r\ncrDroid 9.7 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\nReleased : 03/07/23",
-        "link": "https://devuploads.com/in9hjex88njh",
-        "credits": "gabutuniverse",
+        "details": "#ROM #arrowos #arrow #Unofficial #T #A13 \r\nArrowOS 13.0 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\n\r\nUpdated: 27/06/'23",
+        "link": "https://t.me/nem1xbuilds/132?single",
+        "credits": "nem1x",
         "likes": 0,
-        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/images/cr.jpg",
-        "is_staff": true,
-        "is_authenticated": true
-    },
-    {
-        "id": 15,
-        "name": "Pixel Experience Plus.",
-        "device": "Fleur / Miel",
-        "details": "#ROM #PixelExperiencePlus #Unoffcial #Android13 \r\nPixel Experience Plus | Unofficial | Android 13 | Poco M4 Pro 4G/Redmi Note 11 4G\r\n\r\nBuild date: 13/8/23\r\n\r\nChangelogs: \r\n- Update August Security patch\r\n- Improve Peformance\r\n- Fix Speaker Issue",
-        "link": "https://devuploads.com/ojhr73inkwa0",
-        "credits": "Erico_Cristiant",
-        "likes": 0,
-        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/images/photo_2023-08-12_23-10-25.jpg",
-        "is_staff": true,
-        "is_authenticated": true
-    },
-    {
-        "id": 21,
-        "name": "crDroid 9.7",
-        "device": "Viva / Vida",
-        "details": "crDroid 9.7 - UNOFFICIAL | Android 13    \r\n\r\n#crDroid #viva #Gapps #T #Unofficial                                                                                                                                                                                             \r\n                                                                                                                                                            \r\nOTA Update available\r\n\r\nChangelog in GH repo",
-        "link": "https://github.com/grimanos/releases/releases/tag/1689437560",
-        "credits": "Grimanos",
-        "likes": 0,
-        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/images/81f96664-f4fa-4ce4-b5bc-a61d11a047da.jpg",
-        "is_staff": true,
-        "is_authenticated": true
-    },
-    {
-        "id": 34,
-        "name": "CrDroid 9.8",
-        "device": "Fleur / Miel",
-        "details": "CrDroid v9.8 |  Vanilla | Unofficial\r\n\r\nDevice: Poco M4 Pro 4G / Redmi Note 11S\r\n\r\nBuild Date: 17/08/\"23",
-        "link": "https://sourceforge.net/projects/project-fleur/files/collection/crDroidAndroid-13.0-20230814-fleur-v9.8.zip/download",
-        "credits": "rusyd4",
-        "likes": 0,
-        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/images/crdroid.jpg",
-        "is_staff": true,
-        "is_authenticated": true
+        "image_url": "https://xtraroms.s3.eu-north-1.amazonaws.com/images/61c505ddf3b43ff1eda23b44721e6d7486482b9779352526ad2b854cadc435b219fe.jpg",
+        "is_staff": false,
+        "is_authenticated": false
     }
 ]
