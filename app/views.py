@@ -448,3 +448,5 @@ def chatbot(request):
     return render(request, 'chatbot.html', {'user_message': user_message, 'bot_response': bot_response})
 
 
+def comment_policy_view(request):
+    return render(request, 'comment_policy.html')

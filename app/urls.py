@@ -21,4 +21,5 @@ urlpatterns = [
     path('track-session/', views.track_session, name='track_session'),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
     path('chatbot/', chatbot, name='chatbot'),
+    path('chatbot/comment-policy/', views.comment_policy_view, name='comment-policy'),
 ]
