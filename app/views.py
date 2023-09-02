@@ -141,10 +141,18 @@ def search_custom_mods(request):
 
 
 def home(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    roms = CustomROM.objects.all()
-    mods = CustomMOD.objects.all()
-    return render(request, "home.html", {'user_profile':user_profile,'roms':roms,'mods':mods})
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        roms = CustomROM.objects.all()
+        mods = CustomMOD.objects.all()
+        return render(request, "home.html", {'user_profile':user_profile,'roms':roms,'mods':mods})
+    # Rest of your code
+    else:
+        roms = CustomROM.objects.all()
+        mods = CustomMOD.objects.all()
+        return render(request, "home.html", {'roms':roms,'mods':mods})
+    # Handle the case when the user is not authenticated
+
 
 
 def login_request(request):
