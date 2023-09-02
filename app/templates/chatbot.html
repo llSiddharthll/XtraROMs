@@ -2,7 +2,27 @@
 {% load static %}
 
 {% block css %}
-<link rel="canonical" href="https://telegram.me/XtraROMsOfficial">
+<style>
+    /* Example: Adjust the comment input field and button size */
+#commento #commento-textarea {
+    height: 100px;
+}
+
+#commento #commento-button {
+    padding: 10px 20px;
+}
+/* Example: Change the font size and color of comment text */
+#commento .commento-comment .commento-content {
+    font-size: 14px;
+    color: #333;
+}
+/* Example: Change the background color and border of the Commento container */
+#commento {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+}
+
+</style>
 {% endblock %}
 
 {% block content %}
