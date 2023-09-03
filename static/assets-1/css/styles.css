@@ -32,7 +32,7 @@
 }
 
 /*=============== BASE ===============*/
-/* * {
+/*{
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -64,8 +64,6 @@ a {
   height: 100vh;
 }
 
-/*=============== LAYOUT ===============*/
-
 /*=============== HEADER ===============*/
 .header {
   position: fixed;
@@ -95,9 +93,9 @@ a {
   font-weight: 600;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 990px) {
   .nav__name{
-    display: none;
+    display: block;
   }
   .nav__menu {
     position: fixed;
@@ -181,7 +179,7 @@ a {
   }
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 990px) {
   
   .nav {
     height: calc(var(--header-height) + 1.5rem); /* 4.5rem */
@@ -194,7 +192,7 @@ a {
   }
   .nav__name {
     font-size: var(--normal-font-size);
-    /* display: block; */ /* Minimalist design, visible labels */
+    display: block; /* Minimalist design, visible labels */
   }
   .nav__link:hover {
     color: var(--first-color);
