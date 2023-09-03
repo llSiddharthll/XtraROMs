@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-import boto3
-from storages.backends.s3boto3 import S3Boto3Storage
 import os
 from pathlib import Path
 
@@ -41,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'cloudinary',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -96,22 +95,30 @@ DATABASES = {
     }
 }
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
+# Cloudinary Configuration (Retain this part)
+cloudinary.config(
+    cloud_name="durdi1oak",
+    api_key="164254991127435",
+    api_secret="i8Lzr2SSRJCAlHS_6l0NVqrDkc4"
+)
 
-# AWS S3 Settings
-AWS_ACCESS_KEY_ID = "AKIA3CDQKC32YVT7XJXH"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "xtraroms"
-AWS_S3_REGION_NAME = "eu-north-1"
+# Cloudinary Configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'durdi1oak',
+    'API_KEY': '164254991127435',
+    'API_SECRET': 'i8Lzr2SSRJCAlHS_6l0NVqrDkc4',
+}
 
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
-
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
+# Use Cloudinary as the storage backend for media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Media files
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'  # Set the media URL to a path in your Django project
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Set the local media root folder
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
