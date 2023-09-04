@@ -237,7 +237,7 @@
               <input type="url" class="form-control" id="link" name="link" required />
               <div class="mb-3">
                 <label for="link" class="form-label">Boot-Img Link (optional)</label>
-                <input type="url" class="form-control" id="boot_link" name="boot_link" required />
+                <input type="url" class="form-control" id="boot_link" name="boot_link" />
                 <div>
                   <label for="date" class="form-label">Release Date</label>
                   <input type="date" class="form-control" id="upload_date" name="upload_date" required />
@@ -349,15 +349,15 @@
         ` : '';
 
         const likeBtn = result.is_authenticated ?
-            `<button class="btn btn-secondary rom-link like-button" data-rom-id="${result.id}">
-                <i class="far fa-thumbs-up"></i> Like
+            `<button class="btn btn-secondary rom-link like-button" data-rom-id="${result.id}" style="float:right;">
+                <i class="far fa-thumbs-up"></i>
             </button>` :
-            `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal">
-                <i class="far fa-thumbs-up"></i> Like
+            `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal" style="float:right;">
+                <i class="far fa-thumbs-up"></i>
             </button>`;
 
         const likeCnt = `
-            <span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%;">
+            <span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%;float:right;">
                 ${result.likes}
             </span>`;
 
@@ -394,8 +394,8 @@
                             style="background-color: var(--accent); border: none;"
                         >Download</a>
                         ${editLink}
-                        ${likeBtn}
                         ${likeCnt}
+                        ${likeBtn}
                     </div>
             </div>
         </div>

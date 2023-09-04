@@ -33,7 +33,10 @@ class UploadROMForm(forms.ModelForm):
 class UploadMODForm(forms.ModelForm):
     class Meta:
         model = CustomMOD
-        fields = ('name','image','credits', 'link','details')
+        fields = ('name','image','credits', 'link','details','upload_date')
+        widgets = {
+            'upload_date': forms.DateInput(attrs={'type':'date'}),
+        }
 
 
 class ProfilePictureForm(forms.ModelForm):
