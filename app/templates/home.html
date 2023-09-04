@@ -179,8 +179,65 @@ body{
 .game-section h1 {
   padding-bottom: 48px;
 }
+/* HERO
+----------------------*/
+
+#home {
+    margin-top: -100px;
+    padding: 50px 0 0;
+    text-align: center;
+    color: #FFF;
+}
+
+#home .bg-gradient {
+    background-image: -moz-linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%) !important;
+    background-image: -webkit-linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%) !important;
+    background-image: -ms-linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%) !important;
+    background-image: linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%) !important;
+}
+
+#home .tagline {
+    font-size: 23px;
+    font-weight: 300;
+    color: #ffb8f6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#home .img-holder {
+    height: 0;
+    padding-bottom: 33%;
+    overflow: hidden;
+}
+
+@media (max-width:1200px) {
+    #home .img-holder {
+        padding-bottom: 50%;
+    }
+}
+
+@media (max-width:767px) {
+    #home .tagline {
+        font-size: 17px;
+    }
+    #home .img-holder {
+        padding-bottom: 100%;
+    }
+}
 </style>
 {% endblock %}
+
+
+<section class="homepage">
+<div class="bg-gradient" id="home">
+  <div class="container mt-5">
+      <h1>Mobile App Landing Page Template</h1>
+      <p class="tagline">The one and only solution for any kind of mobila app landing needs. Just change the screenshots and texts and you are good to go. </p>
+  </div>
+  <div class="img-holder mt-3"><img src="{% static 'images/screenshot.png' %}" alt="phone" class="img-fluid"></div>
+</div>
+</section>
+
 
 <section class="game-section">
   <div class="container-fluid">

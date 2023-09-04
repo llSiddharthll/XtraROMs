@@ -1,14 +1,26 @@
 [
     {
-        "id": 7,
-        "name": "Arrow OS",
+        "id": 15,
+        "name": "Pixel Experience Plus.",
         "device": "Fleur / Miel",
-        "details": "#ROM #arrowos #arrow #Unofficial #T #A13 \r\nArrowOS 13.0 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\n\r\nUpdated: 27/06/'23",
-        "link": "https://t.me/nem1xbuilds/132?single",
-        "credits": "nem1x",
+        "details": "#ROM #PixelExperiencePlus #Unoffcial #Android13 \r\nPixel Experience Plus | Unofficial | Android 13 | Poco M4 Pro 4G/Redmi Note 11 4G\r\n\r\nBuild date: 13/8/23\r\n\r\nChangelogs: \r\n- Update August Security patch\r\n- Improve Peformance\r\n- Fix Speaker Issue",
+        "link": "https://devuploads.com/ojhr73inkwa0",
+        "credits": "Erico_Cristiant",
         "likes": 0,
-        "image_url": "https://xtraroms.s3.eu-north-1.amazonaws.com/images/61c505ddf3b43ff1eda23b44721e6d7486482b9779352526ad2b854cadc435b219fe.jpg",
-        "is_staff": false,
-        "is_authenticated": false
+        "image_url": "https://xtraroms.s3.eu-north-1.amazonaws.com/images/IMG_20230830_121840_583.jpg",
+        "is_staff": true,
+        "is_authenticated": true
+    },
+    {
+        "id": 41,
+        "name": "PixelExperience Plus",
+        "device": "Fleur / Miel",
+        "details": "Changelogs:\r\n*Initial Build\r\n*Improved System Swapiness \r\n\r\nNotes:\r\n*Prebuilt Vendor Based Rom\r\n*Enforcing Selinux\r\n*Safteynet Pasess\r\n*Use FW 13.0.9.0.SKEMIXM\r\n\r\nCredits:\r\n@Nem1x For DT\r\n@XtremeRiderA8AXR & @noname22877 For Testing The Build",
+        "link": "https://sourceforge.net/projects/fleur/files/PixelExperience/PixelExperience_Plus_fleur-13.0-20230821-1502-UNOFFICIAL.zip/download",
+        "credits": "RT1648",
+        "likes": 0,
+        "image_url": "https://xtraroms.s3.eu-north-1.amazonaws.com/images/IMG_20230830_121749_067.jpg",
+        "is_staff": true,
+        "is_authenticated": true
     }
 ]

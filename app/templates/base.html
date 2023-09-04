@@ -3,7 +3,11 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
   <head>
-    <!-- Google tag (gtag.js) -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XtraROMs</title>
+
+    <!-- Google Tag Manager -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-TFKNBPWNS5"
@@ -14,26 +18,28 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-TFKNBPWNS5");
     </script>
-    <meta
-      name="google-site-verification"
-      content="R7qK2vfnB-zoNMi6P74FMMpD7Zmdo50YXJUdTQdJ1Pw"
-    />
-    <meta charset="UTF-8" />
+
+    <!-- Google Sign-In Client ID -->
     <meta
       name="google-signin-client_id"
       content="181248088073-lh3mnt1d264iltq7sepgec17qu9b3d11.apps.googleusercontent.com"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
-    <title>XtraROMs</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+
+    <!-- Meta Description and Keywords -->
+    <meta
+      name="description"
+      content="XtraROMs is your ultimate destination for custom ROMs, offering a wide range of custom Android ROMs for various devices. Explore the latest ROMs and enhance your Android experience."
     />
+    <meta
+      name="keywords"
+      content="XtraROMs, custom ROMs, Android ROMs, ROM downloads, Android customization, smartphone firmware, custom firmware, Android modding, Android development, Lineage OS, Arrow OS, Evolution X, magisk, Modules, Mods, Root, Su"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
+
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -41,355 +47,39 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
-    <link rel="stylesheet" href="{% static 'style2.css' %}" />
 
-    <!--=============== BOXICONS ===============-->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
 
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{% static 'assets-1/css/styles.css' %}" />
-
+    <!-- Normalize CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
     />
-    <!-- Include FontAwesome CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <!-- Include Owl Carousel CSS -->
+
+    <!-- Owl Carousel CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
     />
     <link rel="stylesheet" href="{% static 'owl.theme.default.css' %}" />
-    <link rel="stylesheet" href="{% static 'style2.css' %}" />
+
+    <!-- Select2 CSS -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css"
       rel="stylesheet"
     />
 
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap");
-    </style>
-
-    <style>
-      :root {
-        --text: #e7f8f9;
-        --background: #071b1c;
-        --primary: #278f96;
-        --secondary: #0a2729;
-        --accent: #34c1cb;
-      }
-
-      .btn {
-        background-color: var(--accent) ;
-        color: var(--background);
-        border: none ;
-        border-radius: 20px ;
-      }
-
-      /* Smooth scrolling behavior */
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: "Poppins";
-        background: var(--background);
-        padding-top: 50px;
-        color: var(--text);
-      }
-
-      /* Default card style */
-      .card {
-        background-color: var(--secondary);
-        border-radius: 20px;
-        border: none;
-        overflow: hidden !important;
-      }
-      .img-thumbnail {
-        padding: 0;
-      }
-
-      a {
-        color: var(--accent);
-      }
-
-      /* Light mode */
-
-      #new h2 {
-        font-size: 36px;
-        font-weight: 600;
-        text-align: center;
-      }
-
-      #new p {
-        color: #5a5a5a;
-        font-size: 14px;
-        font-weight: bold;
-        line-height: 22px;
-        text-align: center;
-        padding: 10px;
-      }
-
-      .navbar-brand img {
-        height: 30px;
-        border-radius: 50px;
-      }
-
-      @media (max-width: 700px) {
-        .row {
-          flex-direction: column;
-        }
-      }
-
-      .only-carousel-image {
-        border-radius: 20px;
-        width: 100%;
-        height: 300px;
-        /* Increase the height of the images */
-        object-fit: cover;
-      }
-
-      .custom-rom-image {
-        border: none;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        width: 100%;
-        height: 250px;
-        /* Increase the height of the images */
-        object-fit: cover;
-      }
-
-      .custom-mod-image {
-        border: none;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        width: 100%;
-        height: 250px;
-        /* Increase the height of the images */
-        object-fit: cover;
-      }
-
-      /* Image styles */
-      .img-fluid {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Adjust the styles as needed */
-      @media (max-width: 768px) {
-        #contact h2 {
-          font-size: 30px;
-        }
-      }
-
-      /* Custom CSS for the footer */
-      .footer {
-        background-color: var(--background);
-        bottom: 0;
-        left: 0;
-        width: 100%;
-      }
-
-      .footer h3 {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-
-      .footer p {
-        font-size: 16px;
-        color: #ccc;
-        margin-bottom: 10px;
-      }
-
-      .footer ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer ul li {
-        display: inline-block;
-        margin-right: 10px;
-      }
-
-      .footer ul li a {
-        font-size: 24px;
-        color: #ccc;
-      }
-
-      .footer ul li a:hover {
-        color: #fff;
-      }
-
-      .footer hr {
-        border-top: 1px solid #555;
-        margin-top: 30px;
-        margin-bottom: 20px;
-      }
-
-      .footer p:last-child {
-        font-size: 14px;
-        color: #999;
-      }
-
-      @media screen and (max-width: 767px) {
-        .footer {
-          padding-bottom: 60px !important;
-        }
-      }
-
-      .theme-toggle {
-        /* Your custom styles here */
-        background-color: #007bff;
-        border: none;
-      }
-
-      @media (max-width: 768px) {
-        .theme-toggle {
-          margin-left: auto;
-        }
-      }
-
-      #btn-back-to-top {
-        position: fixed;
-        bottom: 25px;
-        right: 20px;
-        display: none;
-        z-index: 999;
-      }
-
-      @media (max-width: 768px) {
-        #btn-back-to-top {
-          bottom: 70px;
-          font-size: 12px;
-        }
-      }
-
-      #cb-cookie-banner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        z-index: 999;
-        border-radius: 0;
-        display: none;
-      }
-
-      .nav__list {
-        list-style: none;
-        list-style-type: none;
-        padding-top: 20px;
-      }
-      @media only screen and (max-width: 757px) {
-        .nav__list {
-          list-style: none;
-          list-style-type: none;
-          margin-left: -30px;
-        }
-        .nav__name {
-          display: block;
-        }
-        .active-link::before {
-          content: "";
-          position: absolute;
-          bottom: -0.5rem;
-          width: 4px;
-          height: 4px;
-          background-color: var(--first-color);
-          border-radius: 50%;
-        }
-      }
-      /* For large screens */
-      @media screen and (min-width: 757px) {
-        .small-screen-text {
-          display: none; /* Hide the small screen text */
-        }
-      }
-
-      /* For small screens */
-      @media screen and (max-width: 756px) {
-        .large-screen-text {
-          display: none; /* Hide the large screen text */
-        }
-      }
-    </style>
-    {% block style %} {% endblock %}
+    <!-- Your Custom Styles -->
+    <link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
+    <link rel="stylesheet" href="{% static 'style2.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets-1/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'main.css' %}" />
   </head>
   <body>
-    <!-- <div id='stars'></div>
-<div id='stars2'></div>
-<div id='stars3'></div> -->
-    <style>
-      .header {
-        background-color: var(--background);
-        opacity: 0.9;
-        padding: 0em 1em;
-        align-items: center;
-      }
-      @media only screen and (max-width: 990px) {
-        .header {
-          opacity: 1;
-        }
-      }
-
-      .navbar-brand {
-        display: flex;
-        align-items: center;
-      }
-
-      .navbar-brand img {
-        margin-right: 1em;
-      }
-
-      b {
-        font-size: 1.5em;
-        color: var(--accent);
-      }
-
-      .nav__item span {
-        color: var(--text);
-      }
-
-      .decor {
-        color: var(--accent);
-        opacity: 0;
-      }
-
-      .nav__item span:hover .decor {
-        opacity: 1;
-        transition: opacity 0.3s ease-out;
-      }
-
-      .text-center {
-        font-size: 2em;
-        font-weight: bold;
-        color: var(--text);
-        background: linear-gradient(120deg, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      @media only screen and (max-width: 757px) {
-        .text-center {
-          font-size: 1.5em;
-        }
-      }
-    </style>
     <header class="header" id="header">
       <nav class="nav container">
         <a
@@ -644,169 +334,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-    <script>
-      const navLinks = document.querySelectorAll(".nav__link");
-
-      navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.forEach((otherLink) =>
-            otherLink.classList.remove("active-link")
-          );
-          link.classList.add("active-link");
-        });
-      });
-    </script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-    <!---------Collecting cookies ---------------->
-
-    <!--     <script>
-      /**
-       * @description Shows the cookie banner
-       */
-      function showCookieBanner() {
-        let cookieBanner = document.getElementById("cb-cookie-banner");
-        cookieBanner.style.display = "block";
-      }
-
-      /**
-       * @description Hides the Cookie banner and saves the value to localstorage
-       */
-      function hideCookieBanner() {
-        localStorage.setItem("cb_isCookieAccepted", "yes");
-
-        let cookieBanner = document.getElementById("cb-cookie-banner");
-        cookieBanner.style.display = "none";
-
-        // Call the set_cookie view using AJAX
-        fetch("/set-cookie/");
-        fetch("/read-cookie/")
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data.message); // Print the response from the server
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-
-      /**
-       * @description Checks the localstorage and shows Cookie banner based on it.
-       */
-      function initializeCookieBanner() {
-        let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
-        if (isCookieAccepted === null) {
-          localStorage.setItem("cb_isCookieAccepted", "no");
-          showCookieBanner();
-        }
-        if (isCookieAccepted === "no") {
-          showCookieBanner();
-        }
-      }
-
-      // Assigning values to window object
-      window.onload = initializeCookieBanner();
-      window.cb_hideCookieBanner = hideCookieBanner;
-    </script> -->
-
-    <!-- Custom JavaScript -->
-    <script>
-      // Function to start both carousels in sync
-      function startCarouselsInSync() {
-        $("#carouselRedmi, #carouselPoco").carousel({
-          interval: 3000, // Set the interval time for sliding (e.g., 3000ms = 3 seconds)
-          pause: "false",
-        });
-      }
-
-      // Start both carousels in sync when the document is ready
-      $(document).ready(function () {
-        startCarouselsInSync();
-      });
-    </script>
-
-    <!-- <script>
-  // Function to toggle between light and dark mode
-  function toggleTheme() {
-    const body = $('body');
-    if (body.hasClass('light-mode')) {
-      body.removeClass('light-mode').addClass('dark-mode');
-      localStorage.setItem('theme', 'dark'); // Save theme preference in Local Storage
-    } else {
-      body.removeClass('dark-mode').addClass('light-mode');
-      localStorage.setItem('theme', 'light'); // Save theme preference in Local Storage
-    }
-  }
-
-  // Add event listener to the theme toggle button
-  $(document).ready(function () {
-    $('#themeToggle').on('change', function () {
-      toggleTheme();
-    });
-
-    // Load the user's preferred theme
-    function loadTheme() {
-      const theme = localStorage.getItem('theme');
-      if (theme === 'dark') {
-        $('body').addClass('dark-mode');
-        $('#themeToggle').prop('checked', true);
-      } else {
-        $('body').addClass('light-mode');
-        $('#themeToggle').prop('checked', false);
-      }
-    }
-
-    loadTheme();
-  });
-</script> -->
-    <script>
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const target = document.querySelector(this.getAttribute("href"));
-          const offset = 50; // Adjust the offset value as needed
-          const topPosition = target.offsetTop - offset;
-
-          window.scrollTo({
-            top: topPosition,
-            behavior: "smooth",
-          });
-        });
-      });
-    </script>
-
-    <!------------------------Scroll To Top ------------------------------>
-    <script>
-      //Get the button
-      let mybutton = document.getElementById("btn-back-to-top");
-
-      // When the user scrolls down 20px from the top of the document, show the button
-      window.onscroll = function () {
-        scrollFunction();
-      };
-
-      function scrollFunction() {
-        if (
-          document.body.scrollTop > 20 ||
-          document.documentElement.scrollTop > 20
-        ) {
-          mybutton.style.display = "block";
-        } else {
-          mybutton.style.display = "none";
-        }
-      }
-      // When the user clicks on the button, scroll to the top of the document
-      mybutton.addEventListener("click", backToTop);
-
-      function backToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
 
     {% block script %} {% endblock %}
   </body>
