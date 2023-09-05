@@ -91,6 +91,7 @@ def search_custom_roms(request):
                 "details": rom.details,
                 "link": rom.link,
                 "credits":rom.credits,
+                "upload_date": rom.upload_date,
                 "likes":likes_count,
                 "image_url": rom.image.url,
                 "is_staff": request.user.is_staff,
@@ -99,14 +100,6 @@ def search_custom_roms(request):
             roms_data.append(rom_data)
     else:
         roms_data = []
-
-    if not roms_data:  # Check if roms_data is empty
-        print("No results found")
-
-    print("Saving response data")
-    import json
-    with open('data.json', 'w', encoding='utf-8') as f:
-        json.dump(roms_data, f, ensure_ascii=False, indent=4) 
 
     return JsonResponse({'results': roms_data})
 
@@ -127,6 +120,7 @@ def search_custom_mods(request):
                 "details": mod.details,
                 "link": mod.link,
                 "credits":mod.credits,
+                "upload_date": mod.upload_date,
                 "likes":likes_count,
                 "image_url": mod.image.url,
                 "is_staff": request.user.is_staff,

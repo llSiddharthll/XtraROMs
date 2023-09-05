@@ -6,10 +6,11 @@
         "details": "#ROM #crdroid #crd #Unofficial #T #A13\r\ncrDroid 9.7 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\nReleased : 03/07/23",
         "link": "https://devuploads.com/in9hjex88njh",
         "credits": "gabutuniverse",
+        "upload_date": null,
         "likes": 0,
         "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121857_143.jpg",
-        "is_staff": true,
-        "is_authenticated": true
+        "is_staff": false,
+        "is_authenticated": false
     },
     {
         "id": 15,
@@ -18,10 +19,11 @@
         "details": "#ROM #PixelExperiencePlus #Unoffcial #Android13 \r\nPixel Experience Plus | Unofficial | Android 13 | Poco M4 Pro 4G/Redmi Note 11 4G\r\n\r\nBuild date: 13/8/23\r\n\r\nChangelogs: \r\n- Update August Security patch\r\n- Improve Peformance\r\n- Fix Speaker Issue",
         "link": "https://devuploads.com/ojhr73inkwa0",
         "credits": "Erico_Cristiant",
+        "upload_date": null,
         "likes": 0,
         "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121840_583.jpg",
-        "is_staff": true,
-        "is_authenticated": true
+        "is_staff": false,
+        "is_authenticated": false
     },
     {
         "id": 21,
@@ -30,10 +32,11 @@
         "details": "crDroid 9.7 - UNOFFICIAL | Android 13    \r\n\r\n#crDroid #viva #Gapps #T #Unofficial                                                                                                                                                                                             \r\n                                                                                                                                                            \r\nOTA Update available\r\n\r\nChangelog in GH repo",
         "link": "https://github.com/grimanos/releases/releases/tag/1689437560",
         "credits": "Grimanos",
+        "upload_date": null,
         "likes": 0,
         "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121857_143.jpg",
-        "is_staff": true,
-        "is_authenticated": true
+        "is_staff": false,
+        "is_authenticated": false
     },
     {
         "id": 34,
@@ -42,10 +45,11 @@
         "details": "CrDroid v9.8 |  Vanilla | Unofficial\r\n\r\nDevice: Poco M4 Pro 4G / Redmi Note 11S\r\n\r\nBuild Date: 17/08/\"23",
         "link": "https://sourceforge.net/projects/project-fleur/files/collection/crDroidAndroid-13.0-20230814-fleur-v9.8.zip/download",
         "credits": "rusyd4",
+        "upload_date": null,
         "likes": 0,
         "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121857_143.jpg",
-        "is_staff": true,
-        "is_authenticated": true
+        "is_staff": false,
+        "is_authenticated": false
     },
     {
         "id": 42,
@@ -54,21 +58,4 @@
         "details": "- Please make sure that you made IMEI backup\r\n- Recommended FW V13.0.9.0.SKEMIXM\r\n- GApps Build\r\n- Enforcing Build",
         "link": "https://sourceforge.net/projects/erico-project/files/SuperiorOS/SuperiorOS-Thirteen-fleur-GAPPS-COMMUNITY-20230829-0951.zip/download",
         "credits": "Erico_Cristiant",
-        "likes": 2,
-        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230831_162817_583.jpg",
-        "is_staff": true,
-        "is_authenticated": true
-    },
-    {
-        "id": 46,
-        "name": "MikuUI TDA",
-        "device": "Fleur / Miel",
-        "details": "Known issue? \r\nNo face unlock",
-        "link": "https://sourceforge.net/projects/erico-project/files/MikuUI/MikuUI-TDA-fleur-23090113-UNOFFICIAL.zip/download",
-        "credits": "@Erico_Cristiant",
-        "likes": 0,
-        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/20230901_222920.jpg",
-        "is_staff": true,
-        "is_authenticated": true
-    }
-]
+        "upload_date": 
