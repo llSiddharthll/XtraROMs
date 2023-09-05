@@ -35,8 +35,8 @@ body {
   border: none;
   overflow: hidden !important;
 }
-.card a{
-  color: var(--accent) ;
+a{
+  color: var(--accent) !important;
 }
 .img-thumbnail {
   padding: 0;

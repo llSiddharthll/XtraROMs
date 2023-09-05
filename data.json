@@ -1,5 +1,17 @@
 [
     {
+        "id": 8,
+        "name": "CrDroid",
+        "device": "Fleur / Miel",
+        "details": "#ROM #crdroid #crd #Unofficial #T #A13\r\ncrDroid 9.7 | UNOFFICIAL | Android 13 | Poco M4 Pro 4G / Redmi Note 11S 4G\r\nReleased : 03/07/23",
+        "link": "https://devuploads.com/in9hjex88njh",
+        "credits": "gabutuniverse",
+        "likes": 0,
+        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121857_143.jpg",
+        "is_staff": true,
+        "is_authenticated": true
+    },
+    {
         "id": 15,
         "name": "Pixel Experience Plus.",
         "device": "Fleur / Miel",
@@ -7,19 +19,55 @@
         "link": "https://devuploads.com/ojhr73inkwa0",
         "credits": "Erico_Cristiant",
         "likes": 0,
-        "image_url": "https://xtraroms.s3.eu-north-1.amazonaws.com/images/IMG_20230830_121840_583.jpg",
+        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121840_583.jpg",
         "is_staff": true,
         "is_authenticated": true
     },
     {
-        "id": 41,
-        "name": "PixelExperience Plus",
-        "device": "Fleur / Miel",
-        "details": "Changelogs:\r\n*Initial Build\r\n*Improved System Swapiness \r\n\r\nNotes:\r\n*Prebuilt Vendor Based Rom\r\n*Enforcing Selinux\r\n*Safteynet Pasess\r\n*Use FW 13.0.9.0.SKEMIXM\r\n\r\nCredits:\r\n@Nem1x For DT\r\n@XtremeRiderA8AXR & @noname22877 For Testing The Build",
-        "link": "https://sourceforge.net/projects/fleur/files/PixelExperience/PixelExperience_Plus_fleur-13.0-20230821-1502-UNOFFICIAL.zip/download",
-        "credits": "RT1648",
+        "id": 21,
+        "name": "crDroid 9.7",
+        "device": "Viva / Vida",
+        "details": "crDroid 9.7 - UNOFFICIAL | Android 13    \r\n\r\n#crDroid #viva #Gapps #T #Unofficial                                                                                                                                                                                             \r\n                                                                                                                                                            \r\nOTA Update available\r\n\r\nChangelog in GH repo",
+        "link": "https://github.com/grimanos/releases/releases/tag/1689437560",
+        "credits": "Grimanos",
         "likes": 0,
-        "image_url": "https://xtraroms.s3.eu-north-1.amazonaws.com/images/IMG_20230830_121749_067.jpg",
+        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121857_143.jpg",
+        "is_staff": true,
+        "is_authenticated": true
+    },
+    {
+        "id": 34,
+        "name": "CrDroid 9.8",
+        "device": "Fleur / Miel",
+        "details": "CrDroid v9.8 |  Vanilla | Unofficial\r\n\r\nDevice: Poco M4 Pro 4G / Redmi Note 11S\r\n\r\nBuild Date: 17/08/\"23",
+        "link": "https://sourceforge.net/projects/project-fleur/files/collection/crDroidAndroid-13.0-20230814-fleur-v9.8.zip/download",
+        "credits": "rusyd4",
+        "likes": 0,
+        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230830_121857_143.jpg",
+        "is_staff": true,
+        "is_authenticated": true
+    },
+    {
+        "id": 42,
+        "name": "SuperiorOS",
+        "device": "Fleur / Miel",
+        "details": "- Please make sure that you made IMEI backup\r\n- Recommended FW V13.0.9.0.SKEMIXM\r\n- GApps Build\r\n- Enforcing Build",
+        "link": "https://sourceforge.net/projects/erico-project/files/SuperiorOS/SuperiorOS-Thirteen-fleur-GAPPS-COMMUNITY-20230829-0951.zip/download",
+        "credits": "Erico_Cristiant",
+        "likes": 2,
+        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/IMG_20230831_162817_583.jpg",
+        "is_staff": true,
+        "is_authenticated": true
+    },
+    {
+        "id": 46,
+        "name": "MikuUI TDA",
+        "device": "Fleur / Miel",
+        "details": "Known issue? \r\nNo face unlock",
+        "link": "https://sourceforge.net/projects/erico-project/files/MikuUI/MikuUI-TDA-fleur-23090113-UNOFFICIAL.zip/download",
+        "credits": "@Erico_Cristiant",
+        "likes": 0,
+        "image_url": "https://res.cloudinary.com/durdi1oak/image/upload/v1/media/images/20230901_222920.jpg",
         "is_staff": true,
         "is_authenticated": true
     }

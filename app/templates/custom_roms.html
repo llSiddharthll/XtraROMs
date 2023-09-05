@@ -113,8 +113,8 @@
 
     <div class="mt-3 inputs" style="padding-bottom: 40px;">
       <div style="position: relative;">
-          <input id="search-input" type="text" class="form-control live-search" placeholder="    Search Custom ROMs and Recovery..."
-              style="padding: 1em 2em; border-radius: 20px; border: none; background-color: var(--secondary); color: var(--text)">
+          <input id="search-input" type="text" class="form-control live-search" placeholder="Search Custom ROMs and Recovery..."
+              style="padding: 1em 2em; border-radius: 20px; border: none; background-color: var(--secondary); color: var(--text); text-indent: 30px;">
           <i class="fa fa-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%);"></i>
       </div>
   </div>
@@ -350,10 +350,10 @@
         ` : '';
 
         const likeBtn = result.is_authenticated ?
-            `<button class="btn btn-secondary rom-link like-button" data-rom-id="${result.id}" style="float:right;">
+            `<button class="btn btn-secondary rom-link like-button" data-rom-id="${result.id}" style="float:right;margin-right: 5px;">
                 <i class="far fa-thumbs-up"></i>
             </button>` :
-            `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal" style="float:right;">
+            `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" data-bs-target="#loginModal" style="float:right;margin-right: 5px;">
                 <i class="far fa-thumbs-up"></i>
             </button>`;
 
