@@ -149,6 +149,7 @@ a {
   transition: .3s;
 }
 
+@media screen and (min-width: 993px) {
 /* Minimalist design, active link */
 .active-link::before{
   content: '';
@@ -159,7 +160,7 @@ a {
   background-color: var(--first-color);
   border-radius: 50%;
 }
-
+}
 /* Change background header */
 .scroll-header {
   box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
@@ -199,7 +200,7 @@ a {
   }
 
   /* First design, remove if you choose the minimalist design */
-  .active-link::before {
+  /* .active-link::before {
     content: '';
     position: absolute;
     bottom: -.75rem;
@@ -207,12 +208,12 @@ a {
     height: 4px;
     background-color: var(--first-color);
     border-radius: 50%;
-  }
+  } */
 
   /* Minimalist design */
-  /* .active-link::before{
+  .active-link::before{
       bottom: -.75rem;
-  } */
+  }
 }
 
 /* For large devices */

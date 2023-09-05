@@ -35,13 +35,13 @@ body {
   border: none;
   overflow: hidden !important;
 }
+.card a{
+  color: var(--accent) ;
+}
 .img-thumbnail {
   padding: 0;
 }
 
-a {
-  color: var(--background) !important;
-}
 
 /* Light mode */
 
