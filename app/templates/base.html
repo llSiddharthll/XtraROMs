@@ -199,9 +199,6 @@
         </div>
         {% if user.is_authenticated %}
         <a href="{% url 'profile' %}">
-          {% else %}
-          <a href="{% url 'login' %}">
-          {% endif %}
           <img
           src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
           alt=""
@@ -216,6 +213,22 @@
             border: 3px solid rgb(35, 41, 59);
           "
         /></a>
+        {% else %}
+        <img
+          src="{% static 'images/peakpx.jpg' %}"
+          alt=""
+          class="nav__img"
+          style="
+            max-height: 35px;
+            max-width: 35px;
+            min-height: 35px;
+            min-width: 35px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgb(35, 41, 59);
+          "
+        />
+        {% endif %}
       </nav>
     </header>
 
