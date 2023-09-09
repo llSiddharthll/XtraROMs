@@ -1,6 +1,19 @@
+{% extends 'basic.html' %}
 {% load static %}
+{% block css %}
+<!--Boxicon CSS-->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<link rel="stylesheet" href="{% static 'nav.css' %}" />
+<!-- Bootstrap CSS -->
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+rel="stylesheet"
+integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+crossorigin="anonymous"
+/>
 <style>
-    
+  
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 3rem;
@@ -55,7 +68,46 @@ a {
 }
 
 
+.section__title {
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
 
+.section__height {
+  height: 100vh;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--container-color);
+  z-index: var(--z-fixed);
+  transition: .4s;
+  margin-top: -3px !important;
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__img {
+  width: 32px;
+  border-radius: 50%;
+}
+
+.nav__logo {
+  color: var(--title-color);
+  font-weight: 600;
+}
 
 @media screen and (max-width: 990px) {
   .nav__name{
@@ -78,7 +130,49 @@ a {
   
 }
 
+.nav__list, 
+.nav__link {
+  display: flex;
+}
 
+.nav__link {
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  color: white;
+  font-weight: 600;
+  margin-top: 8px;
+  margin-right: -13px;
+}
+
+.nav__list {
+  justify-content: space-around;
+}
+
+
+
+.nav__name {
+  font-size: var(--tiny-font-size);
+  /* display: none; */ /* Minimalist design, hidden labels */
+}
+
+.nav__icon {
+  font-size: 1.5rem;
+}
+
+/*Active link*/
+.active-link {
+  position: relative;
+  color: var(--first-color);
+  transition: .3s;
+}
+
+@media screen and (min-width: 993px) {
+}
+/* Change background header */
+.scroll-header {
+  box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
+}
 
 
 /*=============== MEDIA QUERIES ===============*/
@@ -113,21 +207,10 @@ a {
     color: var(--first-color);
   }
 
-  /* First design, remove if you choose the minimalist design */
-  .active-link::before {
-    content: '';
-    position: absolute;
-    bottom: -.75rem;
-    width: 4px;
-    height: 4px;
-    background-color: var(--first-color);
-    border-radius: 50%;
-  }
-
   /* Minimalist design */
-  /* .active-link::before{
+  .active-link::before{
       bottom: -.75rem;
-  } */
+  }
 }
 
 /* For large devices */
@@ -136,23 +219,148 @@ a {
     margin-left: auto;
     margin-right: auto;
   }
+  .nav__list{
+    column-gap: 3.7rem !important;
+  }
 }
+
 </style>
+{% endblock %}
 
+{% block content %}
+<body>
+  
+<header class="header" id="header">
+  <nav class="nav container">
+    <a
+      class="navbar-brand"
+      href="{% url 'home' %}"
+      style="padding-left: 20px"
+    >
+      <img src="{% static 'images/logo.jpeg' %}" alt="SidXFleur" />
+      <b style="padding-top: 5px">XtraROMs</b>
+    </a>
 
-  <script>
-    const navLinks = document.querySelectorAll('.nav__link');
-const currentPath = window.location.pathname;
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a
+            href="{% url 'home' %}"
+            class="nav__link {% if request.path == '/' %}active-link{% endif %}"
+          >
+            <i class="bx bx-home-alt nav__icon"></i>
+            <span class="nav__name"
+              ><span class="decor">< </span>Home<span class="decor">
+                /></span
+              ></span
+            >
+          </a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav__item">
+          <a
+            href="{% url 'profile' %}"
+            class="nav__link {% if request.path == '/profile/' %}active-link{% endif %}"
+          >
+            <i class="bx bx-user nav__icon"></i>
+            <span class="nav__name"
+              ><span class="decor">< </span>Profile<span class="decor">
+                /></span
+              ></span
+            >
+          </a>
+        </li>
+        {% else %}
+        <li class="nav__item">
+          <a
+            href="{% url 'signup' %}"
+            class="nav__link {% if request.path == '/signup/' %}active-link{% endif %}"
+          >
+            <i class="bx bxs-receipt nav__icon"></i>
+            <span class="nav__name"
+              ><span class="decor">< </span>SignUp<span class="decor">
+                /></span
+              ></span
+            >
+          </a>
+        </li>
+        {% endif %}
+        <li class="nav__item">
+          <a
+            href="{% url 'custom_roms' %}"
+            class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}"
+          >
+            <i class="bx bx-mobile-alt nav__icon"></i>
+            <span class="nav__name"
+              ><span class="decor">< </span>Roms<span class="decor">
+                /></span
+              ></span
+            >
+          </a>
+        </li>
 
-navLinks.forEach(link => {
-    const linkPath = link.getAttribute('href');
-    
-    if (currentPath === linkPath) {
-        link.classList.add('active-link');
-    } else {
-        link.classList.remove('active-link');
-    }
-});
-
-
-  </script>
+        <li class="nav__item">
+          <a
+            href="{% url 'magisk_modules' %}"
+            class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}"
+          >
+            <i class="bx bxs-paint nav__icon"></i>
+            <span class="nav__name"
+              ><span class="decor">< </span>Mods<span class="decor">
+                /></span
+              ></span
+            >
+          </a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav__item">
+          <a
+            href="{% url 'chatbot' %}"
+            class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
+          >
+            <i class="bx bx-message-square-detail nav__icon"></i>
+            <span class="nav__name"
+              ><span class="decor">< </span>Chit-Chat<span class="decor">
+                /></span
+              ></span
+            >
+          </a>
+        </li>
+        {% else %}
+        <li class="nav__item">
+          <a
+            href="{% url 'login' %}"
+            class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
+          >
+            <i class="bx bx-receipt nav__icon"></i>
+            <span class="nav__name"
+              ><span class="decor">< </span>Login<span class="decor">
+                /></span
+              ></span
+            >
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    {% if user.is_authenticated %}
+    <a href="{% url 'profile' %}">
+      <img
+      src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
+      alt=""
+      class="nav__img"
+      style="
+        max-height: 35px;
+        max-width: 35px;
+        min-height: 35px;
+        min-width: 35px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid rgb(35, 41, 59);
+      "
+    /></a>
+    {% endif %}
+  </nav>
+</header>
+</body>
+{% endblock %}

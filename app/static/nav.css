@@ -24,7 +24,6 @@ html {
 body {
   font-family: "Poppins";
   background: var(--background);
-  padding-top: 50px;
   color: var(--text);
 }
 
@@ -225,13 +224,6 @@ body {
   }
   .nav__name {
     display: block;
-  }
-  .active-link::before {
-    content: "";
-    position: absolute;
-    bottom: -0.5rem;
-    background-color: var(--first-color);
-    border-radius: 50%;
   }
 }
 /* For large screens */

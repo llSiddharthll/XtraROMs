@@ -155,8 +155,6 @@ a {
   content: '';
   position: absolute;
   bottom: -.5rem;
-  width: 4px;
-  height: 4px;
   background-color: var(--first-color);
   border-radius: 50%;
 }
