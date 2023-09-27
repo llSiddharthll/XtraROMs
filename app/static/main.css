@@ -1,19 +1,34 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap");
 
+/* :root {
+  --text: #f1fbfe;
+  --background: #010c0e;
+  --primary: #0c5e6f;
+  --secondary: #021417;
+  --accent: #16b1d0;
+} */
+
 :root {
-  --text: #e7f8f9;
-  --background: #071b1c;
-  --primary: #278f96;
-  --secondary: #0a2729;
-  --accent: #34c1cb;
+  --text: #0a1514;
+  --background: #e3f2f1;
+  --primary: #9fd0cc;
+  --secondary: #e0f0ef;
+  --accent: #58ada7;   
 }
 
+/* Mode */
 .btn {
-  background-color: var(--accent) ;
-  color: var(--background);
-  border: none ;
-  border-radius: 20px ;
+  background-color: var(--accent);
+  color: var(--text);
+  border: none;
+  border-radius: 20px;
+}
+
+.btn-primary{
+  background-color: var(--primary) !important;
+  color: var(--text) !important;
+  border: none;
+  border-radius: 20px;
 }
 
 /* Smooth scrolling behavior */
@@ -23,27 +38,59 @@ html {
 
 body {
   font-family: "Poppins";
-  background: var(--background);
+  background: var(--background) !important;
   padding-top: 50px;
-  color: var(--text);
+  transition: background-color 0.5s;
+  color: var(--text) !important; /* Set the default text color here */
 }
-
+.bx{
+  color: var(--text);
+  font-weight: bolder;
+}
 /* Default card style */
 .card {
-  background-color: var(--secondary);
+  background-color: var(--primary);
   border-radius: 20px;
   border: none;
-  overflow: hidden !important;
+  overflow: hidden;
+  color: var(--text);
+  box-shadow: 0 10px 15px rgb(26, 31, 32);
+  transition: 0.2s ease-out;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+.card:hover{
+  transform: scale(0.95);
+}
+.card img{
+  scale: 0.9;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px rgb(26, 31, 32);
+  transition: 0.3s ease-out;
+}
+.card img:hover{
+  scale: 1;
+}
+.card h5{
+  font-weight: bolder;
+}
+.card .btn{
+  box-shadow: 0 5px 8px rgb(26, 31, 32);
+}
+.card .fas, .card .far{
+  color: var(--text);
 }
 .card-title a {
-  color: var(--accent) !important;
+  color: var(--text) ;
+}
+.card .likes-count{
+  color: var(--text);
+  font-weight: bolder;
 }
 .img-thumbnail {
   padding: 0;
 }
 
-
-/* Light mode */
+/* mode */
 
 #new h2 {
   font-size: 36px;
@@ -86,9 +133,9 @@ body {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   width: 100%;
-  height: 250px;
-  /* Increase the height of the images */
+  height: 250px; /* Increase the height of the images */
   object-fit: cover;
+  transition: transform 0.3s ease-out;
 }
 
 .custom-mod-image {
@@ -108,9 +155,13 @@ body {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+#about p{
+  font-size: larger;
+  font-family: system-ui;
+  margin: 10px;
+}
 /* Adjust the styles as needed */
 @media (max-width: 768px) {
   #contact h2 {
@@ -125,7 +176,6 @@ body {
   left: 0;
   width: 100%;
 }
-
 .footer h3 {
   font-size: 24px;
   font-weight: bold;
@@ -168,37 +218,31 @@ body {
   font-size: 14px;
   color: #999;
 }
-
+.nav__name{
+  font-weight: bolder;
+}
 @media screen and (max-width: 767px) {
   .footer {
     padding-bottom: 60px !important;
   }
 }
 
-.theme-toggle {
-  /* Your custom styles here */
-  background-color: #007bff;
-  border: none;
-}
-
-@media (max-width: 768px) {
-  .theme-toggle {
-    margin-left: auto;
-  }
-}
-
 #btn-back-to-top {
+  height: 40px;
+  width: 40px;
   position: fixed;
   bottom: 25px;
   right: 20px;
   display: none;
   z-index: 999;
+  justify-content: center;
+  font-size: x-large;
 }
 
 @media (max-width: 768px) {
   #btn-back-to-top {
     bottom: 70px;
-    font-size: 12px;
+    font-size: x-large;
   }
 }
 
@@ -254,7 +298,6 @@ body {
   padding: 0em 1em;
   align-items: center;
 }
-
 @media only screen and (max-width: 990px) {
   .header {
     opacity: 1;
@@ -278,12 +321,10 @@ b {
 .nav__item span {
   color: var(--text);
 }
-
 .decor {
   color: var(--accent);
   opacity: 0;
 }
-
 .nav__item span:hover .decor {
   opacity: 1;
   transition: opacity 0.3s ease-out;
@@ -303,3 +344,34 @@ b {
     font-size: 1.5em;
   }
 }
+
+/* Style the scrollbar for webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* Set the width of the scrollbar */
+}
+
+/* Style the thumb of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 3px; /* Set the border radius of the thumb */
+}
+
+/* Style the track of the scrollbar */
+::-webkit-scrollbar-track {
+  background: transparent; /* Set the background color of the scrollbar track */
+}
+
+/* Style the scrollbar for Firefox */
+/* Note: Firefox uses a different pseudo-element for styling scrollbars */
+/* You may need to adjust the width and colors as needed */
+/* For newer versions of Firefox, you might need to use 'scrollbar' instead of 'scrollbar-thumb' */
+/* For older versions of Firefox, you might need to use '-moz' prefixes */
+/* Example:
+   scrollbar-width: thin;
+   scrollbar-color: #888 transparent;
+*/
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+

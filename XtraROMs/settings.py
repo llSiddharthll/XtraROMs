@@ -10,14 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-import boto3
-from storages.backends.s3boto3 import S3Boto3Storage
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+os.environ['REPLICATE_API_TOKEN']='r8_PAvTJ7wM2g4KCPWYH01VTbNKGhM28fx245QpP'
+os.environ['OPENAI_API_KEY']='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'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'app',
+    'cloudinary',
     'crispy_forms',
     'crispy_bootstrap5',
     'allauth',
@@ -146,6 +146,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+
 ]
 
 # Internationalization

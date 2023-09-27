@@ -1,366 +1,158 @@
-{% extends 'basic.html' %}
-{% load static %}
-{% block css %}
-<!--Boxicon CSS-->
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<link rel="stylesheet" href="{% static 'nav.css' %}" />
-<!-- Bootstrap CSS -->
+<!-- stylesheet -->
 <link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-rel="stylesheet"
-integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-crossorigin="anonymous"
+  rel="stylesheet"
+  href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"
 />
-<style>
-  
-/*=============== VARIABLES CSS ===============*/
-:root {
-  --header-height: 3rem;
 
-  /*========== Colors ==========*/
-  --hue: 174;
-  --sat: 63%;
-  --first-color: hsl(var(--hue), var(--sat), 40%);
-  --first-color-alt: hsl(var(--hue), var(--sat), 36%);
-  --title-color: hsl(var(--hue), 12%, 15%);
-  --text-color: hsl(var(--hue), 8%, 35%);
-  --body-color: hsl(var(--hue), 100%, 99%);
-  --container-color: var(--background);
+<!-- script -->
+<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/script-name.js"></script>
 
-  /*========== Font and typography ==========*/
-  --body-font: 'Open Sans', sans-serif;
-  --h1-font-size: 1.5rem;
-  --normal-font-size: .938rem;
-  --tiny-font-size: .625rem;
+<!-- Material Icons Link -->
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
 
-  /*========== z index ==========*/
-  --z-tooltip: 10;
-  --z-fixed: 100;
-}
+<script src="https://cdn.tailwindcss.com"></script>
 
-@media screen and (min-width: 968px) {
-  :root {
-    --h1-font-size: 2.25rem;
-    --normal-font-size: 1rem;
-  }
-}
-
-/*=============== BASE ===============*/
-/*{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-} */
-
-/* body {
-  margin: var(--header-height) 0 0 0;
-  color: var(--text-color);
-} */
-
-
-a {
-  text-decoration: none;
-}
-
-
-.section__title {
-  font-size: var(--h1-font-size);
-  color: var(--title-color);
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.section__height {
-  height: 100vh;
-}
-
-/*=============== HEADER ===============*/
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--container-color);
-  z-index: var(--z-fixed);
-  transition: .4s;
-  margin-top: -3px !important;
-}
-
-/*=============== NAV ===============*/
-.nav {
-  height: var(--header-height);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav__img {
-  width: 32px;
-  border-radius: 50%;
-}
-
-.nav__logo {
-  color: var(--title-color);
-  font-weight: 600;
-}
-
-@media screen and (max-width: 990px) {
-  .nav__name{
-    display: block;
-  }
-  .nav__menu {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: var(--container-color);
-    box-shadow: 0 -1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
-    width: 100%;
-    height: 4rem;
-    padding: 0 1rem;
-    display: grid;
-    align-content: center;
-    border-radius: 1.25rem 1.25rem 0 0;
-    transition: .4s;
-  }
-  
-}
-
-.nav__list, 
-.nav__link {
-  display: flex;
-}
-
-.nav__link {
-  flex-direction: column;
-  align-items: center;
-  row-gap: 4px;
-  color: white;
-  font-weight: 600;
-  margin-top: 8px;
-  margin-right: -13px;
-}
-
-.nav__list {
-  justify-content: space-around;
-}
-
-
-
-.nav__name {
-  font-size: var(--tiny-font-size);
-  /* display: none; */ /* Minimalist design, hidden labels */
-}
-
-.nav__icon {
-  font-size: 1.5rem;
-}
-
-/*Active link*/
-.active-link {
-  position: relative;
-  color: var(--first-color);
-  transition: .3s;
-}
-
-@media screen and (min-width: 993px) {
-}
-/* Change background header */
-.scroll-header {
-  box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
-}
-
-
-/*=============== MEDIA QUERIES ===============*/
-/* For small devices */
-/* Remove if you choose, the minimalist design */
-
-
-/* For medium devices */
-@media screen and (min-width: 576px) {
-  .nav__list {
-    justify-content: center;
-    column-gap: 3rem;
-  }
-}
-
-@media screen and (min-width: 990px) {
-  
-  .nav {
-    height: calc(var(--header-height) + 1.5rem); /* 4.5rem */
-  }
-  .nav__img {
-    display: none;
-  }
-  .nav__icon {
-    display: none;
-  }
-  .nav__name {
-    font-size: var(--normal-font-size);
-    display: block; /* Minimalist design, visible labels */
-  }
-  .nav__link:hover {
-    color: var(--first-color);
-  }
-
-  /* Minimalist design */
-  .active-link::before{
-      bottom: -.75rem;
-  }
-}
-
-/* For large devices */
-@media screen and (min-width: 1024px) {
-  #header .container {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .nav__list{
-    column-gap: 3.7rem !important;
-  }
-}
-
-</style>
-{% endblock %}
-
-{% block content %}
-<body>
-  
-<header class="header" id="header">
-  <nav class="nav container">
+<!-- Font Awesome Link -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+  integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+  crossorigin="anonymous"
+/>
+<nav
+  class="sticky inset-0 z-10 block h-max w-full max-w-full rounded-none border border-white/80 bg-white bg-opacity-80 py-2 px-4 text-white shadow-md backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4"
+>
+  <div class="flex items-center text-gray-900">
     <a
-      class="navbar-brand"
-      href="{% url 'home' %}"
-      style="padding-left: 20px"
+      href="#"
+      class="mr-4 block cursor-pointer py-1.5 font-sans text-base font-medium leading-relaxed text-inherit antialiased"
     >
-      <img src="{% static 'images/logo.jpeg' %}" alt="SidXFleur" />
-      <b style="padding-top: 5px">XtraROMs</b>
+      Material Tailwind
     </a>
+    <ul class="ml-auto mr-8 hidden items-center gap-6 lg:flex">
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Pages </a>
+      </li>
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Account </a>
+      </li>
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Blocks </a>
+      </li>
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Docs </a>
+      </li>
+    </ul>
+    <button
+      class="middle none center hidden rounded-lg bg-gradient-to-tr from-pink-600 to-pink-400 py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+      type="button"
+      data-ripple-light="true"
+    >
+      <span>Buy Now</span>
+    </button>
+    <button
+      class="middle none relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] rounded-lg text-center font-sans text-xs font-medium uppercase text-blue-gray-500 transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
+      data-collapse-target="sticky-navar"
+    >
+      <span
+        class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+  <div
+    class="block h-0 w-full basis-full overflow-hidden text-blue-gray-900 transition-all duration-300 ease-in lg:hidden"
+    data-collapse="sticky-navar"
+  >
+    <ul class="mt-2 mb-4 flex flex-col gap-2 pb-2">
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Pages </a>
+      </li>
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Account </a>
+      </li>
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Blocks </a>
+      </li>
+      <li
+        class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+      >
+        <a class="flex items-center" href="#"> Docs </a>
+      </li>
+      <button
+        class="mb-2 block w-full rounded-lg bg-gradient-to-tr from-pink-600 to-pink-400 py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button"
+        data-ripple-light="true"
+      >
+        <span>Buy Now</span>
+      </button>
+    </ul>
+  </div>
+</nav>
+<div class="mx-auto max-w-screen-md py-12">
+  <div
+    class="relative mb-12 flex flex-col overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
+  >
+    <img
+      alt="nature"
+      class="h-[32rem] w-full object-cover object-center"
+      src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2717&amp;q=80"
+    />
+  </div>
+  <h2
+    class="mb-2 block font-sans text-4xl font-semibold leading-[1.3] tracking-normal text-blue-gray-900 antialiased"
+  >
+    What is Material Tailwind
+  </h2>
+  <p
+    class="block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased"
+  >
+    Can you help me out? you will get a lot of free exposure doing this can my
+    website be in english?. There is too much white space do less with more, so
+    that will be a conversation piece can you rework to make the pizza look more
+    delicious other agencies charge much lesser can you make the blue bluer?. I
+    think we need to start from scratch can my website be in english?, yet make
+    it sexy i'll pay you in a week we don't need to pay upfront i hope you
+    understand can you make it stand out more?. Make the font bigger can you
+    help me out? you will get a lot of free exposure doing this that's going to
+    be a chunk of change other agencies charge much lesser. Are you busy this
+    weekend? I have a new project with a tight deadline that's going to be a
+    chunk of change. There are more projects lined up charge extra the next
+    time.
+  </p>
+</div>
 
-    <div class="nav__menu" id="nav-menu">
-      <ul class="nav__list">
-        <li class="nav__item">
-          <a
-            href="{% url 'home' %}"
-            class="nav__link {% if request.path == '/' %}active-link{% endif %}"
-          >
-            <i class="bx bx-home-alt nav__icon"></i>
-            <span class="nav__name"
-              ><span class="decor">< </span>Home<span class="decor">
-                /></span
-              ></span
-            >
-          </a>
-        </li>
-        {% if request.user.is_authenticated %}
-        <li class="nav__item">
-          <a
-            href="{% url 'profile' %}"
-            class="nav__link {% if request.path == '/profile/' %}active-link{% endif %}"
-          >
-            <i class="bx bx-user nav__icon"></i>
-            <span class="nav__name"
-              ><span class="decor">< </span>Profile<span class="decor">
-                /></span
-              ></span
-            >
-          </a>
-        </li>
-        {% else %}
-        <li class="nav__item">
-          <a
-            href="{% url 'signup' %}"
-            class="nav__link {% if request.path == '/signup/' %}active-link{% endif %}"
-          >
-            <i class="bx bxs-receipt nav__icon"></i>
-            <span class="nav__name"
-              ><span class="decor">< </span>SignUp<span class="decor">
-                /></span
-              ></span
-            >
-          </a>
-        </li>
-        {% endif %}
-        <li class="nav__item">
-          <a
-            href="{% url 'custom_roms' %}"
-            class="nav__link {% if request.path == '/custom_roms/' %}active-link{% endif %}"
-          >
-            <i class="bx bx-mobile-alt nav__icon"></i>
-            <span class="nav__name"
-              ><span class="decor">< </span>Roms<span class="decor">
-                /></span
-              ></span
-            >
-          </a>
-        </li>
-
-        <li class="nav__item">
-          <a
-            href="{% url 'magisk_modules' %}"
-            class="nav__link {% if request.path == '/magisk_modules/' %}active-link{% endif %}"
-          >
-            <i class="bx bxs-paint nav__icon"></i>
-            <span class="nav__name"
-              ><span class="decor">< </span>Mods<span class="decor">
-                /></span
-              ></span
-            >
-          </a>
-        </li>
-        {% if request.user.is_authenticated %}
-        <li class="nav__item">
-          <a
-            href="{% url 'chatbot' %}"
-            class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
-          >
-            <i class="bx bx-message-square-detail nav__icon"></i>
-            <span class="nav__name"
-              ><span class="decor">< </span>Chit-Chat<span class="decor">
-                /></span
-              ></span
-            >
-          </a>
-        </li>
-        {% else %}
-        <li class="nav__item">
-          <a
-            href="{% url 'login' %}"
-            class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
-          >
-            <i class="bx bx-receipt nav__icon"></i>
-            <span class="nav__name"
-              ><span class="decor">< </span>Login<span class="decor">
-                /></span
-              ></span
-            >
-          </a>
-        </li>
-        {% endif %}
-      </ul>
-    </div>
-    {% if user.is_authenticated %}
-    <a href="{% url 'profile' %}">
-      <img
-      src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
-      alt=""
-      class="nav__img"
-      style="
-        max-height: 35px;
-        max-width: 35px;
-        min-height: 35px;
-        min-width: 35px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid rgb(35, 41, 59);
-      "
-    /></a>
-    {% endif %}
-  </nav>
-</header>
-</body>
-{% endblock %}
+<!-- from node_modules -->
+<script src="node_modules/@material-tailwind/html/scripts/collapse.js"></script>
+<!-- from cdn -->
+<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>

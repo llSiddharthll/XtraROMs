@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+{% endblock %} {% block content %}
+<div class="container mt-5 px-3">
+  <h1 class="text-center font-weight-bold mb-10" style="margin-bottom: 50px; font-size: xxx-large;">Latest Updates</h1>
+  <div class="row">
+      {% for article in articles %}
+      <div class="col-lg-6 col-xl-6">
+          <a href="{{ article.url }}">
+              <div class="card mb-4">
+                  <img src="{{ article.article_images }}" class="card-img-top rounded-lg" alt="Article Image">
+                  <div class="card-body">
+                      <h5 class="card-title" style=" min-height: 2.4em; color: rgb(208, 243, 243); font-weight: bold;">{{ article.article_title }}</h5>
+                      <p class="card-text text-gray-200 overflow-auto" style="min-height: 100px; color: rgb(158, 158, 158);">{{ article.article_content }}</p>
+                  </div>
+                  <div class="card-footer">
+                      <p class="text-muted">Article ID: {{ article.article_id }}</p>
+                  </div>
+              </div>
+          </a>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}

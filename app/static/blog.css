@@ -1,0 +1,21 @@
+.blog-img{
+    width: 200px;
+    /* margin-left: 20rem; */
+}
+
+
+.blog-bg{
+    background-color: var(--secondary);
+}
+
+.blog-card {
+    min-height: 280px;
+    max-height: 280px;
+}
+
+@media screen and (max-width:768px){
+    .blog-img{
+        width: 70px;
+        /* margin-left: 20rem; */
+    }
+}

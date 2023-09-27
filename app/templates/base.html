@@ -1,10 +1,10 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XtraROMs</title>
 
     <!-- Google Tag Manager -->
@@ -39,6 +39,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
+    <meta property="og:image" content="https://i.ibb.co/37Twgkh/Logo-Lazydeveloperr.png" itemprop="thumbnailUrl">
 
     <!-- Bootstrap CSS -->
     <link
@@ -64,28 +65,31 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
     />
 
-    <!-- Owl Carousel CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    />
-    <link rel="stylesheet" href="{% static 'owl.theme.default.css' %}" />
-
     <!-- Select2 CSS -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css"
       rel="stylesheet"
     />
 
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+
     <!-- Your Custom Styles -->
-    <link rel="stylesheet" href="{% static 'bootstrap-iso.css' %}" />
     <link rel="stylesheet" href="{% static 'style2.css' %}" />
     <link rel="stylesheet" href="{% static 'assets-1/css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'main.css' %}" />
+    <link rel="stylesheet" href="{% static 'chatbot.css' %}" />
+          
+  {% block css %} {% endblock %} 
   </head>
   <body>
-    <header class="header" id="header">
-      <nav class="nav container">
+    <!-- <header class="header" id="header">
+      <nav class="nav container mx-auto px-4">
         <a
           class="navbar-brand"
           href="{% url 'home' %}"
@@ -94,7 +98,6 @@
           <img src="{% static 'images/logo.jpeg' %}" alt="SidXFleur" />
           <b style="padding-top: 5px">XtraROMs</b>
         </a>
-
         <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
             <li class="nav__item">
@@ -169,12 +172,12 @@
             {% if request.user.is_authenticated %}
             <li class="nav__item">
               <a
-                href="{% url 'chatbot' %}"
+                href="{% url 'blog' %}"
                 class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
               >
                 <i class="bx bx-message-square-detail nav__icon"></i>
                 <span class="nav__name"
-                  ><span class="decor">< </span>Chit-Chat<span class="decor">
+                  ><span class="decor">< </span>Updates<span class="decor">
                     /></span
                   ></span
                 >
@@ -198,7 +201,7 @@
           </ul>
         </div>
         {% if user.is_authenticated %}
-        <a href="{% url 'profile' %}">
+        <a class="nav__img" href="{% url 'profile' %}">
           <img
           src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/peakpx.jpg' %}{% endif %}"
           alt=""
@@ -215,7 +218,108 @@
         /></a>
         {% endif %}
       </nav>
-    </header>
+    </header> -->
+
+    {% include 'navigation.html' %}
+
+
+    <div class="chat-bar-open" id="chat-open">
+      <button
+        id="chat-open-button"
+        type="button"
+        class="collapsible close"
+        onclick="chatOpen()"
+      >
+        <div class="circular-button">
+          <img src="{% static 'images/chat.gif' %}" alt="">
+        </div>
+      </button>
+    </div>
+    
+
+    <!-- chat close -->
+    <div class="chat-bar-close" id="chat-close">
+      <button
+        id="chat-close-button"
+        type="button"
+        class="collapsible close"
+        onclick="chatClose()"
+      >
+      <div class="circular-button">
+        <img src="{% static 'images/escape.gif' %}" alt="">
+      </div>
+      </button>
+    </div>
+
+    <!-- chat-window 1 -->
+    <div class="chat-window" id="chat-window1">
+      <div class="hi-there">
+        <p class="p1">Hi There</p>
+        <br />
+        <p class="p2">Hello Ask Us Anythig,Share Your<br />Feedback.</p>
+      </div>
+      <div class="start-conversation">
+        <h1>Start a Conversation</h1>
+        <br />
+        <p>The team typically replies in few minutes.</p>
+        <button
+          class="new-conversation"
+          type="button"
+          onclick="openConversation()"
+        >
+          <span>New Conversation</span
+          ><i class="material-icons-outlined"> send </i>
+        </button>
+      </div>
+    </div>
+
+    <!-- chat chat-window 2 -->
+    <div class="chat-window2" id="chat-window2">
+      <div class="message-box" id="messageBox">
+        <div class="hi-there">
+          <p class="p1">Hi There</p>
+          <br />
+          <p class="p2">The team typically replies in few minutes.</p>
+        </div>
+        <div class="first-chat">
+          <p>Is there any offlines versions available for Maxeon Player?</p>
+          <div class="arrow"></div>
+        </div>
+        <div class="second-chat">
+          <div class="circle"></div>
+          <p>Currently we don't have but we will launch soon.</p>
+          <div class="arrow"></div>
+        </div>
+      </div>
+      <div class="input-box">
+        <div class="write-reply">
+          <div class="field">
+            <input class="inputText"
+            type="text"
+            id="textInput"
+            name="user-message"
+            placeholder="Write a reply..."
+            />
+            <div class="line"></div>
+          </div>
+        </div>
+        <div class="send-button">
+          <button
+            type="submit"
+            class="send-message"
+            id="send"
+            onclick="userResponse()"
+            data-url = "{% url 'chat-view' %}"
+          >
+            <i class="material-icons-outlined"> send </i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  </script>
+
 
     <!--------cookie collection ----------------------->
 
@@ -234,17 +338,7 @@
     </div>
     <!-- End of Cookie Banner -->
 
-    <!-- Back to top button -->
-    <a
-      id="btn-back-to-top"
-      href="#"
-      class="btn btn-light btn-lg back-to-top"
-      role="button"
-      ><i class="fas fa-chevron-up"></i
-    ></a>
-
     {% block content %} {% endblock %}
-
     <footer class="footer text-light py-4 d-none d-md-block">
       <div class="container" style="background-color: var(--background)">
         <div class="row">
@@ -338,11 +432,15 @@
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
+    <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'chatbot.js' %}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
     crossorigin="anonymous"></script>
+    <script>
+      AOS.init();
+    </script>
 
     {% block script %} {% endblock %}
   </body>

@@ -20,6 +20,7 @@ urlpatterns = [
     path('update_user_profile/<int:profile_id>/', views.update_user_profile, name='update_user_profile'),
     path('track-session/', views.track_session, name='track_session'),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
-    path('chatbot/', chatbot, name='chatbot'),
+    path('chat-view/', views.chat_view, name='chat-view'),
+    path('blog/', views.blog, name='blog'),
     path('chatbot/comment-policy/', views.comment_policy_view, name='comment-policy'),
 ]

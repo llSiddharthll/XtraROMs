@@ -38,3 +38,13 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class ScrapData(models.Model):
+    url = models.URLField()
+    image_url = models.URLField()
+    article_id = models.CharField(max_length=255)
+    article_title = models.CharField(max_length=255)
+    article_content = models.TextField()
+
+    def __str__(self):
+        return self.article_id

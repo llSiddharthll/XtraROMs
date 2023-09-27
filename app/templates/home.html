@@ -1,34 +1,382 @@
-{% extends 'basic.html' %}
-
+{% extends 'base.html' %} 
+{% load static %} 
 {% block css %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+
+<link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+<link rel="stylesheet" href="{% static 'swiper.css' %}" />
+<link rel="stylesheet" href="{% static 'screenshot.css' %}" />
+
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap");
-    *{
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
+
+  /* Your existing CSS styles */
+
+  .sub-main {
+    margin: 0;
+    padding: 0;
+    background: var(--background) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: consolas;
+  }
+
+  .containered {
+    width: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .containered .card {
+    position: relative;
+    cursor: pointer;
+    background: var(--background) !important;
+  }
+
+  /* Add media query for smaller screens (e.g., smartphones) */
+  @media (max-width: 768px) {
+    .containered {
+      flex-direction: column;
+      /* Cards will stack vertically */
+      align-items: center;
+      /* Center align the cards vertically */
     }
-    html{
-        font-size: 16px !important;
-    }
-    body {
-        font-family: 'Poppins' !important;
-    }
-    .hero-copy h1{
-        font-size: 2.5em !important;
-    }
-    @media screen and (max-width: 768px){
-        .hero-copy h1{
-        font-size: 1.5em !important;
-    }
-    }
+  }
+
+  .containered .card .face {
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+  }
+
+  .containered .card .face.face1 {
+    position: relative;
+    background: var(--secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+  }
+
+  .containered .card:hover .face.face1 {
+    background: var(--accent);
+    transform: translateY(0);
+  }
+
+  .containered .card .face.face1 .content {
+    opacity: 0.2;
+    transition: 0.5s;
+    text-align: center;
+  }
+
+  .containered .card:hover .face.face1 .content {
+    opacity: 1;
+  }
+
+  .containered .card .face.face1 .content img {
+    max-width: 100px;
+  }
+
+  .containered .card .face.face1 .content h3 {
+    margin: 10px 0 0;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .containered .card .face.face2 {
+    position: relative;
+    background: var(--secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+  }
+
+  .containered .card:hover .face.face2 {
+    transform: translateY(0);
+  }
+
+  .containered .card .face.face2 .content p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .containered .card .face.face2 .content a {
+    margin: 15px 0 0;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #dcdcdc;
+    padding: 5px;
+    border: 1px solid #333;
+  }
+
+  .containered .card .face.face2 .content a:hover {
+    background: var(--background);
+    color: #fff;
+  }
+  .nav__list {
+  padding-top: 0;
+}
+@media only screen and (max-width: 757px) {
+  .nav__list {
+    margin-left: 0;
+  }
+}
 </style>
 {% endblock %}
-
 {% block content %}
+<main>
+  <div class="content">
+    <h2>Welcome to XtraROMs</h2>
+    <p>
+      XtraROMs is a customized Android operating system that brings advanced
+      features and increased flexibility to your device for an optimized user
+      experience. Explore enhanced customization and performance with XtraROMs.
+    </p>
+    <ul class="counter">
+      <li>
+        <h3><i class="fab fa-android"></i>40</h3>
+        <span>Items collections</span>
+      </li>
+      <li>
+        <h3><i class="fas fa-user"></i>25</h3>
+        <span>Total Users</span>
+      </li>
+    </ul>
+    <button class="btn">
+      Let's Customize <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
 
-{% include 'navigation.html' %}
+  <div class="swiper-container">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide--one">
+          <span>Most Downloaded</span>
+        </div>
+        <div class="swiper-slide swiper-slide--two">
+          <span>Most Downloaded</span>
+        </div>
+        <div class="swiper-slide swiper-slide--three">
+          <span>Most Downloaded</span>
+        </div>
+        <div class="swiper-slide swiper-slide--four">
+          <span>Most Downloaded</span>
+        </div>
+        <div class="swiper-slide swiper-slide--five">
+          <span>Most Downloaded</span>
+        </div>
+        <div class="swiper-slide swiper-slide--six">
+          <span>Most Downloaded</span>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="circle"></div>
+</main>
 
-{% include 'home-1.html' %}
+<!------------------------------------Second Section --------------------------------------------------->
+<h1 class="text-center" style="margin-top: 50px; margin-bottom: 30px;">Services</h1>
+<section class="sub-main">
+  <div class="containered">
+    <div class="card">
+      <div class="face face1">
+        <div class="content">
+          <img src="{% static 'images/custom-rom.jpg' %}" />
+          <h3>Custom ROMS</h3>
+        </div>
+      </div>
+      <div class="face face2">
+        <div class="content">
+          <p>
+            Custom ROMs are often developed by a community of developers and can
+            be a fantastic way to breathe new life into older devices.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face face1">
+        <div class="content">
+          <img src="{% static 'images/magisk-module.webp' %}" />
+          <h3>Magisk MODS</h3>
+        </div>
+      </div>
+      <div class="face face2">
+        <div class="content">
+          <p>
+            With Magisk, you can enjoy features like systemless root, custom
+            modules, and safety net bypass, making it a popular choice for
+            Android enthusiasts.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face face1">
+        <div class="content">
+          <img src="{% static 'images/tools.png' %}" />
+          <h3>Tools</h3>
+        </div>
+      </div>
+      <div class="face face2">
+        <div class="content">
+          <p>
+            Having the right tools like TWRP and Odin is essential for flashing
+            custom ROMs and recovering bricked devices in the Android
+            customization world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!------------------------------------ ScreenShot Section ---------------------------------------------->
+
+<section id="Screenshot" style="margin-top: 50px; margin-bottom: 50px;" class="container">
+  <div id="Screenshot-1">
+    <div class="grid grid-cols-2 justify-evenly" style="margin-top: 50px">
+      <div class="">
+        <img
+          src="{% static 'images/ss1.png' %}"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        />
+      </div>
+      <div class="text-odd" data-aos="fade-right" data-aos-duration="1000">
+        <h3><strong> Customize your Homescreen </strong></h3>
+        <p>
+          Using mods for homescreen customization elevates personalization.
+          Unlock custom widgets, unique icons, and advanced theming for a unique
+          digital space that mirrors your style. Whether minimalistic or
+          vibrant, mods empower you to perfect your device's homescreen.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="Screenshot-2">
+    <div class="grid grid-cols-2 gap-5 justify-evenly" style="margin-top: 50px">
+      <div class="text-even" data-aos="fade-left" data-aos-duration="1000">
+        <h3><strong> Modify your LockScreen </strong></h3>
+        <p>
+          Enhance your lock screen with mods for a personalized touch. Add
+          custom widgets, unique clock styles, and background themes to
+          transform your lock screen into a reflection of your unique style and
+          preferences. Mods offer creative freedom to make your lock screen
+          truly yours.
+        </p>
+      </div>
+      <div class="">
+        <img
+          src="{% static 'images/ss2.png' %}"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+        />
+      </div>
+    </div>
+  </div>
+  <div id="Screenshot-3">
+    <div class="grid grid-cols-2 justify-evenly" style="margin-top: 50px">
+      <div class="">
+        <img
+          src="{% static 'images/ss3.png' %}"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        />
+      </div>
+      <div class="text-odd" data-aos="fade-right" data-aos-duration="1000">
+        <h3><strong> Customize your Android beyond limitations </strong></h3>
+        <p>
+          Discover the world of custom ROMs and mods to unlock the full
+          potential of your Android device. Dive into a realm of endless
+          possibilities and tailor your smartphone experience to your
+          preferences.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="Screenshot-4">
+    <div class="grid grid-cols-2 gap-5 justify-evenly" style="margin-top: 50px">
+      <div class="text-even" data-aos="fade-left" data-aos-duration="1000">
+        <h3><strong> Latest Android Updates Eariler </strong></h3>
+        <p>
+          Stay ahead with the latest Android updates. By staying informed and
+          proactive, you can access new features, security enhancements, and
+          performance improvements earlier, ensuring a smoother and more
+          feature-rich mobile experience.
+        </p>
+      </div>
+      <div class="">
+        <img
+          src="{% static 'images/ss4.png' %}"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!----------------------------------About--------------------------------------------------------->
+<section id="about" class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img
+          src="{% static 'images/about.png' %}"
+          alt="Community"
+          class="img-fluid mb-4"
+        />
+      </div>
+      <div class="col-md-6" style="display: grid;">
+        <h2 class="text-center mb-4">About Us</h2>
+        <p>
+          Empowering users with device customization. Discover custom ROMs and
+          Magisk modules for unique needs.
+        </p>
+        <p>
+          Our community offers support, guidance, and solutions. XtraROMs
+          welcomes modders and newbies alike.
+        </p>
+        <p>
+          Join us today to elevate your device experience. Unleash potential and
+          beauty, inside and out.
+        </p>
+        <p style="text-align: center; margin-top: 10px;">
+          <a
+            href="https://telegram.me/+Z7TTTtZxvt9jZGZl"
+            class="btn btn-primary btn-lg"
+            >Join the Community</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock %} {% block script %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="{% static 'swiper.js' %}"></script>
 
 {% endblock %}

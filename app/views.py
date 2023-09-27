@@ -1,15 +1,11 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from django.contrib import messages
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.utils.safestring import mark_safe
-from django.http import JsonResponse
-# app/views.py
-from django.http import HttpResponse
+from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 import re
@@ -48,7 +44,7 @@ def edit_rom(request, rom_id):
         edit_form = UploadROMForm(request.POST, request.FILES, instance=rom)
         if edit_form.is_valid():
             new_image = edit_form.cleaned_data['image']
-            edit_form.image = new_image
+            edit_form.image = new_image# type: ignore
             edit_form.save()  # Handle image update and upload date retention
             return redirect('custom_roms')  # Successful, redirect back to ROM listing
     else:
@@ -85,7 +81,7 @@ def search_custom_roms(request):
         for rom in filtered_roms:
             likes_count = rom.likes.count()
             rom_data = {
-                "id": rom.id,
+                "id": rom.id,# type: ignore
                 "name": rom.name,
                 "device": rom.device,
                 "details": rom.details,
@@ -115,7 +111,7 @@ def search_custom_mods(request):
         for mod in filtered_mods:
             likes_count = mod.likes.count()
             mod_data = {
-                "id": mod.id,
+                "id": mod.id,# type: ignore
                 "name": mod.name,
                 "details": mod.details,
                 "link": mod.link,
@@ -297,7 +293,7 @@ def custom_roms(request):
 
         # Format description for each ROM
         for rom in roms:
-            rom.formatted_details = mark_safe(
+            rom.formatted_details = mark_safe(# type: ignore
                 rom.details.replace("\n", "<br>").replace("-", "&#8226;")
             )
             rom.save()
@@ -343,7 +339,7 @@ def magisk_modules(request):
 
         # Format description for each mod
         for mod in mods:
-            mod.formatted_details = mark_safe(
+            mod.formatted_details = mark_safe( # type: ignore
                 mod.details.replace("\n", "<br>").replace("-", "&#8226;")
             )
         
@@ -362,7 +358,6 @@ def manage_user_profiles(request):
 
 
 @login_required
-@staff_member_required
 def update_user_profile(request, profile_id):
     profile = UserProfile.objects.get(pk=profile_id)
 
@@ -379,68 +374,59 @@ def update_user_profile(request, profile_id):
 def privacy_policy(request):
     return render(request,'privacy_policy.html')
 
-""" @login_required
-def chat_page(request):
-    if request.method == 'POST':
-        form = ChatMessageForm(request.POST)
-        if form.is_valid():
-            message = form.cleaned_data['message']
-            direction = ChatMessage.OUTGOING  # The message sender is the logged-in user
-            ChatMessage.objects.create(user=request.user, message=message, message_direction=direction)
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'error_message': 'Invalid form data'})
-
-    form = ChatMessageForm()
-    messages = ChatMessage.objects.order_by('-timestamp')[:50]
-    user_profile = UserProfile.objects.get(user=request.user)  # Assuming one profile per user
-    return render(request, 'chat_page.html', {'messages': messages, 'form': form, 'user_profile': user_profile})
-
-from django.utils.html import escape
-
-from django.http import JsonResponse
-
-from django.utils.html import escape
-from app.models import UserProfile  # Make sure to import the UserProfile model
-
-def load_messages(request):
-    message_data = []  # Define an empty list outside the branching logic  
-
-    if request.method == 'GET':
-        messages = ChatMessage.objects.order_by('-timestamp')[:50]
-        for message in messages:
-            if message.message_direction == ChatMessage.INCOMING:
-                sender_profile = UserProfile.objects.all()
-            else:
-                sender_profile = None  # Set sender_profile to None for outgoing messages
-            message_data.append({
-                'content': escape(message.message),
-                'timestamp': message.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
-                'direction': message.message_direction,
-                'user_profile': sender_profile,
-            })
-        return JsonResponse({'messages': message_data})
-    else:
-        return JsonResponse({'messages': []})
-
- """
-from django.shortcuts import render
-
-@csrf_exempt  # Temporarily disable CSRF protection for demonstration purposes
-def chatbot(request):
-    user_message = ""
-    bot_response = ""
-
-    if request.method == 'POST':
-        user_message = request.POST.get('user_message')
-        # Process user_message and generate a bot response
-        bot_response = "XtraBot: I am writing things and he's not giving responses"
-        
-        return render(request, 'chatbot.html', {'user_message': user_message, 'bot_response': bot_response})
-
-    # For GET requests or other methods, simply render the template
-    return render(request, 'chatbot.html', {'user_message': user_message, 'bot_response': bot_response})
-
-
 def comment_policy_view(request):
     return render(request, 'comment_policy.html')
+
+import json
+
+def blog(request):
+    try:
+        # Specify the encoding as 'utf-8-sig' to handle common Unicode issues
+        with open('app/saved_templates/all_articles.json', 'r', encoding='utf-8-sig') as json_file:
+            articles = json.load(json_file)
+    except Exception as e:
+        # Handle any exceptions that might occur when reading the JSON file
+        # You can log the error or take other appropriate actions here.
+        print(f"Error reading JSON file: {str(e)}")
+        articles = []  # Set articles to an empty list to avoid issues if the file can't be read
+    return render(request, 'blog.html',{'articles': articles})
+
+
+import openai
+
+# Set your OpenAI API key
+openai.api_key = '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'
+
+# Create a function that handles the chat interaction
+def chat_with_openai(messages):
+    chat = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages
+    )
+    return chat.choices[0].message.content # type: ignore
+
+# Create a Django view that handles the chat interactions
+@csrf_exempt
+def chat_view(request):
+    if request.method == 'POST':
+        # Extract the user's message from the POST request
+        user_message = request.POST.get('message', '')
+
+        # Define the initial system message
+        messages = [{"role": "system", "content": "You are an intelligent assistant."}]
+
+        # Append the user's message to the message history
+        if user_message:
+            messages.append({"role": "user", "content": user_message})
+
+        # Get a response from OpenAI
+        assistant_response = chat_with_openai(messages)
+
+        # Append the assistant's response to the message history
+        messages.append({"role": "assistant", "content": assistant_response})
+
+        # Return the assistant's response as JSON
+        return JsonResponse({"response": assistant_response})
+
+    else:
+        return JsonResponse({"error": "Invalid request method. Use POST."})
