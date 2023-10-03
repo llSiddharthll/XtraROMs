@@ -10,25 +10,37 @@
 
 :root {
   --text: #0a1514;
+  --text-p:#102120b9;
   --background: #e3f2f1;
   --primary: #9fd0cc;
-  --secondary: #e0f0ef;
-  --accent: #58ada7;   
+  --secondary: #cef3f1;
+  --accent: #8ac1bd;   
 }
 
 /* Mode */
 .btn {
-  background-color: var(--accent);
+  background-color: var(--primary);
   color: var(--text);
   border: none;
   border-radius: 20px;
 }
 
 .btn-primary{
-  background-color: var(--primary) !important;
-  color: var(--text) !important;
+  background-color: var(--primary);
+  color: var(--text);
   border: none;
   border-radius: 20px;
+  font-weight: bolder;
+}
+
+.btn-primary:hover{
+  background-color: var(--accent);
+  color: var(--text);
+}
+
+.btn:hover{
+  background-color: var(--accent);
+  color: var(--text);
 }
 
 /* Smooth scrolling behavior */
@@ -40,7 +52,6 @@ body {
   font-family: "Poppins";
   background: var(--background) !important;
   padding-top: 50px;
-  transition: background-color 0.5s;
   color: var(--text) !important; /* Set the default text color here */
 }
 .bx{
@@ -49,7 +60,7 @@ body {
 }
 /* Default card style */
 .card {
-  background-color: var(--primary);
+  background-color: var(--secondary);
   border-radius: 20px;
   border: none;
   overflow: hidden;
@@ -73,7 +84,10 @@ body {
 .card h5{
   font-weight: bolder;
 }
-.card .btn{
+.card p{
+  font-weight: bolder;
+}
+.btn{
   box-shadow: 0 5px 8px rgb(26, 31, 32);
 }
 .card .fas, .card .far{
@@ -109,7 +123,6 @@ body {
 
 .navbar-brand img {
   height: 30px;
-  border-radius: 50px;
 }
 
 @media (max-width: 700px) {
@@ -161,17 +174,24 @@ body {
   font-size: larger;
   font-family: system-ui;
   margin: 10px;
+  font-weight: 500;
 }
 /* Adjust the styles as needed */
 @media (max-width: 768px) {
   #contact h2 {
     font-size: 30px;
   }
+  #about p{
+    text-align: center;
+  }
 }
 
 /* Custom CSS for the footer */
 .footer {
-  background-color: var(--background);
+  background-color: var(--secondary);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -10px 40px var(--text);
   bottom: 0;
   left: 0;
   width: 100%;
@@ -315,7 +335,8 @@ body {
 
 b {
   font-size: 1.5em;
-  color: var(--accent);
+  font-weight: bolder;
+  color: var(--text);
 }
 
 .nav__item span {
@@ -333,8 +354,7 @@ b {
 .text-center {
   font-size: 2em;
   font-weight: bold;
-  color: var(--text);
-  background: linear-gradient(120deg, var(--primary), var(--accent));
+  background: #37635f;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -345,33 +365,18 @@ b {
   }
 }
 
-/* Style the scrollbar for webkit-based browsers (Chrome, Safari) */
-::-webkit-scrollbar {
-  width: 6px; /* Set the width of the scrollbar */
+.modal-content{
+  background-color: var(--background);
+  box-shadow: 10px 10px 50px var(--text);
 }
-
-/* Style the thumb of the scrollbar */
-::-webkit-scrollbar-thumb {
-  background: #888; /* Set the color of the scrollbar thumb */
-  border-radius: 3px; /* Set the border radius of the thumb */
+.modal-header{
+  background-color: var(--secondary);
 }
-
-/* Style the track of the scrollbar */
-::-webkit-scrollbar-track {
-  background: transparent; /* Set the background color of the scrollbar track */
+.modal-title, .modal-header .btn-close, .modal-body label{
+  font-weight: bolder;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
-
-/* Style the scrollbar for Firefox */
-/* Note: Firefox uses a different pseudo-element for styling scrollbars */
-/* You may need to adjust the width and colors as needed */
-/* For newer versions of Firefox, you might need to use 'scrollbar' instead of 'scrollbar-thumb' */
-/* For older versions of Firefox, you might need to use '-moz' prefixes */
-/* Example:
-   scrollbar-width: thin;
-   scrollbar-color: #888 transparent;
-*/
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #888 transparent;
+.header b{
+  font-weight: bolder;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
-

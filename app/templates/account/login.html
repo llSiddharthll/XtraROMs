@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block css %}
+{% extends "base.html" %}{% block css %}
 <style>
   @media only screen and (max-width: 767px) {
     #signup-btn {
@@ -14,45 +14,25 @@
   }
 </style>
 
-{% endblock %} {% block content %}
+{% endblock %} {% load crispy_forms_tags %} {% load account socialaccount %} 
+{% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="text-center mb-4">
-        <h1 class="logotext">SignUp Form</h1>
+        <h1 class="logotext">User Login</h1>
       </div>
       <div style="margin-bottom: 120px">
         <div class="card-body">
-          <form class="loginForm" name="SignForm" method="post">
-            {% csrf_token %}
-            <div class="mb-3">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                placeholder="Email"
-                name="email"
-                style="
-                  background-color: var(--background);
-                  width: 100%;
-                  resize: vertical;
-                  padding: 15px;
-                  border-radius: 15px;
-                  border: 0;
-                  margin-top: 40px;
-                  margin-bottom: 40px;
-                  box-shadow: 4px 4px 10px var(--text);
-                "
-                required
-              />
-            </div>
+          <form class="login" method="post" action="{% url 'account_login' %}">
+            {% csrf_token %} {{ form.non_field_errors }}
+
             <div class="mb-3">
               <input
                 type="text"
                 class="form-control"
-                id="username"
-                placeholder="Username"
-                name="username"
+                placeholder="Username/Email"
+                name="login"
                 style="
                   background-color: var(--background);
                   width: 100%;
@@ -66,44 +46,52 @@
                 required
               />
             </div>
-            <div class="mb-3">
-              <div class="input-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Password"
-                  name="password"
-                  style="
-                    background-color: var(--background);
-                    width: 100%;
-                    resize: vertical;
-                    padding: 15px;
-                    border-radius: 15px;
-                    border: 0;
-                    margin-bottom: 20px;
-                    box-shadow: 4px 4px 10px var(--text);
-                  "
-                  required
-                />
-              </div>
-            </div>
-            <div style="text-align: center">
-              {% if error %}
-              <p class="text-danger">{{ error }}</p>
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-              {% else %}
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-              {% endif %}
-            </div>
 
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+                name="password"
+                style="
+                  background-color: var(--background);
+                  width: 100%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-bottom: 40px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+                required
+              />
+            </div>
+            {% if redirect_field_value %}
+            <input
+              type="hidden"
+              name="{{ redirect_field_name }}"
+              value="{{ redirect_field_value }}"
+            />
+            {% endif %}
             <div style="text-align: center; margin-top: 10px">
-              <strong>Already have an account?</strong>
+              <button class="btn btn-primary" type="submit">Sign In</button>
+            </div>
+            <div style="text-align: center; margin-top: 10px">
               <a
-                href="{% url 'login' %}"
                 class="text-center"
-                style="font-size: 1.5em"
-                >Log in</a
+                href="{% url 'account_reset_password' %}"
+                style="font-size: 1em"
+                >Forgot Password?</a
+              >
+            </div>
+            <div style="text-align: center; margin-top: 15px">
+              <strong>Register with new account?</strong>
+              <a
+                href="{{ signup_url }}"
+                class="text-center"
+                style="font-size: 1em"
+                >Sign-Up</a
               >
             </div>
           </form>
@@ -112,5 +100,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}

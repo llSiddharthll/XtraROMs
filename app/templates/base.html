@@ -38,8 +38,8 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
-    <meta property="og:image" content="https://i.ibb.co/37Twgkh/Logo-Lazydeveloperr.png" itemprop="thumbnailUrl">
+    <link rel="icon" type="image/png" href="{% static 'images/logo_light.png' %}" />
+    <meta property="og:image" content="{% static 'images/logo_light.png' %}" itemprop="thumbnailUrl">
 
     <!-- Bootstrap CSS -->
     <link
@@ -88,15 +88,15 @@
   {% block css %} {% endblock %} 
   </head>
   <body>
-    <!-- <header class="header" id="header">
-      <nav class="nav container mx-auto px-4">
+    <header class="header" id="header">
+      <nav class="nav container mx-auto px-0 px-lg-4">
         <a
           class="navbar-brand"
           href="{% url 'home' %}"
           style="padding-left: 20px"
         >
-          <img src="{% static 'images/logo.jpeg' %}" alt="SidXFleur" />
-          <b style="padding-top: 5px">XtraROMs</b>
+          <img src="{% static 'images/logo_light.png' %}" alt="SidXFleur" />
+          <b>XtraROMs</b>
         </a>
         <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
@@ -130,8 +130,8 @@
             {% else %}
             <li class="nav__item">
               <a
-                href="{% url 'signup' %}"
-                class="nav__link {% if request.path == '/signup/' %}active-link{% endif %}"
+                href="{% url 'custom_signup' %}"
+                class="nav__link {% if request.path == '/custom_signup/' %}active-link{% endif %}"
               >
                 <i class="bx bxs-receipt nav__icon"></i>
                 <span class="nav__name"
@@ -173,7 +173,7 @@
             <li class="nav__item">
               <a
                 href="{% url 'blog' %}"
-                class="nav__link {% if request.path == '/chatbot/' %}active-link{% endif %}"
+                class="nav__link {% if request.path == '/blog/' %}active-link{% endif %}"
               >
                 <i class="bx bx-message-square-detail nav__icon"></i>
                 <span class="nav__name"
@@ -186,8 +186,8 @@
             {% else %}
             <li class="nav__item">
               <a
-                href="{% url 'login' %}"
-                class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
+                href="{% url 'account_login' %}"
+                class="nav__link {% if request.path == '/account_login/' %}active-link{% endif %}"
               >
                 <i class="bx bx-receipt nav__icon"></i>
                 <span class="nav__name"
@@ -218,9 +218,7 @@
         /></a>
         {% endif %}
       </nav>
-    </header> -->
-
-    {% include 'navigation.html' %}
+    </header>
 
 
     <div class="chat-bar-open" id="chat-open">
@@ -340,7 +338,7 @@
 
     {% block content %} {% endblock %}
     <footer class="footer text-light py-4 d-none d-md-block">
-      <div class="container" style="background-color: var(--background)">
+      <div class="container">
         <div class="row">
           <div class="col-md-4 mb-4">
             <h3 class="text-center">About Us</h3>
@@ -393,7 +391,7 @@
 
     <!-- Footer for Smaller Devices (Hidden on Larger Screens) -->
     <footer class="footer text-light py-4 d-md-none">
-      <div class="container" style="background-color: var(--background)">
+      <div class="container">
         <div class="row">
           <div class="col-sm-6">
             <h3 class="text-center">Follow Us</h3>

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% load account %}
+{% block css %}
+<style>
+    .height{
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+    .card-title{
+        font-size: 1em;
+    }
+    form{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 height">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h1 class="logotext card-title mb-4">Confirm Email Address</h1>
+                    </div>
+
+                    {% if confirmation %}
+
+                    {% user_display confirmation.email_address.user as user_display %}
+
+                    {% if can_confirm %}
+                    <p class="card-text">
+                        Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.
+                    </p>
+
+                    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </form>
+                    {% else %}
+                    <p class="card-text text-danger">
+                        Unable to confirm {{ email }} because it is already confirmed by a different account.
+                    </p>
+                    {% endif %}
+
+                    {% else %}
+
+                    {% url 'account_email' as email_url %}
+
+                    <p class="card-text">
+                        This email confirmation link expired or is invalid. Please <a href="{{ email_url }}" class="btn btn-link">request a new email confirmation</a>.
+                    </p>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

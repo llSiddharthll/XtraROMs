@@ -5,37 +5,38 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate, login, logout
 from django.utils.safestring import mark_safe
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
-import re
+from allauth.account.views import SignupView
 
 
-def email_valid(email):
-    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-    if(re.fullmatch(regex, email)): return True
-    return False
-
-
-
-def track_session(request, obj_id, obj_type):
-    if not request.user.is_authenticated:
-        # Determine the appropriate model based on obj_type
-        model_class = CustomROM if obj_type == 'rom' else CustomMOD
-
-        # Retrieve the object using the provided obj_id
+class CustomSignupView(SignupView):
+    def form_valid(self, form):
         try:
-            obj = model_class.objects.get(id=obj_id)
-            # Perform session tracking here, e.g., updating session data
-            if 'visited_objects' not in request.session:
-                request.session['visited_objects'] = []
-            request.session['visited_objects'].append((obj_type, obj_id))
-        except model_class.DoesNotExist:
-            pass  # Handle the case where the object doesn't exist
+            # Call the parent class's form_valid method to create the user
+            response = super().form_valid(form)
 
-    return HttpResponse("Session tracked for {} ID: {}".format(obj_type.capitalize(), obj_id))
+            # Set the authentication backend
+            self.user.backend = 'django.contrib.auth.backends.ModelBackend'
+            self.user.save()
 
-# Create your views here.
+            # Create UserProfile
+            user_profile = UserProfile.objects.create(
+                user=self.user,
+                # Add other fields as needed
+            )
+
+            # Log the user in
+            login(self.request, self.user)
+
+            print("UserProfile created:", user_profile)
+
+            return response
+
+        except Exception as e:
+            print("Error creating UserProfile:", str(e))
+
 
 def edit_rom(request, rom_id):
     rom = get_object_or_404(CustomROM, id=rom_id)
@@ -132,10 +133,10 @@ def search_custom_mods(request):
 
 def home(request):
     if request.user.is_authenticated:
-        user_profile = UserProfile.objects.get(user=request.user)
+        """ user_profile = UserProfile.objects.get(user=request.user) """
         roms = CustomROM.objects.all()
         mods = CustomMOD.objects.all()
-        return render(request, "home.html", {'user_profile':user_profile,'roms':roms,'mods':mods})
+        return render(request, "home.html", {'roms':roms,'mods':mods}) #'user_profile':user_profile
     # Rest of your code
     else:
         roms = CustomROM.objects.all()
@@ -143,87 +144,9 @@ def home(request):
         return render(request, "home.html", {'roms':roms,'mods':mods})
     # Handle the case when the user is not authenticated
 
-
-
-def login_request(request):
-    logout(request)
-    context = {}
-
-
-    if request.POST:
-        email = request.POST['email']
-        password = request.POST['password']
-        
-        user = authenticate(username=email, password=password)
-        
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('/')
-        else:
-            context = {
-            "error": 'Email or Password was wrong.',
-            }    
-        
-    return render(request, 'app_userprofile/login.html',context)
-
-
 def logout_request(request):
     logout(request)
     return redirect("/")
-
-
-def signup_view(request):
-    logout(request)
-
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        username = request.POST.get('username')
-        error = ''
-
-        # Check for valid email
-        if not email_valid(email):
-            error = "Wrong email address."
-
-        # Check if email is already used
-        try:
-            if User.objects.get(email=email) is not None:
-                error = 'This email is already used.'
-        except User.DoesNotExist:
-            pass
-
-        # Check if username is already taken
-        try:
-            if User.objects.get(username=username) is not None:
-                error = 'This username is already taken.'
-        except User.DoesNotExist:
-            pass
-
-        # Check if user is already logged in with this username
-        if username == request.user.username:
-            error = 'You are already logged in with this username.'
-
-        # If there's an error, render the signup page with the error message
-        if error:
-            return render(request, "app_userprofile/signup.html", context={'error': error})
-
-        # If no errors, create the new user and user profile
-        user = User.objects.create_user(
-            username=username,
-            password=password,
-            email=email  # It's better to use the email as well
-        )
-        user_profile = UserProfile.objects.create(
-            user=user,
-        )
-
-        # Log in the user
-        login(request, user)
-        return redirect('/')
-
-    return render(request, 'app_userprofile/signup.html')
-
 
 
 @login_required
@@ -255,10 +178,6 @@ def profile(request):
     }
     
     return render(request, 'profile.html', context)
-
-
-
-
 
 def custom_roms(request):
     roms = CustomROM.objects.all().order_by('-upload_date')
@@ -303,8 +222,35 @@ def custom_roms(request):
 
 def rom_details(request, rom_id):
     rom = get_object_or_404(CustomROM, id=rom_id)
+    rom_id = request.POST.get('rom_id')
+    if rom_id:
+        rom = CustomROM.objects.get(pk=rom_id)
+        user_liked = rom.likes.filter(id=request.user.id).exists()
+        
+        if user_liked:
+            rom.likes.remove(request.user)
+        else:
+            rom.likes.add(request.user)
+
+        return JsonResponse({'likes': rom.likes.count()})
     formatted_details = mark_safe(rom.details.replace("\n", "<br>").replace("-", "&#8226;"))
     return render(request, 'rom_details.html', {'rom': rom, 'formatted_details': formatted_details})
+
+def mod_details(request, mod_id):
+    mod = get_object_or_404(CustomMOD, id=mod_id)
+    mod_id = request.POST.get('mod_id')
+    if mod_id:
+        mod = CustomMOD.objects.get(pk=mod_id)
+        user_liked = mod.likes.filter(id=request.user.id).exists()
+        
+        if user_liked:
+            mod.likes.remove(request.user)
+        else:
+            mod.likes.add(request.user)
+
+        return JsonResponse({'likes': mod.likes.count()})
+    formatted_details = mark_safe(mod.details.replace("\n", "<br>").replace("-", "&#8226;"))
+    return render(request, 'mod_details.html', {'mod': mod, 'formatted_details': formatted_details})
 
 def magisk_modules(request):
     mods = CustomMOD.objects.all().order_by('-upload_date')
@@ -395,7 +341,7 @@ def blog(request):
 import openai
 
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = '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'
 
 # Create a function that handles the chat interaction
 def chat_with_openai(messages):

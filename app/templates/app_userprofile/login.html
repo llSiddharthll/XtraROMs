@@ -1,62 +1,95 @@
-{% extends 'base.html' %}
-{% block css %}
+{% extends 'base.html' %} {% block css %}
 <style>
+  .card-body{
+    box-shadow: 10px 10px 50px var(--text);
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--secondary);
+  }
 </style>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-                    <div class="text-center mb-4">
-                        <h1 class="logotext">Login Form</h1>
-                    </div>
-            <div style="margin-bottom: 120px;">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form class="loginForm" name="SignForm" method="post">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <input class="form-control login-signup-input" type="text" placeholder="Email" name="email" id="email" autocomplete="off" maxlength="150" required="" style="background-color: var(--background);width:100%;
-                            resize: vertical;
-                            padding:15px;
-                            border-radius:15px;
-                            border:0;
-                            margin-top: 40px;
-                            margin-bottom: 40px;
-                            box-shadow:4px 4px 10px rgba(123, 226, 255, 0.06);">
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                                <input type="password" placeholder="Password" name="password" id="password" class='form-control login-signup-input' maxlength="150" required=""style="background-color: var(--background);width:100%;
-                                resize: vertical;
-                                padding:15px;
-                                border-radius:15px;
-                                border:0;
-                                margin-bottom: 20px;
-                                box-shadow:4px 4px 10px rgba(137, 235, 255, 0.06);">
-                                </button>
-                            </div>
-                        </div>
-                        <div style="text-align: center;">
-                            {% if error %}
-                                <p class="text-danger">{{ error }}</p>
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            {% else %}
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            {% endif %}
-                        </div>
-                        
-                        <div style="text-align: center; margin-top: 10px;">
-                            <strong>Don't have account?</strong>
-                            <a href="{% url 'signup' %}" class="text-center" style="font-size: 1.5em;">SignUp</a>
-                        </div>
-                    </form>
-                </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center mb-4">
+        <h1 class="logotext">Login Form</h1>
+      </div>
+      <div style="margin-bottom: 120px">
+        <div class="card-body">
+          <form class="loginForm" name="SignForm" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <input
+                class="form-control login-signup-input"
+                type="text"
+                placeholder="Email"
+                name="email"
+                id="email"
+                autocomplete="off"
+                maxlength="150"
+                required=""
+                style="
+                  background-color: var(--background);
+                  width: 100%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-top: 40px;
+                  margin-bottom: 40px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+              />
             </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  id="password"
+                  class="form-control login-signup-input"
+                  maxlength="150"
+                  required=""
+                  style="
+                    background-color: var(--background);
+                    width: 100%;
+                    resize: vertical;
+                    padding: 15px;
+                    border-radius: 15px;
+                    border: 0;
+                    margin-bottom: 20px;
+                    box-shadow: 4px 4px 10px var(--text);
+                  "
+                />
+              </div>
+            </div>
+            <div style="text-align: center">
+              {% if error %}
+              <p class="text-danger">{{ error }}</p>
+              <button type="submit" class="btn btn-primary">Login</button>
+              {% else %}
+              <button type="submit" class="btn btn-primary">Login</button>
+              {% endif %}
+            </div>
+            <div style="text-align: center; margin-top: 20px">
+                <a href="{% url 'password_reset' %}" class="text-center" style="font-size: 1em">Forgot Password?</a>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px">
+              <strong>Don't have account?</strong>
+              <a
+                href="{% url 'signup' %}"
+                class="text-center"
+                style="font-size: 1.5em"
+                >SignUp</a
+              >
+            </div>
+          </form>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 {% endblock %}
-

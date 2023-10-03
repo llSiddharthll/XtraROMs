@@ -20,7 +20,7 @@ main {
 }
 main .content {
   width: 100%;
-  color: var(--accent);
+  color: var(--text);
   position: relative;
   z-index: 2;
   margin-bottom: 3em;
@@ -34,7 +34,8 @@ main .content {
 }
 main h2 {
   letter-spacing: 0.8px;
-  font-weight: 700;
+  font-weight: bolder;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
   font-size: 2.8rem;
   line-height: 1.2;
 }
@@ -42,6 +43,7 @@ main p {
   font-size: 1rem;
   line-height: 1.8;
   margin-inline: auto;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
   margin-top: 10px;
 }
 main .counter {
@@ -51,22 +53,33 @@ main .counter {
   margin: 2.5em 0 2em 0;
   gap: 2em;
 }
+main .counter h3{
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  font-weight: bolder;
+}
 main .counter i {
   margin-right: 10px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  font-weight: bolder;
 }
 main .counter span {
   display: block;
   text-transform: capitalize;
   font-size: 0.8rem;
-  color: var(--primary);
+  color: var(--text);
+  font-weight: bolder;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
   margin-top: 3px;
 }
 main .btn {
-  background-color: var(--primary);
+  background-color: var(--accent);
   border: none;
   color: var(--text);
   padding: 12px 20px;
   font-size: 16px;
+  font-weight: bolder;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 8px 8px 15px rgb(26, 31, 32);
   cursor: pointer;
   display: inline-block;
   border-radius: 4px;
@@ -118,6 +131,7 @@ main .btn:hover {
   background: var(--primary);
   border-radius: 0 50px 50px 0;
   text-transform: capitalize;
+  box-shadow: 0 10px 15px rgb(26, 31, 32);
   padding: 12px 20px;
   letter-spacing: 0.5px;
   font-weight: 500;
@@ -224,7 +238,7 @@ main .btn:hover {
   left: -8em;
   width: clamp(150px, 40vw, 400px);
   height: clamp(150px, 40vw, 400px);
-  background: black;
+  background: var(--primary);
   border-radius: 50%;
   z-index: 1;
   opacity: 0.7;

@@ -29,7 +29,6 @@
   }
 
   .containered {
-    width: 1000px;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -38,7 +37,9 @@
   .containered .card {
     position: relative;
     cursor: pointer;
+    padding: 30px;
     background: var(--background) !important;
+    box-shadow: none;
   }
 
   /* Add media query for smaller screens (e.g., smartphones) */
@@ -63,6 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
     z-index: 1;
     transform: translateY(100px);
   }
@@ -73,9 +75,10 @@
   }
 
   .containered .card .face.face1 .content {
-    opacity: 0.2;
+    opacity: 0.8;
     transition: 0.5s;
     text-align: center;
+    display: flex;
   }
 
   .containered .card:hover .face.face1 .content {
@@ -84,6 +87,8 @@
 
   .containered .card .face.face1 .content img {
     max-width: 100px;
+    box-shadow: none;
+    scale: 1.1;
   }
 
   .containered .card .face.face1 .content h3 {
@@ -100,9 +105,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     transform: translateY(-100px);
   }
 
@@ -198,12 +204,12 @@
     <div class="card">
       <div class="face face1">
         <div class="content">
-          <img src="{% static 'images/custom-rom.jpg' %}" />
-          <h3>Custom ROMS</h3>
+          <img src="{% static 'images/custom-rom.png' %}" />
         </div>
       </div>
       <div class="face face2">
         <div class="content">
+          <h3>Custom ROMS :</h3>
           <p>
             Custom ROMs are often developed by a community of developers and can
             be a fantastic way to breathe new life into older devices.
@@ -215,11 +221,11 @@
       <div class="face face1">
         <div class="content">
           <img src="{% static 'images/magisk-module.webp' %}" />
-          <h3>Magisk MODS</h3>
         </div>
       </div>
       <div class="face face2">
         <div class="content">
+          <h3>Magisk MODS :</h3>
           <p>
             With Magisk, you can enjoy features like systemless root, custom
             modules, and safety net bypass, making it a popular choice for
@@ -232,11 +238,12 @@
       <div class="face face1">
         <div class="content">
           <img src="{% static 'images/tools.png' %}" />
-          <h3>Tools</h3>
         </div>
       </div>
       <div class="face face2">
-        <div class="content">
+        <div class="content">          
+          <h3>Tools :</h3>
+          <hr>
           <p>
             Having the right tools like TWRP and Odin is essential for flashing
             custom ROMs and recovering bricked devices in the Android

@@ -21,42 +21,15 @@
                 min-width: 157px;
                 object-fit: cover;
                 border-radius: 50%;
-                border: 3px solid rgb(52, 184, 147);"
+                border: none;"
               />
             </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="profilePictureModal" tabindex="-1" aria-labelledby="profilePictureModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title">Upload or Change Profile Picture</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                          <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
-                              {% csrf_token %}
-                              <div class="mb-3">
-                                  {{ profile_picture_form|crispy }}
-                              </div>
-                              <div class="mb-3">
-                                  {{ update_username_form|crispy }}
-                              </div>
-                              <div style="text-align: center;">
-                                  <button type="submit" class="btn btn-primary" style="color: var(--background);">Upload</button>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
             <h5 class="my-3" style="display: flex;
             justify-content: center;"><b>{{request.user.username}}</b></h5>
             <p class="text-muted mb-4"></p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" id="change-image-link" class="btn btn-outline-primary ms-1">Update Profile</button>
-              <a href="{% url 'logout' %}"><button type="button" id="change-image-link" class="btn btn-outline-primary ms-1">Logout</button></a>
+              <button type="button" id="change-image-link" class="btn btn-primary ms-1">Update Profile</button>
+              <a href="{% url 'logout' %}"><button type="button" id="change-image-link" class="btn btn-primary ms-1">Logout</button></a>
             </div>
           </div>
         </div>
@@ -124,7 +97,7 @@
                   {% elif user.is_staff %}
                     You can manage other users as well as upload data (<a href="{% url 'manage_user_profiles' %}">Manage Users</a>)
                   {% elif user.is_authorised %}
-                    You can only upload data
+                  <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Roms</a>
                   {% else %}
                     You are not authorized, kindly Contact Staff's to upload data
                   {% endif %}
@@ -276,6 +249,157 @@
     </div>
   </div>
 </section>
+<div
+    class="modal fade"
+    id="uploadModal"
+    tabindex="-1"
+    aria-labelledby="uploadModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadModalLabel">Upload Custom ROM</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+            {% if user.is_authenticated %} 
+            {% if user.userprofile.is_authorized %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="device" class="form-label">Device</label>
+              <select class="form-select" id="device" name="device" required>
+                <option value="" selected disabled>Select a Device</option>
+                <option value="Fleur / Miel">Fleur / Miel</option>
+                <option value="Viva / Vida">Viva / Vida</option>
+                <option value="Ocean / Sea">Ocean / Sea</option>
+                <option value="Blossom">Blossom</option>
+                <option value="Lavander">Lavander</option>
+                <option value="Ginkgo / Willow">Ginkgo / Willow</option>
+                <option value="X01BD">X01BD</option>
+                <option value="Vince">Vince</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Credits</label>
+              <input
+                placeholder="Just write telegram username ! (no '@')"
+                type="text"
+                class="form-control"
+                id="credits"
+                name="credits"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                class="form-control"
+                id="image"
+                name="image"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="link" class="form-label">ROM / Recovery Link</label>
+              <input
+                type="url"
+                class="form-control"
+                id="link"
+                name="link"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="link" class="form-label"
+                >Boot-Img Link (optional)</label
+              >
+              <input
+                type="url"
+                class="form-control"
+                id="boot_link"
+                name="boot_link"
+              />
+              <div>
+                <label for="date" class="form-label">Release Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="upload_date"
+                  name="upload_date"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="details" class="form-label">Details</label>
+              <textarea
+                class="form-control"
+                id="details"
+                name="details"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+            {% else %}
+            <p class="text-warning">
+              You are not authorized to upload ROMs. Kindly send a request to
+              Siddharth or Staff Members on telegram or by other sources to get
+              authorized.
+            </p>
+            {% endif %} 
+            {% else %}
+            <p class="text-warning">Please log in to upload ROMs.</p>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="profilePictureModal" tabindex="-1" aria-labelledby="profilePictureModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Update Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                      {{ profile_picture_form|crispy }}
+                  </div>
+                  <div class="mb-3">
+                      {{ update_username_form|crispy }}
+                  </div>
+                  <div style="text-align: center;">
+                      <button type="submit" class="btn btn-primary">Upload</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
 {% endblock %} {% block script %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

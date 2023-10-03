@@ -1,13 +1,10 @@
 from django import forms
 from .models import *
-from django.contrib.auth.models import User
 
 class UpdateUsernameForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = CustomUser  # Change to CustomUser
         fields = ['username']
-
-
 
 class UploadROMForm(forms.ModelForm):
     DEVICE_CHOICES = [
@@ -25,25 +22,20 @@ class UploadROMForm(forms.ModelForm):
 
     class Meta:
         model = CustomROM
-        fields = ('name','device','credits','image','link','boot_link','details','upload_date')
+        fields = ('name', 'device', 'credits', 'image', 'link', 'boot_link', 'details', 'upload_date')
         widgets = {
-            'upload_date': forms.DateInput(attrs={'type':'date'}),
+            'upload_date': forms.DateInput(attrs={'type': 'date'}),
         }
-
 
 class UploadMODForm(forms.ModelForm):
     class Meta:
         model = CustomMOD
-        fields = ('name','image','credits', 'link','details','upload_date')
+        fields = ('name', 'image', 'credits', 'link', 'details', 'upload_date')
         widgets = {
-            'upload_date': forms.DateInput(attrs={'type':'date'}),
+            'upload_date': forms.DateInput(attrs={'type': 'date'}),
         }
-
 
 class ProfilePictureForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['profile_picture']
-
-
-

@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block style %}
 
+
 <!-- Include Select2 CSS -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css"
@@ -94,7 +95,7 @@
 {% endblock %} {% block content %}
 
 <div class="container py-5">
-  <h1 class="text-center mb-5">Custom ROM Showcase</h1>
+  <h1 class="text-center mb-5">Custom Roms & Recoveries</h1>
 
   <!-- Search Bar -->
   <section id="searching">
@@ -185,7 +186,7 @@
                 />
               </svg>
             </a>
-            {% if request.user.is_staff %}
+            {% if request.user.is_staff or request.user == rom.user %}
             <a href="{% url 'edit_rom' rom.id %}" class="jas btn btn-primary"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +200,6 @@
             <button
               class="btn btn-primary rom-link like-button"
               data-rom-id="{{ rom.id }}"
-              style="margin-left: 5px"
             >
               <i class="far fa-thumbs-up"></i>
             </button>
@@ -228,34 +228,48 @@
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div>
-
-  <!-----------------------------------Share Link Model----------------------------------------------->
+<!-----------------------------------Share Link Model----------------------------------------------->
 
   <!-- Modal for sharing options -->
   <div
-    class="modal fade"
-    id="shareModal"
-    tabindex="-1"
-    aria-labelledby="shareModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="shareModalLabel">Share ROM Link</h5>
-        </div>
-        <div class="modal-body">
-          <!-- Add sharing options here, e.g., buttons/icons for different platforms -->
-          <a href="#" class=""><img src="{% static 'images/Telegram_logo.svg' %}" alt="" style="max-height: 40px; max-width: 40px;"></a>
-          <a href="#" class=""><img src="{% static 'images/Facebook_icon.svg' %}" alt="" style="max-height: 40px; max-width: 40px;"></a>
-          <a href="#" class=""><img src="{% static 'images/twitter-icon.svg' %}" alt="" style="max-height: 40px; max-width: 40px;"></a>
-          <!-- Add more sharing options as needed -->
-        </div>
+  class="modal fade"
+  id="shareModal"
+  tabindex="-1"
+  aria-labelledby="shareModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="shareModalLabel">Sharing -> {{rom.name}}</h5>
+      </div>
+      <div class="modal-body">
+        <!-- Add sharing options here, e.g., buttons/icons for different platforms -->
+        <a href="https://t.me/share/url?url=http://127.0.0.1:8000{% url 'rom_details' rom.id %}" target="_blank">
+          <img src="{% static 'images/Telegram_logo.svg' %}" alt="" style="max-height: 40px; max-width: 40px;">
+        </a>
+        <a href="https://twitter.com/intent/tweet?url=http://127.0.0.1:8000/rom_detail/rom_details_45/" target="_blank">
+          <img src="{% static 'images/twitter-icon.svg' %}" alt="" style="max-height: 40px; max-width: 40px;">
+        </a>
+        <!-- <a href="https://discord.com/api/share?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify%20email%20connections&state=STATE&prompt=none" target="_blank">
+          <img src="{% static 'images/Discord_logo.svg' %}" alt="" style="max-height: 40px; max-width: 40px;">
+        </a>  --> 
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/rom_detail/rom_details_45/" target="_blank">
+          <img src="{% static 'images/Facebook_icon.svg' %}" alt="" style="max-height: 40px; max-width: 40px;">
+        </a>
+        <a href="whatsapp://send?text=http://127.0.0.1:8000/rom_detail/rom_details_45/" target="_blank">
+          <img src="{% static 'images/WhatsApp_logo.svg' %}" alt="" style="max-height: 40px; max-width: 40px;">
+        </a>
+              
+        <!-- Add more sharing options as needed -->
       </div>
     </div>
   </div>
+</div>
+    {% endfor %}
+  </div>
+
+
 
   <!----------------------------------- Login Modal -------------------------------------------------->
   <div
@@ -287,7 +301,7 @@
           >
             Close
           </button>
-          <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+          <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a>
         </div>
       </div>
     </div>
@@ -295,132 +309,7 @@
 
   <!---------------------------------- Upload ROM Modal ---------------------------------------------->
 
-  <div
-    class="modal fade"
-    id="uploadModal"
-    tabindex="-1"
-    aria-labelledby="uploadModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="uploadModalLabel">Upload Custom ROM</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %} 
-            {% if user.is_authenticated %} 
-            {% if user.userprofile.is_authorized %}
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="device" class="form-label">Device</label>
-              <select class="form-select" id="device" name="device" required>
-                <option value="" selected disabled>Select a Device</option>
-                <option value="Fleur / Miel">Fleur / Miel</option>
-                <option value="Viva / Vida">Viva / Vida</option>
-                <option value="Ocean / Sea">Ocean / Sea</option>
-                <option value="Blossom">Blossom</option>
-                <option value="Lavander">Lavander</option>
-                <option value="Ginkgo / Willow">Ginkgo / Willow</option>
-                <option value="X01BD">X01BD</option>
-                <option value="Vince">Vince</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="image" class="form-label">Credits</label>
-              <input
-                placeholder="Just write telegram username ! (no '@')"
-                type="text"
-                class="form-control"
-                id="credits"
-                name="credits"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="image" class="form-label">Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                class="form-control"
-                id="image"
-                name="image"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="link" class="form-label">ROM / Recovery Link</label>
-              <input
-                type="url"
-                class="form-control"
-                id="link"
-                name="link"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="link" class="form-label"
-                >Boot-Img Link (optional)</label
-              >
-              <input
-                type="url"
-                class="form-control"
-                id="boot_link"
-                name="boot_link"
-              />
-              <div>
-                <label for="date" class="form-label">Release Date</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="upload_date"
-                  name="upload_date"
-                  required
-                />
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="details" class="form-label">Details</label>
-              <textarea
-                class="form-control"
-                id="details"
-                name="details"
-                rows="3"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-            {% else %}
-            <p class="text-warning">
-              You are not authorized to upload ROMs. Kindly send a request to
-              Siddharth or Staff Members on telegram or by other sources to get
-              authorized.
-            </p>
-            {% endif %} 
-            {% else %}
-            <p class="text-warning">Please log in to upload ROMs.</p>
-            {% endif %}
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </div>
 
 <!-- Back to top button -->
@@ -429,7 +318,7 @@
   href="#"
   class="btn btn-primary back-to-top"
   role="button"
-  ><i class="fas fa-chevron-up"></i
+  ><i class="fas fa-chevron-up" style="margin-top: 2px;"></i
 ></a>
 {% endblock %}
 
@@ -520,16 +409,16 @@
             : "";
 
           const likeBtn = result.is_authenticated
-            ? `<button class="btn btn-secondary rom-link like-button" data-rom-id="${result.id}" style="margin-left: 5px;">
+            ? `<button class="btn btn-primary rom-link like-button" data-rom-id="${result.id}">
                 <i class="far fa-thumbs-up"></i>
             </button>`
-            : `<button class="btn btn-secondary rom-link like-button" data-bs-toggle="modal" 
-			data-bs-target="#loginModal" style="margin-left: 5px;">
+            : `<button class="btn btn-primary rom-link like-button" data-bs-toggle="modal" 
+			data-bs-target="#loginModal">
                 <i class="far fa-thumbs-up"></i>
             </button>`;
 
           const likeCnt = `
-            <span class="btn btn-secondary rom-link likes-count" style="border-radius: 50%;height: 35px;width: 35px;">
+            <span class="btn btn-primary rom-link likes-count" style="border-radius: 50%;height: 35px;width: 35px;">
                 ${result.likes}
             </span>`;
 
@@ -538,48 +427,58 @@
         </h5>`;
 
           const resultHtml = `
-                        <div class="col rom-card">
-                            <div class="card h-100">
-                                <img
-                                    src="${result.image_url}"
-                                    class="img-thumbnail custom-rom-image"
-                                    alt="${result.name}"
-                                />
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        ${result.name} &rarr; ${
-            result.device
-          } <br />
-                                        <a
-                                            href="https://telegram.me/${
-                                              result.credits
-                                            }"
-                                            target="_blank"
-                                        >@${result.credits}</a>
-                                        </h5>
-                                        <h5 class="card-title">
-                                            Date: ${
-                                              result.upload_date
-                                                ? result.upload_date
-                                                : "Not Provided"
-                                            }
-                                        </h5>
-                                        ${romDetails}
-                                        <div class="buttons-wrapper">
-                                            <a
-                                                href="${result.link}"
-                                                target="_blank"
-                                                class="btn btn-primary rom-link"
-                                                style="background-color: var(--accent); border: none;"
-                                            ><i class="fas fa-download"></i></a>
-                                            ${editLink}
-                                            ${likeBtn}
-											${likeCnt}
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          <div class="col rom-card">
+            <div class="card h-100">
+              <img
+                src="${result.image_url}"
+                class="img-thumbnail custom-rom-image"
+                alt="${result.name}"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  ${result.name} &rarr; ${ result.device } <br />
+                  <a
+                    href="https://telegram.me/${
+                                result.credits
+                              }"
+                    target="_blank"
+                    >@${result.credits}</a
+                  >
+                </h5>
+                <h5 class="card-title">
+                  Date: ${ result.upload_date ? result.upload_date : "Not Provided" }
+                </h5>
+                ${romDetails}
+                <div class="buttons-wrapper">
+                  <a
+                    href="${result.link}"
+                    target="_blank"
+                    class="btn btn-primary rom-link"
+                    style="background-color: var(--accent); border: none"
+                    ><i class="fas fa-download"></i
+                  ></a>
+                  <a
+                    class="btn btn-primary rom-link share-button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#shareModal"
+                    data-rom-link="{{ rom.link }}"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1em"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        d="M352 224c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 121.9 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.9 0 49.4-10.2 66.6-26.9l94.1 47c-.5 3.9-.7 7.8-.7 11.9c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-25.9 0-49.4 10.2-66.6 26.9l-94.1-47c.5-3.9 .7-7.8 .7-11.9s-.2-8-.7-11.9l94.1-47C302.6 213.8 326.1 224 352 224z"
+                      />
+                    </svg>
+                  </a>
+                  ${editLink} ${likeBtn} ${likeCnt}
+                </div>
+              </div>
+            </div>
+          </div>
+          `;
           searchResults.innerHTML += resultHtml;
         }
       } else {
