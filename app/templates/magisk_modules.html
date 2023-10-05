@@ -228,7 +228,7 @@
         </div>
       </div>
     </div>
-      <!-----------------------------------Share Link Model----------------------------------------------->
+    <!-----------------------------------Share Link Model----------------------------------------------->
 
   <!-- Modal for sharing options -->
   <div
@@ -302,135 +302,6 @@
             Close
           </button>
           <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!---------------------------------- Upload mod Modal ---------------------------------------------->
-
-  <div
-    class="modal fade"
-    id="uploadModal"
-    tabindex="-1"
-    aria-labelledby="uploadModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="uploadModalLabel">Upload Mods & Tools</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %} 
-            {% if user.is_authenticated %} 
-            {% if user.userprofile.is_authorized %}
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="device" class="form-label">Device</label>
-              <select class="form-select" id="device" name="device" required>
-                <option value="" selected disabled>Select a Device</option>
-                <option value="Fleur / Miel">Fleur / Miel</option>
-                <option value="Viva / Vida">Viva / Vida</option>
-                <option value="Ocean / Sea">Ocean / Sea</option>
-                <option value="Blossom">Blossom</option>
-                <option value="Lavander">Lavander</option>
-                <option value="Ginkgo / Willow">Ginkgo / Willow</option>
-                <option value="X01BD">X01BD</option>
-                <option value="Vince">Vince</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="image" class="form-label">Credits</label>
-              <input
-                placeholder="Just write telegram username ! (no '@')"
-                type="text"
-                class="form-control"
-                id="credits"
-                name="credits"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="image" class="form-label">Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                class="form-control"
-                id="image"
-                name="image"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="link" class="form-label">mod / Recovery Link</label>
-              <input
-                type="url"
-                class="form-control"
-                id="link"
-                name="link"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="link" class="form-label"
-                >Boot-Img Link (optional)</label
-              >
-              <input
-                type="url"
-                class="form-control"
-                id="boot_link"
-                name="boot_link"
-              />
-              <div>
-                <label for="date" class="form-label">Release Date</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="upload_date"
-                  name="upload_date"
-                  required
-                />
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="details" class="form-label">Details</label>
-              <textarea
-                class="form-control"
-                id="details"
-                name="details"
-                rows="3"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-            {% else %}
-            <p class="text-warning">
-              You are not authorized to upload mods. Kindly send a request to
-              Siddharth or Staff Members on telegram or by other sources to get
-              authorized.
-            </p>
-            {% endif %} 
-            {% else %}
-            <p class="text-warning">Please log in to upload mods.</p>
-            {% endif %}
-          </form>
         </div>
       </div>
     </div>

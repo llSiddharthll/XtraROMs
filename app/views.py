@@ -10,7 +10,6 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from allauth.account.views import SignupView
 
-
 class CustomSignupView(SignupView):
     def form_valid(self, form):
         try:
@@ -171,8 +170,14 @@ def profile(request):
         profile_picture_form = ProfilePictureForm(instance=user_profile)
         update_username_form = UpdateUsernameForm(instance=user)
     
+    is_validated = ''
+    if user_profile.is_authorized:
+        is_validated = 'Yes'
+    else:
+        is_validated = 'No'
     context = {
         'user_profile': user_profile,
+        'is_validated': is_validated,
         'profile_picture_form': profile_picture_form,
         'update_username_form': update_username_form,
     }

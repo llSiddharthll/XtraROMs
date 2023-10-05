@@ -1,6 +1,18 @@
 {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} 
 {% block css %}
 <style>
+  .function br{
+    display: none;
+  }
+  @media (max-width:728px) {
+    .function br{
+      display: block;
+    }
+    .function a{
+      margin: 10px;
+      font-size: 10px;
+    }
+  }
 </style>
 {% endblock %} {% block content %}
 <section id="profile">
@@ -88,23 +100,28 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Status</p>
+                <p class="mb-0">Functionalities</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">
+                <p class="text-muted mb-0 function">
                   {% if user.is_superuser %}
-                    You are the god, can do anything (<a href="{% url 'admin:index' %}">Here</a>)(<a href="{% url 'manage_user_profiles' %}">Manage Users</a>)
+                    <a class="btn btn-primary rom-link button" href="{% url 'admin:index' %}">Admin<br>Panel</a>
+                    <a class="btn btn-primary rom-link button" href="{% url 'manage_user_profiles' %}">Manage<br>Users</a>
+                    <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadromModal">Upload<br>Roms</a>
+                    <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadmodModal">Upload<br>Mods</a>
                   {% elif user.is_staff %}
-                    You can manage other users as well as upload data (<a href="{% url 'manage_user_profiles' %}">Manage Users</a>)
-                  {% elif user.is_authorised %}
-                  <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Roms</a>
-                  {% else %}
+                    <a class="btn btn-primary rom-link button" href="{% url 'manage_user_profiles' %}">Manage<br>Users</a>
+                    <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadromModal">Upload<br>Roms</a>
+                    <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadmodModal">Upload<br>Mods</a>
+                  {% elif is_validated == 'Yes' %}
+                  <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadromModal">Upload<br>Roms</a>
+                  <a class="btn btn-primary rom-link button" data-bs-toggle="modal" data-bs-target="#uploadmodModal">Upload<br>Mods</a>
+                  {% elif is_validated == 'No' %}
                     You are not authorized, kindly Contact Staff's to upload data
                   {% endif %}
                 </p>
               </div>
             </div>
-            
           </div>
         </div>
         <div class="row">
@@ -251,7 +268,7 @@
 </section>
 <div
     class="modal fade"
-    id="uploadModal"
+    id="uploadromModal"
     tabindex="-1"
     aria-labelledby="uploadModalLabel"
     aria-hidden="true"
@@ -400,6 +417,109 @@
       </div>
   </div>
 </div>
+  <!---------------------------------- Upload mod Modal ---------------------------------------------->
+
+  <div
+    class="modal fade"
+    id="uploadmodModal"
+    tabindex="-1"
+    aria-labelledby="uploadModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadModalLabel">Upload Mods & Tools</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+            {% if user.is_authenticated %} 
+            {% if user.userprofile.is_authorized %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Credits</label>
+              <input
+                placeholder="Just write telegram username ! (no '@')"
+                type="text"
+                class="form-control"
+                id="credits"
+                name="credits"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                class="form-control"
+                id="image"
+                name="image"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="link" class="form-label">Mod / Tool Link</label>
+              <input
+                type="url"
+                class="form-control"
+                id="link"
+                name="link"
+                required
+              />
+            </div>
+              <div>
+                <label for="date" class="form-label">Release Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="upload_date"
+                  name="upload_date"
+                  required
+                />
+              </div>
+            <div class="mb-3">
+              <label for="details" class="form-label">Details</label>
+              <textarea
+                class="form-control"
+                id="details"
+                name="details"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+            {% else %}
+            <p class="text-warning">
+              You are not authorized to upload mods. Kindly send a request to
+              Siddharth or Staff Members on telegram or by other sources to get
+              authorized.
+            </p>
+            {% endif %} 
+            {% else %}
+            <p class="text-warning">Please log in to upload mods.</p>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %} {% block script %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

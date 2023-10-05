@@ -66,15 +66,6 @@
     color: #b8b9bc;
   }
 
-  .text-center {
-    font-size: 3em;
-    font-weight: bold;
-    color: var(--text);
-    background: linear-gradient(120deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
   @media only screen and (max-width: 757px) {
     .text-center {
       font-size: 1.5em;
@@ -156,11 +147,11 @@
           <h5 class="card-title">Made By: <a
             href="https://telegram.me/{{rom.credits}}"
             target="_blank"
-            style="text-decoration: none"
+            style="text-decoration: none;color: #475e5c;"
             >@{{rom.credits}}</a></h5>
           <h5 class="card-title">Date: {{rom.upload_date}}</h5>
           <h5 class="card-title">
-            Details : <a href="{% url 'rom_details' rom.id %}">Visit Here</a>
+            Details : <a href="{% url 'rom_details' rom.id %}" style="color: #475e5c;">Visit Here</a>
           </h5>
           <div class="buttons-wrapper">
             <a
