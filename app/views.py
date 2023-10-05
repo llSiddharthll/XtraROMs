@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
-from allauth.account.views import SignupView
+from allauth.account.views import SignupView, LoginView
 
 class CustomSignupView(SignupView):
     def form_valid(self, form):
@@ -36,6 +36,10 @@ class CustomSignupView(SignupView):
         except Exception as e:
             print("Error creating UserProfile:", str(e))
 
+class CustomLoginView(LoginView):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 def edit_rom(request, rom_id):
     rom = get_object_or_404(CustomROM, id=rom_id)
@@ -147,7 +151,7 @@ def logout_request(request):
     logout(request)
     return redirect("/")
 
-
+@csrf_exempt
 @login_required
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -156,6 +160,20 @@ def profile(request):
     if request.method == 'POST':
         profile_picture_form = ProfilePictureForm(request.POST, request.FILES)
         update_username_form = UpdateUsernameForm(request.POST, instance=user)
+
+        rom_form = UploadROMForm(request.POST, request.FILES)
+        if rom_form.is_valid():
+            rom = rom_form.save()
+            rom.uploaded_by = request.user
+            rom.save()
+            return redirect("custom_roms")  # Redirect back to the same page
+        
+        mod_form = UploadMODForm(request.POST, request.FILES)
+        if mod_form.is_valid():
+            mod = mod_form.save()
+            mod.uploaded_by = request.user
+            mod.save()
+            return redirect("magisk_modules")  # Redirect back to the same page
 
         if update_username_form.is_valid():
             update_username_form.save()

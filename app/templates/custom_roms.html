@@ -414,7 +414,7 @@
             </span>`;
 
           const romDetails = `<h5 class="card-title">
-            Details : <a href="" class="rom-details" data-rom-id="${result.id}">Visit Here</a>
+            Details : <a href="" class="rom-details" data-rom-id="${result.id}" style="color: #475e5c;">Visit Here</a>
         </h5>`;
 
           const resultHtml = `
@@ -427,12 +427,15 @@
               />
               <div class="card-body">
                 <h5 class="card-title">
-                  ${result.name} &rarr; ${ result.device } <br />
+                  ${result.name} &rarr; ${ result.device }
+                </h5>
+                <h5 class="card-title">Made By: 
                   <a
                     href="https://telegram.me/${
                                 result.credits
                               }"
                     target="_blank"
+                    style="color: #475e5c;"
                     >@${result.credits}</a
                   >
                 </h5>

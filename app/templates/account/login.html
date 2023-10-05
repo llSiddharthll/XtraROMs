@@ -5,6 +5,19 @@
       display: flex;
       margin-left: -50px !important;
     }
+    .signup-button{
+      font-size: 0.5em;
+    }
+    .main{
+        margin-top: -50px;
+    }
+    .card-body{
+        scale: 0.8;
+        margin-top: -30px;
+    }
+    .logotext{
+        font-size: 1.5em;
+    }
   }
   .card-body {
     box-shadow: 10px 10px 50px var(--text);
@@ -12,13 +25,16 @@
     border-radius: 20px;
     background-color: var(--secondary);
   }
+  .signup-button{
+    font-size: 1em;
+  }
 </style>
 
 {% endblock %} {% load crispy_forms_tags %} {% load account socialaccount %} 
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-6 main">
       <div class="text-center mb-4">
         <h1 class="logotext">User Login</h1>
       </div>
@@ -75,9 +91,9 @@
             />
             {% endif %}
             <div style="text-align: center; margin-top: 10px">
-              <button class="btn btn-primary" type="submit">Sign In</button>
+              <button class="btn btn-primary" type="submit">Login</button>
             </div>
-            <div style="text-align: center; margin-top: 10px">
+            <div style="text-align: center; margin-top: 20px">
               <a
                 class="text-center"
                 href="{% url 'account_reset_password' %}"
@@ -85,13 +101,12 @@
                 >Forgot Password?</a
               >
             </div>
-            <div style="text-align: center; margin-top: 15px">
-              <strong>Register with new account?</strong>
+            <div class="signup-button" style="text-align: center; margin-top: 15px">
+              <strong>Register new account?</strong>
               <a
                 href="{{ signup_url }}"
                 class="text-center"
-                style="font-size: 1em"
-                >Sign-Up</a
+                >SignUp</a
               >
             </div>
           </form>

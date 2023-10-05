@@ -156,11 +156,11 @@
           <h5 class="card-title">Made By: <a
             href="https://telegram.me/{{mod.credits}}"
             target="_blank"
-            style="text-decoration: none"
+            style="text-decoration: none;color: #475e5c;"
             >@{{mod.credits}}</a></h5>
           <h5 class="card-title">Date: {{mod.upload_date}}</h5>
           <h5 class="card-title">
-            Details : <a href="{% url 'mod_details' mod.id %}">Visit Here</a>
+            Details : <a href="{% url 'mod_details' mod.id %}" style="color: #475e5c;">Visit Here</a>
           </h5>
           <div class="buttons-wrapper">
             <a
@@ -419,7 +419,7 @@
             </span>`;
 
           const modDetails = `<h5 class="card-title">
-            Details : <a href="" class="mod-details" data-mod-id="${result.id}">Visit Here</a>
+            Details : <a href="" class="mod-details" data-mod-id="${result.id} " style="color: #475e5c;">Visit Here</a>
         </h5>`;
 
           const resultHtml = `
@@ -432,12 +432,15 @@
               />
               <div class="card-body">
                 <h5 class="card-title">
-                  ${result.name} <br />
+                  ${result.name} &rarr;
+                </h5>
+                <h5 class="card-title">Made By: 
                   <a
                     href="https://telegram.me/${
                                 result.credits
                               }"
                     target="_blank"
+                    style="color: #475e5c;"
                     >@${result.credits}</a
                   >
                 </h5>
