@@ -1,118 +1,129 @@
-{% extends "base.html" %}{% block css %}
-<style>
-  @media only screen and (max-width: 767px) {
-    #signup-btn {
-      display: flex;
-      margin-left: -50px !important;
-    }
-    .signup-button{
-      font-size: 0.5em;
-    }
-    .main{
-        margin-top: -50px;
-    }
-    .card-body{
-        scale: 0.8;
-        margin-top: -30px;
-    }
-    .logotext{
-        font-size: 1.5em;
-    }
+{% load static %} {% load crispy_forms_tags %} {% load account socialaccount %}
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="{% static 'auth.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <style>
+        h4{
+            display: block;
+        }
+    @media (max-width: 730px) {
+  .container .cover{
+    display: none;
   }
-  .card-body {
-    box-shadow: 10px 10px 50px var(--text);
-    padding: 30px;
-    border-radius: 20px;
-    background-color: var(--secondary);
+  .form-content .login-form,
+  .form-content .signup-form{
+    width: 100%;
   }
-  .signup-button{
-    font-size: 1em;
+  .form-content .signup-form{
+    display: block;
   }
-</style>
-
-{% endblock %} {% load crispy_forms_tags %} {% load account socialaccount %} 
-{% block content %}
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6 main">
-      <div class="text-center mb-4">
-        <h1 class="logotext">User Login</h1>
+  .container #flip:checked ~ .forms .signup-form{
+    display: block;
+  }
+  .container #flip:checked ~ .forms .login-form{
+    display: block;
+  }
+}
+  </style>
+  </head>
+  <body>
+    <div class="container">
+    <!-- <div><a href="{% url 'home' %}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></a></div> -->
+      <input type="checkbox" id="flip" />
+      <div class="cover">
+        <div class="front">
+          <div
+            style="
+              width: 100%;
+              height: 100%;
+              position: relative;
+              background: var(--secondary);
+            "
+          >
+            <img src="{% static 'images/xiaomi2.gif' %}" alt="" />
+          </div>
+        </div>
+        <div class="back">
+          <div
+            style="
+              width: 100%;
+              height: 100%;
+              position: relative;
+              background: var(--secondary);
+            "
+          >
+            <img src="{% static 'images/xiaomi2.gif' %}" alt="" />
+          </div>
+        </div>
       </div>
-      <div style="margin-bottom: 120px">
-        <div class="card-body">
-          <form class="login" method="post" action="{% url 'account_login' %}">
-            {% csrf_token %} {{ form.non_field_errors }}
-
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Username/Email"
-                name="login"
-                style="
-                  background-color: var(--background);
-                  width: 100%;
-                  resize: vertical;
-                  padding: 15px;
-                  border-radius: 15px;
-                  border: 0;
-                  margin-bottom: 40px;
-                  box-shadow: 4px 4px 10px var(--text);
-                "
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                placeholder="Password"
-                name="password"
-                style="
-                  background-color: var(--background);
-                  width: 100%;
-                  resize: vertical;
-                  padding: 15px;
-                  border-radius: 15px;
-                  border: 0;
-                  margin-bottom: 40px;
-                  box-shadow: 4px 4px 10px var(--text);
-                "
-                required
-              />
-            </div>
-            {% if redirect_field_value %}
-            <input
-              type="hidden"
-              name="{{ redirect_field_name }}"
-              value="{{ redirect_field_value }}"
-            />
-            {% endif %}
-            <div style="text-align: center; margin-top: 10px">
-              <button class="btn btn-primary" type="submit">Login</button>
-            </div>
-            <div style="text-align: center; margin-top: 20px">
-              <a
-                class="text-center"
-                href="{% url 'account_reset_password' %}"
-                style="font-size: 1em"
-                >Forgot Password?</a
-              >
-            </div>
-            <div class="signup-button" style="text-align: center; margin-top: 15px">
-              <strong>Register new account?</strong>
-              <a
-                href="{{ signup_url }}"
-                class="text-center"
-                >SignUp</a
-              >
-            </div>
-          </form>
+      <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+            <form class="login" method="post" action="{% url 'login' %}">
+              {% csrf_token %} {{ form.non_field_errors }}
+              <div class="input-boxes">
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username/Email"
+                    name="login"
+                    style="background-color: var(--background)"
+                    required
+                  />
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password"
+                    name="password"
+                    style="background-color: var(--background)"
+                    required
+                  />
+                </div>
+                {% if redirect_field_value %}
+                <input
+                  type="hidden"
+                  name="{{ redirect_field_name }}"
+                  value="{{ redirect_field_value }}"
+                />
+                {% endif %}
+                <div class="text">
+                  <a
+                    href="{% url 'account_reset_password' %}"
+                    style="color: var(--primary)"
+                    >Forgot password?</a
+                  >
+                </div>
+                <div class="button input-box">
+                  <input type="submit" value="Sumbit" />
+                </div>
+                <div class="text sign-up-text">
+                  Don't have an account?
+                  <a href="{% url 'signup' %}" style="color: var(--primary)"
+                    >Sigup now</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-{% endblock %}
+  </body>
+</html>

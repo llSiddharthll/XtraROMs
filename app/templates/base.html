@@ -130,12 +130,12 @@
             {% else %}
             <li class="nav__item">
               <a
-                href="{% url 'custom_signup' %}"
-                class="nav__link {% if request.path == '/custom_signup/' %}active-link{% endif %}"
+                href="{% url 'login' %}"
+                class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
               >
                 <i class="bx bxs-receipt nav__icon"></i>
                 <span class="nav__name"
-                  ><span class="decor">< </span>SignUp<span class="decor">
+                  ><span class="decor">< </span>Login<span class="decor">
                     /></span
                   ></span
                 >
@@ -169,7 +169,6 @@
                 >
               </a>
             </li>
-            {% if request.user.is_authenticated %}
             <li class="nav__item">
               <a
                 href="{% url 'blog' %}"
@@ -183,21 +182,6 @@
                 >
               </a>
             </li>
-            {% else %}
-            <li class="nav__item">
-              <a
-                href="{% url 'account_login' %}"
-                class="nav__link {% if request.path == '/account_login/' %}active-link{% endif %}"
-              >
-                <i class="bx bx-receipt nav__icon"></i>
-                <span class="nav__name"
-                  ><span class="decor">< </span>Login<span class="decor">
-                    /></span
-                  ></span
-                >
-              </a>
-            </li>
-            {% endif %}
           </ul>
         </div>
         {% if user.is_authenticated %}
@@ -221,7 +205,7 @@
     </header>
 
 
-    <div class="chat-bar-open" id="chat-open">
+<!--     <div class="chat-bar-open" id="chat-open">
       <button
         id="chat-open-button"
         type="button"
@@ -235,7 +219,7 @@
     </div>
     
 
-    <!-- chat close -->
+    
     <div class="chat-bar-close" id="chat-close">
       <button
         id="chat-close-button"
@@ -249,7 +233,7 @@
       </button>
     </div>
 
-    <!-- chat-window 1 -->
+    
     <div class="chat-window" id="chat-window1">
       <div class="hi-there">
         <p class="p1">Hi There</p>
@@ -271,7 +255,7 @@
       </div>
     </div>
 
-    <!-- chat chat-window 2 -->
+    
     <div class="chat-window2" id="chat-window2">
       <div class="message-box" id="messageBox">
         <div class="hi-there">
@@ -316,7 +300,7 @@
     </div>
     <script>
       const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-  </script>
+  </script> -->
 
 
     <!--------cookie collection ----------------------->

@@ -1,0 +1,118 @@
+{% extends "base.html" %}{% block css %}
+<style>
+  @media only screen and (max-width: 767px) {
+    #signup-btn {
+      display: flex;
+      margin-left: -50px !important;
+    }
+    .signup-button{
+      font-size: 0.5em;
+    }
+    .main{
+        margin-top: -50px;
+    }
+    .card-body{
+        scale: 0.8;
+        margin-top: -30px;
+    }
+    .logotext{
+        font-size: 1.5em;
+    }
+  }
+  .card-body {
+    box-shadow: 10px 10px 50px var(--text);
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--secondary);
+  }
+  .signup-button{
+    font-size: 1em;
+  }
+</style>
+
+{% endblock %} {% load crispy_forms_tags %} {% load account socialaccount %} 
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 main">
+      <div class="text-center mb-4">
+        <h1 class="logotext">User Login</h1>
+      </div>
+      <div style="margin-bottom: 120px">
+        <div class="card-body">
+          <form class="login" method="post" action="{% url 'account_login' %}">
+            {% csrf_token %} {{ form.non_field_errors }}
+
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username/Email"
+                name="login"
+                style="
+                  background-color: var(--background);
+                  width: 100%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-bottom: 40px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+                name="password"
+                style="
+                  background-color: var(--background);
+                  width: 100%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-bottom: 40px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+                required
+              />
+            </div>
+            {% if redirect_field_value %}
+            <input
+              type="hidden"
+              name="{{ redirect_field_name }}"
+              value="{{ redirect_field_value }}"
+            />
+            {% endif %}
+            <div style="text-align: center; margin-top: 10px">
+              <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+            <div style="text-align: center; margin-top: 20px">
+              <a
+                class="text-center"
+                href="{% url 'account_reset_password' %}"
+                style="font-size: 1em"
+                >Forgot Password?</a
+              >
+            </div>
+            <div class="signup-button" style="text-align: center; margin-top: 15px">
+              <strong>Register new account?</strong>
+              <a
+                href="{{ signup_url }}"
+                class="text-center"
+                >SignUp</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

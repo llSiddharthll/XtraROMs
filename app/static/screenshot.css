@@ -8,8 +8,8 @@
     margin-bottom: 2em;
     background-image: linear-gradient(
         to left,
-        var(--accent),
-        var(--primary)
+        var(--text),
+        var(--text-p)
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -18,7 +18,7 @@
 
 #Screenshot p{
     font-size: x-large;
-    color: #469797;
+    color: var(--text-p);
     font-family: system-ui;
 }
 
@@ -32,13 +32,11 @@
     max-width: 500px;
     margin-top: 3em;
 }
-#Screenshot-1 img, #Screenshot-3 img{
-    margin-left: 15rem;
+.grid{
+    align-items: center;
+    justify-items: center;
 }
 
-#Screenshot-2, #Screenshot-4{
-    margin-left: 15rem;
-}
 
 #Screenshot{
     display: grid; justify-content: inherit;

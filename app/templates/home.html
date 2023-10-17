@@ -21,11 +21,11 @@
   .sub-main {
     margin: 0;
     padding: 0;
-    background: var(--background) !important;
+    background: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: consolas;
+    font-family: system-ui;
   }
 
   .containered {
@@ -35,10 +35,10 @@
   }
 
   .containered .card {
+    background-color: transparent;
     position: relative;
     cursor: pointer;
     padding: 30px;
-    background: var(--background) !important;
     box-shadow: none;
   }
 
@@ -119,6 +119,11 @@
   .containered .card .face.face2 .content p {
     margin: 0;
     padding: 0;
+    font-weight: 500;
+  }
+  .containered .card .face.face2 .content h3{
+    font-weight: bold;
+    margin-bottom: 8px;
   }
 
   .containered .card .face.face2 .content a {
@@ -156,16 +161,16 @@
     </p>
     <ul class="counter">
       <li>
-        <h3><i class="fab fa-android"></i>40</h3>
+        <h3><i class="fab fa-android"></i>{{total_items}}</h3>
         <span>Items collections</span>
       </li>
       <li>
-        <h3><i class="fas fa-user"></i>25</h3>
+        <h3><i class="fas fa-user"></i>{{total_users}}</h3>
         <span>Total Users</span>
       </li>
     </ul>
-    <button class="btn">
-      Let's Customize <i class="fas fa-arrow-right"></i>
+    <button class="btn"><a href="{% url 'magisk_modules' %}">
+      Let's Customize <i class="fas fa-arrow-right"></i></a>
     </button>
   </div>
 
@@ -247,7 +252,7 @@
           <h3>Tools :</h3>
           <hr>
           <p>
-            Having the right tools like TWRP and Odin is essential for flashing
+            Having the right tools like TWRP and Platform tools is essential for flashing
             custom ROMs and recovering bricked devices in the Android
             customization world.
           </p>
