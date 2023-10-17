@@ -16,6 +16,7 @@ class UploadROMForm(forms.ModelForm):
         ("Ginkgo / Willow", "Ginkgo / Willow"),
         ("X01BD", "X01BD"),
         ("Vince", "Vince"),
+        ("Ruby / Rubypro", "Ruby / Rubypro")
     ]
 
     device = forms.ChoiceField(choices=DEVICE_CHOICES)
