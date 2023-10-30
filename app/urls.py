@@ -21,7 +21,6 @@ urlpatterns = [
     path('manage_user_profiles/', views.manage_user_profiles, name='manage_user_profiles'),
     path('update_user_profile/<int:profile_id>/', views.update_user_profile, name='update_user_profile'),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
-    path('chat-view/', views.chat_view, name='chat-view'),
     path('blog/', views.blog, name='blog'),
     path('chatbot/comment-policy/', views.comment_policy_view, name='comment-policy'),
 ]

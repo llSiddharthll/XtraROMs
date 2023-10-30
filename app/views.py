@@ -386,7 +386,7 @@ def blog(request):
     try:
         # Specify the encoding as 'utf-8-sig' to handle common Unicode issues
         with open(
-            "app/saved_templates/all_articles.json", "r", encoding="utf-8-sig"
+            "app/static/saved_templates/all_articles.json", "r", encoding="utf-8-sig"
         ) as json_file:
             articles = json.load(json_file)
     except Exception as e:
@@ -399,8 +399,8 @@ def blog(request):
     return render(request, "blog.html", {"articles": articles})
 
 
-import openai
 
+""" 
 # Set your OpenAI API key
 openai.api_key = "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"
 
@@ -436,3 +436,4 @@ def chat_view(request):
 
     else:
         return JsonResponse({"error": "Invalid request method. Use POST."})
+ """
