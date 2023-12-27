@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    
     'app',
     'cloudinary',
     'crispy_forms',
@@ -78,13 +80,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'XtraROMs.wsgi.application'
+ASGI_APPLICATION = 'XtraROMs.asgi.application'
 
 
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"  # For development only
-    }
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            # Use Redis URL for production (e.g., redis://localhost:6379/1)
+            "hosts": [('localhost', 6379)],
+        },
+    },
 }
 
 # Database

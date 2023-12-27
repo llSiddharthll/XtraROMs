@@ -165,7 +165,7 @@
             color: var(--text);
             text-indent: 30px;
             font-weight: bolder;
-            box-shadow: 5px 5px 10px black;
+            box-shadow: 0 2px 10px black;
           "
         />
         <i
@@ -212,6 +212,7 @@
           <h5 class="card-title">
             Details : <a href="{% url 'rom_details' rom.id %}" style="color: #475e5c;">Visit Here</a>
           </h5>
+          <hr>
           <div class="buttons-wrapper">
             <a
               href="{{ rom.link }}"

@@ -32,6 +32,7 @@
   color: var(--text);
   border: none;
   border-radius: 20px;
+  box-shadow: 0 2px 8px rgb(26, 31, 32);
 }
 
 .btn-primary{
@@ -78,31 +79,34 @@ body {
   border: none;
   overflow: hidden;
   color: var(--text);
-  box-shadow: 0 10px 15px rgb(26, 31, 32);
+  box-shadow: 0 5px 10px rgb(26, 31, 32);
   transition: 0.2s ease-out;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  /* text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); */
 }
-.card:hover{
+/* .card:hover{
   transform: scale(0.95);
-}
+} */
 .card img{
-  scale: 0.9;
+  /* scale: 0.9; */
   border-radius: 20px;
-  box-shadow: 0 10px 15px rgb(26, 31, 32);
+  /* box-shadow: 0 10px 15px rgb(26, 31, 32); */
   transition: 0.3s ease-out;
 }
-.card img:hover{
-  scale: 1;
+.card img.profile-picture{
+  box-shadow: 0 5px 10px rgb(26, 31, 32);
 }
+/* .card img:hover{
+  scale: 1;
+} */
 .card h5{
   font-weight: bolder;
 }
 .card p{
   font-weight: bolder;
 }
-.btn{
+/* .btn{
   box-shadow: 0 5px 8px rgb(26, 31, 32);
-}
+} */
 .card .fas, .card .far{
   color: var(--text);
 }
@@ -154,6 +158,7 @@ body {
 
 .custom-rom-image {
   border: none;
+  border-bottom: 2px solid var(--text);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 0;
@@ -166,6 +171,7 @@ body {
 
 .custom-mod-image {
   border: none;
+  border-bottom: 2px solid var(--text);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 0;
@@ -201,7 +207,7 @@ body {
   background-color: var(--secondary);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  box-shadow: 0 -10px 40px var(--text);
+  /* box-shadow: 0 -10px 40px var(--text); */
   bottom: 0;
   left: 0;
   width: 100%;

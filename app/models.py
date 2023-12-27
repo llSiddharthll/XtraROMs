@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.contrib.auth import get_user_model
 
 class CustomROM(models.Model):
@@ -29,54 +29,97 @@ class CustomMOD(models.Model):
 
     def __str__(self):
         return self.name
-    
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_authorized = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
-    # Add other fields as needed
+    profile_picture = models.ImageField(upload_to="profile_picture/", null=True, blank=True)
+    status_choices = [
+        ("online", "Online"),
+        ("offline", "Offline"),
+        ("away", "Away"),
+    ]
+    status = models.CharField(max_length=10, choices=status_choices, default="offline")
+    last_seen = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return str(self.user)
+        return self.user.username
 
-class ScrapData(models.Model):
-    url = models.URLField()
-    image_url = models.URLField()
-    article_id = models.CharField(max_length=255)
-    article_title = models.CharField(max_length=255)
-    article_content = models.TextField()
+class Friendship(models.Model):
+    status_choices = [
+        ("pending", "Pending"),
+        ("accepted", "Accepted"),
+        ("rejected", "Rejected"),
+        ("blocked", "Blocked"),
+    ]
+    user1 = models.ForeignKey(User, related_name="friendships_initiated", on_delete=models.CASCADE)
+    user2 = models.ForeignKey(User, related_name="friendships_received", on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=status_choices, default="pending")
 
     def __str__(self):
-        return self.article_id
+        return f"{self.user1.username} and {self.user2.username}"
 
+class Conversation(models.Model):
+    participants = models.ManyToManyField(User)
+    name = models.CharField(max_length=255, blank=True)
 
-from django.contrib.auth.models import AbstractUser
+    def __str__(self):
+        return self.name if self.name else f"Conversation {self.id}" # type: ignore
+
+class Message(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    type_choices = [
+        ("text", "Text"),
+        ("image", "Image"),
+        ("video", "Video"),
+        ("file", "File"),
+    ]
+    type = models.CharField(max_length=10, choices=type_choices, default="text")
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.sender.username}: {self.content[:20]}"
+
+class MessageRead(models.Model):
+    message = models.ForeignKey(Message, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    read_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.user.username} read {self.message}"
 
 class CustomUser(AbstractUser):
     email_confirmed = models.BooleanField(default=False)
-    
-    class Meta:
-        permissions = [('can_change_permission', 'Can Change Permissions')]  # Example custom permission
-    
-    # Add any other fields or methods you need for your custom user model
+    online_status = models.BooleanField(default=False)
 
-    # Specify unique related_name values for groups and user_permissions
+    def mark_online(self):
+        self.online_status = True
+        self.save(update_fields=['online_status'])
+
+    def mark_offline(self):
+        self.online_status = False
+        self.save(update_fields=['online_status'])
+    class Meta:
+        permissions = [('can_change_permission', 'Can Change Permissions')] 
+
+        
     groups = models.ManyToManyField(
         'auth.Group',
         verbose_name='groups',
         blank=True,
-        related_name='custom_user_set'  # Unique related_name for groups
+        related_name='custom_user_set'  
     )
     
     user_permissions = models.ManyToManyField(
         'auth.Permission',
         verbose_name='user permissions',
         blank=True,
-        related_name='custom_user_set'  # Unique related_name for user_permissions
+        related_name='custom_user_set' 
     )
 
     def __str__(self):
-        return self.username  # You can choose a different field for the string representation
+        return self.username  
 
 

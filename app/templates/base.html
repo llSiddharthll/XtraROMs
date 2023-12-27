@@ -66,10 +66,8 @@
     />
 
     <!-- Select2 CSS -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -80,7 +78,6 @@
     />
 
     <!-- Your Custom Styles -->
-    <link rel="stylesheet" href="{% static 'style2.css' %}" />
     <link rel="stylesheet" href="{% static 'assets-1/css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'main.css' %}" />
     <link rel="stylesheet" href="{% static 'chatbot.css' %}" />
@@ -171,12 +168,12 @@
             </li>
             <li class="nav__item">
               <a
-                href="{% url 'blog' %}"
-                class="nav__link {% if request.path == '/blog/' %}active-link{% endif %}"
+                href="{% url 'friends' %}"
+                class="nav__link {% if request.path == '/friends/' %}active-link{% endif %}"
               >
                 <i class="bx bx-message-square-detail nav__icon"></i>
                 <span class="nav__name"
-                  ><span class="decor">< </span>Updates<span class="decor">
+                  ><span class="decor">< </span>Friends<span class="decor">
                     /></span
                   ></span
                 >
@@ -316,6 +313,7 @@
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{% static 'main.js' %}"></script>
     <script src="{% static 'chatbot.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

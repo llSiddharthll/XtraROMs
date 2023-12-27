@@ -1,0 +1,316 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<style>
+  /* Use a custom font for the chat */
+  @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+
+  /* Use a card style for the room list */
+  .room {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-bottom: 20px;
+  }
+
+  /* Use a green color for the room names */
+  .room h5 {
+    background-color: #28a745;
+    color: #fff;
+    padding: 15px;
+    margin: 0;
+    border-radius: 15px 15px 0 0;
+  }
+
+  /* Use a flex layout for the chat container */
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+  }
+
+  /* Use a scrollable area for the messages */
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Use a flex layout for each message */
+  .message {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+  }
+
+  /* Use a circle avatar for each message sender */
+  .message img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  /* Use a bubble style for each message content */
+  .message h5 {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 15px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Use a flex layout for the input container */
+  .input-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+
+  /* Use a rounded input for the message */
+  input[type="text"] {
+    flex: 1;
+    padding: 15px;
+    margin-right: 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+  }
+
+  /* Use a green button for the send action */
+  input[type="submit"] {
+    padding: 15px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+</style>
+{% endblock %} {% block content %}
+
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card room">
+        <div class="card-header bg-success text-white">
+          <i class="fas fa-comments"></i> Chat Rooms
+        </div>
+        <div id="friends-data" data-friends="{{ friends|safe }}"></div>
+        <ul class="nav nav-tabs" role="tablist" id="chat-room-list">
+          {% for friend in friends %}
+          <li class="nav-item">
+            <a
+              class="nav-link room-link active"
+              id="{{friend.id}}-tab"
+              data-room="{{friend.id}}"
+              data-bs-toggle="tab"
+              href="#{{friend.id}}"
+              >{{user.username}}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="tab-content">
+        {% for friend in friends %}
+        <div
+          class="tab-pane fade show active"
+          id="{{friend.id}}"
+          role="tabpanel"
+          aria-labelledby="{{friend.id}}-tab"
+        >
+          <div id="chat-{{friend.id}}" class="card chat-container">
+            <!-- Chat content for Siddharth -->
+            <!-- You may want to use a unique id for each chat container -->
+            <div class="card-header bg-success text-white">
+              <i class="fas fa-comment-alt"></i> Chat Messages -
+              {{friend.user2}}
+            </div>
+            <div class="card-body messages">
+              <div class="media message">
+                <img
+                  src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+                  class="mr-3 rounded-circle"
+                  alt="Avatar"
+                />
+                <div class="media-body">
+                  <h6 class="mt-0" id="chat-messages-{{friend.id}}"></h6>
+                </div>
+              </div>
+              <!-- More messages go here -->
+            </div>
+            <div class="card-footer input-container">
+              <form id="message-form-{{friend.id}}" class="w-100">
+                <!-- Adjust id and other attributes accordingly -->
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="message-input-siddharth"
+                    class="form-control"
+                    autocomplete="off"
+                    placeholder="Type your message..."
+                  />
+                  <button type="submit" class="btn btn-success">
+                    <i class="fas fa-paper-plane"></i> Send
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- Repeat the above structure for other chat rooms -->
+
+        <div
+          class="tab-pane fade"
+          id="nisha"
+          role="tabpanel"
+          aria-labelledby="nisha-tab"
+        >
+          <!-- Chat content for Nisha -->
+          <div id="chat-nisha" class="card chat-container">
+            <!-- Chat content for Siddharth -->
+            <!-- You may want to use a unique id for each chat container -->
+            <div class="card-header bg-success text-white">
+              <i class="fas fa-comment-alt"></i> Chat Messages - Nisha
+            </div>
+            <div class="card-body messages">
+              <div class="media message">
+                <img
+                  src="https://th.bing.com/th/id/OIP.VzOnkxCRm3IVkbbU5s8OyQHaH8?w=132&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                  class="mr-3 rounded-circle"
+                  alt="Avatar"
+                />
+                <div class="media-body">
+                  <h6 class="mt-0" id="chat-messages-nisha"></h6>
+                </div>
+              </div>
+              <!-- More messages go here -->
+            </div>
+            <div class="card-footer input-container">
+              <form id="message-form-nisha" class="w-100">
+                <!-- Adjust id and other attributes accordingly -->
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="message-input-nisha"
+                    class="form-control"
+                    autocomplete="off"
+                    placeholder="Type your message..."
+                  />
+                  <button type="submit" class="btn btn-success">
+                    <i class="fas fa-paper-plane"></i> Send
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Chat Room -->
+<script>
+  const online_socket_url = `ws://${window.location.host}/ws/online_status/`;
+  const online_socket = new WebSocket(online_socket_url);
+
+  online_socket.onmessage = function (e) {
+    const data = JSON.parse(e.data);
+    console.log(`User ${data.username} is now ${data.status}`);
+    // Update your UI based on the online/offline status
+  };
+</script>
+
+<script>
+    let activeRoom = "1"
+  let socket;
+
+  function initWebSocket(roomName) {
+    // Close existing socket, if any
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.close();
+    }
+    // Set active room
+    activeRoom = roomName;
+
+    // Open a new WebSocket connection with the specified room
+    const socketUrl = `ws://${window.location.host}/ws/chatting_to/${roomName}/`;
+    socket = new WebSocket(socketUrl);
+
+    socket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
+      displayMessage(data.message, roomName);
+    };
+
+    socket.onclose = function (e) {
+      // Check if the closure was clean and intentional
+      if (!e.wasClean) {
+        console.error("Socket closed unexpectedly", e);
+      }
+    };
+  }
+
+  function displayMessage(message, roomId) {
+    const chatMessagesContainer = document.getElementById(
+      `chat-messages-${roomId}`
+    );
+
+    if (chatMessagesContainer) {
+      const h5 = document.createElement("h5");
+      h5.appendChild(document.createTextNode(message));
+      chatMessagesContainer.appendChild(h5);
+    } else {
+      console.error(`Element with ID 'chat-messages-${roomId}' not found.`);
+    }
+  }
+
+  function sendMessage() {
+    const messageInput = document.getElementById(`message-input-${activeRoom}`);
+    if (messageInput) {
+      const message = messageInput.value.trim();
+
+      if (message !== "") {
+        // Send message to the server
+        socket.send(JSON.stringify({ message: message }));
+        // Clear the input field
+        messageInput.value = "";
+      }
+    } else {
+      console.error(
+        `messageInput for activeRoom ${activeRoom} is null or undefined. Check if the element ID is correct.`
+      );
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Add event listener to tab links
+    const roomLinks = document.querySelectorAll(".room-link");
+    roomLinks.forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const roomName = link.getAttribute("data-room");
+        // Change the WebSocket room
+        initWebSocket(roomName);
+      });
+    });
+
+    // Add an event listener for the "Enter" key press in the message input
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault(); // Prevents the default behavior (form submission)
+        sendMessage();
+      }
+    });
+
+    // Initial WebSocket connection
+    initWebSocket(activeRoom);
+  });
+</script>
+{% endblock %}

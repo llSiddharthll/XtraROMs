@@ -16,6 +16,18 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'is_authorized')
 admin.site.register(UserProfile, UserProfileAdmin)
 
-class ScrapDataAdmin(admin.ModelAdmin):
-    list_display = ('article_id',)
-admin.site.register(ScrapData, ScrapDataAdmin)
+class FriendshipAdmin(admin.ModelAdmin):
+    list_display = ('user1', 'user2')
+admin.site.register(Friendship, FriendshipAdmin)
+
+class ConversationAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(Conversation, ConversationAdmin)
+
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('sender',)
+admin.site.register(Message, MessageAdmin)
+
+class MessageReadAdmin(admin.ModelAdmin):
+    list_display = ('user',)
+admin.site.register(MessageRead, MessageReadAdmin)

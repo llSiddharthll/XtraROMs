@@ -1,6 +1,6 @@
 {
     "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "fabioz.vscode-pydev"
     },
     "python.formatting.provider": "none",
     "python.analysis.typeCheckingMode": "basic"

@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
@@ -9,9 +10,11 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from allauth.account.views import SignupView, LoginView
+from django.core.serializers import serialize
 
 
 class CustomSignupView(SignupView):
+
     def form_valid(self, form):
         try:
             # Call the parent class's form_valid method to create the user
@@ -39,6 +42,7 @@ class CustomSignupView(SignupView):
 
 
 class CustomLoginView(LoginView):
+
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
@@ -112,9 +116,8 @@ def search_custom_mods(request):
     if query:
         filtered_mods = CustomMOD.objects.filter(
             Q(name__icontains=query)
-            | Q(credits__icontains=query)  # Search by name  # Search by credits
+            | Q(credits__icontains=query)
         )
-
         mods_data = []
         for mod in filtered_mods:
             likes_count = mod.likes.count()
@@ -144,8 +147,8 @@ def home(request):
     total_items = total_roms + total_mods
     roms = CustomROM.objects.all()
     mods = CustomMOD.objects.all()
-    context={
-        "roms": roms, 
+    context = {
+        "roms": roms,
         "mods": mods,
         "total_users": total_users,
         "total_items":total_items,
@@ -243,7 +246,7 @@ def custom_roms(request):
 
         # Format description for each ROM
         for rom in roms:
-            rom.formatted_details = mark_safe(  # type: ignore
+            rom.formatted_details = mark_safe(# type: ignore
                 rom.details.replace("\n", "<br>").replace("-", "&#8226;")
             )
             rom.save()
@@ -313,7 +316,7 @@ def magisk_modules(request):
                 mod = form.save()
                 mod.uploaded_by = request.user
                 mod.save()
-                return redirect("magisk_modules")  # Redirect back to the same page
+                return redirect("magisk_modules")  
 
             # Handle like action
 
@@ -334,7 +337,7 @@ def magisk_modules(request):
 
         # Format description for each mod
         for mod in mods:
-            mod.formatted_details = mark_safe(  # type: ignore
+            mod.formatted_details = mark_safe(# type: ignore
                 mod.details.replace("\n", "<br>").replace("-", "&#8226;")
             )
 
@@ -378,62 +381,103 @@ def privacy_policy(request):
 def comment_policy_view(request):
     return render(request, "comment_policy.html")
 
+@login_required
+def friends(request):
+    user_friends = Friendship.objects.filter(
+        (models.Q(user1=request.user) | models.Q(user2=request.user)), status='accepted'
+    )
+    friend_requests = Friendship.objects.filter(user2=request.user, status='pending')
 
-import json
+    # Exclude current friends and pending friend requests
+    exclude_users = [friend.user1 for friend in user_friends] + [request.user1 for request in friend_requests]
+    all_users = User.objects.exclude(id__in=[user.id for user in exclude_users]).exclude(id=request.user.id) #type:ignore
 
+    user_profile = UserProfile.objects.get(user=request.user)
 
-def blog(request):
-    try:
-        # Specify the encoding as 'utf-8-sig' to handle common Unicode issues
-        with open(
-            "app/static/saved_templates/all_articles.json", "r", encoding="utf-8-sig"
-        ) as json_file:
-            articles = json.load(json_file)
-    except Exception as e:
-        # Handle any exceptions that might occur when reading the JSON file
-        # You can log the error or take other appropriate actions here.
-        print(f"Error reading JSON file: {str(e)}")
-        articles = (
-            []
-        )  # Set articles to an empty list to avoid issues if the file can't be read
-    return render(request, "blog.html", {"articles": articles})
+    context = {
+        'user_friends': user_friends,
+        'friend_requests': friend_requests,
+        'all_users': all_users,
+        'user_profile': user_profile,
+    }
 
+    return render(request, 'Friends.html', context)
 
-
-""" 
-# Set your OpenAI API key
-openai.api_key = "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"
-
-
-# Create a function that handles the chat interaction
-def chat_with_openai(messages):
-    chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
-    return chat.choices[0].message.content  # type: ignore
+def chat(request, friendship_id):
+    friends = get_object_or_404(Friendship, id=friendship_id)
+    return render(request, 'chat.html', {'friends':friends})
 
 
-# Create a Django view that handles the chat interactions
-@csrf_exempt
-def chat_view(request):
-    if request.method == "POST":
-        # Extract the user's message from the POST request
-        user_message = request.POST.get("message", "")
+@login_required
+def send_friend_request(request, username):
+    user_to_add = get_object_or_404(User, username=username)
 
-        # Define the initial system message
-        messages = [{"role": "system", "content": "You are an intelligent assistant."}]
+    # Check if a friendship already exists
+    existing_friendship = Friendship.objects.filter(
+        (models.Q(user1=request.user, user2=user_to_add) | models.Q(user1=user_to_add, user2=request.user)),
+        status='accepted'
+    ).exists()
 
-        # Append the user's message to the message history
-        if user_message:
-            messages.append({"role": "user", "content": user_message})
-
-        # Get a response from OpenAI
-        assistant_response = chat_with_openai(messages)
-
-        # Append the assistant's response to the message history
-        messages.append({"role": "assistant", "content": assistant_response})
-
-        # Return the assistant's response as JSON
-        return JsonResponse({"response": assistant_response})
-
+    if not existing_friendship:
+        # Create a new friendship request
+        Friendship.objects.create(user1=request.user, user2=user_to_add, status='pending')
+        return JsonResponse({'status': 'success'})
     else:
-        return JsonResponse({"error": "Invalid request method. Use POST."})
- """
+        return JsonResponse({'status': 'error', 'message': 'Friendship already exists.'})
+
+@login_required
+def accept_friend_request(request, friendship_id):
+    friendship = get_object_or_404(Friendship, id=friendship_id, user2=request.user, status='pending')
+    friendship.status = 'accepted'
+    friendship.save()
+    return JsonResponse({'status': 'success'})
+
+@login_required
+def reject_friend_request(request, friendship_id):
+    friendship = get_object_or_404(Friendship, id=friendship_id, user2=request.user, status='pending')
+    friendship.status = 'rejected'
+    friendship.save()
+    return JsonResponse({'status': 'success'})
+
+@login_required
+def create_conversation(request, participant_ids):
+    participant_ids = [int(id) for id in participant_ids.split(',')]
+    participants = [request.user] + list(User.objects.filter(id__in=participant_ids))
+
+    # Check if a conversation with the same participants already exists
+    existing_conversation = Conversation.objects.filter(participants__in=participants).distinct()
+
+    if not existing_conversation:
+        conversation = Conversation.objects.create()
+        conversation.participants.set(participants)
+        return JsonResponse({'status': 'success', 'conversation_id': conversation.id}) #type: ignore
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Conversation already exists.'})
+
+@login_required
+def send_message(request, conversation_id):
+    conversation = get_object_or_404(Conversation, id=conversation_id, participants=request.user)
+    content = request.POST.get('content', '')
+
+    if content:
+        message = Message.objects.create(conversation=conversation, sender=request.user, content=content)
+        
+        # Notify other participants about the new message
+        participants = conversation.participants.exclude(id=request.user.id)
+        for participant in participants:
+            MessageRead.objects.create(message=message, user=participant)
+
+        return JsonResponse({'status': 'success', 'message_id': message.id}) #type:ignore
+    else: 
+        return JsonResponse({'status': 'error', 'message': 'Message content cannot be empty.'})
+
+@login_required
+def mark_message_as_read(request, message_id):
+    message = get_object_or_404(Message, id=message_id, conversation__participants=request.user)
+    message_read, created = MessageRead.objects.get_or_create(message=message, user=request.user)
+
+    if not created:
+        message_read.read_at = timezone.now()
+        message_read.save()
+
+    return JsonResponse({'status': 'success'})
