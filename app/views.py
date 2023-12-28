@@ -9,11 +9,13 @@ from django.utils.safestring import mark_safe
 from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
-from allauth.account.views import SignupView, LoginView
-from django.core.serializers import serialize
+from allauth.account.views import SignupView, LoginView, ConfirmEmailView
 
-
+class CustomConfirmEmailView(ConfirmEmailView):
+    template_name = 'account/email_confirm.html'
+    
 class CustomSignupView(SignupView):
+    template_name = 'account/signup.html'
 
     def form_valid(self, form):
         try:
@@ -42,6 +44,7 @@ class CustomSignupView(SignupView):
 
 
 class CustomLoginView(LoginView):
+    template_name = 'account/login.html'
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -381,32 +384,36 @@ def privacy_policy(request):
 def comment_policy_view(request):
     return render(request, "comment_policy.html")
 
+
 @login_required
 def friends(request):
     user_friends = Friendship.objects.filter(
         (models.Q(user1=request.user) | models.Q(user2=request.user)), status='accepted'
     )
+
     friend_requests = Friendship.objects.filter(user2=request.user, status='pending')
 
     # Exclude current friends and pending friend requests
     exclude_users = [friend.user1 for friend in user_friends] + [request.user1 for request in friend_requests]
     all_users = User.objects.exclude(id__in=[user.id for user in exclude_users]).exclude(id=request.user.id) #type:ignore
 
-    user_profile = UserProfile.objects.get(user=request.user)
-
     context = {
         'user_friends': user_friends,
         'friend_requests': friend_requests,
         'all_users': all_users,
-        'user_profile': user_profile,
     }
 
     return render(request, 'Friends.html', context)
 
 def chat(request, friendship_id):
     friends = get_object_or_404(Friendship, id=friendship_id)
-    return render(request, 'chat.html', {'friends':friends})
+    user = request.user
 
+    # Use tuple unpacking with get_or_create
+    online_status, created = OnlineStatus.objects.get_or_create(user=user)
+
+    # Pass online_status and friends to the template
+    return render(request, 'chat.html', {'online_status': online_status, 'friends': [friends]})
 
 @login_required
 def send_friend_request(request, username):

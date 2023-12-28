@@ -55,6 +55,7 @@ class Friendship(models.Model):
     user1 = models.ForeignKey(User, related_name="friendships_initiated", on_delete=models.CASCADE)
     user2 = models.ForeignKey(User, related_name="friendships_received", on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=status_choices, default="pending")
+    id = models.BigAutoField(primary_key=True)
 
     def __str__(self):
         return f"{self.user1.username} and {self.user2.username}"
@@ -90,17 +91,21 @@ class MessageRead(models.Model):
     def __str__(self):
         return f"{self.user.username} read {self.message}"
 
-class CustomUser(AbstractUser):
-    email_confirmed = models.BooleanField(default=False)
-    online_status = models.BooleanField(default=False)
+class OnlineStatus(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_online = models.BooleanField(default=False)
 
     def mark_online(self):
-        self.online_status = True
-        self.save(update_fields=['online_status'])
+        self.is_online = True
+        self.save(update_fields=['is_online'])
 
     def mark_offline(self):
-        self.online_status = False
-        self.save(update_fields=['online_status'])
+        self.is_online = False
+        self.save(update_fields=['is_online'])
+
+
+class CustomUser(AbstractUser):
+    email_confirmed = models.BooleanField(default=False)
     class Meta:
         permissions = [('can_change_permission', 'Can Change Permissions')] 
 

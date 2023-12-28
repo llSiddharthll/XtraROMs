@@ -127,8 +127,8 @@
             {% else %}
             <li class="nav__item">
               <a
-                href="{% url 'login' %}"
-                class="nav__link {% if request.path == '/login/' %}active-link{% endif %}"
+                href="{% url 'account_login' %}"
+                class="nav__link {% if request.path == '/account_login/' %}active-link{% endif %}"
               >
                 <i class="bx bxs-receipt nav__icon"></i>
                 <span class="nav__name"

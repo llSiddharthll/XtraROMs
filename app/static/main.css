@@ -7,23 +7,21 @@
   --secondary: #021417;
   --accent: #16b1d0;
 } */
-:root {
+/* :root {
   --text: #0a1514;
   --text-p:#102120b9;
   --background: #e3f2f1;
   --primary: #9fd0cc;
   --secondary: #cef3f1;
   --accent: #8ac1bd;   
-}
-@media (max-width:768px){
-:root {
-  --text: #0a1514;
-  --text-p:#102120b9;
-  --background: #def0ef;
-  --primary: #95cbc7;
-  --secondary: #d7fffd;
-  --accent: #a1d0cd;
-}
+} */
+:root{
+  --text: #101214;
+  --background: #EEF5FF;
+  --primary: #B4D4FF;
+  --secondary: #86B6F6;
+  --accent: hsl(195, 50%, 40%);
+  
 }
 
 /* Mode */
@@ -60,11 +58,7 @@ html {
 
 body {
   font-family: "Poppins";
-  background-image: linear-gradient(
-        to left,
-        var(--background),
-        var(--secondary)
-    );
+  background-color: var(--background);
   padding-top: 50px;
   color: var(--text); /* Set the default text color here */
 }
@@ -197,6 +191,9 @@ body {
 }
 /* Adjust the styles as needed */
 @media (max-width: 768px) {
+  #about p{
+    font-size:medium;
+  }
   #contact h2 {
     font-size: 30px;
   }

@@ -70,10 +70,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  background-image: linear-gradient(
-    to left,
-    var(--background),
-    var(--secondary));
+  background-color: var(--secondary);
   z-index: var(--z-fixed);
   transition: .4s;
 }

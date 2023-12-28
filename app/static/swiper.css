@@ -9,7 +9,7 @@ main {
   padding-inline: 2.3em;
   align-items: center;
   justify-content: center;
-  background: var(--secondary);
+  background: var(--secondary-300);
   overflow: hidden;
 }
 @media screen and (min-width: 960px) {

@@ -5,7 +5,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.layers import get_channel_layer
 from .models import *
 
-class OnlineStatusConsumer(AsyncWebsocketConsumer):
+""" class OnlineStatusConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
 
@@ -30,7 +30,7 @@ class OnlineStatusConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'status': status,
             'username': self.user.username,
-        }))
+        })) """
 
 class YourConsumer(AsyncWebsocketConsumer):
     async def connect(self):

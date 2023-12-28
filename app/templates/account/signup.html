@@ -69,7 +69,7 @@
               class="signup"
               id="signup_form"
               method="post"
-              action="{% url 'signup' %}"
+              action="{% url 'account_signup' %}"
             >
               {% csrf_token %} {{ form.non_field_errors }}
               <div class="input-boxes">
@@ -124,14 +124,14 @@
                 <div class="button input-box">
                   {% if error %}
                   <p class="text-danger">{{ error }}</p>
-                  <input type="submit" value="Sumbit" />
+                  <input type="submit" value="Submit" />
                   {% else %}
-                  <input type="submit" value="Sumbit" />
+                  <input type="submit" value="Submit" />
                   {% endif %}
                 </div>
                 <div class="text sign-up-text">
                   Already have an account?
-                  <a href="{% url 'login' %}" style="color: var(--primary)"
+                  <a href="{% url 'account_login' %}" style="color: var(--primary)"
                     >Login now</a
                   >
                 </div>

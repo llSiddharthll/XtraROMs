@@ -70,7 +70,7 @@
         <div class="form-content">
           <div class="login-form">
             <div class="title">Login</div>
-            <form class="login" method="post" action="{% url 'login' %}">
+            <form class="login" method="post" action="{% url 'account_login' %}">
               {% csrf_token %} {{ form.non_field_errors }}
               <div class="input-boxes">
                 <div class="input-box">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="text sign-up-text">
                   Don't have an account?
-                  <a href="{% url 'signup' %}" style="color: var(--primary)"
+                  <a href="{% url 'account_signup' %}" style="color: var(--primary)"
                     >Sigup now</a
                   >
                 </div>

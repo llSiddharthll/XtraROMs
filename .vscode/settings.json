@@ -3,5 +3,6 @@
         "editor.defaultFormatter": "fabioz.vscode-pydev"
     },
     "python.formatting.provider": "none",
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "python.REPL.enableREPLSmartSend": false
 }
