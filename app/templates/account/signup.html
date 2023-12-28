@@ -109,6 +109,13 @@
                     required
                   />
                 </div>
+                {% if redirect_field_value %}
+                <input
+                  type="hidden"
+                  name="{{ redirect_field_name }}"
+                  value="{{ redirect_field_value }}"
+                />
+                {% endif %}
                 <div class="input-box">
                   <i class="fas fa-lock"></i>
                   <input
@@ -141,5 +148,48 @@
         </div>
       </div>
     </div>
+      <script>
+      $(document).ready(function () {
+        // Function to validate password
+        function validatePassword(password) {
+          // Check if password length is at least 8 characters
+          const isLengthValid = password.length >= 8;
+
+          // Check if password contains both alphabets and numbers
+          const isAlphanumeric = /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password);
+
+          return isLengthValid && isAlphanumeric;
+        }
+
+        // Function to show error message
+        function showError(message) {
+          $('.error-message').remove(); // Remove existing error messages
+          $('.signup-form').append(`<p class="error-message text-danger">${message}</p>`);
+        }
+
+        // Event listener for password input
+        $('#password1').on('input', function () {
+          const password = $(this).val();
+          const isValid = validatePassword(password);
+
+          if (!isValid) {
+            showError('Password must be at least 8 characters long and contain both alphabets and numbers.');
+          } else {
+            $('.error-message').remove(); // Remove error message if password is valid
+          }
+        });
+
+        // Event listener for form submission
+        $('#signup_form').submit(function (event) {
+          const password = $('#password1').val();
+          const isValid = validatePassword(password);
+
+          if (!isValid) {
+            showError('Password must be at least 8 characters long and contain both alphabets and numbers.');
+            event.preventDefault(); // Prevent form submission if password is not valid
+          }
+        });
+      });
+    </script>
   </body>
 </html>

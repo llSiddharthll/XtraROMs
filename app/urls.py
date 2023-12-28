@@ -1,13 +1,12 @@
 from django.urls import path
 from . import views
-from .views import CustomLoginView, CustomSignupView, CustomConfirmEmailView
+from .views import CustomLoginView, CustomSignupView
 
 appname = 'app'
 urlpatterns = [
     path('', views.home, name='home'),
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'),
     path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),
-    path('accounts/signup/', CustomConfirmEmailView.as_view(), name='account_email_verification_sent'),
     path('logout/', views.logout_request, name='logout'),
     path('profile/', views.profile, name='profile'),
     path('custom_roms/', views.custom_roms, name='custom_roms'),

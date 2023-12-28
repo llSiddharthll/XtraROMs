@@ -9,11 +9,8 @@ from django.utils.safestring import mark_safe
 from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
-from allauth.account.views import SignupView, LoginView, ConfirmEmailView
+from allauth.account.views import SignupView, LoginView
 
-class CustomConfirmEmailView(ConfirmEmailView):
-    template_name = 'account/email_confirm.html'
-    
 class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
 
