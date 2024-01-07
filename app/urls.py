@@ -21,6 +21,7 @@ urlpatterns = [
     path('update_user_profile/<int:profile_id>/', views.update_user_profile, name='update_user_profile'),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
     path('friends/', views.friends, name= "friends"),
+    path('friends/<str:friend_username>/', views.friend_profile, name= "friend_profile"),
     path('chat/<int:friendship_id>', views.chat, name= "chat"),
     path('chatbot/comment-policy/', views.comment_policy_view, name='comment-policy'),
     path('profile/send_friend_request/<str:username>/', views.send_friend_request, name='send_friend_request'),

@@ -1,5 +1,5 @@
 from django.utils import timezone
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
@@ -401,6 +401,23 @@ def friends(request):
     }
 
     return render(request, 'Friends.html', context)
+
+@login_required
+def friend_profile(request, friend_username):
+    friend = get_object_or_404(User, username=friend_username)
+    
+    # You can access friend data here and pass it to the template
+    # For example, if User model has a field named 'email', you can do:
+    friend_email = friend.email
+
+    context = {
+        'friend': friend,
+        'friend_email': friend_email,
+        # Add other friend data as needed
+    }
+
+    return render(request, 'FriendProfile.html', context)
+
 
 def chat(request, friendship_id):
     friends = get_object_or_404(Friendship, id=friendship_id)

@@ -1,37 +1,46 @@
 {% load static %} {% load crispy_forms_tags %} {% load account socialaccount %}
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT -->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <!-- <title> Login and Registration Form in HTML & CSS | CodingLab </title> -->
     <!-- Fontawesome CDN Link -->
+    <link rel="icon" type="image/png" href="{% static 'images/logo_light.png' %}" />
+    <meta property="og:image" content="{% static 'images/logo_light.png' %}" itemprop="thumbnailUrl">
     <link rel="stylesheet" href="{% static 'auth.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       @media (max-width: 730px) {
-  .container .cover{
-    display: none;
-  }
-  .form-content .login-form,
-  .form-content .signup-form{
-    width: 100%;
-  }
-  .form-content .signup-form{
-    display: block;
-  }
-  .container #flip:checked ~ .forms .signup-form{
-    display: block;
-  }
-  .container #flip:checked ~ .forms .login-form{
-    display: block;
-  }
-}
-
+        .container .cover {
+          display: none;
+        }
+        .form-content .login-form,
+        .form-content .signup-form {
+          width: 100%;
+        }
+        .form-content .signup-form {
+          display: block;
+        }
+        .container #flip:checked ~ .forms .signup-form {
+          display: block;
+        }
+        .container #flip:checked ~ .forms .login-form {
+          display: block;
+        }
+      }
+      .popover {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        color: red;
+        z-index: 999;
+        width: 10rem;
+      }
     </style>
   </head>
   <body>
@@ -39,8 +48,7 @@
       <input type="checkbox" id="flip" />
       <div class="cover">
         <div class="front">
-          <div
-            style="
+          <div style="
               width: 100%;
               height: 100%;
               position: relative;
@@ -50,8 +58,7 @@
           </div>
         </div>
         <div class="back">
-          <div
-            style="
+          <div style="
               width: 100%;
               height: 100%;
               position: relative;
@@ -65,82 +72,41 @@
         <div class="form-content">
           <div class="signup-form">
             <div class="title">Signup</div>
-            <form
-              class="signup"
-              id="signup_form"
-              method="post"
-              action="{% url 'account_signup' %}"
-            >
-              {% csrf_token %} {{ form.non_field_errors }}
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+              {% csrf_token %}
+              {{ form.non_field_errors }}
               <div class="input-boxes">
                 <div class="input-box">
                   <i class="fas fa-user"></i>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    placeholder="Email"
-                    name="email"
-                    style="background-color: var(--background)"
-                    required
-                  />
+                  <input type="email" class="form-control" id="email" placeholder="Email" name="email" style="background-color: var(--background)" required />
                 </div>
                 <div class="input-box">
                   <i class="fas fa-envelope"></i>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    placeholder="Username"
-                    name="username"
-                    style="background-color: var(--background)"
-                    required
-                  />
+                  <input type="text" class="form-control" id="username" placeholder="Username" name="username" style="background-color: var(--background)" required />
                 </div>
                 <div class="input-box">
                   <i class="fas fa-lock"></i>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password1"
-                    placeholder="Password"
-                    name="password1"
-                    style="background-color: var(--background)"
-                    required
-                  />
+                  <input type="password" class="form-control" id="password1" placeholder="Password" name="password1" style="background-color: var(--background)" required />
                 </div>
+                <div class="popover" id="passwordPopover"></div>
                 {% if redirect_field_value %}
-                <input
-                  type="hidden"
-                  name="{{ redirect_field_name }}"
-                  value="{{ redirect_field_value }}"
-                />
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
                 <div class="input-box">
                   <i class="fas fa-lock"></i>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password2"
-                    placeholder="Confirm Password"
-                    name="password2"
-                    style="background-color: var(--background)"
-                    required
-                  />
+                  <input type="password" class="form-control" id="password2" placeholder="Confirm Password" name="password2" style="background-color: var(--background)" required />
                 </div>
                 <div class="button input-box">
                   {% if error %}
-                  <p class="text-danger">{{ error }}</p>
-                  <input type="submit" value="Submit" />
+                    <p class="text-danger">{{ error }}</p>
+                    <input type="submit" value="Submit" />
                   {% else %}
-                  <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" />
                   {% endif %}
                 </div>
                 <div class="text sign-up-text">
                   Already have an account?
-                  <a href="{% url 'account_login' %}" style="color: var(--primary)"
-                    >Login now</a
-                  >
+                  <a href="{% url 'account_login' %}" style="color: var(--primary)">Login now</a>
                 </div>
               </div>
             </form>
@@ -148,48 +114,44 @@
         </div>
       </div>
     </div>
-      <script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
       $(document).ready(function () {
-        // Function to validate password
         function validatePassword(password) {
-          // Check if password length is at least 8 characters
-          const isLengthValid = password.length >= 8;
-
-          // Check if password contains both alphabets and numbers
-          const isAlphanumeric = /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password);
-
-          return isLengthValid && isAlphanumeric;
+          const isLengthValid = password.length >= 8
+          const isAlphanumeric = /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password)
+      
+          return isLengthValid && isAlphanumeric
         }
-
-        // Function to show error message
+      
         function showError(message) {
-          $('.error-message').remove(); // Remove existing error messages
-          $('.signup-form').append(`<p class="error-message text-danger">${message}</p>`);
+          $('.popover').html(message).show()
         }
-
-        // Event listener for password input
+      
         $('#password1').on('input', function () {
-          const password = $(this).val();
-          const isValid = validatePassword(password);
-
+          const password = $(this).val()
+          const isValid = validatePassword(password)
+      
           if (!isValid) {
-            showError('Password must be at least 8 characters long and contain both alphabets and numbers.');
+            const message = 'Password must be at least 8 characters long and contain both alphabets and numbers.'
+            showError(message)
           } else {
-            $('.error-message').remove(); // Remove error message if password is valid
+            $('.popover').hide()
           }
-        });
-
-        // Event listener for form submission
+        })
+      
         $('#signup_form').submit(function (event) {
-          const password = $('#password1').val();
-          const isValid = validatePassword(password);
-
+          const password = $('#password1').val()
+          const isValid = validatePassword(password)
+      
           if (!isValid) {
-            showError('Password must be at least 8 characters long and contain both alphabets and numbers.');
-            event.preventDefault(); // Prevent form submission if password is not valid
+            const message = 'Password must be at least 8 characters long and contain both alphabets and numbers.'
+            showError(message)
+            event.preventDefault() // Prevent form submission
           }
-        });
-      });
+          // Add any other form submission logic here
+        })
+      })
     </script>
   </body>
 </html>

@@ -1,0 +1,174 @@
+{% extends "base.html" %}{% load static %}{% block css %}
+<style>
+  @media only screen and (max-width: 767px) {
+    #signup-btn {
+      display: flex;
+      margin-left: -50px !important;
+    }
+
+    .login-button {
+      font-size: 0.5em;
+    }
+
+    .main {
+      margin-top: -50px;
+    }
+
+    .card-body {
+      scale: 0.8;
+      margin-top: -30px;
+    }
+
+    .logotext {
+      font-size: 1.5em;
+    }
+  }
+
+  .card-body {
+    box-shadow: 3px 3px 10px var(--text);
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--secondary);
+  }
+
+  .login-button {
+    font-size: 1em;
+  }
+</style>
+
+{% endblock %} {% load crispy_forms_tags %} {% block content %}
+<div class="container mt-5">
+  <div class="row card-body justify-content-center">
+    <div class="col-6">
+      <div class="text-center mb-4">
+        <h1 class="logotext">User SignUp</h1>
+      </div>
+      <div style="margin-bottom: 120px">
+          <form
+            id="signup_form"
+            method="post"
+            action="{% url 'account_signup' %}"
+          >
+            {% csrf_token %} {{ form.non_field_errors }}
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Email"
+                name="email"
+                style="
+                  background-color: var(--background);
+                  width: 50%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-top: 40px;
+                  margin-bottom: 40px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                placeholder="Username"
+                name="username"
+                style="
+                  background-color: var(--background);
+                  width: 50%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-bottom: 40px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password1"
+                placeholder="Password"
+                name="password1"
+                style="
+                  background-color: var(--background);
+                  width: 50%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-bottom: 40px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password2"
+                placeholder="Confirm Password"
+                name="password2"
+                style="
+                  background-color: var(--background);
+                  width: 50%;
+                  resize: vertical;
+                  padding: 15px;
+                  border-radius: 15px;
+                  border: 0;
+                  margin-bottom: 20px;
+                  box-shadow: 4px 4px 10px var(--text);
+                "
+                required
+              />
+            </div>
+            {% if redirect_field_value %}
+            <input
+              type="hidden"
+              name="{{ redirect_field_name }}"
+              value="{{ redirect_field_value }}"
+            />
+            {% endif %}
+
+            <div style="text-align: center">
+              {% if error %}
+              <p class="text-danger">{{ error }}</p>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+              {% else %}
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+              {% endif %}
+            </div>
+
+            <div
+              class="login-button"
+              style="text-align: center; margin-top: 10px"
+            >
+              <strong>Already have an account?</strong>
+              <a href="{{ login_url }}" class="text-center">Login</a>
+            </div>
+          </form>
+      </div>
+    </div>
+    <div class="col-3">
+        <div
+            style="
+              background: var(--secondary);
+            ">
+            <img src="{% static 'images/xiaomi.gif' %}" alt="" />
+          </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
