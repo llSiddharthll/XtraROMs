@@ -1,75 +1,67 @@
-# consumers.py
-
-import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.layers import get_channel_layer
+from channels.db import database_sync_to_async
+import json
 from .models import *
-
-""" class OnlineStatusConsumer(AsyncWebsocketConsumer):
-    async def connect(self):
-        await self.accept()
-
-        # Handle user connection, mark user as online, etc.
-        self.user = self.scope['user']
-
-        if isinstance(self.user, CustomUser):  # Ensure it's an instance of your CustomUser model
-            self.user.mark_online()
-
-            # Notify other clients about the user's online status
-            await self.send_status_update('online')
-
-    async def disconnect(self, close_code):
-        # Handle user disconnection, mark user as offline, etc.
-        if isinstance(self.user, CustomUser):  # Ensure it's an instance of your CustomUser model
-            self.user.mark_offline()
-
-            # Notify other clients about the user's offline status
-            await self.send_status_update('offline')
-
-    async def send_status_update(self, status):
-        await self.send(text_data=json.dumps({
-            'status': status,
-            'username': self.user.username,
-        })) """
+from django.utils import timezone
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.room_name = self.scope['url_route']['kwargs']['room_name']
+        # Assign user to a specific room (e.g., based on authentication)
+        self.room_name = self.scope['url_route']['kwargs']['room_id'] 
         self.room_group_name = f"chat_{self.room_name}"
-
-        # Join room group
-        channel_layer = get_channel_layer()
-        await channel_layer.group_add( #type:ignore
-            self.room_group_name,
+        await self.channel_layer.group_add(#type:ignore
+            self.room_name,
             self.channel_name
         )
-
         await self.accept()
 
     async def disconnect(self, close_code):
-        # Leave room group
-        channel_layer = get_channel_layer()
-        await channel_layer.group_discard(#type:ignore
-            self.room_group_name,
+        await self.channel_layer.group_discard(#type:ignore
+            self.room_name,
             self.channel_name
         )
 
     async def receive(self, text_data):
-        data = json.loads(text_data)
-        message = data['message']
+        text_data_json = json.loads(text_data)
+        message_content = text_data_json['message']
+        pfp = text_data_json['pfp']
 
-        # Send message to room group
-        channel_layer = get_channel_layer()
-        await channel_layer.group_send(#type:ignore
-            self.room_group_name,
+        # Get the receiver (assuming it's available in your scope)
+        receiver = self.scope['user']
+
+        # Store message in the database
+        await self.save_message(message_content, self.scope['user'], receiver)
+
+        # Send message to all clients in the room
+        await self.channel_layer.group_send(#type:ignore
+            self.room_name,
             {
-                'type': 'chat.message',
-                'message': message
+                'type': 'chat_message',
+                'message': message_content,
+                'sender': self.scope['user'].username,
+                'receiver': receiver.username,
+                'pfp': pfp,
             }
         )
 
-    async def chat_message(self, event):
-        message = event['message']
+    
+    @database_sync_to_async
+    def save_message(self, message_content, sender, receiver):
+        return Message.objects.create(
+            content=message_content,
+            sender=sender,
+            receiver=receiver,
+            timestamp=timezone.now() 
+        )
 
-        # Send message to WebSocket
-        await self.send(text_data=json.dumps({'message': message}))
+
+    async def chat_message(self, event):
+        message = event.get('message', '')
+        username = event.get('sender', '')
+        profile_picture_url = event.get('pfp', '')
+        # Send the message to the connected WebSocket
+        await self.send(text_data=json.dumps({
+            'message': message,
+            'username': username,
+            'pfp': profile_picture_url,
+        }))

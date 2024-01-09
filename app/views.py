@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from allauth.account.views import SignupView, LoginView
+from .consumers import *
 
 class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
@@ -384,16 +385,39 @@ def comment_policy_view(request):
 
 @login_required
 def friends(request):
+    # Ensure the user is authenticated
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to the login page if the user is not authenticated
+
+    # Assuming UserProfile has a ForeignKey to User with the related_name 'user_profile'
+    try:
+        user_profile = request.user.userprofile  # Use 'userprofile' instead of 'user_profile'
+    except UserProfile.DoesNotExist:
+        user_profile = None
+
+    if not user_profile:
+        # Handle the case where the user does not have a UserProfile
+        return HttpResponse("User profile not found")
+
+    # Filter accepted friend relationships for the current user
     user_friends = Friendship.objects.filter(
-        (models.Q(user1=request.user) | models.Q(user2=request.user)), status='accepted'
+        (models.Q(user1=user_profile) | models.Q(user2=user_profile)), status='accepted'
     )
 
-    friend_requests = Friendship.objects.filter(user2=request.user, status='pending')
+    # Filter pending friend requests for the current user
+    friend_requests = Friendship.objects.filter(user2=user_profile, status='pending')
 
     # Exclude current friends and pending friend requests
-    exclude_users = [friend.user1 for friend in user_friends] + [request.user1 for request in friend_requests]
-    all_users = User.objects.exclude(id__in=[user.id for user in exclude_users]).exclude(id=request.user.id) #type:ignore
+    exclude_users = [
+        friend.user1.user for friend in user_friends
+    ] + [
+        friend.user2.user for friend in user_friends
+    ] + [
+        request.user  # Assuming request.user is a User instance
+    ]  # type:ignore
 
+    # Get all users excluding the current user and their friends
+    all_users = UserProfile.objects.exclude(user__in=[user for user in exclude_users]).exclude(user=request.user)  # type:ignore
     context = {
         'user_friends': user_friends,
         'friend_requests': friend_requests,
@@ -401,6 +425,7 @@ def friends(request):
     }
 
     return render(request, 'Friends.html', context)
+
 
 @login_required
 def friend_profile(request, friend_username):
@@ -418,87 +443,54 @@ def friend_profile(request, friend_username):
 
     return render(request, 'FriendProfile.html', context)
 
-
 def chat(request, friendship_id):
     friends = get_object_or_404(Friendship, id=friendship_id)
     user = request.user
 
     # Use tuple unpacking with get_or_create
     online_status, created = OnlineStatus.objects.get_or_create(user=user)
+    
+    user_profile = UserProfile.objects.get(user=request.user)
 
-    # Pass online_status and friends to the template
-    return render(request, 'chat.html', {'online_status': online_status, 'friends': [friends]})
+    # Pass online_status, friends, messages, and conversation_id to the template
+    return render(request, 'chat.html', {'online_status': online_status, 'friends': [friends], 'user_profile':user_profile})
+
+
 
 @login_required
 def send_friend_request(request, username):
     user_to_add = get_object_or_404(User, username=username)
 
+    # Ensure that UserProfile instances are used for the friendship relationship
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_to_add_profile = UserProfile.objects.get(user=user_to_add)
+
     # Check if a friendship already exists
     existing_friendship = Friendship.objects.filter(
-        (models.Q(user1=request.user, user2=user_to_add) | models.Q(user1=user_to_add, user2=request.user)),
+        (models.Q(user1=user_profile, user2=user_to_add_profile) | models.Q(user1=user_to_add_profile, user2=user_profile)),
         status='accepted'
     ).exists()
 
     if not existing_friendship:
         # Create a new friendship request
-        Friendship.objects.create(user1=request.user, user2=user_to_add, status='pending')
+        Friendship.objects.create(user1=user_profile, user2=user_to_add_profile, status='pending')
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Friendship already exists.'})
 
+
 @login_required
 def accept_friend_request(request, friendship_id):
-    friendship = get_object_or_404(Friendship, id=friendship_id, user2=request.user, status='pending')
+    user_profile = UserProfile.objects.get(user=request.user)
+    friendship = get_object_or_404(Friendship, id=friendship_id, user2=user_profile, status='pending')
     friendship.status = 'accepted'
     friendship.save()
     return JsonResponse({'status': 'success'})
 
 @login_required
 def reject_friend_request(request, friendship_id):
-    friendship = get_object_or_404(Friendship, id=friendship_id, user2=request.user, status='pending')
+    user_profile = UserProfile.objects.get(user=request.user)
+    friendship = get_object_or_404(Friendship, id=friendship_id, user2=user_profile, status='pending')
     friendship.status = 'rejected'
     friendship.save()
-    return JsonResponse({'status': 'success'})
-
-@login_required
-def create_conversation(request, participant_ids):
-    participant_ids = [int(id) for id in participant_ids.split(',')]
-    participants = [request.user] + list(User.objects.filter(id__in=participant_ids))
-
-    # Check if a conversation with the same participants already exists
-    existing_conversation = Conversation.objects.filter(participants__in=participants).distinct()
-
-    if not existing_conversation:
-        conversation = Conversation.objects.create()
-        conversation.participants.set(participants)
-        return JsonResponse({'status': 'success', 'conversation_id': conversation.id}) #type: ignore
-    else:
-        return JsonResponse({'status': 'error', 'message': 'Conversation already exists.'})
-
-@login_required
-def send_message(request, conversation_id):
-    conversation = get_object_or_404(Conversation, id=conversation_id, participants=request.user)
-    content = request.POST.get('content', '')
-
-    if content:
-        message = Message.objects.create(conversation=conversation, sender=request.user, content=content)
-        
-        # Notify other participants about the new message
-        participants = conversation.participants.exclude(id=request.user.id)
-        for participant in participants:
-            MessageRead.objects.create(message=message, user=participant)
-
-        return JsonResponse({'status': 'success', 'message_id': message.id}) #type:ignore
-    else: 
-        return JsonResponse({'status': 'error', 'message': 'Message content cannot be empty.'})
-
-@login_required
-def mark_message_as_read(request, message_id):
-    message = get_object_or_404(Message, id=message_id, conversation__participants=request.user)
-    message_read, created = MessageRead.objects.get_or_create(message=message, user=request.user)
-
-    if not created:
-        message_read.read_at = timezone.now()
-        message_read.save()
-
     return JsonResponse({'status': 'success'})

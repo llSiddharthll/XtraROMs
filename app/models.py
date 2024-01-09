@@ -44,7 +44,29 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+def get_user_profile(self):
+    try:
+        return self.userprofile
+    except UserProfile.DoesNotExist:
+        return None
 
+User.add_to_class("get_user_profile", get_user_profile)
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')        
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')        
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        ordering = ('timestamp',)
+        
+        
 class Friendship(models.Model):
     status_choices = [
         ("pending", "Pending"),
@@ -52,44 +74,15 @@ class Friendship(models.Model):
         ("rejected", "Rejected"),
         ("blocked", "Blocked"),
     ]
-    user1 = models.ForeignKey(User, related_name="friendships_initiated", on_delete=models.CASCADE)
-    user2 = models.ForeignKey(User, related_name="friendships_received", on_delete=models.CASCADE)
+    user1 = models.ForeignKey(UserProfile, related_name="friendships_initiated", on_delete=models.CASCADE)
+    user2 = models.ForeignKey(UserProfile, related_name="friendships_received", on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=status_choices, default="pending")
-    id = models.BigAutoField(primary_key=True)
+    conversation = models.ForeignKey(Message, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.user1.username} and {self.user2.username}"
+        return f"{self.user1.get_user_profile().user.username} and {self.user2.get_user_profile().user.username}" #type:ignore
 
-class Conversation(models.Model):
-    participants = models.ManyToManyField(User)
-    name = models.CharField(max_length=255, blank=True)
 
-    def __str__(self):
-        return self.name if self.name else f"Conversation {self.id}" # type: ignore
-
-class Message(models.Model):
-    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
-    sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    type_choices = [
-        ("text", "Text"),
-        ("image", "Image"),
-        ("video", "Video"),
-        ("file", "File"),
-    ]
-    type = models.CharField(max_length=10, choices=type_choices, default="text")
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.sender.username}: {self.content[:20]}"
-
-class MessageRead(models.Model):
-    message = models.ForeignKey(Message, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    read_at = models.DateTimeField(null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.user.username} read {self.message}"
 
 class OnlineStatus(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -126,5 +119,3 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username  
-
-

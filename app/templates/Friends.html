@@ -1,139 +1,202 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block css %}
-<meta name="csrf-token" content="{{ csrf_token }}">
-{% endblock %}
-{% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-black">
-                    <h5 class="card-title mb-0">Friends</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    {% for friend in user_friends %}
-                        <li class="list-group-item d-flex align-items-center">
-                            
-                            {% if user == friend.user1 %}
-                            <img src="{{ friend.user2.profile_picture.url }}" alt="{{ friend.user2.username }}" class="rounded-circle me-2" width="40" height="40">
-                            <a href="{% url 'chat' friend.id %}">{{ friend.user2.username }}</a>
-                            {% else %}
-                            <img src="{{ friend.user1.profile_picture.url }}" alt="{{ friend.user1.username }}" class="rounded-circle me-2" width="40" height="40">
-                            <a href="{% url 'chat' friend.id %}">{{ friend.user1.username }}</a>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>                
-            </div>
+{% extends 'base.html' %} {% load static %} {% block css %}
+<meta name="csrf-token" content="{{ csrf_token }}" />
+<style>
+    li{
+        font-weight: bold;
+    }
+    a{
+        color: var(--text);
+    }
+</style>
+{% endblock %} {% block content %}
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-black">
+          <h5 class="card-title mb-0">Friends</h5>
         </div>
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-header bg-warning">
-                    <h5 class="card-title mb-0">Friend Requests</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    {% for request in friend_requests %}
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>{{ request.user2.username }}</span>
-                            <div class="btn-group">
-                                <button class="btn btn-success btn-sm" onclick="acceptFriendRequest('{{ request.id }}')">Accept</button>
-                                <button class="btn btn-danger btn-sm" onclick="rejectFriendRequest('{{ request.id }}')">Reject</button>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-header bg-info text-black">
-                    <h5 class="card-title mb-0">All Users</h5>
-                </div>
-                <ul class="list-group list-group-flush overflow-scroll" style="max-height: 500px;">
-                    {% for user in all_users %}
-                        <li class="list-group-item d-flex align-items-center">
-                            
-                            <img src="{{ user }}" alt="{{ user.username }}" class="rounded-circle me-2" width="40" height="40">
-                            {{ user.username }}
-                            <button class="btn btn-primary btn-sm ms-auto" onclick="sendFriendRequest('{{ user.username }}')">Send Request</button>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+        <ul class="list-group list-group-flush">
+          {% for friend in user_friends %}
+    <li class="list-group-item d-flex align-items-center">
+        {% if user == friend.user1.user %}
+            <img
+                src="{{ friend.user2.profile_picture.url }}"
+                alt="{{ friend.user2.user.username }}"
+                class="rounded-circle me-2"
+                width="40"
+                height="40"
+            />
+            <a href="{% url 'chat' friend.id %}">{{ friend.user2.user.username }}</a>
+        {% else %}
+            <img
+                src="{{ friend.user1.profile_picture.url }}"
+                alt="{{ friend.user1.user.username }}"
+                class="rounded-circle me-2"
+                width="40"
+                height="40"
+            />
+            <a href="{% url 'chat' friend.id %}">{{ friend.user1.user.username }}</a>
+        {% endif %}
+    </li>
+{% endfor %}
+
+        </ul>
+      </div>
     </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-warning">
+          <h5 class="card-title mb-0">Friend Requests</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for request in friend_requests %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    {% if request.user2.profile_picture %}
+            <img
+              src="{{ request.user2.profile_picture.url }}"
+              alt="{{ request.user2.user.username }}"
+              class="rounded-circle me-2"
+              width="40"
+              height="40"
+            />
+            {% else %}
+            <!-- Provide a default image or placeholder if no profile picture is available -->
+            <img
+              src="{% static 'images/sid.jpg' %}"
+              alt="{{ request.user2.user.username }}"
+              class="rounded-circle me-2"
+              width="40"
+              height="40"
+            />
+            {% endif %}
+    <span>{{ request.user2.user.username }}</span>
+    <div class="btn-group">
+      <button class="btn btn-success btn-sm" onclick="acceptFriendRequest('{{ request.id }}')">
+        Accept
+      </button>
+      <button class="btn btn-danger btn-sm" onclick="rejectFriendRequest('{{ request.id }}')">
+        Reject
+      </button>
+    </div>
+  </li>
+{% endfor %}
+
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-info text-black">
+          <h5 class="card-title mb-0">All Users</h5>
+        </div>
+        <ul
+          class="list-group list-group-flush overflow-scroll"
+          style="max-height: 80vh;overflow-y: auto;"
+        >
+          {% for user in all_users %}
+          <li class="list-group-item d-flex align-items-center">
+            {% if user.profile_picture %}
+            <img
+              src="{{ user.profile_picture.url }}"
+              alt="{{ user.user.username }}"
+              class="rounded-circle me-2"
+              width="40"
+              height="40"
+            />
+            {% else %}
+            <!-- Provide a default image or placeholder if no profile picture is available -->
+            <img
+              src="{% static 'images/sid.jpg' %}"
+              alt="{{ user.user.username }}"
+              class="rounded-circle me-2"
+              width="40"
+              height="40"
+            />
+            {% endif %} {{ user.user.username }}
+            <button
+              class="btn btn-primary btn-sm ms-auto"
+              onclick="sendFriendRequest('{{ user.user.username }}')"
+            >
+              Send Request
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Existing content... -->
 
 <script>
-    function sendFriendRequest(username) {
-        // Get the CSRF token from the meta tag
-        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+  function sendFriendRequest(username) {
+    // Get the CSRF token from the meta tag
+    const csrfToken = $('meta[name="csrf-token"]').attr("content");
 
-        // Use jQuery for simplicity in handling AJAX requests
-        $.ajax({
-            type: 'POST',
-            url: '/profile/send_friend_request/' + username + '/',  // Update the URL to match your Django URL pattern
-            headers: { 'X-CSRFToken': csrfToken },  // Include the CSRF token in the headers
-            success: function (data) {
-                if (data.status === 'success') {
-                    alert('Friend request sent successfully!');
-                    // You may want to update the UI to reflect the change (e.g., disable the button)
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            },
-            error: function () {
-                alert('An error occurred while sending the friend request.');
-            }
-        });
-    }
-    function acceptFriendRequest(friendship_id) {
-        // Get the CSRF token from the meta tag
-        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    // Use jQuery for simplicity in handling AJAX requests
+    $.ajax({
+      type: "POST",
+      url: "/profile/send_friend_request/" + username + "/", // Update the URL to match your Django URL pattern
+      headers: { "X-CSRFToken": csrfToken }, // Include the CSRF token in the headers
+      success: function (data) {
+        if (data.status === "success") {
+          alert("Friend request sent successfully!");
+          // You may want to update the UI to reflect the change (e.g., disable the button)
+        } else {
+          alert("Error: " + data.message);
+        }
+      },
+      error: function () {
+        alert("An error occurred while sending the friend request.");
+      },
+    });
+  }
+  function acceptFriendRequest(friendship_id) {
+    // Get the CSRF token from the meta tag
+    const csrfToken = $('meta[name="csrf-token"]').attr("content");
 
-        // Use jQuery for simplicity in handling AJAX requests
-        $.ajax({
-            type: 'POST',
-            url: '/profile/accept_friend_request/' + friendship_id + '/',  // Update the URL to match your Django URL pattern
-            headers: { 'X-CSRFToken': csrfToken },  // Include the CSRF token in the headers
-            success: function (data) {
-                if (data.status === 'success') {
-                    alert('Friend request sent successfully!');
-                    // You may want to update the UI to reflect the change (e.g., disable the button)
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            },
-            error: function () {
-                alert('An error occurred while sending the friend request.');
-            }
-        });
-    }
-    function rejectFriendRequest(friendship_id) {
-        // Get the CSRF token from the meta tag
-        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    // Use jQuery for simplicity in handling AJAX requests
+    $.ajax({
+      type: "POST",
+      url: "/profile/accept_friend_request/" + friendship_id + "/", // Update the URL to match your Django URL pattern
+      headers: { "X-CSRFToken": csrfToken }, // Include the CSRF token in the headers
+      success: function (data) {
+        if (data.status === "success") {
+          alert("Friend request sent successfully!");
+          // You may want to update the UI to reflect the change (e.g., disable the button)
+        } else {
+          alert("Error: " + data.message);
+        }
+      },
+      error: function () {
+        alert("An error occurred while sending the friend request.");
+      },
+    });
+  }
+  function rejectFriendRequest(friendship_id) {
+    // Get the CSRF token from the meta tag
+    const csrfToken = $('meta[name="csrf-token"]').attr("content");
 
-        // Use jQuery for simplicity in handling AJAX requests
-        $.ajax({
-            type: 'POST',
-            url: '/profile/reject_friend_request/' + friendship_id + '/',  // Update the URL to match your Django URL pattern
-            headers: { 'X-CSRFToken': csrfToken },  // Include the CSRF token in the headers
-            success: function (data) {
-                if (data.status === 'success') {
-                    alert('Friend request sent successfully!');
-                    // You may want to update the UI to reflect the change (e.g., disable the button)
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            },
-            error: function () {
-                alert('An error occurred while sending the friend request.');
-            }
-        });
-    }
+    // Use jQuery for simplicity in handling AJAX requests
+    $.ajax({
+      type: "POST",
+      url: "/profile/reject_friend_request/" + friendship_id + "/", // Update the URL to match your Django URL pattern
+      headers: { "X-CSRFToken": csrfToken }, // Include the CSRF token in the headers
+      success: function (data) {
+        if (data.status === "success") {
+          alert("Friend request sent successfully!");
+          // You may want to update the UI to reflect the change (e.g., disable the button)
+        } else {
+          alert("Error: " + data.message);
+        }
+      },
+      error: function () {
+        alert("An error occurred while sending the friend request.");
+      },
+    });
+  }
 </script>
 
 <!-- Existing content... -->

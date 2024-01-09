@@ -81,16 +81,14 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'XtraROMs.asgi.application'
 
-
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            # Use Redis URL for production (e.g., redis://localhost:6379/1)
-            "hosts": [('localhost', 6379)],
-        },
+        'hosts': [('monorail.proxy.rlwy.net', 24654)],
+        'password': 'jCC21DfOJBNKO2cmnkPCalfIpNGnaMEP',
     },
 }
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

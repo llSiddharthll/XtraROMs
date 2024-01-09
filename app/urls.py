@@ -27,7 +27,4 @@ urlpatterns = [
     path('profile/send_friend_request/<str:username>/', views.send_friend_request, name='send_friend_request'),
     path('profile/accept_friend_request/<int:friendship_id>/', views.accept_friend_request, name='accept_friend_request'),
     path('profile/reject_friend_request/<int:friendship_id>/', views.reject_friend_request, name='reject_friend_request'),
-    path('profile/create_conversation/<str:participant_ids>/', views.create_conversation, name='create_conversation'),
-    path('send_message/<int:conversation_id>/', views.send_message, name='send_message'),
-    path('mark_message_as_read/<int:message_id>/', views.mark_message_as_read, name='mark_message_as_read'),
 ]
