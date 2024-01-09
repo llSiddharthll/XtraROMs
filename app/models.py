@@ -82,8 +82,6 @@ class Friendship(models.Model):
     def __str__(self):
         return f"{self.user1.get_user_profile().user.username} and {self.user2.get_user_profile().user.username}" #type:ignore
 
-
-
 class OnlineStatus(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_online = models.BooleanField(default=False)
