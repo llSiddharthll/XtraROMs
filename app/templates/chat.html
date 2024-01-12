@@ -29,22 +29,34 @@
         >
           <div class="d-flex align-items-center">
             {% if user == friend.user1.user %}
-            <img
-              src="{{ friend.user2.profile_picture.url }}"
-              alt="{{ friend.user2.user.username }}"
-              class="rounded-circle me-2"
-              width="40"
-              height="40"
-            />
+            <img 
+            src="{{ friend.user2.profile_picture.url }}" 
+            alt="{{ friend.user2.user.username }}" 
+            class="nav__img" 
+            style="
+            max-height: 35px;
+            max-width: 35px;
+            min-height: 35px;
+            min-width: 35px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgb(35, 41, 59);
+          ">
             {{ friend.user2.user.username }} 
             {% else %}
-            <img
-              src="{{ friend.user1.profile_picture.url }}"
-              alt="{{ friend.user1.user.username }}"
-              class="rounded-circle me-2"
-              width="40"
-              height="40"
-            />
+            <img 
+            src="{{ friend.user1.profile_picture.url }}" 
+            alt="{{ friend.user1.user.username }}" 
+            class="nav__img" 
+            style="
+            max-height: 35px;
+            max-width: 35px;
+            min-height: 35px;
+            min-width: 35px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgb(35, 41, 59);
+          ">
             {{friend.user1.user.username }}
             {% endif %}
           </div>

@@ -1,62 +1,101 @@
 {% extends 'base.html' %} {% load static %} {% block css %}
 <meta name="csrf-token" content="{{ csrf_token }}" />
 <style>
-    li{
-        font-weight: bold;
+  .list-group-item {
+    background-color: #bdd9f6;
+    font-weight: bold;
+    border: 2px solid grey;
+  }
+  a {
+    color: var(--text);
+  }
+  .bg-list {
+    background-color: #9fa5a6;
+  }
+  .all-friends {
+    min-height: 80vh;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .friend-requests {
+    min-height: 80vh;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .all-users {
+    min-height: 80vh;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  @media (max-width: 772px) {
+    .all-users {
+      min-height: 20vh;
+      max-height: 20vh;
     }
-    a{
-        color: var(--text);
+    .friend-requests {
+      min-height: 20vh;
+      max-height: 20vh;
     }
+    .all-friends {
+      min-height: 20vh;
+      max-height: 20vh;
+    }
+  }
 </style>
 {% endblock %} {% block content %}
 <div class="container mt-5 mb-5">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 mb-2">
       <div class="card shadow-sm">
         <div class="card-header bg-primary text-black">
-          <h5 class="card-title mb-0">Friends</h5>
+          <h5 class="card-title">Friends</h5>
         </div>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush bg-list all-friends">
           {% for friend in user_friends %}
-    <li class="list-group-item d-flex align-items-center">
-        {% if user == friend.user1.user %}
+          <li class="list-group-item d-flex align-items-center">
+            {% if user == friend.user1.user %}
             <img
-                src="{{ friend.user2.profile_picture.url }}"
-                alt="{{ friend.user2.user.username }}"
-                class="rounded-circle me-2"
-                width="40"
-                height="40"
+              src="{{ friend.user2.profile_picture.url }}"
+              alt="{{ friend.user2.user.username }}"
+              class="rounded-circle me-2"
+              width="40"
+              height="40"
             />
-            <a href="{% url 'chat' friend.id %}">{{ friend.user2.user.username }}</a>
-        {% else %}
+            <a href="{% url 'chat' friend.id %}"
+              >{{ friend.user2.user.username }}</a
+            >
+            {% else %}
             <img
-                src="{{ friend.user1.profile_picture.url }}"
-                alt="{{ friend.user1.user.username }}"
-                class="rounded-circle me-2"
-                width="40"
-                height="40"
+              src="{{ friend.user1.profile_picture.url }}"
+              alt="{{ friend.user1.user.username }}"
+              class="rounded-circle me-2"
+              width="40"
+              height="40"
             />
-            <a href="{% url 'chat' friend.id %}">{{ friend.user1.user.username }}</a>
-        {% endif %}
-    </li>
-{% endfor %}
-
+            <a href="{% url 'chat' friend.id %}"
+              >{{ friend.user1.user.username }}</a
+            >
+            {% endif %}
+          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mb-2">
       <div class="card shadow-sm">
         <div class="card-header bg-warning">
-          <h5 class="card-title mb-0">Friend Requests</h5>
+          <h5 class="card-title">Friend Requests</h5>
         </div>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush bg-list friend-requests">
           {% for request in friend_requests %}
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    {% if request.user2.profile_picture %}
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            {% if request.user2.profile_picture %}
             <img
               src="{{ request.user2.profile_picture.url }}"
               alt="{{ request.user2.user.username }}"
-              class="rounded-circle me-2"
+              class="rounded-circle"
               width="40"
               height="40"
             />
@@ -70,18 +109,23 @@
               height="40"
             />
             {% endif %}
-    <span>{{ request.user2.user.username }}</span>
-    <div class="btn-group">
-      <button class="btn btn-success btn-sm" onclick="acceptFriendRequest('{{ request.id }}')">
-        Accept
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="rejectFriendRequest('{{ request.id }}')">
-        Reject
-      </button>
-    </div>
-  </li>
-{% endfor %}
-
+            <span>{{ request.user2.user.username }}</span>
+            <div class="btn-group">
+              <button
+                class="btn btn-success btn-sm"
+                onclick="acceptFriendRequest('{{ request.id }}')"
+              >
+                Accept
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                onclick="rejectFriendRequest('{{ request.id }}')"
+              >
+                Reject
+              </button>
+            </div>
+          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -90,10 +134,7 @@
         <div class="card-header bg-info text-black">
           <h5 class="card-title mb-0">All Users</h5>
         </div>
-        <ul
-          class="list-group list-group-flush overflow-scroll"
-          style="max-height: 80vh;overflow-y: auto;"
-        >
+        <ul class="list-group list-group-flush all-users">
           {% for user in all_users %}
           <li class="list-group-item d-flex align-items-center">
             {% if user.profile_picture %}

@@ -81,12 +81,18 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'XtraROMs.asgi.application'
 
-CHANNEL_LAYERS = {
+""" CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'hosts': [('monorail.proxy.rlwy.net', 24654)],
         'password': 'jCC21DfOJBNKO2cmnkPCalfIpNGnaMEP',
     },
+} """
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
 }
 
 
