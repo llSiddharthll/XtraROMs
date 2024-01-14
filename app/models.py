@@ -45,13 +45,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
     
-def get_user_profile(self):
-    try:
-        return self.userprofile
-    except UserProfile.DoesNotExist:
-        return None
-
-User.add_to_class("get_user_profile", get_user_profile)
 
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')        
@@ -80,7 +73,7 @@ class Friendship(models.Model):
     conversation = models.ForeignKey(Message, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.user1.get_user_profile().user.username} and {self.user2.get_user_profile().user.username}" #type:ignore
+        return f"{self.user1.user.username} and {self.user2.user.username}" #type:ignore
 
 class OnlineStatus(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

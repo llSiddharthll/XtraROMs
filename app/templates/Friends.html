@@ -10,43 +10,43 @@
     color: var(--text);
   }
   .bg-list {
-    background-color: #9fa5a6;
+    background-color: #ffffff;
   }
   .all-friends {
-    min-height: 80vh;
-    max-height: 80vh;
+    min-height: 80svh;
+    max-height: 80svh;
     overflow-y: auto;
   }
   .friend-requests {
-    min-height: 80vh;
-    max-height: 80vh;
+    min-height: 80svh;
+    max-height: 80svh;
     overflow-y: auto;
   }
   .all-users {
-    min-height: 80vh;
-    max-height: 80vh;
+    min-height: 80svh;
+    max-height: 80svh;
     overflow-y: auto;
   }
   @media (max-width: 772px) {
     .all-users {
-      min-height: 20vh;
-      max-height: 20vh;
+      min-height: 20svh;
+      max-height: 20svh;
     }
     .friend-requests {
-      min-height: 20vh;
-      max-height: 20vh;
+      min-height: 20svh;
+      max-height: 20svh;
     }
     .all-friends {
-      min-height: 20vh;
-      max-height: 20vh;
+      min-height: 20svh;
+      max-height: 20svh;
     }
   }
 </style>
 {% endblock %} {% block content %}
-<div class="container mt-5 mb-5">
+<div class="container mt-md-5 mb-5">
   <div class="row">
     <div class="col-md-4 mb-2">
-      <div class="card shadow-sm">
+      <div class="card shadow-lg">
         <div class="card-header bg-primary text-black">
           <h5 class="card-title">Friends</h5>
         </div>
@@ -82,11 +82,11 @@
       </div>
     </div>
     <div class="col-md-4 mb-2">
-      <div class="card shadow-sm">
+      <div class="card shadow-lg">
         <div class="card-header bg-warning">
           <h5 class="card-title">Friend Requests</h5>
         </div>
-        <ul class="list-group list-group-flush bg-list friend-requests">
+        <ul class="list-group list-group-flush bg-list friend-requests" id="friend-request">
           {% for request in friend_requests %}
           <li
             class="list-group-item d-flex justify-content-between align-items-center"
@@ -130,7 +130,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card shadow-sm">
+      <div class="card shadow-lg">
         <div class="card-header bg-info text-black">
           <h5 class="card-title mb-0">All Users</h5>
         </div>
@@ -170,52 +170,93 @@
 </div>
 
 <!-- Existing content... -->
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-  function sendFriendRequest(username) {
-    // Get the CSRF token from the meta tag
-    const csrfToken = $('meta[name="csrf-token"]').attr("content");
-
-    // Use jQuery for simplicity in handling AJAX requests
+  // Add this code to handle pending requests on page load
+$(document).ready(function() {
     $.ajax({
-      type: "POST",
-      url: "/profile/send_friend_request/" + username + "/", // Update the URL to match your Django URL pattern
-      headers: { "X-CSRFToken": csrfToken }, // Include the CSRF token in the headers
-      success: function (data) {
-        if (data.status === "success") {
-          alert("Friend request sent successfully!");
-          // You may want to update the UI to reflect the change (e.g., disable the button)
-        } else {
-          alert("Error: " + data.message);
+        url: '/profile/get_pending_requests/',  // Replace with your endpoint to fetch pending requests
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (data.status === 'success') {
+                // Update the UI with pending requests
+                data.pending_requests.forEach(function(request) {
+                    let show = `
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <img src="${request.profile_picture}" alt="${request.username}" class="rounded-circle" width="40" height="40" />
+                            <span>${request.username}</span>
+                            <div class="btn-group">Pending Request</div>
+                        </li>
+                    `;
+                    $("#friend-request").append(show);
+                });
+            }
+        },
+        error: function(error) {
+            console.error("Error fetching pending requests:", error);
         }
-      },
-      error: function () {
-        alert("An error occurred while sending the friend request.");
-      },
     });
-  }
-  function acceptFriendRequest(friendship_id) {
-    // Get the CSRF token from the meta tag
-    const csrfToken = $('meta[name="csrf-token"]').attr("content");
+});
+</script>
+<script>
+function sendFriendRequest(username) {
+  // Get the CSRF token from the meta tag
+  const csrfToken = $('meta[name="csrf-token"]').attr("content");
 
-    // Use jQuery for simplicity in handling AJAX requests
-    $.ajax({
-      type: "POST",
-      url: "/profile/accept_friend_request/" + friendship_id + "/", // Update the URL to match your Django URL pattern
-      headers: { "X-CSRFToken": csrfToken }, // Include the CSRF token in the headers
-      success: function (data) {
-        if (data.status === "success") {
-          alert("Friend request sent successfully!");
-          // You may want to update the UI to reflect the change (e.g., disable the button)
-        } else {
-          alert("Error: " + data.message);
-        }
-      },
-      error: function () {
-        alert("An error occurred while sending the friend request.");
-      },
-    });
-  }
+  // Use jQuery for simplicity in handling AJAX requests
+  $.ajax({
+    type: "POST",
+    url: "/profile/send_friend_request/" + username + "/", // Update the URL to match your Django URL pattern
+    headers: { "X-CSRFToken": csrfToken }, // Include the CSRF token in the headers
+    success: function (data) {
+      if (data.status === "success") {
+        alert("Friend request sent successfully!");
+        console.log(data.new_user)
+        // Create the HTML dynamically for the new friend request
+        let show = `
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+              <img src="${data.new_user[0].profile_picture}" alt="${data.new_user[0].username}" class="rounded-circle" width="40" height="40" />
+            <span>${data.new_user[0].username}</span>
+            <div class="btn-group">Request Sent!</div>
+          </li>
+        `;
+
+        // Append the new friend request to the list
+        $("#friend-request").append(show);
+
+      } else {
+        alert("Error: " + data.message);
+      }
+    },
+    error: function () {
+      alert("An error occurred while sending the friend request.");
+    },
+  });
+}
+
+function acceptFriendRequest(friendship_id) {
+  const csrfToken = $('meta[name="csrf-token"]').attr("content");
+
+  $.ajax({
+    type: "POST",
+    url: "/profile/accept_friend_request/" + friendship_id + "/",
+    headers: { "X-CSRFToken": csrfToken },
+    success: function (data) {
+      if (data.status === "success") {
+        alert("Friend request accepted successfully!");
+
+      } else {
+        alert("Error: " + data.message);
+      }
+    },
+    error: function () {
+      alert("An error occurred while accepting the friend request.");
+    },
+  });
+}
+
+
   function rejectFriendRequest(friendship_id) {
     // Get the CSRF token from the meta tag
     const csrfToken = $('meta[name="csrf-token"]').attr("content");
@@ -238,6 +279,8 @@
       },
     });
   }
+
+
 </script>
 
 <!-- Existing content... -->

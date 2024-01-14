@@ -464,7 +464,17 @@ def send_friend_request(request, username):
     # Ensure that UserProfile instances are used for the friendship relationship
     user_profile = UserProfile.objects.get(user=request.user)
     user_to_add_profile = UserProfile.objects.get(user=user_to_add)
-
+    
+    default_profile_picture_path = '/static/images/sid.jpg'  # Adjust the path to your default image
+    
+    user_to_add_data = {
+        'username': user_to_add_profile.user.username,
+        'profile_picture': str(user_to_add_profile.profile_picture.url) if user_to_add_profile.profile_picture else default_profile_picture_path,
+        # Add other fields as needed
+    }
+    
+    pending_requests = Friendship.objects.filter(user1=user_profile, status='pending')
+    
     # Check if a friendship already exists
     existing_friendship = Friendship.objects.filter(
         (models.Q(user1=user_profile, user2=user_to_add_profile) | models.Q(user1=user_to_add_profile, user2=user_profile)),
@@ -474,7 +484,7 @@ def send_friend_request(request, username):
     if not existing_friendship:
         # Create a new friendship request
         Friendship.objects.create(user1=user_profile, user2=user_to_add_profile, status='pending')
-        return JsonResponse({'status': 'success'})
+        return JsonResponse({'status': 'success', 'new_user': [user_to_add_data], 'pending_requests': len(pending_requests)})
     else:
         return JsonResponse({'status': 'error', 'message': 'Friendship already exists.'})
 
@@ -494,3 +504,24 @@ def reject_friend_request(request, friendship_id):
     friendship.status = 'rejected'
     friendship.save()
     return JsonResponse({'status': 'success'})
+
+def get_pending_requests(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    pending_requests = Friendship.objects.filter(user1=user_profile, status='pending')
+    
+    pending_data = []
+    
+    for request in pending_requests:
+        username = request.user2.user.username
+        profile_picture_url = ''
+
+        if request.user2.profile_picture and request.user2.profile_picture.url:
+            profile_picture_url = str(request.user2.profile_picture.url)
+        else:
+            # Use a default profile picture URL
+            profile_picture_url = '/static/images/sid.jpg'  # Adjust the path to your default image
+
+        pending_data.append({'username': username, 'profile_picture': profile_picture_url})
+
+    print(pending_data)
+    return JsonResponse({'status': 'success', 'pending_requests': pending_data})
