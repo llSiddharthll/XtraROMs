@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'emoji',
+    
 ]
 
 MIDDLEWARE = [
@@ -213,4 +213,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'
-EMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'
+EMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu' 
