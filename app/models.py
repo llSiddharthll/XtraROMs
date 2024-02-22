@@ -46,10 +46,9 @@ class UserProfile(models.Model):
         return self.user.username
     
 
-class Message(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')        
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')        
-    content = models.TextField()
+class Message(models.Model):       
+    content = models.TextField(null=True, blank=True)
+    sender = models.CharField(max_length = 20, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
 
@@ -90,10 +89,10 @@ class OnlineStatus(models.Model):
 
 class CustomUser(AbstractUser):
     email_confirmed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         permissions = [('can_change_permission', 'Can Change Permissions')] 
 
-        
     groups = models.ManyToManyField(
         'auth.Group',
         verbose_name='groups',

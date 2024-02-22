@@ -385,15 +385,8 @@ def comment_policy_view(request):
 
 @login_required
 def friends(request):
-    # Ensure the user is authenticated
-    if not request.user.is_authenticated:
-        return redirect('login')  # Redirect to the login page if the user is not authenticated
-
-    # Assuming UserProfile has a ForeignKey to User with the related_name 'user_profile'
-    try:
-        user_profile = request.user.userprofile  # Use 'userprofile' instead of 'user_profile'
-    except UserProfile.DoesNotExist:
-        user_profile = None
+    
+    user_profile = request.user.userprofile
 
     if not user_profile:
         # Handle the case where the user does not have a UserProfile
@@ -444,7 +437,7 @@ def friend_profile(request, friend_username):
     return render(request, 'FriendProfile.html', context)
 
 def chat(request, friendship_id):
-    friends = get_object_or_404(Friendship, id=friendship_id)
+    friends = Friendship.objects.get(id=friendship_id)
     user = request.user
 
     # Use tuple unpacking with get_or_create
@@ -453,7 +446,7 @@ def chat(request, friendship_id):
     user_profile = UserProfile.objects.get(user=request.user)
 
     # Pass online_status, friends, messages, and conversation_id to the template
-    return render(request, 'chat.html', {'online_status': online_status, 'friends': [friends], 'user_profile':user_profile})
+    return render(request, 'chat.html', {'user': user,'online_status': online_status, 'friends': friends, 'user_profile':user_profile})
 
 
 

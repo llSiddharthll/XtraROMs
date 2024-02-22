@@ -21,5 +21,5 @@ class FriendshipAdmin(admin.ModelAdmin):
 admin.site.register(Friendship, FriendshipAdmin)
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('sender',)
+    list_display = ('timestamp',)
 admin.site.register(Message, MessageAdmin)

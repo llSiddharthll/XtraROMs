@@ -1,67 +1,65 @@
-from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.db import database_sync_to_async
+# consumers.py
 import json
+from channels.generic.websocket import AsyncWebsocketConsumer
 from .models import *
-from django.utils import timezone
+from channels.db import database_sync_to_async
+import markdown
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        # Assign user to a specific room (e.g., based on authentication)
-        self.room_name = self.scope['url_route']['kwargs']['room_id'] 
-        self.room_group_name = f"chat_{self.room_name}"
-        await self.channel_layer.group_add(#type:ignore
-            self.room_name,
+        self.room_name = self.scope['url_route']['kwargs']['room_id']
+        self.room_group_name = f'room_{self.room_name}'
+        await self.channel_layer.group_add( #type:ignore
+            self.room_group_name,
             self.channel_name
         )
         await self.accept()
 
     async def disconnect(self, close_code):
-        await self.channel_layer.group_discard(#type:ignore
-            self.room_name,
+        await self.channel_layer.group_discard( #type:ignore
+            self.room_group_name,
             self.channel_name
         )
-
+        
     async def receive(self, text_data):
-        text_data_json = json.loads(text_data)
-        message_content = text_data_json['message']
-        pfp = text_data_json['pfp']
+        data = json.loads(text_data)
+        message_type = data['type']
+        
+        if message_type == 'message':
+            message = data.get('message')
+            room_id = data.get('room_id')
+            user_name = data.get('user_name')
+            user_pic = data.get('user_pic')
+            sender = data.get('sender')
+            
+            # Wrap synchronous database access in sync_to_async
+            instance_1 = await database_sync_to_async(Friendship.objects.get)(id=room_id)
+            instance_2 = await database_sync_to_async(Message.objects.create)(
+                content=message,
+                sender=sender
+            )
 
-        # Get the receiver (assuming it's available in your scope)
-        receiver = self.scope['user']
+            # Update the conversation field in Friendship model
+            instance_1.conversation = instance_2
+            await database_sync_to_async(instance_1.save)()
 
-        # Store message in the database
-        await self.save_message(message_content, self.scope['user'], receiver)
-
-        # Send message to all clients in the room
-        await self.channel_layer.group_send(#type:ignore
-            self.room_name,
+            await self.channel_layer.group_send( #type:ignore
+            self.room_group_name,
             {
-                'type': 'chat_message',
-                'message': message_content,
-                'sender': self.scope['user'].username,
-                'receiver': receiver.username,
-                'pfp': pfp,
+                'type': 'chat.message',
+                'message': message,
+                'user_name': user_name,
+                'user_pic': user_pic,
+                'sender': sender
             }
         )
-
-    
-    @database_sync_to_async
-    def save_message(self, message_content, sender, receiver):
-        return Message.objects.create(
-            content=message_content,
-            sender=sender,
-            receiver=receiver,
-            timestamp=timezone.now() 
-        )
-
-
     async def chat_message(self, event):
-        message = event.get('message', '')
-        username = event.get('sender', '')
-        profile_picture_url = event.get('pfp', '')
-        # Send the message to the connected WebSocket
-        await self.send(text_data=json.dumps({
-            'message': message,
-            'username': username,
-            'pfp': profile_picture_url,
-        }))
+        message = event['message']
+        user_name = event['user_name']
+        user_pic = event['user_pic']
+        sender = event['sender']
+        md = markdown.Markdown(extensions=["fenced_code","codehilite"])
+        message = md.convert(message)
+
+        # Send message to WebSocket
+        await self.send(text_data=json.dumps({'message': message, 'user_name': user_name, 'user_pic': user_pic, 'sender': sender}))

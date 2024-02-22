@@ -1,241 +1,269 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block css %}
-<style>
-
-  .timestamp {
-    font-size: 0.8em;
-    color: #777;
-  }
-  .rounded-pill{
-    max-height: 40px;
-  }
-</style>
-{% endblock %}
-
-{% block content %}
-<div class="container mt-5 mb-4">
-  <div class="row">
-    <div class="col-md-12" style="height: 100vh;">
-      {% for friend in friends %}
-      <div
-        id="chat-container-{{ friend.id }}"
-        data-room="{{ friend.id }}"
-        class="card h-75 bg-white chat-container room-link bg-gradient"
-      >
-        <div
-          class="card-header bg-transparent text-black d-flex align-items-center justify-content-between"
-        >
-          <div class="d-flex align-items-center">
-            {% if user == friend.user1.user %}
-            <img 
-            src="{{ friend.user2.profile_picture.url }}" 
-            alt="{{ friend.user2.user.username }}" 
-            class="nav__img" 
-            style="
-            max-height: 35px;
-            max-width: 35px;
-            min-height: 35px;
-            min-width: 35px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid rgb(35, 41, 59);
-          ">
-            {{ friend.user2.user.username }} 
+{% extends 'base.html' %} {% load static %} {% block css %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <style>
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+    .gradient-custom {
+      /* fallback for old browsers */
+      background: #fccb90;
+    
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to bottom right, var(--background), var(--secondary));
+    
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(to bottom right, var(--background), var(--secondary));
+    }
+    
+    .mask-custom {
+      background: rgba(24, 24, 16, 0.2);
+      border-radius: 2em;
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 255, 255, 0.05);
+      background-clip: padding-box;
+      box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    }
+    img.pfp {
+      height: 10em;
+      width: 10em;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgb(35, 41, 59);
+    }
+    img.chat {
+      height: 3.5em;
+      width: 3.5em;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgb(35, 41, 59);
+    }
+    .border-card {
+      border-radius: 2em;
+      border: 3px solid #858585;
+    }
+    strong {
+      font-size: medium;
+    }
+    .text-start p {
+      font-weight: 500;
+    }
+    .chat-container {
+      min-height: 70vh;
+      max-height: 70vh;
+      overflow: auto;
+    }
+    .chat-field {
+      bottom: 10vh;
+    }
+    footer{
+      display: none;
+    }
+    .pt-5{
+      padding-bottom: 7px;
+    }
+    @media(max-width: 768px) {
+      .profile {
+        display: none;
+        margin-bottom: 1rem;
+      }
+      .col-4, .col-8 {
+        width: 100%;
+        max-width: 100%;
+      }
+      .chat-container {
+        min-height: 60vh;
+        max-height: 60vh;
+      }
+      .chat-field textarea {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+{% endblock %} {% block content %}
+<section class="gradient-custom">
+  <div class="container px-4 px-lg-5">
+    <div class="row pt-4 g-3">
+      <div class="col-12 col-md-4 order-2 order-md-1">
+        <div class="card mask-custom">
+          <div class="card-body profile">
+            {% if user == friends.user1.user %}
+            <div class="d-flex justify-content-center">
+              <img class="pfp rounded-circle" src="{{ friends.user2.profile_picture.url }}" alt="Profile Picture" style="width: 100px; height: 100px;">
+            </div>
+            <div class="text-start p-3 border-card mt-3">
+              <strong>Username</strong>
+              <p>{{ friends.user2.user.username }}</p>
+              <hr />
+              <strong>About</strong>
+              <p>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.</p>
+              <hr />
+              <strong>XtraROMs Member Since</strong>
+              <p>{{ user.created_at }}</p>
+              <hr />
+            </div>
             {% else %}
-            <img 
-            src="{{ friend.user1.profile_picture.url }}" 
-            alt="{{ friend.user1.user.username }}" 
-            class="nav__img" 
-            style="
-            max-height: 35px;
-            max-width: 35px;
-            min-height: 35px;
-            min-width: 35px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid rgb(35, 41, 59);
-          ">
-            {{friend.user1.user.username }}
+            <div class="d-flex justify-content-center">
+              <img class="pfp rounded-circle" src="{{ friends.user1.profile_picture.url }}" alt="Profile Picture" style="width: 100px; height: 100px;">
+            </div>
+            <div class="text-start p-3 border-card mt-3">
+              <strong>Username</strong>
+              <p>{{ friends.user1.user.username }}</p>
+              <hr />
+              <strong>About</strong>
+              <p>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.</p>
+              <hr />
+              <strong>XtraROMs Member Since</strong>
+              <p>{{ user.created_at }}</p>
+              <hr />
+            </div>
             {% endif %}
           </div>
-          <div class="d-flex align-items-center">
-            {% with friend.user2.online_status as online_status %} 
-            {% if online_status.is_online %}
-            <span class="badge bg-success badge-pill" style="margin-right: 10px"
-              >Online</span
-            >
-            {% else %}
-            <span class="badge bg-danger badge-pill" style="margin-right: 10px"
-              >Offline</span
-            >
-            {% endif %} 
-            {% endwith %}
-            <span class="badge bg-primary badge-pill">3</span>
-          </div>
-        </div>
-        <div class="card-body messages">
-          <div class="media sender-message">
-            <div
-              class="media-body message-container"
-              id="chat-messages-{{ friend.id }}"
-            >
-              <!-- Use a unique ID for each message container -->
-            </div>
-          </div>
-        </div>
-        <div class="card-footer input-container bg-transparent">
-          <form id="message-form-{{ friend.id }}" class="w-100">
-            <div class="input-group">
-              <span class="input-group-text border-0 bg-transparent"><i class="fas fa-smile"></i></span>
-              <input
-                type="text"
-                id="message-input-{{ friend.id }}"
-                class="form-control border-0 bg-transparent"
-                autocomplete="off"
-                placeholder="Type your message..."
-              />
-              <button type="submit" class="btn btn-primary border-0">
-                <i class="fas fa-paper-plane"></i> Send
-              </button>
-            </div>
-          </form>
         </div>
       </div>
-      {% endfor %}
+      <div class="col-12 col-md-8 order-1 order-md-2">
+        <ul class="list-unstyled text-white chat-container px-3" id="chat-messages"></ul>
+        <div class="row chat-field align-items-center g-2">
+          <div class="col-auto col-md-1">
+            <span class="bg-transparent"><i class="fas fa-smile"></i></span>
+          </div>
+          <div class="col-auto col-md-8">
+            <textarea id="chat-message-input" class="form-control border-0 bg-transparent" autocomplete="off" placeholder="Type your message..." rows="3" style="resize: none;"></textarea>
+          </div>
+          <div class="col-auto col-md-3">
+            <button type="button" id="chat-message-submit" class="btn btn-primary" onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-<script>
-  let socket;
-  // Retrieve the current user's username from the Django template
-  let currentUser = "{{ request.user.username }}";
-
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get all elements with the class 'chat-container'
-    const links = document.querySelectorAll(".chat-container");
-    links.forEach(link => {
-      // Extract the room name from the data attribute
-      const roomName = link.getAttribute("data-room");
-      // Construct the WebSocket URL
-      const url = `ws://${window.location.host}/ws/chatting_to/${roomName}/`;
-      // Initialize the WebSocket connection
-      socket = new WebSocket(url);
-    });
-  });
-
-// Iterate over friends and log their usernames
-{% for friend in friends %}
-  let friend1 = "{{ friend.user1.username }}";
-  let friend2 = "{{ friend.user2.username }}";
-  let friend1_pfp = "{{ friend.user1.profile_picture.url }}"
-  let friend2_pfp = "{{ friend.user2.profile_picture.url }}"
-  // Do something with friend1 and friend2
-{% endfor %}
-console.log("Friend 1 url: " + friend1_pfp)
-console.log(" Friend 2 url: " + friend2_pfp)
-
-// Function to send messages
-function sendMessage(message, friendId) {
-  let sender;
-  let sender_pfp;
-
-  if (socket && socket.readyState === WebSocket.OPEN) {
-    sender = (currentUser === friend1) ? friend1 : friend2;
-    sender_pfp = (currentUser === friend1) ? friend1_pfp : friend2_pfp
-
-    socket.send(JSON.stringify({
-      type: 'chat_message',
-      message: message,
-      username: sender,
-      pfp : sender_pfp,
-    }));
-  } else {
-    console.error("WebSocket is not open");
-  }
-}
-
-
-  // Attach event listeners when the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get all forms starting with 'message-form-'
-    const forms = document.querySelectorAll("[id^='message-form-']");
-    forms.forEach(form => {
-      // Extract friendId from the form id
-      const friendId = form.id.split("-").pop();
-      const messageInput = document.getElementById(`message-input-${friendId}`);
-      const messageContainer = document.getElementById(`chat-messages-${friendId}`);
-
-      if (!messageContainer) {
-        console.error(`Message container not found for friend ${friendId}`);
-        return;
+</section>
+  <script>
+    var chat_id = '{{friends.id}}';
+    var message_1 = document.getElementById('chat-messages');
+    var chatsocket = new WebSocket(`ws://${window.location.host}/ws/chat/${chat_id}/`);
+    var user = '{{ user.username }}'
+  
+    chatsocket.onmessage = function (e) {
+      var data = JSON.parse(e.data);
+      console.log(data);
+      var sent_message = data.message
+      sent_message = sent_message.replace(/\n/g, '<br>');
+      if ( user == data.sender) {
+      var message_content = `
+      <li class="d-flex justify-content-between mb-4">
+        <div class="card mask-custom w-100">
+          <div
+            class="card-header d-flex justify-content-between p-3"
+            style="border-bottom: 1px solid rgba(255, 255, 255, 0.3)"
+          >
+            <p class="fw-bold mb-0">${data.user_name}</p>
+            <p class="text-light small mb-0">
+              <i class="far fa-clock"></i> ${getCurrentTime()}
+            </p>
+          </div>
+          <div class="card-body">
+            <p class="mb-0">
+              ${sent_message}
+            </p>
+          </div>
+        </div>
+        <img
+          src="${data.user_pic}"
+          alt="avatar"
+          class="chat ms-2"
+        />
+      </li>
+      `;
+      } else {
+        var message_content = `
+        <li class="d-flex justify-content-between mb-4">
+          <img
+            src="${data.user_pic}"
+            alt="avatar"
+            class="chat me-2"
+          />
+          <div class="card mask-custom w-100">
+            <div
+              class="card-header d-flex justify-content-between p-3"
+              style="border-bottom: 1px solid rgba(255, 255, 255, 0.3)"
+            >
+              <p class="fw-bold mb-0">${data.user_name}</p>
+              <p class="text-light small mb-0">
+                <i class="far fa-clock"></i> ${getCurrentTime()}
+              </p>
+            </div>
+            <div class="card-body">
+              <p class="mb-0">
+                ${sent_message}
+              </p>
+            </div>
+          </div>
+        </li>
+        `;
       }
-
-      // Add event listener for form submission
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        // Get the message from the input field
-        const message = messageInput.value.trim();
-
-        // Check if the message is not empty
-        if (message) {
-          // Send the message to the WebSocket
-          sendMessage(message, friendId);
-          // Clear the input field
-          messageInput.value = "";
-        }
-      });
-
-      // Set up WebSocket onmessage event
-      socket.onmessage = (event) => {
-        // Parse the message data received from the WebSocket
-        const messageData = JSON.parse(event.data);
-        console.log(messageData);
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        if (messageData.username === currentUser) {
-          messageElement.classList.add('sender-message');
-          messageElement.innerHTML = `
-            <div class="row justify-content-start">
-              <div class="col-1">
-              <img src="${messageData.pfp}" alt="Receiver" class="rounded-circle me-2" width="40"
-              height="40">
-              </div>
-              <div class="col-5 rounded-pill bg-light text-dark shadow-sm p-2 ms-5">
-                <p>${messageData.message}</p>
-                <small class="timestamp">${getCurrentTime()}</small>
-              </div>
-            </div>
-          `;
-        } else {
-          messageElement.classList.add('receiver-message');
-          messageElement.innerHTML = `
-            <div class="row justify-content-end">
-              <div class="col-5 rounded-pill bg-light text-dark shadow-sm p-2 ms-5">
-                <p>${messageData.message}</p>
-                <small class="timestamp">${getCurrentTime()}</small>
-              </div>
-              <div class="col-1">
-              <img src="${messageData.pfp}" alt="Receiver" class="rounded-circle me-2" width="40"
-              height="40">
-              </div>
-            </div>
-          `;
-        }
-        messageContainer.appendChild(messageElement);
-      };
-    });
-  });
-
-  function getCurrentTime() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
-  }
-</script>
+      message_1.innerHTML += message_content;
+      
+      message_1.scrollTop = message_1.scrollHeight;
+      function getCurrentTime() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+      }
+    };
+  
+    document.querySelector('#chat-message-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && e.shiftKey) {
+        e.preventDefault(); // Prevents the default behavior of Enter key
+        this.value += '\n';  // Add a new line character to the input value
+      } else if (e.key === 'Enter') {
+        e.preventDefault(); // Prevents the default behavior of Enter key
+        document.querySelector('#chat-message-submit').click();
+      }
+    });    
+  
+    function sendMessage() {
+      const messageInputDom = document.querySelector('#chat-message-input');
+      const message = messageInputDom.value;
+  
+      if (message.trim() !== '') {
+        {% if user == friends.user1.user %}
+        chatsocket.send(JSON.stringify({
+          type: 'message',
+          message: message,
+          room_id: chat_id,
+          sender: '{{ user.username }}',
+          user_name: '{{ friends.user1.user.username }}',
+          user_pic: '{{ friends.user1.profile_picture.url }}'
+        }));
+        {% elif user == friends.user2.user %}
+        chatsocket.send(JSON.stringify({
+          type: 'message',
+          message: message,
+          room_id: chat_id,
+          sender: '{{ user.username }}',
+          user_name: '{{ friends.user2.user.username }}',
+          user_pic: '{{ friends.user2.profile_picture.url }}'
+        }));
+        {% endif %}
+      }
+      messageInputDom.value = '';
+    }
+  </script>
 
 {% endblock %}

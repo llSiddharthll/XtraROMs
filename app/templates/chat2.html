@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    img {
+      max-height: 35px;
+      max-width: 35px;
+      min-height: 35px;
+      min-width: 35px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgb(35, 41, 59);
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <section>
+    <div class="container mt-5 mb-4">
+      <div class="row">
+        <div class="col-md-12" style="height: 100vh;">
+            <div id="chat-container" class="card h-75 bg-white chat-container room-link bg-gradient">
+              <div class="card-header bg-transparent text-black d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  {% if user == friends.user1.user %}
+                  <strong>{{ friends.user2.user.username }}</strong>
+                  {% elif user == friends.user2.user %}
+                  <strong>{{ friends.user1.user.username }}</strong>
+                  {% endif %}
+                </div>
+                <div class="d-flex align-items-center">
+                  <span class="badge bg-success badge-pill" style="margin-right: 10px">Online</span>
+                  <span class="badge bg-primary badge-pill">3</span>
+                </div>
+              </div>
+              <div class="card-body messages">
+                <div class="media sender-message">
+                  <div class="media-body message-container" id="message-1">
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer input-container bg-transparent">
+                  <div class="input-group">
+                    <span class="input-group-text border-0 bg-transparent"><i class="fas fa-smile"></i></span>
+                    <input type="text" id="chat-message-input" class="form-control border-0 bg-transparent" autocomplete="off" placeholder="Type your message..." />
+                    <button type="button" id="chat-message-submit" class="btn btn-primary border-0" onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    var chat_id = '{{friends.id}}';
+    var message_1 = document.getElementById('message-1');
+    var chatsocket = new WebSocket(`ws://${window.location.host}/ws/chat/${chat_id}/`);
+    
+    chatsocket.onmessage = function (e) {
+      var data = JSON.parse(e.data);
+      console.log(data);
+  
+      var message_container = document.createElement('div');
+      message_container.className = 'message-container';
+      {% if user %}
+      var message_content = `
+      <div class="row justify-content-start">
+        <div class="col-1">
+        <img src="${data.user_pic}" alt="Receiver" class="rounded-circle me-2" width="40"
+        height="40">
+        </div>
+        <div class="col-5 rounded-pill bg-light text-dark shadow-sm p-2 ms-5">
+          <p>${data.message}</p>
+          <small class="timestamp">${getCurrentTime()}</small>
+        </div>
+      </div>
+      `;
+      {% else %}
+      var message_content = `
+      <div class="row justify-content-start">
+        <div class="col-1">
+        <img src="${data.user_pic}" alt="Receiver" class="rounded-circle me-2" width="40"
+        height="40">
+        </div>
+        <div class="col-5 rounded-pill bg-light text-dark shadow-sm p-2 ms-5">
+          <p>${data.message}</p>
+          <small class="timestamp">${getCurrentTime()}</small>
+        </div>
+      </div>
+      `;
+      {% endif %}
+      function getCurrentTime() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+      }
+  
+      message_container.innerHTML = message_content;
+      message_1.appendChild(message_container);
+    };
+  
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+      if (e.key === 'Enter') {  // enter, return
+        document.querySelector('#chat-message-submit').click();
+      }
+    };
+  
+    function sendMessage() {
+      const messageInputDom = document.querySelector('#chat-message-input');
+      const message = messageInputDom.value;
+  
+      if (message.trim() !== '') {
+        {% if user == friends.user1.user %}
+        chatsocket.send(JSON.stringify({
+          type: 'message',
+          message: message,
+          room_id: chat_id,
+          user_name: '{{ friends.user1.user.username }}',
+          user_pic: '{{ friends.user1.profile_picture.url }}'
+        }));
+        {% elif user == friends.user2.user %}
+        chatsocket.send(JSON.stringify({
+          type: 'message',
+          message: message,
+          room_id: chat_id,
+          user_name: '{{ friends.user2.user.username }}',
+          user_pic: '{{ friends.user2.profile_picture.url }}'
+        }));
+        {% endif %}
+      }
+  
+      messageInputDom.value = '';
+    }
+  </script>
+  
+{% endblock %}
