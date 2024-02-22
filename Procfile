@@ -1,1 +1,1 @@
-web: gunicorn XtraROMs.asgi --log-file -
+worker: python manage.py runserver
