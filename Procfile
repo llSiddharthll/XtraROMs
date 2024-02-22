@@ -1,1 +1,1 @@
-web: daphne XtraROMs.asgi:application
+web: gunicorn XtraROMs.asgi --log-file -
