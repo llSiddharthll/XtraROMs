@@ -1,1 +1,1 @@
-worker: python manage.py runserver
+worker: gunicorn XtraROMs.asgi:application 
