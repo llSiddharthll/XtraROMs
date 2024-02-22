@@ -372,7 +372,7 @@ b {
   font-size: 2em;
   font-weight: bold;
   background: #37635f;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
