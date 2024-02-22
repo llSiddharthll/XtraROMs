@@ -24,12 +24,13 @@ SECRET_KEY = 'django-insecure-sxqo(b5m!(+rvzu)r-y_!%j#3s0%q3738vcuw#!86^3cjdhgi5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
 INSTALLED_APPS = [
     'daphne',
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,13 +101,23 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+import dj_database_url
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'GG5DAgC6dcc246DAB35Cff1Fb3eDcFfD',
+        'HOST': 'roundhouse.proxy.rlwy.net',  # Set to the appropriate host
+        'PORT': '12729',       # Set to the appropriate port
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+WHITENOISE_USE_FINDERS = True
 
 import cloudinary
 
