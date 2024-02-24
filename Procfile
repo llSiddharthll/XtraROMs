@@ -1,1 +1,1 @@
-web: daphne -p 8001 XtraROMs.asgi:channel_layer
+web: python -m gunicorn XtraROMs.asgi:application -k uvicorn.workers.UvicornWorker
