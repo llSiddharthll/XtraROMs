@@ -1,1 +1,1 @@
-worker: gunicorn XtraROMs.asgi:application 
+web: daphne -p 8001 XtraROMs.asgi:channel_layer
