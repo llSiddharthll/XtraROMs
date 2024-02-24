@@ -1,1 +1,1 @@
-web: daphne XtraROMs.asgi:application
+web: python manage.py runserver 9150
