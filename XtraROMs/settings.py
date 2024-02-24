@@ -83,29 +83,40 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'XtraROMs.asgi.application'
 
-""" CHANNEL_LAYERS = {
+CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'hosts': [('monorail.proxy.rlwy.net', 24654)],
         'password': 'jCC21DfOJBNKO2cmnkPCalfIpNGnaMEP',
     },
-} """
+}
 
-CHANNEL_LAYERS = {
+""" CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
-}
+} """
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+} """
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'GG5DAgC6dcc246DAB35Cff1Fb3eDcFfD',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '12729',
     }
 }
 
