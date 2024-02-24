@@ -1,1 +1,2 @@
-web: python manage.py runserver 9150
+release: python manage.py migrate
+web: daphne XtraROMs.asgi:application --port $PORT --bind 0.0.0.0 -v2
