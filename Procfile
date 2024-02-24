@@ -1,1 +1,1 @@
-web: gunicorn XtraROMs.asgi:application -b 0.0.0.0:8000
+web: daphne XtraROMs.asgi:application
