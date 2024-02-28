@@ -96,7 +96,7 @@
   </style>
 {% endblock %} {% block content %}
 <section class="gradient-custom">
-  <div class="container px-4 px-lg-5">
+  <div class="container px-4 py-3 px-lg-5">
     <div class="row pt-4 g-3">
       <div class="col-12 col-md-4 order-2 order-md-1">
         <div class="card mask-custom">
@@ -152,7 +152,135 @@
     </div>
   </div>
 </section>
-  <script>
+<!-- Add this to your existing script -->
+<script>
+  var message_box = document.getElementById('chat-messages');
+  function getCSRFToken() {
+    // Function to retrieve the CSRF token from the cookie
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        // Check if the cookie name is csrftoken
+        if (cookie.substring(0, 10) === 'csrftoken=') {
+          cookieValue = decodeURIComponent(cookie.substring(10));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  function sendMessage() {
+    const messageInputDom = document.querySelector('#chat-message-input');
+    var message = $('#chat-message-input').val();
+    var csrfToken = getCSRFToken();
+
+    $.ajax({
+      type: 'POST',
+      url: '/send_message/',
+      headers: { 'X-CSRFToken': csrfToken },  // Include the CSRF token in the headers
+      data: { 'message': message },
+      success: function(response) {
+        // Handle success
+        console.log(response);
+        var message_content = `
+      <li class="d-flex justify-content-between mb-4">
+        <div class="card mask-custom w-100">
+          <div
+            class="card-header d-flex justify-content-between p-3"
+            style="border-bottom: 1px solid rgba(255, 255, 255, 0.3)"
+          >
+            <p class="fw-bold mb-0">Itachi</p>
+            <p class="text-light small mb-0">
+              <i class="far fa-clock"></i> ${getCurrentTime()}
+            </p>
+          </div>
+          <div class="card-body">
+            <p class="mb-0">
+              ${response.data}
+            </p>
+          </div>
+        </div>
+        <img
+          src="https://res.cloudinary.com/durdi1oak/image/upload/v1/media/profile_pictures/HD-wallpaper-akatsuki-logo-anime-naruto-sadness-teams-themes_nlmcg3"
+          alt="avatar"
+          class="chat ms-2"
+        />
+      </li>
+      `;
+      message_box.innerHTML += message_content;
+      },
+      error: function(error) {
+        console.error('Error:', error);
+      }
+    });
+    getMessages();
+    messageInputDom.value = '';
+  }
+
+  function getMessages() {
+    var csrfToken = getCSRFToken();
+
+    $.ajax({
+      type: 'GET',
+      url: '/get_messages/',
+      headers: { 'X-CSRFToken': csrfToken },  // Include the CSRF token in the headers
+      success: function(response) {
+        var message_content = `
+      <li class="d-flex justify-content-between mb-4">
+        <div class="card mask-custom w-100">
+          <div
+            class="card-header d-flex justify-content-between p-3"
+            style="border-bottom: 1px solid rgba(255, 255, 255, 0.3)"
+          >
+            <p class="fw-bold mb-0">Itachi</p>
+            <p class="text-light small mb-0">
+              <i class="far fa-clock"></i> ${getCurrentTime()}
+            </p>
+          </div>
+          <div class="card-body">
+            <p class="mb-0">
+              ${response.data}
+            </p>
+          </div>
+        </div>
+        <img
+          src="https://res.cloudinary.com/durdi1oak/image/upload/v1/media/profile_pictures/HD-wallpaper-akatsuki-logo-anime-naruto-sadness-teams-themes_nlmcg3"
+          alt="avatar"
+          class="chat ms-2"
+        />
+      </li>
+      `;
+      message_box.innerHTML += message_content;
+          // Poll every 2 seconds
+      },
+      error: function(error) {
+        console.error('Error:', error);
+          // Retry after 2 seconds on error
+      }
+    });
+  }
+  function getCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
+
+  document.querySelector('#chat-message-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && e.shiftKey) {
+      e.preventDefault(); // Prevents the default behavior of Enter key
+      this.value += '\n';  // Add a new line character to the input value
+    } else if (e.key === 'Enter') {
+      e.preventDefault(); // Prevents the default behavior of Enter key
+      document.querySelector('#chat-message-submit').click();
+    }
+  });
+</script>
+
+  {% comment %} <script>
     var chat_id = '{{friends.id}}';
     var message_1 = document.getElementById('chat-messages');
     var chatsocket = new WebSocket(`ws://${window.location.host}/ws/chat/${chat_id}/`);
@@ -264,6 +392,6 @@
       }
       messageInputDom.value = '';
     }
-  </script>
+  </script> {% endcomment %}
 
 {% endblock %}

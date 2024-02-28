@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +30,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,19 +81,6 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'XtraROMs.asgi.application'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'hosts': [('monorail.proxy.rlwy.net', 24654)],
-        'password': 'jCC21DfOJBNKO2cmnkPCalfIpNGnaMEP',
-    },
-}
-
-""" CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-} """
 
 
 # Database
@@ -108,11 +93,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-import dj_database_url
-
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
 
 """ DATABASES = {
     'default': {
@@ -231,5 +211,3 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'
 EMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu' 
-
-django_heroku.settings(locals())

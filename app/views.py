@@ -448,7 +448,15 @@ def chat(request, friendship_id):
     # Pass online_status, friends, messages, and conversation_id to the template
     return render(request, 'chat.html', {'user': user,'online_status': online_status, 'friends': friends, 'user_profile':user_profile})
 
+def send_message(request):
+    if request.method == 'POST':
+        message = request.POST.get('message', '')
+        get_messages(message)
+        return JsonResponse({'status': 'success', 'data': message})
+    return JsonResponse({'status': 'error'})
 
+def get_messages(message):
+    return JsonResponse({'messages': message})
 
 @login_required
 def send_friend_request(request, username):
