@@ -16,10 +16,3 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'is_authorized')
 admin.site.register(UserProfile, UserProfileAdmin)
 
-class FriendshipAdmin(admin.ModelAdmin):
-    list_display = ('user1', 'user2')
-admin.site.register(Friendship, FriendshipAdmin)
-
-class MessageAdmin(admin.ModelAdmin):
-    list_display = ('timestamp',)
-admin.site.register(Message, MessageAdmin)
