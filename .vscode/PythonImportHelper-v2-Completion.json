@@ -608,6 +608,14 @@
         "documentation": {}
     },
     {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
         "label": "get_asgi_application",
         "importPath": "django.core.asgi",
         "description": "django.core.asgi",
@@ -1054,7 +1062,7 @@
         "kind": 5,
         "importPath": "app.urls",
         "description": "app.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('accounts/login/', CustomLoginView.as_view(), name='account_login'),\n    path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),\n    path('logout/', views.logout_request, name='logout'),\n    path('profile/', views.profile, name='profile'),\n    path('custom_roms/', views.custom_roms, name='custom_roms'),\n    path('rom_detail/rom_details_<int:rom_id>/', views.rom_details, name='rom_details'),\n    path('mod_detail/mod_details_<int:mod_id>/', views.mod_details, name='mod_details'),\n    path('edit_rom/editing_rom_<int:rom_id>/', views.edit_rom, name='edit_rom'),",
+        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('accounts/login/', CustomLoginView.as_view(), name='account_login'),\n    path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),\n    path('logout/', views.logout_request, name='logout'),\n    path('profile/', views.profile, name='profile'),\n    path('custom_roms/', CustomROMsListView.as_view(), name='custom_roms'),\n    path('rom_detail/rom_details_<int:rom_id>/', views.rom_details, name='rom_details'),\n    path('mod_detail/mod_details_<int:mod_id>/', views.mod_details, name='mod_details'),\n    path('edit_rom/editing_rom_<int:rom_id>/', views.edit_rom, name='edit_rom'),",
         "detail": "app.urls",
         "documentation": {}
     },
@@ -1073,6 +1081,24 @@
         "importPath": "app.views",
         "description": "app.views",
         "peekOfCode": "class CustomLoginView(LoginView):\n    template_name = 'account/login.html'\n    @csrf_exempt\n    def dispatch(self, request, *args, **kwargs):\n        return super().dispatch(request, *args, **kwargs)\ndef edit_rom(request, rom_id):\n    rom = get_object_or_404(CustomROM, id=rom_id)\n    if request.method == \"POST\":\n        edit_form = UploadROMForm(request.POST, request.FILES, instance=rom)\n        if edit_form.is_valid():",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "CustomROMsListView",
+        "kind": 6,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "class CustomROMsListView(ListView):\n    model = CustomROM\n    template_name = 'custom_roms.html'\n    context_object_name = 'roms'\n    ordering = ['-upload_date']\n    paginate_by = 9\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.user.is_authenticated:\n            user_profile = UserProfile.objects.get(user=self.request.user)",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "MagiskModulesView",
+        "kind": 6,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "class MagiskModulesView(ListView):\n    model = CustomMOD\n    template_name = 'magisk_modules.html'\n    context_object_name = 'mods'\n    ordering = ['-upload_date']\n    paginate_by = 9\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.user.is_authenticated:\n            user_profile = UserProfile.objects.get(user=self.request.user)",
         "detail": "app.views",
         "documentation": {}
     },
@@ -1140,15 +1166,6 @@
         "documentation": {}
     },
     {
-        "label": "custom_roms",
-        "kind": 2,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "def custom_roms(request):\n    roms = CustomROM.objects.all().order_by(\"-upload_date\")\n    if request.user.is_authenticated:\n        user_profile = UserProfile.objects.get(user=request.user)\n        if request.method == \"POST\":\n            form = UploadROMForm(request.POST, request.FILES)\n            if form.is_valid():\n                rom = form.save()\n                rom.uploaded_by = request.user\n                rom.save()",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
         "label": "rom_details",
         "kind": 2,
         "importPath": "app.views",
@@ -1163,15 +1180,6 @@
         "importPath": "app.views",
         "description": "app.views",
         "peekOfCode": "def mod_details(request, mod_id):\n    mod = get_object_or_404(CustomMOD, id=mod_id)\n    mod_id = request.POST.get(\"mod_id\")\n    if mod_id:\n        mod = CustomMOD.objects.get(pk=mod_id)\n        user_liked = mod.likes.filter(id=request.user.id).exists()\n        if user_liked:\n            mod.likes.remove(request.user)\n        else:\n            mod.likes.add(request.user)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "magisk_modules",
-        "kind": 2,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "def magisk_modules(request):\n    mods = CustomMOD.objects.all().order_by(\"-upload_date\")\n    if request.user.is_authenticated:\n        user_profile = UserProfile.objects.get(user=request.user)\n        if request.method == \"POST\":\n            form = UploadMODForm(request.POST, request.FILES)\n            if form.is_valid():\n                mod = form.save()\n                mod.uploaded_by = request.user\n                mod.save()",
         "detail": "app.views",
         "documentation": {}
     },
