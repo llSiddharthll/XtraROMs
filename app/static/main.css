@@ -15,16 +15,16 @@
   --secondary: #cef3f1;
   --accent: #8ac1bd;   
 } */
+
 :root{
   --text: #101214;
   --background: #EEF5FF;
   --primary: #B4D4FF;
   --secondary: #86B6F6;
-  --accent: hsl(195, 50%, 40%);
+  --accent: #338099;
   
 }
 
-/* Mode */
 .btn {
   background-color: var(--primary);
   color: var(--text);
@@ -47,6 +47,16 @@
 }
 
 .btn:hover{
+  background-color: var(--accent);
+  color: var(--text);
+}
+
+.btn:focus{
+  background-color: var(--accent);
+  color: var(--text);
+}
+
+.btn-primary:focus{
   background-color: var(--accent);
   color: var(--text);
 }
@@ -162,7 +172,6 @@ footer.small{
 
 .custom-rom-image {
   border: none;
-  border-bottom: 2px solid var(--text);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 0;
