@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from allauth.account.views import SignupView, LoginView
+from django.views.generic import ListView
 
 class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
@@ -213,52 +214,46 @@ def profile(request):
 
     return render(request, "profile.html", context)
 
+class CustomROMsListView(ListView):
+    model = CustomROM
+    template_name = 'custom_roms.html'
+    context_object_name = 'roms'
+    ordering = ['-upload_date']
+    paginate_by = 9
 
-def custom_roms(request):
-    roms = CustomROM.objects.all().order_by("-upload_date")
-    if request.user.is_authenticated:
-        user_profile = UserProfile.objects.get(user=request.user)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-        if request.method == "POST":
-            form = UploadROMForm(request.POST, request.FILES)
-            if form.is_valid():
-                rom = form.save()
-                rom.uploaded_by = request.user
-                rom.save()
-                return redirect("custom_roms")  # Redirect back to the same page
+        if self.request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=self.request.user)
+            context['user_profile'] = user_profile
+            context['form'] = UploadROMForm()
 
-            # Handle like action
+        return context
 
-            rom_id = request.POST.get("rom_id")
-            if rom_id:
-                rom = CustomROM.objects.get(pk=rom_id)
-                user_liked = rom.likes.filter(id=request.user.id).exists()
+    def post(self, request, *args, **kwargs):
+        form = UploadROMForm(request.POST, request.FILES)
 
-                if user_liked:
-                    rom.likes.remove(request.user)
-                else:
-                    rom.likes.add(request.user)
-
-                return JsonResponse({"likes": rom.likes.count()})
-
-        else:
-            form = UploadROMForm()
-
-        # Format description for each ROM
-        for rom in roms:
-            rom.formatted_details = mark_safe(# type: ignore
-                rom.details.replace("\n", "<br>").replace("-", "&#8226;")
-            )
+        if form.is_valid():
+            rom = form.save(commit=False)
+            rom.uploaded_by = request.user
             rom.save()
-        return render(
-            request,
-            "custom_roms.html",
-            {"roms": roms, "user_profile": user_profile, "form": form},
-        )
+            return redirect('custom_roms')
 
-    return render(request, "custom_roms.html", {"roms": roms})
+        rom_id = request.POST.get('rom_id')
+        if rom_id:
+            rom = CustomROM.objects.get(pk=rom_id)
+            user_liked = rom.likes.filter(id=request.user.id).exists()
 
+            if user_liked:
+                rom.likes.remove(request.user)
+            else:
+                rom.likes.add(request.user)
 
+            return JsonResponse({'likes': rom.likes.count()})
+
+        return self.get(request, *args, **kwargs)
+    
 def rom_details(request, rom_id):
     rom = get_object_or_404(CustomROM, id=rom_id)
     rom_id = request.POST.get("rom_id")
@@ -305,49 +300,45 @@ def mod_details(request, mod_id):
     )
 
 
-def magisk_modules(request):
-    mods = CustomMOD.objects.all().order_by("-upload_date")
-    if request.user.is_authenticated:
-        user_profile = UserProfile.objects.get(user=request.user)
+class MagiskModulesView(ListView):
+    model = CustomMOD
+    template_name = 'magisk_modules.html'
+    context_object_name = 'mods'
+    ordering = ['-upload_date']
+    paginate_by = 9
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-        if request.method == "POST":
-            form = UploadMODForm(request.POST, request.FILES)
-            if form.is_valid():
-                mod = form.save()
-                mod.uploaded_by = request.user
-                mod.save()
-                return redirect("magisk_modules")  
+        if self.request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=self.request.user)
+            context['user_profile'] = user_profile
+            context['form'] = UploadMODForm()
 
-            # Handle like action
+        return context
 
-            mod_id = request.POST.get("mod_id")
-            if mod_id:
-                mod = CustomMOD.objects.get(pk=mod_id)
-                user_liked = mod.likes.filter(id=request.user.id).exists()
+    def post(self, request, *args, **kwargs):
+        form = UploadMODForm(request.POST, request.FILES)
 
-                if user_liked:
-                    mod.likes.remove(request.user)
-                else:
-                    mod.likes.add(request.user)
+        if form.is_valid():
+            mod = form.save(commit=False)
+            mod.uploaded_by = request.user
+            mod.save()
+            return redirect('custom_mods')
 
-                return JsonResponse({"likes": mod.likes.count()})
+        rom_id = request.POST.get('mod_id')
+        if rom_id:
+            mod = CustomROM.objects.get(pk=rom_id)
+            user_liked = mod.likes.filter(id=request.user.id).exists()
 
-        else:
-            form = UploadMODForm()
+            if user_liked:
+                mod.likes.remove(request.user)
+            else:
+                mod.likes.add(request.user)
 
-        # Format description for each mod
-        for mod in mods:
-            mod.formatted_details = mark_safe(# type: ignore
-                mod.details.replace("\n", "<br>").replace("-", "&#8226;")
-            )
+            return JsonResponse({'likes': mod.likes.count()})
 
-        return render(
-            request,
-            "magisk_modules.html",
-            {"mods": mods, "user_profile": user_profile, "form": form},
-        )
-
-    return render(request, "magisk_modules.html", {"mods": mods})
+        return self.get(request, *args, **kwargs)
 
 
 @login_required

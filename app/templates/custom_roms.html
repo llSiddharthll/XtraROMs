@@ -1,6 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block style %}
+{% extends 'base.html' %} 
+{% load static %} 
 
-
+{% block style %}
 <!-- Include Select2 CSS -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css"
@@ -66,7 +67,7 @@
     color: #b8b9bc;
   }
 
-  @media only screen and (max-width: 757px) {
+  @media(max-width: 757px) {
     .text-center {
       font-size: 1.5em;
     }
@@ -87,6 +88,7 @@
   #search-input::placeholder {
     color: var(--text); /* Replace 'your-desired-color' with the color you want */
   }
+
 </style>
 {% endblock %} {% block content %}
 
@@ -134,9 +136,9 @@
   <!------------------------------------ Custom ROM cards ----------------------------------------------------->
 
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row g-4">
     {% for rom in roms %}
-    <div class="col rom-card">
+    <div class="col-md-4 rom-card">
       <div class="card h-100">
         <img
           src="{{ rom.image.url }}"
@@ -224,7 +226,6 @@
       </div>
     </div>
 
-
 <!-----------------------------------Share Link Model----------------------------------------------->
 
   <div
@@ -265,7 +266,42 @@
     {% endfor %}
   </div>
 
-
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center pt-5">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1" aria-label="First">
+            <i class="fas fa-angle-double-left"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+            <i class="fas fa-angle-left"></i>
+          </a>
+        </li>
+      {% endif %}
+  
+      <li class="page-item">
+        <span class="page-link">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+      </li>
+  
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+            <i class="fas fa-angle-right"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+            <i class="fas fa-angle-double-right"></i>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+  
 
   <!----------------------------------- Login Modal -------------------------------------------------->
   <div
@@ -318,20 +354,6 @@
 
 {% block script %}
 
-
-<script>
-  $(document).ready(function () {
-    // Initialize Select2 on the select element
-    $("#device").select2({
-      matcher: function (term, text, option) {
-        return (
-          text.toUpperCase().indexOf(term.toUpperCase()) >= 0 ||
-          option.val().toUpperCase().indexOf(term.toUpperCase()) >= 0
-        );
-      },
-    });
-  });
-</script>
 
 <!-------------------------------------Searching Content----------------------------------------------->
 
