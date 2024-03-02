@@ -19,14 +19,5 @@ urlpatterns = [
     path('manage_user_profiles/', views.manage_user_profiles, name='manage_user_profiles'),
     path('update_user_profile/<int:profile_id>/', views.update_user_profile, name='update_user_profile'),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
-    path('friends/', views.friends, name= "friends"),
-    path('chat/<int:friendship_id>/', views.chat, name= "chat"),
-    path('send_message/', views.send_message, name='send_message'),
-    path('get_messages/', views.get_messages, name='get_messages'),
-    path('chatbot/comment-policy/', views.comment_policy_view, name='comment-policy'),
-    path('profile/send_friend_request/<str:username>/', views.send_friend_request, name='send_friend_request'),
-    path('profile/accept_friend_request/<int:friendship_id>/', views.accept_friend_request, name='accept_friend_request'),
-    path('profile/reject_friend_request/<int:friendship_id>/', views.reject_friend_request, name='reject_friend_request'),
-    path('profile/get_pending_requests/', views.get_pending_requests, name='get_pending_requests'),
-
+    
 ]

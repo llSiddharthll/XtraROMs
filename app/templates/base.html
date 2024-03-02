@@ -167,19 +167,6 @@
                 >
               </a>
             </li>
-            <li class="nav__item">
-              <a
-                href="{% url 'friends' %}"
-                class="nav__link {% if request.path == '/friends/' %}active-link{% endif %}"
-              >
-                <i class="bx bx-message-square-detail nav__icon"></i>
-                <span class="nav__name"
-                  ><span class="decor">< </span>Friends<span class="decor">
-                    /></span
-                  ></span
-                >
-              </a>
-            </li>
           </ul>
         </div>
         {% if user.is_authenticated %}
@@ -202,23 +189,6 @@
       </nav>
     </header>
 
-
-    <!--------cookie collection ----------------------->
-
-    <!-- Cookie Banner -->
-    <div id="cb-cookie-banner" class="alert alert-dark mb-0" role="alert">
-      &#x1F36A; This website uses cookies to ensure you get the best experience
-      on our website.
-      <a href="https://www.cookiesandyou.com/" target="blank">Learn more</a>
-      <button
-        type="button"
-        class="btn btn-primary btn-sm ms-3"
-        onclick="window.cb_hideCookieBanner()"
-      >
-        I Got It
-      </button>
-    </div>
-    <!-- End of Cookie Banner -->
 
     {% block content %} {% endblock %}
     <footer class="footer text-light py-4 big">

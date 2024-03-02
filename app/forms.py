@@ -1,9 +1,10 @@
 from django import forms
 from .models import *
+from django.contrib.auth.models import User
 
 class UpdateUsernameForm(forms.ModelForm):
     class Meta:
-        model = CustomUser  # Change to CustomUser
+        model = User 
         fields = ['username']
 
 class UploadROMForm(forms.ModelForm):

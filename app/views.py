@@ -1,5 +1,5 @@
-from django.utils import timezone
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
@@ -10,7 +10,6 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from allauth.account.views import SignupView, LoginView
-from .consumers import *
 
 class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
@@ -382,147 +381,3 @@ def privacy_policy(request):
 def comment_policy_view(request):
     return render(request, "comment_policy.html")
 
-
-@login_required
-def friends(request):
-    
-    user_profile = request.user.userprofile
-
-    if not user_profile:
-        # Handle the case where the user does not have a UserProfile
-        return HttpResponse("User profile not found")
-
-    # Filter accepted friend relationships for the current user
-    user_friends = Friendship.objects.filter(
-        (models.Q(user1=user_profile) | models.Q(user2=user_profile)), status='accepted'
-    )
-
-    # Filter pending friend requests for the current user
-    friend_requests = Friendship.objects.filter(user2=user_profile, status='pending')
-
-    # Exclude current friends and pending friend requests
-    exclude_users = [
-        friend.user1.user for friend in user_friends
-    ] + [
-        friend.user2.user for friend in user_friends
-    ] + [
-        request.user  # Assuming request.user is a User instance
-    ]  # type:ignore
-
-    # Get all users excluding the current user and their friends
-    all_users = UserProfile.objects.exclude(user__in=[user for user in exclude_users]).exclude(user=request.user)  # type:ignore
-    context = {
-        'user_friends': user_friends,
-        'friend_requests': friend_requests,
-        'all_users': all_users,
-    }
-
-    return render(request, 'Friends.html', context)
-
-
-@login_required
-def friend_profile(request, friend_username):
-    friend = get_object_or_404(User, username=friend_username)
-    
-    # You can access friend data here and pass it to the template
-    # For example, if User model has a field named 'email', you can do:
-    friend_email = friend.email
-
-    context = {
-        'friend': friend,
-        'friend_email': friend_email,
-        # Add other friend data as needed
-    }
-
-    return render(request, 'FriendProfile.html', context)
-
-def chat(request, friendship_id):
-    friends = Friendship.objects.get(id=friendship_id)
-    user = request.user
-
-    # Use tuple unpacking with get_or_create
-    online_status, created = OnlineStatus.objects.get_or_create(user=user)
-    
-    user_profile = UserProfile.objects.get(user=request.user)
-
-    # Pass online_status, friends, messages, and conversation_id to the template
-    return render(request, 'chat.html', {'user': user,'online_status': online_status, 'friends': friends, 'user_profile':user_profile})
-
-def send_message(request):
-    if request.method == 'POST':
-        message = request.POST.get('message', '')
-        get_messages(message)
-        return JsonResponse({'status': 'success', 'data': message})
-    return JsonResponse({'status': 'error'})
-
-def get_messages(message):
-    return JsonResponse({'messages': message})
-
-@login_required
-def send_friend_request(request, username):
-    user_to_add = get_object_or_404(User, username=username)
-
-    # Ensure that UserProfile instances are used for the friendship relationship
-    user_profile = UserProfile.objects.get(user=request.user)
-    user_to_add_profile = UserProfile.objects.get(user=user_to_add)
-    
-    default_profile_picture_path = '/static/images/sid.jpg'  # Adjust the path to your default image
-    
-    user_to_add_data = {
-        'username': user_to_add_profile.user.username,
-        'profile_picture': str(user_to_add_profile.profile_picture.url) if user_to_add_profile.profile_picture else default_profile_picture_path,
-        # Add other fields as needed
-    }
-    
-    pending_requests = Friendship.objects.filter(user1=user_profile, status='pending')
-    
-    # Check if a friendship already exists
-    existing_friendship = Friendship.objects.filter(
-        (models.Q(user1=user_profile, user2=user_to_add_profile) | models.Q(user1=user_to_add_profile, user2=user_profile)),
-        status='accepted'
-    ).exists()
-
-    if not existing_friendship:
-        # Create a new friendship request
-        Friendship.objects.create(user1=user_profile, user2=user_to_add_profile, status='pending')
-        return JsonResponse({'status': 'success', 'new_user': [user_to_add_data], 'pending_requests': len(pending_requests)})
-    else:
-        return JsonResponse({'status': 'error', 'message': 'Friendship already exists.'})
-
-
-@login_required
-def accept_friend_request(request, friendship_id):
-    user_profile = UserProfile.objects.get(user=request.user)
-    friendship = get_object_or_404(Friendship, id=friendship_id, user2=user_profile, status='pending')
-    friendship.status = 'accepted'
-    friendship.save()
-    return JsonResponse({'status': 'success'})
-
-@login_required
-def reject_friend_request(request, friendship_id):
-    user_profile = UserProfile.objects.get(user=request.user)
-    friendship = get_object_or_404(Friendship, id=friendship_id, user2=user_profile, status='pending')
-    friendship.status = 'rejected'
-    friendship.save()
-    return JsonResponse({'status': 'success'})
-
-def get_pending_requests(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    pending_requests = Friendship.objects.filter(user1=user_profile, status='pending')
-    
-    pending_data = []
-    
-    for request in pending_requests:
-        username = request.user2.user.username
-        profile_picture_url = ''
-
-        if request.user2.profile_picture and request.user2.profile_picture.url:
-            profile_picture_url = str(request.user2.profile_picture.url)
-        else:
-            # Use a default profile picture URL
-            profile_picture_url = '/static/images/sid.jpg'  # Adjust the path to your default image
-
-        pending_data.append({'username': username, 'profile_picture': profile_picture_url})
-
-    print(pending_data)
-    return JsonResponse({'status': 'success', 'pending_requests': pending_data})

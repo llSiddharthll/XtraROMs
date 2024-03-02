@@ -1,0 +1,1610 @@
+[
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "django",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django",
+        "description": "django",
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary.uploader",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary.uploader",
+        "description": "cloudinary.uploader",
+        "detail": "cloudinary.uploader",
+        "documentation": {}
+    },
+    {
+        "label": "boto3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "boto3",
+        "description": "boto3",
+        "detail": "boto3",
+        "documentation": {}
+    },
+    {
+        "label": "NoCredentialsError",
+        "importPath": "botocore.exceptions",
+        "description": "botocore.exceptions",
+        "isExtraImport": true,
+        "detail": "botocore.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "staff_member_required",
+        "importPath": "django.contrib.admin.views.decorators",
+        "description": "django.contrib.admin.views.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.admin.views.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "mark_safe",
+        "importPath": "django.utils.safestring",
+        "description": "django.utils.safestring",
+        "isExtraImport": true,
+        "detail": "django.utils.safestring",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "SignupView",
+        "importPath": "allauth.account.views",
+        "description": "allauth.account.views",
+        "isExtraImport": true,
+        "detail": "allauth.account.views",
+        "documentation": {}
+    },
+    {
+        "label": "LoginView",
+        "importPath": "allauth.account.views",
+        "description": "allauth.account.views",
+        "isExtraImport": true,
+        "detail": "allauth.account.views",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "ProtocolTypeRouter",
+        "importPath": "channels.routing",
+        "description": "channels.routing",
+        "isExtraImport": true,
+        "detail": "channels.routing",
+        "documentation": {}
+    },
+    {
+        "label": "URLRouter",
+        "importPath": "channels.routing",
+        "description": "channels.routing",
+        "isExtraImport": true,
+        "detail": "channels.routing",
+        "documentation": {}
+    },
+    {
+        "label": "AuthMiddlewareStack",
+        "importPath": "channels.auth",
+        "description": "channels.auth",
+        "isExtraImport": true,
+        "detail": "channels.auth",
+        "documentation": {}
+    },
+    {
+        "label": "websocket_urlpatterns",
+        "importPath": "app.routing",
+        "description": "app.routing",
+        "isExtraImport": true,
+        "detail": "app.routing",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary",
+        "description": "cloudinary",
+        "detail": "cloudinary",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary.api",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary.api",
+        "description": "cloudinary.api",
+        "detail": "cloudinary.api",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0001_initial",
+        "description": "app.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='ScrapData',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "app.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0002_profile",
+        "description": "app.migrations.0002_profile",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('app', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Profile',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "app.migrations.0002_profile",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0003_customuser_delete_profile",
+        "description": "app.migrations.0003_customuser_delete_profile",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n        ('app', '0002_profile'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='CustomUser',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "app.migrations.0003_customuser_delete_profile",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0004_delete_scrapdata_customuser_online_status",
+        "description": "app.migrations.0004_delete_scrapdata_customuser_online_status",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0003_customuser_delete_profile'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='ScrapData',\n        ),\n        migrations.AddField(\n            model_name='customuser',",
+        "detail": "app.migrations.0004_delete_scrapdata_customuser_online_status",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0005_conversation_message_userprofile_last_seen_and_more",
+        "description": "app.migrations.0005_conversation_message_userprofile_last_seen_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('app', '0004_delete_scrapdata_customuser_online_status'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Conversation',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "app.migrations.0005_conversation_message_userprofile_last_seen_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0006_alter_friendship_id",
+        "description": "app.migrations.0006_alter_friendship_id",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0005_conversation_message_userprofile_last_seen_and_more'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='friendship',\n            name='id',\n            field=models.BigAutoField(primary_key=True, serialize=False),\n        ),",
+        "detail": "app.migrations.0006_alter_friendship_id",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0007_remove_customuser_online_status_onlinestatus",
+        "description": "app.migrations.0007_remove_customuser_online_status_onlinestatus",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('app', '0006_alter_friendship_id'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='customuser',\n            name='online_status',\n        ),",
+        "detail": "app.migrations.0007_remove_customuser_online_status_onlinestatus",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0008_friendship_conversation_alter_friendship_id",
+        "description": "app.migrations.0008_friendship_conversation_alter_friendship_id",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0007_remove_customuser_online_status_onlinestatus'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='friendship',\n            name='conversation',\n            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.conversation'),\n        ),",
+        "detail": "app.migrations.0008_friendship_conversation_alter_friendship_id",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0009_alter_message_options_remove_message_conversation_and_more",
+        "description": "app.migrations.0009_alter_message_options_remove_message_conversation_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0008_friendship_conversation_alter_friendship_id'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.AlterModelOptions(\n            name='message',\n            options={'ordering': ('timestamp',)},\n        ),",
+        "detail": "app.migrations.0009_alter_message_options_remove_message_conversation_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0010_alter_friendship_conversation_and_more",
+        "description": "app.migrations.0010_alter_friendship_conversation_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0009_alter_message_options_remove_message_conversation_and_more'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='friendship',\n            name='conversation',\n            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.message'),\n        ),",
+        "detail": "app.migrations.0010_alter_friendship_conversation_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0011_alter_friendship_user1_alter_friendship_user2",
+        "description": "app.migrations.0011_alter_friendship_user1_alter_friendship_user2",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0010_alter_friendship_conversation_and_more'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='friendship',\n            name='user1',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='friendships_initiated', to='app.userprofile'),\n        ),",
+        "detail": "app.migrations.0011_alter_friendship_user1_alter_friendship_user2",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0012_alter_message_content",
+        "description": "app.migrations.0012_alter_message_content",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0011_alter_friendship_user1_alter_friendship_user2'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='message',\n            name='content',\n            field=models.TextField(blank=True, null=True),\n        ),",
+        "detail": "app.migrations.0012_alter_message_content",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0013_remove_message_receiver_remove_message_sender",
+        "description": "app.migrations.0013_remove_message_receiver_remove_message_sender",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0012_alter_message_content'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='message',\n            name='receiver',\n        ),\n        migrations.RemoveField(",
+        "detail": "app.migrations.0013_remove_message_receiver_remove_message_sender",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0014_customuser_created_at",
+        "description": "app.migrations.0014_customuser_created_at",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0013_remove_message_receiver_remove_message_sender'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customuser',\n            name='created_at',\n            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),\n            preserve_default=False,",
+        "detail": "app.migrations.0014_customuser_created_at",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0015_message_sender",
+        "description": "app.migrations.0015_message_sender",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0014_customuser_created_at'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='message',\n            name='sender',\n            field=models.CharField(blank=True, max_length=20, null=True),\n        ),",
+        "detail": "app.migrations.0015_message_sender",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.migrations.0016_remove_friendship_conversation_and_more",
+        "description": "app.migrations.0016_remove_friendship_conversation_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('app', '0015_message_sender'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='friendship',\n            name='conversation',\n        ),",
+        "detail": "app.migrations.0016_remove_friendship_conversation_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "CustomROMAdmin",
+        "kind": 6,
+        "importPath": "app.admin",
+        "description": "app.admin",
+        "peekOfCode": "class CustomROMAdmin(admin.ModelAdmin):\n    list_display = ('name', 'device', 'credits', 'upload_date')\n    search_fields = ('name', 'device', 'credits')\nadmin.site.register(CustomROM, CustomROMAdmin)\nclass CustomMODAdmin(admin.ModelAdmin):\n    list_display = ('name', 'credits', 'upload_date')\n    search_fields = ('name', 'credits')\nadmin.site.register(CustomMOD, CustomMODAdmin)\nclass UserProfileAdmin(admin.ModelAdmin):\n    list_display = ('user', 'is_authorized')",
+        "detail": "app.admin",
+        "documentation": {}
+    },
+    {
+        "label": "CustomMODAdmin",
+        "kind": 6,
+        "importPath": "app.admin",
+        "description": "app.admin",
+        "peekOfCode": "class CustomMODAdmin(admin.ModelAdmin):\n    list_display = ('name', 'credits', 'upload_date')\n    search_fields = ('name', 'credits')\nadmin.site.register(CustomMOD, CustomMODAdmin)\nclass UserProfileAdmin(admin.ModelAdmin):\n    list_display = ('user', 'is_authorized')\nadmin.site.register(UserProfile, UserProfileAdmin)",
+        "detail": "app.admin",
+        "documentation": {}
+    },
+    {
+        "label": "UserProfileAdmin",
+        "kind": 6,
+        "importPath": "app.admin",
+        "description": "app.admin",
+        "peekOfCode": "class UserProfileAdmin(admin.ModelAdmin):\n    list_display = ('user', 'is_authorized')\nadmin.site.register(UserProfile, UserProfileAdmin)",
+        "detail": "app.admin",
+        "documentation": {}
+    },
+    {
+        "label": "YourAppConfig",
+        "kind": 6,
+        "importPath": "app.apps",
+        "description": "app.apps",
+        "peekOfCode": "class YourAppConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'app'",
+        "detail": "app.apps",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateUsernameForm",
+        "kind": 6,
+        "importPath": "app.forms",
+        "description": "app.forms",
+        "peekOfCode": "class UpdateUsernameForm(forms.ModelForm):\n    class Meta:\n        model = User \n        fields = ['username']\nclass UploadROMForm(forms.ModelForm):\n    DEVICE_CHOICES = [\n        (\"Fleur / Miel\", \"Fleur / Miel\"),\n        (\"Viva / Vida\", \"Viva / Vida\"),\n        (\"Ocean / Sea\", \"Ocean / Sea\"),\n        (\"Blossom\", \"Blossom\"),",
+        "detail": "app.forms",
+        "documentation": {}
+    },
+    {
+        "label": "UploadROMForm",
+        "kind": 6,
+        "importPath": "app.forms",
+        "description": "app.forms",
+        "peekOfCode": "class UploadROMForm(forms.ModelForm):\n    DEVICE_CHOICES = [\n        (\"Fleur / Miel\", \"Fleur / Miel\"),\n        (\"Viva / Vida\", \"Viva / Vida\"),\n        (\"Ocean / Sea\", \"Ocean / Sea\"),\n        (\"Blossom\", \"Blossom\"),\n        (\"Lavander\", \"Lavander\"),\n        (\"Ginkgo / Willow\", \"Ginkgo / Willow\"),\n        (\"X01BD\", \"X01BD\"),\n        (\"Vince\", \"Vince\"),",
+        "detail": "app.forms",
+        "documentation": {}
+    },
+    {
+        "label": "UploadMODForm",
+        "kind": 6,
+        "importPath": "app.forms",
+        "description": "app.forms",
+        "peekOfCode": "class UploadMODForm(forms.ModelForm):\n    class Meta:\n        model = CustomMOD\n        fields = ('name', 'image', 'credits', 'link', 'details', 'upload_date')\n        widgets = {\n            'upload_date': forms.DateInput(attrs={'type': 'date'}),\n        }\nclass ProfilePictureForm(forms.ModelForm):\n    class Meta:\n        model = UserProfile",
+        "detail": "app.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ProfilePictureForm",
+        "kind": 6,
+        "importPath": "app.forms",
+        "description": "app.forms",
+        "peekOfCode": "class ProfilePictureForm(forms.ModelForm):\n    class Meta:\n        model = UserProfile\n        fields = ['profile_picture']",
+        "detail": "app.forms",
+        "documentation": {}
+    },
+    {
+        "label": "cloud_name",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "cloud_name = \"durdi1oak\"\napi_key = \"164254991127435\"\napi_secret = \"i8Lzr2SSRJCAlHS_6l0NVqrDkc4\"\n# AWS S3 Configuration\naws_access_key_id = \"AKIA3CDQKC32YVT7XJXH\"\naws_secret_access_key = \"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\"\naws_bucket_name = \"xtraroms\"\naws_s3_region_name = \"eu-north-1\"\n# Initialize Cloudinary\ncloudinary.config(",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "api_key",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "api_key = \"164254991127435\"\napi_secret = \"i8Lzr2SSRJCAlHS_6l0NVqrDkc4\"\n# AWS S3 Configuration\naws_access_key_id = \"AKIA3CDQKC32YVT7XJXH\"\naws_secret_access_key = \"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\"\naws_bucket_name = \"xtraroms\"\naws_s3_region_name = \"eu-north-1\"\n# Initialize Cloudinary\ncloudinary.config(\n    cloud_name=cloud_name,",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "api_secret",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "api_secret = \"i8Lzr2SSRJCAlHS_6l0NVqrDkc4\"\n# AWS S3 Configuration\naws_access_key_id = \"AKIA3CDQKC32YVT7XJXH\"\naws_secret_access_key = \"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\"\naws_bucket_name = \"xtraroms\"\naws_s3_region_name = \"eu-north-1\"\n# Initialize Cloudinary\ncloudinary.config(\n    cloud_name=cloud_name,\n    api_key=api_key,",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "aws_access_key_id",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "aws_access_key_id = \"AKIA3CDQKC32YVT7XJXH\"\naws_secret_access_key = \"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\"\naws_bucket_name = \"xtraroms\"\naws_s3_region_name = \"eu-north-1\"\n# Initialize Cloudinary\ncloudinary.config(\n    cloud_name=cloud_name,\n    api_key=api_key,\n    api_secret=api_secret\n)",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "aws_secret_access_key",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "aws_secret_access_key = \"bkWaV0oq6cJytvYiag9JTXPLqJVfMmf1ovaDVJzw\"\naws_bucket_name = \"xtraroms\"\naws_s3_region_name = \"eu-north-1\"\n# Initialize Cloudinary\ncloudinary.config(\n    cloud_name=cloud_name,\n    api_key=api_key,\n    api_secret=api_secret\n)\n# Initialize AWS S3 Client",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "aws_bucket_name",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "aws_bucket_name = \"xtraroms\"\naws_s3_region_name = \"eu-north-1\"\n# Initialize Cloudinary\ncloudinary.config(\n    cloud_name=cloud_name,\n    api_key=api_key,\n    api_secret=api_secret\n)\n# Initialize AWS S3 Client\ns3 = boto3.client(",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "aws_s3_region_name",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "aws_s3_region_name = \"eu-north-1\"\n# Initialize Cloudinary\ncloudinary.config(\n    cloud_name=cloud_name,\n    api_key=api_key,\n    api_secret=api_secret\n)\n# Initialize AWS S3 Client\ns3 = boto3.client(\n    's3',",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "s3",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "s3 = boto3.client(\n    's3',\n    aws_access_key_id=aws_access_key_id,\n    aws_secret_access_key=aws_secret_access_key,\n    region_name=aws_s3_region_name\n)\n# List all files in your S3 bucket\ns3_files = s3.list_objects(Bucket=aws_bucket_name)\n# Migrate each file to Cloudinary with the correct public ID\nfor s3_file in s3_files.get('Contents', []):",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "s3_files",
+        "kind": 5,
+        "importPath": "app.migrate_media",
+        "description": "app.migrate_media",
+        "peekOfCode": "s3_files = s3.list_objects(Bucket=aws_bucket_name)\n# Migrate each file to Cloudinary with the correct public ID\nfor s3_file in s3_files.get('Contents', []):\n    s3_object_key = s3_file['Key']\n    try:\n        # Generate the S3 URL for the file\n        s3_url = f\"https://{aws_bucket_name}.s3.{aws_s3_region_name}.amazonaws.com/{s3_object_key}\"\n        # Extract the filename from the S3 object key\n        filename = os.path.basename(s3_object_key)\n        # Remove the file extension to use as the public ID",
+        "detail": "app.migrate_media",
+        "documentation": {}
+    },
+    {
+        "label": "CustomROM",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class CustomROM(models.Model):\n    name = models.CharField(max_length=100)\n    device = models.CharField(max_length=50)\n    credits = models.CharField(null=True, max_length=50)\n    image = models.ImageField(upload_to=\"images\")\n    link = models.URLField(max_length=225)\n    details = models.TextField()\n    upload_date = models.DateField(null=True, blank=True) # use auto_now instead of auto_now_add\n    boot_link = models.URLField(max_length=225, null=True, blank=True)\n    likes = models.ManyToManyField(get_user_model(), related_name='liked_roms',default=0)",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomMOD",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class CustomMOD(models.Model):\n    name = models.CharField(max_length=100)\n    image = models.ImageField(upload_to=\"images\")\n    credits = models.CharField(null=True, max_length=50)\n    link = models.URLField()\n    details = models.TextField()\n    upload_date = models.DateField(null=True, blank=True)\n    likes = models.ManyToManyField(get_user_model(), related_name='liked_mods',default=0)\n    def __str__(self):\n        return self.name",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "UserProfile",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class UserProfile(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    is_authorized = models.BooleanField(default=False)\n    profile_picture = models.ImageField(upload_to=\"profile_picture/\", null=True, blank=True)\n    def __str__(self):\n        return self.user.username\nclass RomComment(models.Model):\n    rom = models.ForeignKey(CustomROM, on_delete=models.CASCADE)\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    text = models.TextField()",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "RomComment",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class RomComment(models.Model):\n    rom = models.ForeignKey(CustomROM, on_delete=models.CASCADE)\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    text = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.user.username} - {self.text[:20]}\"\nclass ModComment(models.Model):\n    mod = models.ForeignKey(CustomMOD, on_delete=models.CASCADE)\n    user = models.ForeignKey(User, on_delete=models.CASCADE)",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "ModComment",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class ModComment(models.Model):\n    mod = models.ForeignKey(CustomMOD, on_delete=models.CASCADE)\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    text = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.user.username} - {self.text[:20]}\"",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "create_online_status",
+        "kind": 2,
+        "importPath": "app.signals",
+        "description": "app.signals",
+        "peekOfCode": "def create_online_status(sender, instance, created, **kwargs):\n    if created:\n        OnlineStatus.objects.create(user=instance)",
+        "detail": "app.signals",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "app.urls",
+        "description": "app.urls",
+        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('accounts/login/', CustomLoginView.as_view(), name='account_login'),\n    path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),\n    path('logout/', views.logout_request, name='logout'),\n    path('profile/', views.profile, name='profile'),\n    path('custom_roms/', views.custom_roms, name='custom_roms'),\n    path('rom_detail/rom_details_<int:rom_id>/', views.rom_details, name='rom_details'),\n    path('mod_detail/mod_details_<int:mod_id>/', views.mod_details, name='mod_details'),\n    path('edit_rom/editing_rom_<int:rom_id>/', views.edit_rom, name='edit_rom'),",
+        "detail": "app.urls",
+        "documentation": {}
+    },
+    {
+        "label": "CustomSignupView",
+        "kind": 6,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "class CustomSignupView(SignupView):\n    template_name = 'account/signup.html'\n    def form_valid(self, form):\n        try:\n            # Call the parent class's form_valid method to create the user\n            response = super().form_valid(form)\n            # Set the authentication backend\n            self.user.backend = \"django.contrib.auth.backends.ModelBackend\"\n            self.user.save()\n            # Create UserProfile",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "CustomLoginView",
+        "kind": 6,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "class CustomLoginView(LoginView):\n    template_name = 'account/login.html'\n    @csrf_exempt\n    def dispatch(self, request, *args, **kwargs):\n        return super().dispatch(request, *args, **kwargs)\ndef edit_rom(request, rom_id):\n    rom = get_object_or_404(CustomROM, id=rom_id)\n    if request.method == \"POST\":\n        edit_form = UploadROMForm(request.POST, request.FILES, instance=rom)\n        if edit_form.is_valid():",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "edit_rom",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def edit_rom(request, rom_id):\n    rom = get_object_or_404(CustomROM, id=rom_id)\n    if request.method == \"POST\":\n        edit_form = UploadROMForm(request.POST, request.FILES, instance=rom)\n        if edit_form.is_valid():\n            new_image = edit_form.cleaned_data[\"image\"]\n            edit_form.image = new_image  # type: ignore\n            edit_form.save()  # Handle image update and upload date retention\n            return redirect(\"custom_roms\")  # Successful, redirect back to ROM listing\n    else:",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "edit_mod",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def edit_mod(request, mod_id):\n    mod = get_object_or_404(CustomMOD, id=mod_id)\n    edit_form = UploadMODForm(instance=mod)\n    if request.method == \"POST\":\n        edit_form = UploadMODForm(request.POST, request.FILES, instance=mod)\n        if edit_form.is_valid():\n            edit_form.save()\n            return redirect(\"magisk_modules\")  # Successful, no content\n    context = {\"edit_form\": edit_form, \"mod\": mod, \"mod_id\": mod_id}\n    return render(request, \"edit_mod.html\", context)",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "search_custom_roms",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def search_custom_roms(request):\n    query = request.GET.get(\"q\", \"\")\n    if query:\n        filtered_roms = CustomROM.objects.filter(\n            Q(name__icontains=query)\n            | Q(device__icontains=query)  # Search by name\n            | Q(credits__icontains=query)  # Search by device  # Search by credits\n        )\n        roms_data = []\n        for rom in filtered_roms:",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "search_custom_mods",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def search_custom_mods(request):\n    query = request.GET.get(\"q\", \"\")\n    if query:\n        filtered_mods = CustomMOD.objects.filter(\n            Q(name__icontains=query)\n            | Q(credits__icontains=query)\n        )\n        mods_data = []\n        for mod in filtered_mods:\n            likes_count = mod.likes.count()",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def home(request):\n    total_users = User.objects.count()\n    total_roms = CustomROM.objects.count()\n    total_mods = CustomMOD.objects.count()\n    total_items = total_roms + total_mods\n    roms = CustomROM.objects.all()\n    mods = CustomMOD.objects.all()\n    context = {\n        \"roms\": roms,\n        \"mods\": mods,",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "logout_request",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def logout_request(request):\n    logout(request)\n    return redirect(\"/\")\n@csrf_exempt\n@login_required\ndef profile(request):\n    user_profile = UserProfile.objects.get(user=request.user)\n    user = request.user\n    if request.method == \"POST\":\n        profile_picture_form = ProfilePictureForm(request.POST, request.FILES)",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "profile",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def profile(request):\n    user_profile = UserProfile.objects.get(user=request.user)\n    user = request.user\n    if request.method == \"POST\":\n        profile_picture_form = ProfilePictureForm(request.POST, request.FILES)\n        update_username_form = UpdateUsernameForm(request.POST, instance=user)\n        rom_form = UploadROMForm(request.POST, request.FILES)\n        if rom_form.is_valid():\n            rom = rom_form.save()\n            rom.uploaded_by = request.user",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "custom_roms",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def custom_roms(request):\n    roms = CustomROM.objects.all().order_by(\"-upload_date\")\n    if request.user.is_authenticated:\n        user_profile = UserProfile.objects.get(user=request.user)\n        if request.method == \"POST\":\n            form = UploadROMForm(request.POST, request.FILES)\n            if form.is_valid():\n                rom = form.save()\n                rom.uploaded_by = request.user\n                rom.save()",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "rom_details",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def rom_details(request, rom_id):\n    rom = get_object_or_404(CustomROM, id=rom_id)\n    rom_id = request.POST.get(\"rom_id\")\n    if rom_id:\n        rom = CustomROM.objects.get(pk=rom_id)\n        user_liked = rom.likes.filter(id=request.user.id).exists()\n        if user_liked:\n            rom.likes.remove(request.user)\n        else:\n            rom.likes.add(request.user)",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "mod_details",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def mod_details(request, mod_id):\n    mod = get_object_or_404(CustomMOD, id=mod_id)\n    mod_id = request.POST.get(\"mod_id\")\n    if mod_id:\n        mod = CustomMOD.objects.get(pk=mod_id)\n        user_liked = mod.likes.filter(id=request.user.id).exists()\n        if user_liked:\n            mod.likes.remove(request.user)\n        else:\n            mod.likes.add(request.user)",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "magisk_modules",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def magisk_modules(request):\n    mods = CustomMOD.objects.all().order_by(\"-upload_date\")\n    if request.user.is_authenticated:\n        user_profile = UserProfile.objects.get(user=request.user)\n        if request.method == \"POST\":\n            form = UploadMODForm(request.POST, request.FILES)\n            if form.is_valid():\n                mod = form.save()\n                mod.uploaded_by = request.user\n                mod.save()",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "manage_user_profiles",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def manage_user_profiles(request):\n    profiles = UserProfile.objects.all()\n    return render(\n        request, \"app_userprofile/manage_user_profiles.html\", {\"profiles\": profiles}\n    )\n@login_required\ndef update_user_profile(request, profile_id):\n    profile = UserProfile.objects.get(pk=profile_id)\n    if request.method == \"POST\":\n        is_authorized = request.POST.get(\"is_authorized\")",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "update_user_profile",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def update_user_profile(request, profile_id):\n    profile = UserProfile.objects.get(pk=profile_id)\n    if request.method == \"POST\":\n        is_authorized = request.POST.get(\"is_authorized\")\n        profile.is_authorized = is_authorized == \"on\"\n        profile.save()\n        return redirect(\"manage_user_profiles\")\n    return render(\n        request, \"app_userprofile/update_user_profile.html\", {\"profile\": profile}\n    )",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "privacy_policy",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def privacy_policy(request):\n    return render(request, \"privacy_policy.html\")\ndef comment_policy_view(request):\n    return render(request, \"comment_policy.html\")",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "comment_policy_view",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def comment_policy_view(request):\n    return render(request, \"comment_policy.html\")",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "XtraROMs.asgi",
+        "description": "XtraROMs.asgi",
+        "peekOfCode": "application = ProtocolTypeRouter({\n    \"http\": get_asgi_application(),\n    \"websocket\": AuthMiddlewareStack(\n        URLRouter(\n            websocket_urlpatterns\n        )\n    ),\n})",
+        "detail": "XtraROMs.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-sxqo(b5m!(+rvzu)r-y_!%j#3s0%q3738vcuw#!86^3cjdhgi5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-sxqo(b5m!(+rvzu)r-y_!%j#3s0%q3738vcuw#!86^3cjdhgi5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "ALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'django.contrib.sites',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'django.contrib.sites',\n    'app',\n    'cloudinary',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n    'whitenoise.middleware.WhiteNoiseMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "ROOT_URLCONF = 'XtraROMs.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ASGI_APPLICATION",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "ASGI_APPLICATION = 'XtraROMs.asgi.application'\n# Database\n# https://docs.djangoproject.com/en/4.1/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n\"\"\" DATABASES = {",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n\"\"\" DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'railway',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CLOUDINARY_STORAGE",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "CLOUDINARY_STORAGE = {\n    'CLOUD_NAME': 'durdi1oak',\n    'API_KEY': '164254991127435',\n    'API_SECRET': 'i8Lzr2SSRJCAlHS_6l0NVqrDkc4',\n}\nimport cloudinary.uploader\nimport cloudinary.api\n# Use Cloudinary as the storage backend for media files\nDEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'\n# Media files",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_FILE_STORAGE",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'\n# Media files\nMEDIA_URL = '/media/'  # Set the media URL to a path in your Django project\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Set the local media root folder\n# Password validation\n# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "MEDIA_URL = '/media/'  # Set the media URL to a path in your Django project\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Set the local media root folder\n# Password validation\n# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Set the local media root folder\n# Password validation\n# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTHENTICATION_BACKENDS",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "AUTHENTICATION_BACKENDS = [\n    'django.contrib.auth.backends.ModelBackend',\n    'allauth.account.auth_backends.AuthenticationBackend',\n]\n# Internationalization\n# https://docs.djangoproject.com/en/4.1/topics/i18n/\nLANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# Default primary key field type",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "STATIC_URL = 'static/'\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nLOGIN_REDIRECT_URL = '/'\n# Additional configuration settings",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nLOGIN_REDIRECT_URL = '/'\n# Additional configuration settings\nSOCIALACCOUNT_QUERY_EMAIL = True",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_STORAGE",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nLOGIN_REDIRECT_URL = '/'\n# Additional configuration settings\nSOCIALACCOUNT_QUERY_EMAIL = True\nACCOUNT_LOGOUT_ON_GET= True",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CRISPY_ALLOWED_TEMPLATE_PACKS",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "CRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nLOGIN_REDIRECT_URL = '/'\n# Additional configuration settings\nSOCIALACCOUNT_QUERY_EMAIL = True\nACCOUNT_LOGOUT_ON_GET= True\nACCOUNT_UNIQUE_EMAIL = True",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CRISPY_TEMPLATE_PACK",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "CRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nLOGIN_REDIRECT_URL = '/'\n# Additional configuration settings\nSOCIALACCOUNT_QUERY_EMAIL = True\nACCOUNT_LOGOUT_ON_GET= True\nACCOUNT_UNIQUE_EMAIL = True\nACCOUNT_EMAIL_REQUIRED = True",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nLOGIN_REDIRECT_URL = '/'\n# Additional configuration settings\nSOCIALACCOUNT_QUERY_EMAIL = True\nACCOUNT_LOGOUT_ON_GET= True\nACCOUNT_UNIQUE_EMAIL = True\nACCOUNT_EMAIL_REQUIRED = True\n\"\"\" SOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "LOGIN_REDIRECT_URL = '/'\n# Additional configuration settings\nSOCIALACCOUNT_QUERY_EMAIL = True\nACCOUNT_LOGOUT_ON_GET= True\nACCOUNT_UNIQUE_EMAIL = True\nACCOUNT_EMAIL_REQUIRED = True\n\"\"\" SOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_QUERY_EMAIL",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "SOCIALACCOUNT_QUERY_EMAIL = True\nACCOUNT_LOGOUT_ON_GET= True\nACCOUNT_UNIQUE_EMAIL = True\nACCOUNT_EMAIL_REQUIRED = True\n\"\"\" SOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_UNIQUE_EMAIL",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "ACCOUNT_UNIQUE_EMAIL = True\nACCOUNT_EMAIL_REQUIRED = True\n\"\"\" SOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {\n            'access_type': 'online',",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_EMAIL_REQUIRED",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "ACCOUNT_EMAIL_REQUIRED = True\n\"\"\" SOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {\n            'access_type': 'online',\n        }",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SITE_ID",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "SITE_ID = 2  # Replace with the actual ID of the Site object\nACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Ensure it's set to 'mandatory'\nACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7  # Set a suitable expiration period\n# email configs\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_EMAIL_VERIFICATION",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Ensure it's set to 'mandatory'\nACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7  # Set a suitable expiration period\n# email configs\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7  # Set a suitable expiration period\n# email configs\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "EMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_USE_TLS",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "EMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_PORT",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "EMAIL_PORT = 587\nEMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_USER",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "EMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'\nEMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_PASSWORD",
+        "kind": 5,
+        "importPath": "XtraROMs.settings",
+        "description": "XtraROMs.settings",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu'",
+        "detail": "XtraROMs.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "XtraROMs.urls",
+        "description": "XtraROMs.urls",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('app.urls')),\n    path('accounts/', include('allauth.urls')),\n]\nif settings.DEBUG:\n    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\n    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)",
+        "detail": "XtraROMs.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "XtraROMs.wsgi",
+        "description": "XtraROMs.wsgi",
+        "peekOfCode": "application = get_wsgi_application()\napp = application",
+        "detail": "XtraROMs.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "XtraROMs.wsgi",
+        "description": "XtraROMs.wsgi",
+        "peekOfCode": "app = application",
+        "detail": "XtraROMs.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'XtraROMs.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]
