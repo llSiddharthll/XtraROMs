@@ -153,7 +153,57 @@ footer.small{
   display: none;
 }
 
+.roms_section{
+  font-size: medium;
+}
+.roms_section .btn{
+  height: 35px;
+  display: flex;
+  margin-right: 5px;
+}
+.roms_section .btn i{
+  align-self: center;
+}
+.roms_section .card-body h5{
+  font-size: 1.25rem;
+}
+
+.mods_section{
+  font-size: medium;
+}
+.mods_section .btn{
+  height: 35px;
+  display: flex;
+  margin-right: 5px;
+}
+.mods_section .btn i{
+  align-self: center;
+}
+.mods_section .card-body h5{
+  font-size: 1.25rem;
+}
+
 @media (max-width: 700px) {
+  .roms_section .card-body h5{
+    font-size: 0.8rem;
+  }
+  .roms_section{
+    font-size: 2px;
+  }
+  .roms_section .btn{
+    height: 20px;
+    font-size: small;
+  }
+  .mods_section .card-body h5{
+    font-size: 0.8rem;
+  }
+  .mods_section{
+    font-size: 2px;
+  }
+  .mods_section .btn{
+    height: 20px;
+    font-size: small;
+  }
   footer.big{
     display: none;
   }
@@ -161,6 +211,7 @@ footer.small{
     display: block;
   }
 }
+
 
 .only-carousel-image {
   border-radius: 20px;
@@ -210,6 +261,12 @@ footer.small{
 }
 /* Adjust the styles as needed */
 @media (max-width: 768px) {
+  .custom-rom-image{
+    height: 150px;
+  }
+  .custom-mod-image{
+    height: 150px;
+  }
   #about p{
     font-size:medium;
   }

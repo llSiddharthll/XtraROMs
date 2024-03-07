@@ -13,7 +13,7 @@
     );
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: var(--text);
 }
 
 #Screenshot p{

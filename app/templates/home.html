@@ -6,10 +6,7 @@
   href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
 />
 
-<link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+<script src="https://cdn.tailwindcss.com"></script>
 
 <link rel="stylesheet" href="{% static 'swiper.css' %}" />
 <link rel="stylesheet" href="{% static 'screenshot.css' %}" />
@@ -31,7 +28,7 @@
   .containered {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   .containered .card {
@@ -203,8 +200,8 @@
 </main>
 
 <!------------------------------------Second Section --------------------------------------------------->
-<h1 class="text-center" style="margin-top: 50px; margin-bottom: 30px;">Services</h1>
-<section class="sub-main">
+<h1 class="text-center hidden md:block" style="margin-top: 50px; margin-bottom: 30px;">Services</h1>
+<section class="sub-main hidden md:block">
   <div class="containered">
     <div class="card">
       <div class="face face1">
@@ -350,7 +347,7 @@
 
 <!----------------------------------About--------------------------------------------------------->
 <section id="about" class="py-5">
-  <div class="container">
+  <div class="container ">
     <div class="row align-items-center">
       <div class="col-md-6">
         <img
