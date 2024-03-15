@@ -129,7 +129,7 @@ import cloudinary.uploader
 import cloudinary.api
 
 # Use Cloudinary as the storage backend for media files
-""" DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' """
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Media files
 MEDIA_URL = '/media/'  # Set the media URL to a path in your Django project
