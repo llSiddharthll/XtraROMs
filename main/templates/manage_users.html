@@ -25,7 +25,11 @@
                             <td scope="row" class="px-6 py-4 font-semibold whitespace-nowrap">
                                 {{ profile.user.username }}
                             </td>
-                            <td class="px-4 py-2">{{ profile.is_authorized }}</td>
+                            {% if profile.is_authorized %}
+                            <td class="px-4 py-2">Authorized</td>
+                            {% else %}
+                            <td class="px-4 py-2">UnAuthorized</td>
+                            {% endif %}
                             <td class="px-4 py-2">
                                 <a data-modal-target="update" data-modal-toggle="update"
                                     class="cursor-pointer hover:text-[var(--accent)]">Update</a>
