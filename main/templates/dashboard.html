@@ -250,7 +250,7 @@
       <!-- Modal body -->
       <form
         id="romForm"
-        action="{% url 'roms' %}"
+        action="{% url 'upload_roms' %}"
         enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-8 p-4 md:p-5"
       >
@@ -344,7 +344,6 @@
 
         <button
           type="submit"
-          onclick="romUploadForm()"
           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
         >
           Upload
@@ -397,10 +396,11 @@
       <!-- Modal body -->
       <form
         id="modForm"
-        action="{% url 'mods' %}"
+        action="{% url 'upload_mods' %}"
         enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-8 p-4 md:p-5"
       >
+      {% csrf_token %}
         <div class="mb-4">
           <label for="id_name" class="text-sm font-medium text-[var(--text)]"
             >Name</label
@@ -473,7 +473,6 @@
 
         <button
           type="submit"
-          onclick="modUploadForm()"
           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
         >
           Upload
@@ -622,22 +621,22 @@
     })
   }
 
-  function modUploadForm() {
-    var form = document.getElementById("modForm");
-    var formData = new FormData(form);
+    function modUploadForm() {
+      var form = document.getElementById("modForm");
+      var formData = new FormData(form);
 
-    axios.post("{% url 'upload_roms' %}", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "X-CSRFToken": "{{ csrf_token }}",
-      },
-    })
-    .then(response =>{
-      if (response.data.error){
-        alert(response.data.error)
-      }
-    })
-  }
+      axios.post("{% url 'upload_roms' %}", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "X-CSRFToken": "{{ csrf_token }}",
+        },
+      })
+      .then(response =>{
+        if (response.data.error){
+          alert(response.data.error)
+        }
+      })
+    }
 
   function updateProfile() {
     var form = document.getElementById("updateForm");
