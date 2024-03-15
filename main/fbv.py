@@ -1,6 +1,6 @@
 from .models import CustomROM, CustomMOD
 from django.db.models import Q
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .forms import *
 from django.shortcuts import redirect, get_object_or_404, render
 
@@ -131,12 +131,12 @@ def upload_roms(request):
             else:
                 # Handle the case when required fields are missing
                 error_message = "Please fill in all required fields."
-                return JsonResponse({"error": error_message}, status=400)  # Return error message with status code 400 (Bad Request)
+                return HttpResponse(error_message)  # Return error message with status code 400 (Bad Request)
         
         except Exception as e:
             # Handle any other exceptions that might occur
             error_message = str(e)  # Convert the exception to a string for better error reporting
-            return JsonResponse({"error": error_message}, status=500)
+            return HttpResponse(error_message)
         
 def upload_mods(request):
     if request.method == "POST":
