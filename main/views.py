@@ -119,20 +119,7 @@ class DashboardView(generic.View):
 
         return render(request, self.template_name, context)
 
-    def post(self, request, *args, **kwargs):
-
-        mod_form = request.POST.get("mod_name")
-        if mod_form:
-            name = request.POST.get("mod_name")
-            credits_name = request.POST.get("mod_credits")
-            credits, created = Credits.objects.get_or_create(name=credits_name)
-            image = request.FILES.get("mod_image")
-            link = request.POST.get("mod_link")
-            details = request.POST.get("mod_details")
-            mod = CustomMOD.objects.create(name=name, credits=credits, image=image, link=link, details=details, uploaded_by=request.user)
-            mod.save()
-            
-            return redirect("mods")
+    def post(self, request):
         
         # Extract data from request
         first_name = request.POST.get('first_name')
@@ -149,7 +136,7 @@ class DashboardView(generic.View):
         user_profile.save()
 
         # Update the User object
-        user = request.user
+        user = User.objects.get(user=request.user)
         if first_name:
             user.first_name = first_name
         if last_name:

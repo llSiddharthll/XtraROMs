@@ -36,10 +36,16 @@ class CustomROM(models.Model):
     likes = models.ManyToManyField(ROMLike, related_name='liked_roms')
     comments = models.ManyToManyField(Comment, blank=True, related_name='rom_comments')
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    slug = AutoSlugField(populate_from='name', null=True, blank=True, default=None)
+    slug = models.SlugField(unique=True, null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        # Generate slug from the name field
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 class CustomMOD(models.Model):
     name = models.CharField(max_length=100)
@@ -51,10 +57,16 @@ class CustomMOD(models.Model):
     likes = models.ManyToManyField(MODLike, related_name='liked_mods')
     comments = models.ManyToManyField(Comment, blank=True, related_name='mod_comments')
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    slug = AutoSlugField(populate_from='name', null=True, blank=True, default=None)
+    slug = models.SlugField(unique=True, null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        # Generate slug from the name field
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

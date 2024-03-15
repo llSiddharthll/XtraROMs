@@ -101,6 +101,7 @@ def edit_mod(request, mod_id):
 
     context = {"edit_form": edit_form, "mod": mod, "mod_id": mod_id}
     return render(request, "edit_mod.html", context)
+
 def upload_roms(request):
     if request.method == "POST":
         try:
@@ -114,8 +115,18 @@ def upload_roms(request):
             
             # Ensure all required fields are provided before creating the ROM object
             if name and device and credits_name and image and link and details:
-                # Using create() directly is preferable over create() followed by save()
-                CustomROM.objects.create(name=name, device=device, credits=credits, image=image, link=link, details=details, uploaded_by=request.user)
+                # Create a CustomROM instance
+                rom = CustomROM(
+                    name=name,
+                    device=device,
+                    credits=credits,
+                    image=image,
+                    link=link,
+                    details=details,
+                    uploaded_by=request.user
+                )
+                # Save the instance to generate the slug automatically
+                rom.save()
                 return redirect("roms")  # Redirect to ROMs page after successful upload
             else:
                 # Handle the case when required fields are missing
@@ -125,25 +136,34 @@ def upload_roms(request):
         except Exception as e:
             # Handle any other exceptions that might occur
             error_message = str(e)  # Convert the exception to a string for better error reporting
-            return JsonResponse({"error": error_message}, status=500)  # Return error message with status code 500 (Internal Server Error)
-    
-    # Handle GET requests or non-POST requests
-    return redirect("roms")  # Redirect to ROMs page if it's not a POST request
-
+            return JsonResponse({"error": error_message}, status=500)
+        
 def upload_mods(request):
     if request.method == "POST":
         try:
             name = request.POST.get("mod_name")
+            device = request.POST.get("mod_device")
             credits_name = request.POST.get("mod_credits")
             credits, created = Credits.objects.get_or_create(name=credits_name)
             image = request.FILES.get("mod_image")
             link = request.POST.get("mod_link")
             details = request.POST.get("mod_details")
             
-            # Ensure all required fields are provided before creating the CustomMOD object
-            if name and credits_name and image and link and details:
-                CustomMOD.objects.create(name=name, credits=credits, image=image, link=link, details=details, uploaded_by=request.user)
-                return JsonResponse({"success": "MOD uploaded successfully"})  # Return success message
+            # Ensure all required fields are provided before creating the ROM object
+            if name and device and credits_name and image and link and details:
+                # Create a CustomROM instance
+                mod = CustomMOD(
+                    name=name,
+                    device=device,
+                    credits=credits,
+                    image=image,
+                    link=link,
+                    details=details,
+                    uploaded_by=request.user
+                )
+                # Save the instance to generate the slug automatically
+                mod.save()
+                return redirect("mods")  # Redirect to ROMs page after successful upload
             else:
                 # Handle the case when required fields are missing
                 error_message = "Please fill in all required fields."
@@ -152,7 +172,4 @@ def upload_mods(request):
         except Exception as e:
             # Handle any other exceptions that might occur
             error_message = str(e)  # Convert the exception to a string for better error reporting
-            return JsonResponse({"error": error_message}, status=500)  # Return error message with status code 500 (Internal Server Error)
-    
-    # Handle GET requests or non-POST requests
-    return JsonResponse({"error": "Invalid request method"}, status=405)
+            return JsonResponse({"error": error_message}, status=500)
