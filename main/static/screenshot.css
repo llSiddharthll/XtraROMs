@@ -1,0 +1,76 @@
+#Screenshot img{
+    max-width: 100%; 
+    max-height: 500px; 
+}
+#Screenshot h3{
+    font-size: xx-large;
+    margin-bottom: 2em;
+    background-image: linear-gradient(
+        to left,
+        var(--text),
+        var(--text-500)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: var(--text);
+}
+
+#Screenshot p{
+    font-size: x-large;
+    color: var(--text-700);
+    font-family: system-ui;
+}
+
+#Screenshot .text-even{
+    text-align: right;
+    max-width: 500px;
+    margin-top: 3em;
+}
+
+#Screenshot .text-odd{
+    max-width: 500px;
+    margin-top: 3em;
+}
+.grid{
+    align-items: center;
+    justify-items: center;
+}
+
+
+#Screenshot{
+    display: grid; justify-content: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    #Screenshot{
+        display: block;
+    }
+    #Screenshot img{
+        max-width: 70%; 
+        min-height: 70px;
+        margin-left: 0;
+    }
+    #Screenshot h3{
+        font-size: medium;
+    }
+    #Screenshot p{
+        font-size:10px;
+    }
+    #Screenshot .text-even{
+        margin-top: 0;
+        text-align: right;
+        min-width: 150px;
+        font-size: small;
+    }
+    #Screenshot .text-odd{
+        margin-top: 0;
+        min-width: 150px;
+        font-size: small;
+    }
+    #Screenshot-1, #Screenshot-3{
+        margin-left: 2em;
+    }
+    #Screenshot-2, #Screenshot-4{
+        margin-left: 0;
+    }
+}

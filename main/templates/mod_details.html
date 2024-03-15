@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<style>
+  .details ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .comments ::-webkit-scrollbar {
+    width: 5px;
+  }
+</style>
+{% endblock css %}
+
+{% block content %}
+
+<section class="mod_card mt-32 px-8 mb-10 flex flex-col md:flex-row gap-8 w-full">
+
+  <div class="flex flex-col w-full md:w-[33.33333%]">
+    <div class="min-h-full bg-[var(--secondary)] border border-[var(--secondary-200)] rounded-lg shadow-lg shadow-[var(--accent)]">
+      <a href="#">
+        <img class="rounded-t-lg h-52 min-w-full object-cover" src="{{mod.image.url}}" alt="" />
+      </a>
+      <div class="p-5">
+        <h5 class="mb-2 text-2xl font-['Snippet'] font-bold tracking-tight text-[var(--text)]">{{mod.name}}</h5>
+        <div class="flex">
+          <a href="{{mod.link}}"
+            class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+            <i class="fa-solid fa-arrow-down me-1"></i>mod
+          </a>
+          <a href="{% url 'edit_mod' mod.slug %}"
+            class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+            <i class="fa-solid fa-pen-to-square me-1"></i>Edit
+          </a>
+          <a onclick="shareLink('mod.name', 'mod.slug')"
+            class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+            <i class="fa-solid fa-share-from-square me-1"></i>Share
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="details flex flex-col w-full md:w-[33.33333%]">
+    <div
+      class="bg-[var(--secondary)] text-[var(--text)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full">
+      <div class="p-2 border-b-2 border-[var(--accent)]">
+        <h3>Details :</h3>
+      </div>
+      <div class="max-h-80 overflow-auto p-2 flex-1">{{ formatted_details }}</div>
+    </div>
+  </div>
+
+  <div class="comments flex flex-col w-full md:w-[33.33333%]">
+    <div
+      class="bg-[var(--secondary)] text-[var(--text)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full lg:relative">
+      <div class="p-2 border-b-2 border-[var(--accent)]">
+        <h3>Comments:</h3>
+      </div>
+      <div class="min-h-80 max-h-80 md:max-h-56 overflow-auto px-2">
+        {% for comment in comments %}
+        <div class="rounded-lg bg-[var(--primary)] border-b-2 border-[var(--accent)] mt-2 p-2">
+          <div class="flex justify-between border-b-2 border-[var(--accent)] pb-1">
+            <div class="flex flex-row items-center gap-2">
+              <img src="{{comment.user.userprofile.profile_picture.url}}" alt=""
+                class="rounded-full h-8 w-8 object-cover">
+              <p>{{ comment.user.username }}</p>
+            </div>
+            <div>
+              <small>{{ comment.created_at }}</small>
+            </div>
+          </div>
+          <p class="ms-10 pt-2">{{ comment.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% if request.user.is_authenticated %}
+      <div class="bottom-0 p-2 lg:absolute w-full">
+        <form method="post" class="flex gap-2">
+          {% csrf_token %}
+          <input type="text" name="text" id=""
+            class="w-full p-4 ps-10 text-sm text-[var(--text)] placeholder-[var(--text-800)] border border-[var(--accent)] rounded-lg bg-[var(--primary)] focus:ring-blue-500 focus:border-blue-500 "
+            placeholder="Kindly give your views">
+          <button type="submit" class="bg-[var(--primary)] rounded-lg p-2 w-20"><i
+              class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</section>
+{% endblock content %}
+
+
+{% block script %}
+  <script>
+    function shareLink(name, slug) {
+      if (navigator.share) {
+        // Web Share API is supported
+        navigator.share({
+          title: name,
+          text: 'Check out this link from XtraROMs!',
+          url: `/mod_detail/${slug}`
+        })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing:', error));
+      } else {
+        // Fallback for browsers that do not support Web Share API
+        const shareInput = document.createElement('input');
+        document.body.appendChild(shareInput);
+        shareInput.value = `/mod_detail/${slug}`;
+        shareInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(shareInput);
+
+        alert('Link copied to clipboard!');
+      }
+    }
+  </script>
+{% endblock script %}
+  

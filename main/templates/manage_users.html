@@ -1,0 +1,106 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<style>
+    .manage-users ::-webkit-scrollbar {
+        width: 5px;
+    }
+</style>
+{% endblock css %} {% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5 text-3xl font-bold">Manage User Profiles</h1>
+    <div class="flex justify-center">
+        <div class="w-full md:w-8/12 manage-users">
+            <div class="bg-[var(--secondary)] shadow-md rounded-lg h-96 overflow-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-[var(--text-500)]">
+                    <thead class="text-xs text-[var(--text-800)] uppercase bg-[var(--secondary-200)]">
+                        <tr>
+                            <th class="px-4 py-2">Username</th>
+                            <th class="px-4 py-2">Is Authorized</th>
+                            <th class="px-4 py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="">
+                        {% for profile in users %}
+                        <tr
+                            class="bg-[var(--secondary-500)] text-[var(--text-100)] hover:text-[var(--text-800)] border-b hover:bg-[var(--secondary-200)]">
+                            <td scope="row" class="px-6 py-4 font-semibold whitespace-nowrap">
+                                {{ profile.user.username }}
+                            </td>
+                            <td class="px-4 py-2">{{ profile.is_authorized }}</td>
+                            <td class="px-4 py-2">
+                                <a data-modal-target="update" data-modal-toggle="update"
+                                    class="cursor-pointer hover:text-[var(--accent)]">Update</a>
+                            </td>
+                        </tr>
+                        <div id="update" tabindex="-1" aria-hidden="true"
+                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative p-4 w-full max-w-lg max-h-full">
+                                <!-- Modal content -->
+                                <div class="relative bg-[var(--secondary)] rounded-lg shadow">
+                                    <div class="p-4">
+                                        <h3 class="mb-5 text-lg font-medium text-[var(--text)] text-center">
+                                            Click on Authorize to give users permission to upload Stuff
+                                        </h3>
+                                        <ul class="grid w-full gap-6 md:grid-cols-2">
+                                            <li>
+                                                <input type="radio" id="hosting-small" name="hosting"
+                                                    value="hosting-small" class="hidden peer"
+                                                    onclick="submit('authorize', '{{profile.id}}')" required />
+                                                <label for="hosting-small"
+                                                    class="inline-flex items-center justify-between w-full p-5 text-[var(--text-800)] bg-[var(--primary)] hover:bg-[var(--accent)] border border-gray-200 rounded-lg cursor-pointer">
+                                                    <div class="block">
+                                                        <div class="w-full text-lg font-semibold">Authorize</div>
+                                                    </div>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="hosting-big" name="hosting" value="hosting-big"
+                                                    class="hidden peer" onclick="submit('unauthorize', '{{profile.id}}')" />
+                                                <label for="hosting-big"
+                                                    class="inline-flex items-center justify-between w-full p-5 text-[var(--text-800)] bg-[var(--primary)] hover:bg-[var(--accent)] border border-gray-200 rounded-lg cursor-pointer">
+                                                    <div class="block">
+                                                        <div class="w-full text-lg font-semibold">Unauthorize</div>
+                                                    </div>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %} {% block script %}
+<script>
+    function submit(request, profile_id) {
+        axios.post(
+            "{% url 'manage_users' %}",
+            { request: request,
+            id: profile_id },
+            {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+            })
+            .then(response => {
+                if (response.data.success == "success") {
+                    location.reload()
+                } else {
+                    if (response.data.error == "already_authorized") {
+                        alert("User is Already Authorized")
+                    }
+                    else {
+                        alert("User is Already Unauthorized")
+                    }
+                }
+            })
+    }
+</script>
+{% endblock script %}
