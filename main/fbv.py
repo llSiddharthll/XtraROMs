@@ -108,7 +108,14 @@ def upload_roms(request):
             name = request.POST.get("rom_name")
             device = request.POST.get("rom_device")
             credits_name = request.POST.get("rom_credits")
-            credits, created = Credits.objects.get_or_create(name=credits_name)
+
+            # Check if a Credits instance with the given name exists
+            credits = Credits.objects.filter(name=credits_name).first()
+
+            # If a Credits instance with the given name exists, use that; otherwise, create a new one
+            if not credits:
+                credits, _ = Credits.objects.get_or_create(name=credits_name)
+
             image = request.FILES.get("rom_image")
             link = request.POST.get("rom_link")
             details = request.POST.get("rom_details")
@@ -131,12 +138,13 @@ def upload_roms(request):
             else:
                 # Handle the case when required fields are missing
                 error_message = "Please fill in all required fields."
-                return HttpResponse(error_message)  # Return error message with status code 400 (Bad Request)
+                return JsonResponse({"error":error_message}, status=400)  # Return error message with status code 400 (Bad Request)
         
         except Exception as e:
             # Handle any other exceptions that might occur
             error_message = str(e)  # Convert the exception to a string for better error reporting
-            return HttpResponse(error_message)
+            return JsonResponse({"error":error_message}, status=500)  # Return error message with status code 500 (Bad Request)
+
         
 def upload_mods(request):
     if request.method == "POST":
@@ -144,7 +152,10 @@ def upload_mods(request):
             name = request.POST.get("mod_name")
             device = request.POST.get("mod_device")
             credits_name = request.POST.get("mod_credits")
-            credits, created = Credits.objects.get_or_create(name=credits_name)
+            credits = Credits.objects.filter(name=credits_name).first()
+            # If a Credits instance with the given name exists, use that; otherwise, create a new one
+            if not credits:
+                credits, _ = Credits.objects.get_or_create(name=credits_name)
             image = request.FILES.get("mod_image")
             link = request.POST.get("mod_link")
             details = request.POST.get("mod_details")

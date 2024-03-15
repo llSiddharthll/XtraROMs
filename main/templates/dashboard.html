@@ -251,11 +251,9 @@
       <form
         id="romForm"
         method="post"
-        action="{% url 'upload_roms' %}"
         enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-8 p-4 md:p-5"
       >
-      {% csrf_token %}
         <div class="flex gap-2 min-w-full">
           <div class="mb-4">
             <label for="id_name" class="text-sm font-medium text-[var(--text)]"
@@ -314,7 +312,7 @@
               id="id_image"
               name="rom_image"
               required
-              class="mt-1 bg-[var(--text)] border border-gray-300 rounded-md w-full"
+              class="mt-1 bg-[var(--background)] text-[var(--text)] border border-gray-300 rounded-md w-full"
             />
           </div>
         </div>
@@ -345,7 +343,8 @@
         </div>
 
         <button
-          type="submit"
+          type="button"
+          onclick="romUploadForm()"
           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
         >
           Upload
@@ -399,11 +398,9 @@
       <form
         id="modForm"
         method="post"
-        action="{% url 'upload_mods' %}"
         enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-8 p-4 md:p-5"
       >
-      {% csrf_token %}
         <div class="mb-4">
           <label for="id_name" class="text-sm font-medium text-[var(--text)]"
             >Name</label
@@ -444,7 +441,7 @@
               id="id_image"
               name="mod_image"
               required
-              class="mt-1 bg-[var(--text)] border border-gray-300 rounded-md w-full"
+              class="mt-1 bg-[var(--background)] text-[var(--text)] border border-gray-300 rounded-md w-full"
             />
           </div>
         </div>
@@ -475,7 +472,8 @@
         </div>
 
         <button
-          type="submit"
+          type="button"
+          onclick="modUploadForm()"
           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
         >
           Upload
@@ -528,6 +526,7 @@
       <!-- Modal body -->
       <form
         id="updateForm"
+        method="post"
         enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-8 p-4 md:p-5"
       >
