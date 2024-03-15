@@ -205,7 +205,7 @@ class ROMDetailsView(generic.View):
         formatted_details = mark_safe(
             rom.details.replace("\n", "<br>").replace("-", "&#8226;")
         )
-        comments = rom.comments.all()
+        comments = rom.comments.order_by('-created_at')
         form = CommentForm()
         return render(
             request,
@@ -279,7 +279,7 @@ class MODDetailsView(generic.View):
         formatted_details = mark_safe(
             mod.details.replace("\n", "<br>").replace("-", "&#8226;")
         )
-        comments = mod.comments.all()
+        comments = mod.comments.order_by('-created_at')
         form = CommentForm()
         return render(
             request,

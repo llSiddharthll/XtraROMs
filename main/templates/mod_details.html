@@ -75,7 +75,7 @@
         {% endfor %}
       </div>
       {% if request.user.is_authenticated %}
-      <div class="bottom-0 p-2 lg:absolute w-full">
+      <div class="bottom-0 p-2 w-full">
         <form method="post" class="flex gap-2">
           {% csrf_token %}
           <input type="text" name="text" id=""
