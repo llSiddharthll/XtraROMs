@@ -223,7 +223,7 @@ class ROMDetailsView(generic.View):
             comment.save()
             rom.comments.add(comment)
             
-            return redirect("rom_details",rom.id)
+            return redirect("rom_details", rom.slug)
 
         return JsonResponse({"error": "Invalid POST request"})
     
@@ -297,7 +297,7 @@ class MODDetailsView(generic.View):
             comment.save()
             mod.comments.add(comment)
             
-            return redirect("mod_details",mod.id)
+            return redirect("mod_details", mod.slug)
 
         return JsonResponse({"error": "Invalid POST request"})
     
