@@ -66,8 +66,8 @@ def search_mods(request):
     return JsonResponse({"results": mods_data})
 
 
-def edit_rom(request, rom_id):
-    rom = get_object_or_404(CustomROM, id=rom_id)
+def edit_rom(request, slug):
+    rom = get_object_or_404(CustomROM, slug=slug)
 
     if request.method == "POST":
         edit_form = UploadROMForm(request.POST, request.FILES, instance=rom)
@@ -81,12 +81,12 @@ def edit_rom(request, rom_id):
     else:
         edit_form = UploadROMForm(instance=rom)
 
-    context = {"edit_form": edit_form, "rom": rom, "rom_id": rom_id}
+    context = {"edit_form": edit_form, "rom": rom}
     return render(request, "edit_rom.html", context)
 
 
-def edit_mod(request, mod_id):
-    mod = get_object_or_404(CustomMOD, id=mod_id)
+def edit_mod(request, slug):
+    mod = get_object_or_404(CustomMOD, slug=slug)
     edit_form = UploadMODForm(instance=mod)
 
     if request.method == "POST":
@@ -99,7 +99,7 @@ def edit_mod(request, mod_id):
             edit_form.save() 
             return redirect("mods") 
 
-    context = {"edit_form": edit_form, "mod": mod, "mod_id": mod_id}
+    context = {"edit_form": edit_form, "mod": mod}
     return render(request, "edit_mod.html", context)
 
 def upload_roms(request):
