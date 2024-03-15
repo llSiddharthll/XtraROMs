@@ -2,7 +2,7 @@ from typing import Iterable
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-import uuid
+from autoslug import AutoSlugField
 
 class Credits(models.Model):
     name = models.CharField(max_length=50)
@@ -36,17 +36,10 @@ class CustomROM(models.Model):
     likes = models.ManyToManyField(ROMLike, related_name='liked_roms')
     comments = models.ManyToManyField(Comment, blank=True, related_name='rom_comments')
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    slug = models.SlugField(unique=True, null=True, blank=True, default=None)
+    slug = AutoSlugField(populate_from='name', null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
-    
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            base_slug = slugify(self.name)
-            unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
-            self.slug = f"{base_slug}-{unique_id}"
-        super().save(*args, **kwargs)
 
 class CustomMOD(models.Model):
     name = models.CharField(max_length=100)
@@ -58,17 +51,10 @@ class CustomMOD(models.Model):
     likes = models.ManyToManyField(MODLike, related_name='liked_mods')
     comments = models.ManyToManyField(Comment, blank=True, related_name='mod_comments')
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    slug = models.SlugField(unique=True, null=True, blank=True, default=None)
+    slug = AutoSlugField(populate_from='name', null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
-    
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            base_slug = slugify(self.name)
-            unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
-            self.slug = f"{base_slug}-{unique_id}"
-        super().save(*args, **kwargs)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
