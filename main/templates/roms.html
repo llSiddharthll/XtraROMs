@@ -251,7 +251,7 @@
         searchedRoms.innerHTML = ""; // Clear previous content
 
         if (roms.length === 0){
-          searchedRoms.innerHTML = `<p class="fs-2 text-[var(--text-700)] font-semibold">No Data found for your Search query, recheck it!</p>`
+          searchedRoms.innerHTML += `<p class="fs-4 text-[var(--text-700)] text-center font-semibold">No Data found for your Search query, recheck it!</p>`
       }
       else{
         roms.forEach((rom) => {

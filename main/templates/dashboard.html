@@ -617,9 +617,15 @@
       },
     })
     .then(response =>{
-      if (response.data.error){
-        alert(response.data.error)
+      if (response.data.success){
+        window.location.href = "{% url 'roms' %}"
+      }else{
+        alert("Then Response: "+response.data.error)
       }
+    })
+    .catch(error=>{
+      console.log(error)
+      alert("This Custom ROM is already Uploaded, try another one")
     })
   }
 
@@ -634,9 +640,15 @@
         },
       })
       .then(response =>{
-        if (response.data.error){
-          alert(response.data.error)
+        if (response.data.success){
+          window.location.href = "{% url 'mods' %}"
+        }else{
+          alert("Then Response: "+response.data.error)
         }
+      })
+      .catch(error=>{
+        console.log(error)
+        alert("This Magisk Module or Tool is already Uploaded, try another one")
       })
     }
 

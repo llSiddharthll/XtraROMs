@@ -3,6 +3,10 @@ from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
 from .forms import *
 from django.shortcuts import redirect, get_object_or_404, render
+import logging
+from django.core.exceptions import ObjectDoesNotExist
+
+logger = logging.getLogger(__name__)
 
 def search_roms(request):
     query = request.GET.get("q", "")
@@ -103,84 +107,90 @@ def edit_mod(request, slug):
     return render(request, "edit_mod.html", context)
 
 def upload_roms(request):
-    if request.method == "POST":
         try:
-            name = request.POST.get("rom_name")
-            device = request.POST.get("rom_device")
-            credits_name = request.POST.get("rom_credits")
-
-            # Check if a Credits instance with the given name exists
-            credits = Credits.objects.filter(name=credits_name).first()
-
-            # If a Credits instance with the given name exists, use that; otherwise, create a new one
-            if not credits:
+            if request.method == "POST":
+                name = request.POST.get("rom_name")
+                device = request.POST.get("rom_device")
+                credits_name = request.POST.get("rom_credits")
                 credits, _ = Credits.objects.get_or_create(name=credits_name)
-
-            image = request.FILES.get("rom_image")
-            link = request.POST.get("rom_link")
-            details = request.POST.get("rom_details")
-            
-            # Ensure all required fields are provided before creating the ROM object
-            if name and device and credits_name and image and link and details:
-                # Create a CustomROM instance
-                rom = CustomROM(
-                    name=name,
-                    device=device,
-                    credits=credits,
-                    image=image,
-                    link=link,
-                    details=details,
-                    uploaded_by=request.user
-                )
-                # Save the instance to generate the slug automatically
-                rom.save()
-                return redirect("roms")  # Redirect to ROMs page after successful upload
-            else:
-                # Handle the case when required fields are missing
-                error_message = "Please fill in all required fields."
-                return JsonResponse({"error":error_message}, status=400)  # Return error message with status code 400 (Bad Request)
+                image = request.FILES.get("rom_image")
+                link = request.POST.get("rom_link")
+                details = request.POST.get("rom_details")
+                
+                # Ensure all required fields are provided before creating the ROM object
+                if name and device and credits_name and image and link and details:
+                    try:
+                        existing_rom = CustomROM.objects.get(link=link)
+                        if existing_rom.link == link:
+                            # If a ROM with the same link exists, return an error message
+                            error_message = "A Custom ROM with that link has already been uploaded."
+                            return JsonResponse({"error": error_message}, status=400)
+                    except ObjectDoesNotExist:
+                        # Create a CustomROM instance
+                        rom = CustomROM(
+                            name=name,
+                            device=device,
+                            credits=credits,
+                            image=image,
+                            link=link,
+                            details=details,
+                            uploaded_by=request.user
+                        )
+                        # Save the instance to generate the slug automatically
+                        rom.save()
+                        return JsonResponse({"success": "ok"})  # Redirect to ROMs page after successful upload
+                else:
+                    # Handle the case when required fields are missing
+                    error_message = "Please fill in all required fields."
+                    return JsonResponse({"error":error_message}, status=400)  # Return error message with status code 400 (Bad Request)
         
         except Exception as e:
-            # Handle any other exceptions that might occur
-            error_message = str(e)  # Convert the exception to a string for better error reporting
-            return JsonResponse({"error":error_message}, status=500)  # Return error message with status code 500 (Bad Request)
+            # Log the error for debugging purposes
+            logger.error(f"An error occurred: {e}")
+            
+            return JsonResponse({"error": "Internal Server Error"}, status=500)
 
         
 def upload_mods(request):
-    if request.method == "POST":
         try:
-            name = request.POST.get("mod_name")
-            device = request.POST.get("mod_device")
-            credits_name = request.POST.get("mod_credits")
-            credits = Credits.objects.filter(name=credits_name).first()
-            # If a Credits instance with the given name exists, use that; otherwise, create a new one
-            if not credits:
+            if request.method == "POST":
+                name = request.POST.get("mod_name")
+                device = request.POST.get("mod_device")
+                credits_name = request.POST.get("mod_credits")
                 credits, _ = Credits.objects.get_or_create(name=credits_name)
-            image = request.FILES.get("mod_image")
-            link = request.POST.get("mod_link")
-            details = request.POST.get("mod_details")
-            
-            # Ensure all required fields are provided before creating the ROM object
-            if name and device and credits_name and image and link and details:
-                # Create a CustomROM instance
-                mod = CustomMOD(
-                    name=name,
-                    device=device,
-                    credits=credits,
-                    image=image,
-                    link=link,
-                    details=details,
-                    uploaded_by=request.user
-                )
-                # Save the instance to generate the slug automatically
-                mod.save()
-                return redirect("mods")  # Redirect to ROMs page after successful upload
-            else:
-                # Handle the case when required fields are missing
-                error_message = "Please fill in all required fields."
-                return JsonResponse({"error": error_message}, status=400)  # Return error message with status code 400 (Bad Request)
+                image = request.FILES.get("mod_image")
+                link = request.POST.get("mod_link")
+                details = request.POST.get("mod_details")
+                
+                # Ensure all required fields are provided before creating the mod object
+                if name and device and credits_name and image and link and details:
+                    try:
+                        existing_mod = CustomMOD.objects.get(link=link)
+                        if existing_mod.link == link:
+                            # If a mod with the same link exists, return an error message
+                            error_message = "A Tool with that link has already been uploaded."
+                            return JsonResponse({"error": error_message}, status=400)
+                    except ObjectDoesNotExist:
+                        # Create a Custommod instance
+                        mod = CustomMOD(
+                            name=name,
+                            device=device,
+                            credits=credits,
+                            image=image,
+                            link=link,
+                            details=details,
+                            uploaded_by=request.user
+                        )
+                        # Save the instance to generate the slug automatically
+                        mod.save()
+                        return JsonResponse({"success": "ok"})  # Redirect to mods page after successful upload
+                else:
+                    # Handle the case when required fields are missing
+                    error_message = "Please fill in all required fields."
+                    return JsonResponse({"error":error_message}, status=400)  # Return error message with status code 400 (Bad Request)
         
         except Exception as e:
-            # Handle any other exceptions that might occur
-            error_message = str(e)  # Convert the exception to a string for better error reporting
-            return JsonResponse({"error": error_message}, status=500)
+            # Log the error for debugging purposes
+            logger.error(f"An error occurred: {e}")
+            
+            return JsonResponse({"error": "Internal Server Error"}, status=500)

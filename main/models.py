@@ -36,7 +36,7 @@ class CustomROM(models.Model):
     upload_date = models.DateField(auto_now_add=True)
     likes = models.ManyToManyField(ROMLike, related_name='liked_roms')
     comments = models.ManyToManyField(Comment, blank=True, related_name='rom_comments')
-    uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True, null=True, default=None)
 
     def save(self, *args, **kwargs):
@@ -58,7 +58,7 @@ class CustomMOD(models.Model):
     upload_date = models.DateField(auto_now=True)
     likes = models.ManyToManyField(MODLike, related_name='liked_mods')
     comments = models.ManyToManyField(Comment, blank=True, related_name='mod_comments')
-    uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True, null=True, default=None)
 
     def save(self, *args, **kwargs):
