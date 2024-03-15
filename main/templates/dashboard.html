@@ -255,6 +255,7 @@
         enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-8 p-4 md:p-5"
       >
+      {% csrf_token %}
         <div class="flex gap-2 min-w-full">
           <div class="mb-4">
             <label for="id_name" class="text-sm font-medium text-[var(--text)]"
