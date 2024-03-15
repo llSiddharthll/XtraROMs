@@ -11,19 +11,23 @@ from main.models import CustomROM, CustomMOD
 from django.utils.text import slugify
 import uuid
 
-roms_without_slugs = CustomROM.objects.filter(slug=None)
+roms_without_slugs = CustomROM.objects.all()
 for rom in roms_without_slugs:
     # Generate slug from the ROM name
-    rom_slug = slugify(rom.name)
+    """ rom_slug = slugify(rom.name)
     unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
     rom_slug = f"{rom_slug}-{unique_id}"
-    rom.slug = rom_slug
+    rom.slug = rom_slug """
+    if rom.slug:
+        rom.slug = None
     rom.save()
-mods_without_slugs = CustomMOD.objects.filter(slug=None)
+mods_without_slugs = CustomMOD.objects.all()
 for mod in mods_without_slugs:
-    mod_slug = slugify(mod.name)
+    """ mod_slug = slugify(mod.name)
     unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
     mod_slug = f"{mod_slug}-{unique_id}"
-    mod.slug = mod_slug
+    mod.slug = mod_slug """
+    if mod.slug:
+        mod.slug = None
     mod.save()
     
