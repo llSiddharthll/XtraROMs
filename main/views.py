@@ -191,8 +191,9 @@ class RomsView(generic.View):
         # Add a flag indicating whether the user has liked each ROM
         roms = context.get('roms')
         if roms:
-            liked_rom_ids = set(ROMLike.objects.filter(rom__in=roms, user=request.user).values_list('rom_id', flat=True))
-            context['liked_rom_ids'] = liked_rom_ids
+            if request.user.is_authenticated:
+                liked_rom_ids = set(ROMLike.objects.filter(rom__in=roms, user=request.user).values_list('rom_id', flat=True))
+                context['liked_rom_ids'] = liked_rom_ids
             
             # Dictionary to store likes count for each ROM
             likes_count_dict = {}
@@ -264,8 +265,9 @@ class ModsView(generic.View):
         # Add a flag indicating whether the user has liked each mod
         mods = context.get('mods')
         if mods:
-            liked_mod_ids = set(MODLike.objects.filter(mod__in=mods, user=request.user).values_list('mod_id', flat=True))
-            context['liked_mod_ids'] = liked_mod_ids
+            if request.user.is_authenticated:
+                liked_mod_ids = set(MODLike.objects.filter(mod__in=mods, user=request.user).values_list('mod_id', flat=True))
+                context['liked_mod_ids'] = liked_mod_ids
             
             # Dictionary to store likes count for each mod
             likes_count_dict = {}
