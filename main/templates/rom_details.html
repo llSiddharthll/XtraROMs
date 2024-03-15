@@ -28,11 +28,11 @@
             class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
             <i class="fa-solid fa-arrow-down me-1"></i>ROM
           </a>
-          <a href="{% url 'edit_rom' rom.id %}"
+          <a href="{% url 'edit_rom' rom.slug %}"
             class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
             <i class="fa-solid fa-pen-to-square me-1"></i>Edit
           </a>
-          <a onclick="shareLink('rom.name', 'rom.id')"
+          <a onclick="shareLink('rom.name', 'rom.slug')"
             class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
             <i class="fa-solid fa-share-from-square me-1"></i>Share
           </a>
@@ -95,13 +95,13 @@
 
 {% block script %}
   <script>
-    function shareLink(name, id) {
+    function shareLink(name, slug) {
       if (navigator.share) {
         // Web Share API is supported
         navigator.share({
           title: name,
           text: 'Check out this link from XtraROMs!',
-          url: `/rom_detail/${id}`
+          url: `/rom_detail/${slug}`
         })
           .then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing:', error));
