@@ -250,7 +250,6 @@
       <!-- Modal body -->
       <form
         id="romForm"
-        action="{% url 'roms' %}"
         enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-8 p-4 md:p-5"
       >
@@ -343,7 +342,7 @@
         </div>
 
         <button
-          type="submit"
+          type="button"
           onclick="romUploadForm()"
           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
         >
@@ -608,24 +607,34 @@
     var form = document.getElementById("romForm");
     var formData = new FormData(form);
 
-    axios.post("/dashboard/", formData, {
+    axios.post("{% url 'upload_roms' %}", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         "X-CSRFToken": "{{ csrf_token }}",
       },
-    });
+    })
+    .then(response =>{
+      if (response.data.error){
+        alert(response.data.error)
+      }
+    })
   }
 
   function modUploadForm() {
     var form = document.getElementById("modForm");
     var formData = new FormData(form);
 
-    axios.post("/dashboard/", formData, {
+    axios.post("{% url 'upload_roms' %}", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         "X-CSRFToken": "{{ csrf_token }}",
       },
-    });
+    })
+    .then(response =>{
+      if (response.data.error){
+        alert(response.data.error)
+      }
+    })
   }
 
   function updateProfile() {

@@ -121,20 +121,6 @@ class DashboardView(generic.View):
 
     def post(self, request, *args, **kwargs):
 
-        rom_form = request.POST.get("rom_name")
-        if rom_form:
-            name = request.POST.get("rom_name")
-            device = request.POST.get("rom_device")
-            credits_name = request.POST.get("rom_credits")
-            credits, created = Credits.objects.get_or_create(name=credits_name)
-            image = request.FILES.get("rom_image")
-            link = request.POST.get("rom_link")
-            details = request.POST.get("rom_details")
-            rom = CustomROM.objects.create(name=name, device=device, credits=credits, image=image, link=link, details=details, uploaded_by=request.user)
-            rom.save()
-            
-            return redirect("roms")
-
         mod_form = request.POST.get("mod_name")
         if mod_form:
             name = request.POST.get("mod_name")

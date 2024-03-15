@@ -102,3 +102,41 @@ def edit_mod(request, mod_id):
     context = {"edit_form": edit_form, "mod": mod, "mod_id": mod_id}
     return render(request, "edit_mod.html", context)
 
+def upload_roms(request):
+    if request.method == "POST":
+        name = request.POST.get("rom_name")
+        device = request.POST.get("rom_device")
+        credits_name = request.POST.get("rom_credits")
+        credits, created = Credits.objects.get_or_create(name=credits_name)
+        image = request.FILES.get("rom_image")
+        link = request.POST.get("rom_link")
+        details = request.POST.get("rom_details")
+        # Ensure all required fields are provided before creating the ROM object
+        if name and device and credits_name and image and link and details:
+            # Using create() directly is preferable over create() followed by save()
+            CustomROM.objects.create(name=name, device=device, credits=credits, image=image, link=link, details=details, uploaded_by=request.user)
+            return redirect("roms")  # Redirect to ROMs page after successful upload
+        else:
+            # Handle the case when required fields are missing
+            return JsonResponse({"error_message": "Please Fill in all required fields"})
+    
+    return redirect("roms")
+
+def upload_mods(request):
+    if request.method == "POST":
+        name = request.POST.get("mod_name")
+        credits_name = request.POST.get("mod_credits")
+        credits, created = Credits.objects.get_or_create(name=credits_name)
+        image = request.FILES.get("mod_image")
+        link = request.POST.get("mod_link")
+        details = request.POST.get("mod_details")
+        # Ensure all required fields are provided before creating the ROM object
+        if name and credits_name and image and link and details:
+            # Using create() directly is preferable over create() followed by save()
+            CustomMOD.objects.create(name=name, credits=credits, image=image, link=link, details=details, uploaded_by=request.user)
+            return redirect("mods")  # Redirect to ROMs page after successful upload
+        else:
+            # Handle the case when required fields are missing
+            return JsonResponse({"error_message": "Please Fill in all required fields"})
+    
+    return redirect("mods")
