@@ -141,20 +141,20 @@
             </div>
             <div class="flex gap-2 text-sm font-medium justify-start">
               <!-- Download Button-->
-              <button
+              <a href="{{mod.link}}">
+                <button
                 class="hidden lg:flex transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-[var(--primary)] px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]"
               >
-                <a href="{{mod.link}}">
                   <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                     <i class="fa-solid fa-arrow-down"></i> </span
-                  ><span>Download</span></a
-                >
-              </button>
+                  ><span>Download</span>
+              </button></a>
+              <a href="{{mod.link}}">
               <button
                 class="block lg:hidden bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2"
               >
-                <a href="{{mod.link}}"> <i class="fa-solid fa-download"></i></a>
-              </button>
+              <i class="fa-solid fa-download"></i>
+              </button></a>
 
               <!-- Share Button -->
               <button
@@ -294,18 +294,18 @@
             <div class="flex gap-2 text-sm font-medium justify-start">
 
               <!-- Download Button-->
-              <button
+              <a href="${mod.link}">
+                <button
                 class="hidden lg:flex transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-[var(--primary)] px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
-                <a href="${mod.link}">
                 <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                   <i class="fa-solid fa-arrow-down"></i>
-                </span><span>Download</span></a>
-              </button>
+                </span><span>Download</span>
+              </button></a>
+              <a href="${mod.link}">
               <button
                 class="block lg:hidden bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
-                <a href="${mod.link}">
-                <i class="fa-solid fa-download"></i></a>
-              </button>
+                <i class="fa-solid fa-download"></i>
+              </button></a>
 
               <!-- Share Button -->
               <button id="shareButton" onclick="shareLink('${mod.name}', '${mod.id}')"
