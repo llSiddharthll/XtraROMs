@@ -2,7 +2,7 @@ from typing import Iterable
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-from autoslug import AutoSlugField
+import uuid
 
 class Credits(models.Model):
     name = models.CharField(max_length=50)
@@ -42,9 +42,10 @@ class CustomROM(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
-        # Generate slug from the name field
         if not self.slug:
-            self.slug = slugify(self.name)
+            base_slug = slugify(self.name)
+            unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
+            self.slug = f"{base_slug}-{unique_id}"
         super().save(*args, **kwargs)
 
 class CustomMOD(models.Model):
@@ -63,9 +64,10 @@ class CustomMOD(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
-        # Generate slug from the name field
         if not self.slug:
-            self.slug = slugify(self.name)
+            base_slug = slugify(self.name)
+            unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
+            self.slug = f"{base_slug}-{unique_id}"
         super().save(*args, **kwargs)
 
 class UserProfile(models.Model):
