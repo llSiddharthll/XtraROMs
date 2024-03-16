@@ -246,6 +246,10 @@
         const searchedmods = document.getElementById("searched-mods");
         searchedmods.innerHTML = ""; // Clear previous content
 
+        if (roms.length === 0){
+          searchedRoms.innerHTML += `<p class="fs-4 text-[var(--text-700)] text-center font-semibold">No Data found for your Search query, recheck it!</p>`
+      }
+      else{
         mods.forEach((mod) => {
           const modCard = `
           <div
@@ -331,7 +335,8 @@
       </div>
     </div>`;
           searchedmods.innerHTML += modCard;
-        });
+        })
+      }
       })
       .catch((error) => {
         console.error("Error:", error);

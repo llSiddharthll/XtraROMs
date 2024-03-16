@@ -87,7 +87,7 @@
             <div class="absolute flex flex-col top-0 right-0 p-3">
               {% if request.user.is_authenticated %}
               <button
-                class="like-button bg-[var(--background-900)] hover:bg-[var(--accent)] shadow hover:shadow-md text-red-700 rounded-full w-7 h-7 text-center p-1"
+                class="like-button bg-white hover:bg-gray-200 shadow hover:shadow-md text-red-700 rounded-full w-7 h-7 text-center p-1"
                 onclick="like('{{rom.id}}')"
               >
                 <i
@@ -264,7 +264,7 @@
             <div class="absolute flex flex-col top-0 right-0 p-3">
               {% if request.user.is_authenticated %}
               <button
-                class="like-button bg-[var(--background-900)] hover:bg-[var(--accent)] shadow hover:shadow-md text-red-700 rounded-full w-7 h-7 text-center p-1"
+                class="like-button bg-white hover:bg-gray-200 shadow hover:shadow-md text-red-700 rounded-full w-7 h-7 text-center p-1"
                 onclick="like('${rom.id}')">
                 <i id="heartIcon-${rom.id}"
                   class="fa-heart {% if rom.id in liked_rom_ids %}fa-solid{% else %}fa-regular{% endif %}"></i>

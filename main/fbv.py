@@ -119,26 +119,19 @@ def upload_roms(request):
                 
                 # Ensure all required fields are provided before creating the ROM object
                 if name and device and credits_name and image and link and details:
-                    try:
-                        existing_rom = CustomROM.objects.get(link=link)
-                        if existing_rom.link == link:
-                            # If a ROM with the same link exists, return an error message
-                            error_message = "A Custom ROM with that link has already been uploaded."
-                            return JsonResponse({"error": error_message}, status=400)
-                    except ObjectDoesNotExist:
-                        # Create a CustomROM instance
-                        rom = CustomROM(
-                            name=name,
-                            device=device,
-                            credits=credits,
-                            image=image,
-                            link=link,
-                            details=details,
-                            uploaded_by=request.user
-                        )
-                        # Save the instance to generate the slug automatically
-                        rom.save()
-                        return JsonResponse({"success": "ok"})  # Redirect to ROMs page after successful upload
+                    
+                    rom = CustomROM(
+                        name=name,
+                        device=device,
+                        credits=credits,
+                        image=image,
+                        link=link,
+                        details=details,
+                        uploaded_by=request.user
+                    )
+                    # Save the instance to generate the slug automatically
+                    rom.save()
+                    return JsonResponse({"success": "ok"})  # Redirect to ROMs page after successful upload
                 else:
                     # Handle the case when required fields are missing
                     error_message = "Please fill in all required fields."
@@ -164,26 +157,18 @@ def upload_mods(request):
                 
                 # Ensure all required fields are provided before creating the mod object
                 if name and device and credits_name and image and link and details:
-                    try:
-                        existing_mod = CustomMOD.objects.get(link=link)
-                        if existing_mod.link == link:
-                            # If a mod with the same link exists, return an error message
-                            error_message = "A Tool with that link has already been uploaded."
-                            return JsonResponse({"error": error_message}, status=400)
-                    except ObjectDoesNotExist:
-                        # Create a Custommod instance
-                        mod = CustomMOD(
-                            name=name,
-                            device=device,
-                            credits=credits,
-                            image=image,
-                            link=link,
-                            details=details,
-                            uploaded_by=request.user
-                        )
-                        # Save the instance to generate the slug automatically
-                        mod.save()
-                        return JsonResponse({"success": "ok"})  # Redirect to mods page after successful upload
+                    mod = CustomMOD(
+                        name=name,
+                        device=device,
+                        credits=credits,
+                        image=image,
+                        link=link,
+                        details=details,
+                        uploaded_by=request.user
+                    )
+                    # Save the instance to generate the slug automatically
+                    mod.save()
+                    return JsonResponse({"success": "ok"})  # Redirect to mods page after successful upload
                 else:
                     # Handle the case when required fields are missing
                     error_message = "Please fill in all required fields."

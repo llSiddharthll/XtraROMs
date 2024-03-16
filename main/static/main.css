@@ -7,12 +7,12 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Courgette';
+  font-family: 'Delius Swash Caps';
   font-weight: 700;
 }
 
 p{
-  font-family: "Karla";
+  font-family: "Snippet";
 }
 .container{
   min-width: 100%;

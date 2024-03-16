@@ -57,19 +57,18 @@
 <!-- Recently Added -->
 <section class="recent container mt-8 ">
   <h2 class="text-center fs-2 text-[var(--text)] py-4">
-    <u>Recently Added</u>
+    Recently Added
   </h2>
   <div
     class="pt-8 md:pt-0 h-96 px-8 md:px-0 flex justify-start md:justify-center items-center overflow-x-auto gap-8 lg:gap-32">
     {% for rom in roms %}
     <a href="{% url 'rom_details' rom.slug %}">
     <div
-      class="py-2 max-w-full md:max-w-xs bg-[var(--secondary-400)] rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+      class="py-2 max-w-full md:max-w-xs bg-[var(--secondary)] rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
       <div>
         <h1
-          class="text-2xl mt-2 ml-4 font-bold text-[var(--text)] cursor-pointer hover:text-gray-900 transition duration-100">
+          class="text-2xl text-center ml-4 font-bold text-[var(--text)] cursor-pointer hover:text-gray-900 transition duration-100 truncate">
           {{ rom.name }}</h1>
-        <p class="ml-4 mt-1 mb-2 text-[var(--text-900)] hover:underline cursor-pointer">#by {{ rom.credits.name }}</p>
       </div>
       <img class="w-full cursor-pointer object-cover min-h-40 max-h-40 min-w-80 max-w-80" src="{{ rom.image.url }}" alt="">
       <div class="flex p-4 justify-between gap-32 md:gap-0">
@@ -110,7 +109,7 @@
 
 <!-- Screenshot Section -->
 <section id="Screenshot" style="margin-top: 50px; margin-bottom: 50px" class="container p-2">
-  <h2 class="text-center fs-2 pt-4 text-[var(--text)]"><u>Screenshots</u></h2>
+  <h2 class="text-center fs-2 pt-4 text-[var(--text)]">Screenshots</h2>
   <div id="Screenshot-1">
     <div class="grid grid-cols-2 justify-evenly" style="margin-top: 50px">
       <div class="">
@@ -186,7 +185,7 @@
         <img src="{% static 'images/about.png' %}" alt="Community" class="img-fluid mb-4" />
       </div>
       <div class="" style="display: grid">
-        <h2 class="text-center mb-4 fs-2"><u>About Us</u></h2>
+        <h2 class="text-center mb-4 fs-2">About Us</h2>
         <p>
           Empowering users with device customization. Discover custom ROMs and
           Magisk modules for unique needs.
