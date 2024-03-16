@@ -14,9 +14,9 @@
 
 {% block content %}
 
-<section class="rom_card mt-32 px-8 mb-10 flex flex-col md:flex-row gap-8 w-full">
+<section class="rom_card mt-32 px-8 mb-10 flex flex-col md:flex-row gap-8 md:flex-wrap justify-center">
 
-  <div class="flex flex-col w-full md:w-[33.33333%]">
+  <div class="flex flex-col md:max-w-[25rem]">
     <div class="min-h-full bg-[var(--secondary)] border border-[var(--secondary-200)] rounded-lg shadow-lg shadow-[var(--accent)]">
       <a href="#">
         <img class="rounded-t-lg h-52 min-w-full object-cover" src="{{rom.image.url}}" alt="" />
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="details flex flex-col w-full md:w-[33.33333%]">
+  <div class="details flex flex-col md:max-w-[25rem]">
     <div
       class="bg-[var(--secondary)] text-[var(--text)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full">
       <div class="p-2 border-b-2 border-[var(--accent)]">
@@ -53,9 +53,9 @@
     </div>
   </div>
 
-  <div class="comments flex flex-col w-full md:w-[33.33333%]">
+  <div class="comments flex flex-col md:max-w-[25rem]">
     <div
-      class="bg-[var(--secondary)] text-[var(--text)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full lg:relative">
+      class="bg-[var(--secondary)] text-[var(--background)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full lg:relative">
       <div class="p-2 border-b-2 border-[var(--accent)]">
         <h3>Comments:</h3>
       </div>
@@ -81,7 +81,7 @@
         <form method="post" class="flex gap-2">
           {% csrf_token %}
           <input type="text" name="text" id=""
-            class="w-full p-4 ps-10 text-sm text-[var(--text)] placeholder-[var(--text-800)] border border-[var(--accent)] rounded-lg bg-[var(--primary)] focus:ring-blue-500 focus:border-blue-500 "
+            class="w-full p-4 ps-10 text-sm text-[var(--text)] placeholder-[var(--text-200)] border border-[var(--accent)] rounded-lg bg-[var(--primary)] focus:ring-blue-500 focus:border-blue-500 "
             placeholder="Kindly give your views">
           <button type="submit" class="bg-[var(--primary)] rounded-lg p-2 w-20"><i
               class="fa-solid fa-paper-plane"></i></button>

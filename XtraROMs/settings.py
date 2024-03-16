@@ -54,9 +54,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount', 
-    
-    # Markdown Tag 
-    "markdown_deux",
 ]
 
 MIDDLEWARE = [
