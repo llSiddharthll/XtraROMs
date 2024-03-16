@@ -8,6 +8,7 @@ from django.db.models import Count
 from allauth.account.views import SignupView, LoginView
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.safestring import mark_safe
+import requests
 
 class HomeView(generic.View):
     template_name = "home.html"
@@ -303,8 +304,11 @@ class MODDetailsView(generic.View):
     
 class XtraKnowledgeView(generic.ListView):
     template_name = "xtraknowledge.html"
-    model = Blog
-    context_object_name = 'blogs'
+    
+    def get(self, request):
+        blog = Blog.objects.all()
+        context = {'blogs': blog}
+        return render(request, self.template_name, context)
     
 class PolicyView(generic.TemplateView):
     template_name = "privacy_policy.html"

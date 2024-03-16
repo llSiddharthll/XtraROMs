@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block css %}
     <style>
         h2{
@@ -33,7 +32,7 @@
                 </div>
                 <div class="min-h-40 max-h-40 overflow-scroll">
                 <h2 class="mb-2 text-2xl font-bold tracking-tight text-[var(--text)]"><a href="#">{{blog.title}}</a></h2>
-                <p class="mb-5 font-light text-[var(--text-800)]">{{blog.description}}</p>
+                <div class="mb-5 text-[var(--text-800)]">{{blog.description|safe}}</div>
             </div>
                 <div class="flex justify-between items-center">
                     <div class="flex items-center space-x-4">

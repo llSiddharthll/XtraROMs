@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from autoslug import AutoSlugField
 import uuid
+import requests
 
 class Credits(models.Model):
     name = models.CharField(max_length=50)
@@ -44,6 +45,9 @@ class CustomROM(models.Model):
             base_slug = slugify(self.name)
             unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
             self.slug = f"{base_slug}-{unique_id}"
+        text = requests.get("https://best-project-ashy.vercel.app/api/markdown/", {'text': self.details})
+        processed_text = text.json().get('processed_text')
+        self.details = processed_text
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -66,6 +70,9 @@ class CustomMOD(models.Model):
             base_slug = slugify(self.name)
             unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
             self.slug = f"{base_slug}-{unique_id}"
+        text = requests.get("https://best-project-ashy.vercel.app/api/markdown/", {'text': self.details})
+        processed_text = text.json().get('processed_text')
+        self.details = processed_text
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -93,3 +100,9 @@ class Blog(models.Model):
     written_by = models.CharField(max_length = 100, null=True, blank=True)
     date = models.DateField(auto_now = True)
     link = models.URLField(null=True, blank=True)
+    
+    def save(self, *args, **kwargs):
+        text = requests.get("https://best-project-ashy.vercel.app/api/markdown/", {'text': self.description})
+        processed_text = text.json().get('processed_text')
+        self.description = processed_text
+        return super().save(*args, **kwargs)
