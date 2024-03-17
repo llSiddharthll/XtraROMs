@@ -7,7 +7,7 @@ import uuid
 import requests
 import markdown
 
-def add_markdown(text):
+def convert_to_html(text):
     md = markdown.Markdown(extensions=["fenced_code", "codehilite"])
     processed_text = md.convert(text)
     return processed_text
@@ -51,7 +51,7 @@ class CustomROM(models.Model):
             base_slug = slugify(self.name)
             unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
             self.slug = f"{base_slug}-{unique_id}"
-        self.details = add_markdown(self.details)
+        self.details = convert_to_html(self.details)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -74,7 +74,7 @@ class CustomMOD(models.Model):
             base_slug = slugify(self.name)
             unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
             self.slug = f"{base_slug}-{unique_id}"
-        self.details = add_markdown(self.details)
+        self.details = convert_to_html(self.details)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -104,5 +104,7 @@ class Blog(models.Model):
     link = models.URLField(null=True, blank=True)
     
     def save(self, *args, **kwargs):
-        self.details = add_markdown(self.description)
+        print("Saving blog with description:", self.description)  # Debugging message
+        self.description = convert_to_html(self.description)
+        print("Converted description:", self.description)  # Debugging message
         return super().save(*args, **kwargs)
