@@ -7,7 +7,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'XtraROMs.settings')
 # Configure Django
 django.setup()
 
-from main.models import Blog
+from main.models import Blog, UserProfile
 import requests
 import json
 
@@ -35,4 +35,12 @@ def first():
             )
             blog.save
             
-second()
+def third():
+    user = UserProfile.objects.all()
+    
+    for pfp in user:
+        if pfp.profile_picture == None:
+            pfp.profile_picture == "C:/Users/siddh/OneDrive/Desktop/XtraROMs/main/static/images/akatsuki_logo.png"
+        pfp.save
+    
+third()
