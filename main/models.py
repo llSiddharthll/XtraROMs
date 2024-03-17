@@ -104,7 +104,5 @@ class Blog(models.Model):
     link = models.URLField(null=True, blank=True)
     
     def save(self, *args, **kwargs):
-        print("Saving blog with description:", self.description)  # Debugging message
         self.description = convert_to_html(self.description)
-        print("Converted description:", self.description)  # Debugging message
         return super().save(*args, **kwargs)
