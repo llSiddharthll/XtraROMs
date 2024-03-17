@@ -5,6 +5,12 @@ from django.utils.text import slugify
 from autoslug import AutoSlugField
 import uuid
 import requests
+import markdown
+
+def add_markdown(text):
+    md = markdown.Markdown(extensions=["fenced_code", "codehilite"])
+    processed_text = md.convert(text)
+    return processed_text
 
 class Credits(models.Model):
     name = models.CharField(max_length=50)
@@ -45,9 +51,7 @@ class CustomROM(models.Model):
             base_slug = slugify(self.name)
             unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
             self.slug = f"{base_slug}-{unique_id}"
-        text = requests.get("https://best-project-ashy.vercel.app/api/markdown/", params={'text': self.details})
-        processed_text = text.json().get('processed_text')
-        self.details = processed_text
+        self.details = add_markdown(self.details)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -70,9 +74,7 @@ class CustomMOD(models.Model):
             base_slug = slugify(self.name)
             unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
             self.slug = f"{base_slug}-{unique_id}"
-        text = requests.get("https://best-project-ashy.vercel.app/api/markdown/", params={'text': self.details})
-        processed_text = text.json().get('processed_text')
-        self.details = processed_text
+        self.details = add_markdown(self.details)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -102,7 +104,5 @@ class Blog(models.Model):
     link = models.URLField(null=True, blank=True)
     
     def save(self, *args, **kwargs):
-        text = requests.get("https://best-project-ashy.vercel.app/api/markdown/", params={'text': self.description})
-        processed_text = text.json().get('processed_text')
-        self.description = processed_text
+        self.details = add_markdown(self.description)
         return super().save(*args, **kwargs)
