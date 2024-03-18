@@ -103,6 +103,8 @@ class DashboardView(generic.View):
     def get(self, request, *args, **kwargs):
         user_profile = UserProfile.objects.get(user=request.user)
         user = request.user
+        
+        rom_form = UploadROMForm()
 
         profile_picture_form = ProfilePictureForm(instance=user_profile)
         update_username_form = UpdateUsernameForm(instance=user)
@@ -116,6 +118,7 @@ class DashboardView(generic.View):
             "update_username_form": update_username_form,
             "liked_roms": liked_roms,
             "liked_mods": liked_mods,
+            "rom_form": rom_form,
         }
 
         return render(request, self.template_name, context)
