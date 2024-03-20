@@ -1,6 +1,6 @@
 from .models import CustomROM, CustomMOD
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponseServerError
 from .forms import *
 from django.shortcuts import redirect, get_object_or_404, render
 import logging
@@ -107,75 +107,27 @@ def edit_mod(request, slug):
     return render(request, "edit_mod.html", context)
 
 def upload_roms(request):
-        try:
-            if request.method == "POST":
-                name = request.POST.get("rom_name")
-                device = request.POST.get("rom_device")
-                credits_name = request.POST.get("rom_credits")
-                credits, _ = Credits.objects.get_or_create(name=credits_name)
-                image = request.FILES.get("rom_image")
-                link = request.POST.get("rom_link")
-                details = request.POST.get("rom_details")
-                
-                # Ensure all required fields are provided before creating the ROM object
-                if name and device and credits_name and image and link and details:
-                    
-                    rom = CustomROM(
-                        name=name,
-                        device=device,
-                        credits=credits,
-                        image=image,
-                        link=link,
-                        details=details,
-                        uploaded_by=request.user
-                    )
-                    # Save the instance to generate the slug automatically
-                    rom.save()
-                    return JsonResponse({"success": "ok"})  # Redirect to ROMs page after successful upload
-                else:
-                    # Handle the case when required fields are missing
-                    error_message = "Please fill in all required fields."
-                    return JsonResponse({"error":error_message}, status=400)  # Return error message with status code 400 (Bad Request)
-        
-        except Exception as e:
-            # Log the error for debugging purposes
-            logger.error(f"An error occurred: {e}")
-            
-            return JsonResponse({"error": "Internal Server Error"}, status=500)
+    try:
+        if request.method == 'POST':
+            form = UploadROMForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('roms')  # Redirect to a success URL after saving
+    except Exception as e:
+        # Log the error for debugging purposes
+        logger.error(f"An error occurred: {e}")
 
-        
+    # If an error occurs or form is invalid, render the form again
+    form = UploadROMForm()
+    return render(request, 'dashboard.html', {'form': form})
+
 def upload_mods(request):
-        try:
-            if request.method == "POST":
-                name = request.POST.get("mod_name")
-                device = request.POST.get("mod_device")
-                credits_name = request.POST.get("mod_credits")
-                credits, _ = Credits.objects.get_or_create(name=credits_name)
-                image = request.FILES.get("mod_image")
-                link = request.POST.get("mod_link")
-                details = request.POST.get("mod_details")
-                
-                # Ensure all required fields are provided before creating the mod object
-                if name and device and credits_name and image and link and details:
-                    mod = CustomMOD(
-                        name=name,
-                        device=device,
-                        credits=credits,
-                        image=image,
-                        link=link,
-                        details=details,
-                        uploaded_by=request.user
-                    )
-                    # Save the instance to generate the slug automatically
-                    mod.save()
-                    return JsonResponse({"success": "ok"})  # Redirect to mods page after successful upload
-                else:
-                    # Handle the case when required fields are missing
-                    error_message = "Please fill in all required fields."
-                    return JsonResponse({"error":error_message}, status=400)  # Return error message with status code 400 (Bad Request)
-        
-        except Exception as e:
-            # Log the error for debugging purposes
-            logger.error(f"An error occurred: {e}")
-            
-            return JsonResponse({"error": "Internal Server Error"}, status=500)
+    try:
+        if request.method == 'POST':
+            form = UploadMODForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('mods')  # Redirect to a success URL after saving
+    except Exception as e:
+        # Log the error for debugging purposes
+        logger.error(f"An error occurred: {e}")
