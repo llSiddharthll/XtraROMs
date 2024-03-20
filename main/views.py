@@ -108,7 +108,6 @@ class DashboardView(generic.View):
         user_form = UserProfileForm(instance=user_profile)  # Use instance=user_profile for the user form
         liked_roms = ROMLike.objects.filter(user=request.user)
         liked_mods = MODLike.objects.filter(user=request.user)
-        serialized_messages = [{'message': message.message, 'level': message.level} for message in messages.get_messages(request)]
         
         context = {
             "user_profile": user_profile,
@@ -117,7 +116,6 @@ class DashboardView(generic.View):
             "rom_form": rom_form,
             "mod_form": mod_form,
             "user_form": user_form,
-            "serialized_messages": json.dumps(serialized_messages)
         }
         return render(request, self.template_name, context)
 

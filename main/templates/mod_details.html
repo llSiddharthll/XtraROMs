@@ -55,10 +55,10 @@
   <div class="comments flex flex-col md:max-w-[35rem]">
     <div
       class="bg-[var(--secondary)] text-[var(--background)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full lg:relative">
-      <div class="p-2 border-b-2 border-[var(--accent)]">
+      <div class="p-2 border-b-2 border-[var(--accent)] text-[var(--text)]">
         <h3>Comments:</h3>
       </div>
-      <div class="min-h-80 max-h-80 md:max-h-56 overflow-auto px-2">
+      <div class="min-h-80 max-h-80 md:max-h-56 overflow-auto px-2 font-light">
         {% for comment in comments %}
         <div class="rounded-lg bg-[var(--primary)] border-b-2 border-[var(--accent)] mt-2 p-2">
           <div class="flex justify-between border-b-2 border-[var(--accent)] pb-1">

@@ -1,10 +1,11 @@
 from .models import CustomROM, CustomMOD
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponseServerError
+from django.http import JsonResponse
 from .forms import *
 from django.shortcuts import redirect, get_object_or_404, render
 import logging
-from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
+
 
 logger = logging.getLogger(__name__)
 
@@ -81,6 +82,7 @@ def edit_rom(request, slug):
             edit_form.credits = credits
             edit_form.image = new_image 
             edit_form.save() 
+            messages.success(request, f'{rom.name} modified successfully')
             return redirect("roms") 
     else:
         edit_form = UploadROMForm(instance=rom)
@@ -101,6 +103,7 @@ def edit_mod(request, slug):
             edit_form.credits = credits
             edit_form.image = new_image 
             edit_form.save() 
+            messages.success(request, f'{mod.name} modified successfully')
             return redirect("mods") 
 
     context = {"edit_form": edit_form, "mod": mod}
@@ -111,8 +114,13 @@ def upload_roms(request):
         if request.method == 'POST':
             form = UploadROMForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                uploaded_rom = form.save()
+                messages.success(request, f'{uploaded_rom.name} uploaded successfully')
                 return redirect('roms')  # Redirect to a success URL after saving
+            else:
+                # Form is not valid, display error message
+                error_message = "An error occurred while uploading. Please check the form and try again."
+                messages.error(request, error_message)
     except Exception as e:
         # Log the error for debugging purposes
         logger.error(f"An error occurred: {e}")
@@ -126,8 +134,17 @@ def upload_mods(request):
         if request.method == 'POST':
             form = UploadMODForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                uploaded_mod = form.save()
+                messages.success(request, f'{uploaded_mod.name} uploaded successfully')
                 return redirect('mods')  # Redirect to a success URL after saving
+            else:
+                # Form is not valid, display error message
+                error_message = "An error occurred while uploading. Please check the form and try again."
+                messages.error(request, error_message)
+                
     except Exception as e:
         # Log the error for debugging purposes
         logger.error(f"An error occurred: {e}")
+        
+    form = UploadMODForm()
+    return render(request, 'dashboard.html', {'form': form})
