@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     
     # Crispy Forms
     'crispy_forms',
-    'crispy_bootstrap5',
+    'crispy_tailwind',
     
     # Django-Allauth
     'allauth',
@@ -129,7 +129,7 @@ import cloudinary.uploader
 import cloudinary.api
 
 # Use Cloudinary as the storage backend for media files
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Media files
 MEDIA_URL = '/media/'  # Set the media URL to a path in your Django project
@@ -173,8 +173,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
