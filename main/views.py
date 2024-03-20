@@ -8,7 +8,8 @@ from django.db.models import Count
 from allauth.account.views import SignupView, LoginView
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.safestring import mark_safe
-import requests
+from django.contrib import messages
+import json
 
 class HomeView(generic.View):
     template_name = "home.html"
@@ -102,60 +103,34 @@ class DashboardView(generic.View):
 
     def get(self, request, *args, **kwargs):
         user_profile = UserProfile.objects.get(user=request.user)
-        user = request.user
-        
         rom_form = UploadROMForm()
-
-        profile_picture_form = ProfilePictureForm(instance=user_profile)
-        update_username_form = UpdateUsernameForm(instance=user)
-        
+        mod_form = UploadMODForm()
+        user_form = UserProfileForm(instance=user_profile)  # Use instance=user_profile for the user form
         liked_roms = ROMLike.objects.filter(user=request.user)
         liked_mods = MODLike.objects.filter(user=request.user)
-
+        serialized_messages = [{'message': message.message, 'level': message.level} for message in messages.get_messages(request)]
+        
         context = {
             "user_profile": user_profile,
-            "profile_picture_form": profile_picture_form,
-            "update_username_form": update_username_form,
             "liked_roms": liked_roms,
             "liked_mods": liked_mods,
             "rom_form": rom_form,
+            "mod_form": mod_form,
+            "user_form": user_form,
+            "serialized_messages": json.dumps(serialized_messages)
         }
-
         return render(request, self.template_name, context)
 
     def post(self, request):
+        user_profile = request.user.userprofile
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)  # Instantiate form for POST requests
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile has been updated successfully.')
+            return redirect('dashboard')  # Redirect to the dashboard page after profile update
         
-        # Extract data from request
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        profile_picture = request.FILES.get('profile_picture')
-        username = request.POST.get('username')
-
-        # Get the UserProfile object for the current user
-        user_profile = UserProfile.objects.get(user=request.user)
-
-        # Update the UserProfile object
-        if profile_picture:
-            user_profile.profile_picture = profile_picture
-        user_profile.save()
-
-        # Update the User object
-        user = User.objects.get(user=request.user)
-        if first_name:
-            user.first_name = first_name
-        if last_name:
-            user.last_name = last_name
-        if username:
-            if User.objects.filter(username=username).exclude(pk=user.pk).exists():
-                return JsonResponse({"error": "Username already exists"})
-            else:
-                user.username = username
-        user.save()
-
-        # Return success response
-        return JsonResponse({"status": "success"})
-
-    
+        # If form is not valid, render the dashboard page with the form
+        return render(request, self.template_name, {"user_form": form})
     
 class RomsView(generic.View):
     template_name = 'roms.html'
