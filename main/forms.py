@@ -16,20 +16,15 @@ class CommentForm(forms.ModelForm):
         fields = ["text"]
 
 
-class UpdateUsernameForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ["username"]
-
-
 class UploadROMForm(forms.ModelForm):
-    credit = forms.CharField(
-        max_length=50,
+
+    credits = forms.CharField(
+        max_length=100,
         required=True,
         widget=forms.TextInput(
             attrs={
-                "Placeholder": "JohnDoe",
-                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text)]"
+                "placeholder": "Enter a name or select from existing",
+                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
             }
         ),
         label="Credits",
@@ -37,107 +32,147 @@ class UploadROMForm(forms.ModelForm):
 
     class Meta:
         model = CustomROM
-        fields = ["name", "device", "credit", "image", "link", "details"]
+        fields = ["name", "device", "credits", "image", "link", "details"]
         widgets = {
             "name": forms.TextInput(
                 attrs={
-                    "Placeholder": "CrDroid/Lineage",
-                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text)]"
+                    "placeholder": "CrDroid/Lineage",
+                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
             "device": forms.TextInput(
                 attrs={
-                    "Placeholder": "Ruby/Fleur",
-                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text)]"
+                    "placeholder": "Ruby/Fleur",
+                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
             "image": forms.ClearableFileInput(
                 attrs={
-                    "Placeholder": "ROM Image",
-                    "class": "placeholder-[var(--text-500)] mt-1 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text)]"
+                    "placeholder": "ROM Image",
+                    "class": "placeholder-[var(--text-500)] mt-1 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
             "link": forms.URLInput(
                 attrs={
-                    "Placeholder": "https://something/download",
-                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text)]"
+                    "placeholder": "https://something/download",
+                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
             "details": forms.Textarea(
                 attrs={
-                    "Placeholder": "Provide changelogs, flashing details, must provide issues or bugs if any",
+                    "placeholder": "Provide changelogs, flashing details, must provide issues or bugs if any",
                     "rows": 3,
-                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text)]"
+                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
         }
 
+    def clean_credits(self):
+        credit_name = self.cleaned_data['credits']
+
+        # Check if a Credits instance with the given name already exists
+        credit_instance, created = Credits.objects.get_or_create(name=credit_name)
+
+        return credit_instance
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.credits = self.cleaned_data['credits']
+        if commit:
+            instance.save()
+        return instance
+
 
 class UploadMODForm(forms.ModelForm):
-    new_credits = forms.CharField(
-        max_length=50,
-        required=False,
+
+    credits = forms.CharField(
+        max_length=100,
+        required=True,
         widget=forms.TextInput(
             attrs={
-                "class": "mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--secondary)] text-[var(--text)]"
+                "placeholder": "JohnDoe",
+                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
             }
         ),
-        label="New Credits Name",
+        label="Credits",
     )
 
     class Meta:
         model = CustomMOD
-        fields = ["name", "credits", "new_credits", "image", "link", "details"]
+        fields = ["name", "credits", "image", "link", "details"]
         widgets = {
             "name": forms.TextInput(
                 attrs={
-                    "class": "mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--secondary)] text-[var(--text)]"
-                }
-            ),
-            "credits": forms.Select(
-                attrs={
-                    "class": "mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--secondary)] text-[var(--text)]"
+                    "placeholder": "MiFlash/Magisk Module",
+                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
             "image": forms.ClearableFileInput(
                 attrs={
-                    "class": "mt-1 border border-gray-300 rounded-md w-full bg-[var(--secondary)] text-[var(--text)]"
+                    "placeholder": "Image",
+                    "class": "placeholder-[var(--text-500)] mt-1 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
             "link": forms.URLInput(
                 attrs={
-                    "class": "mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--secondary)] text-[var(--text)]"
+                    "placeholder": "https://something/download",
+                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
             "details": forms.Textarea(
                 attrs={
-                    "class": "mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--secondary)] text-[var(--text)]"
+                    "placeholder": "Provide changelogs, details, features, use cases etc.",
+                    "rows": 3,
+                    "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
         }
 
-    def clean(self):
-        cleaned_data = super().clean()
-        credits = cleaned_data.get("credits")
-        new_credits = cleaned_data.get("new_credits")
+    def clean_credits(self):
+        credit_name = self.cleaned_data['credits']
 
-        if not credits and not new_credits:
-            raise forms.ValidationError(
-                "Please select an existing credit or enter a new credit name."
-            )
+        # Check if a Credits instance with the given name already exists
+        credit_instance, created = Credits.objects.get_or_create(name=credit_name)
 
-        return cleaned_data
+        return credit_instance
 
     def save(self, commit=True):
-        new_credits = self.cleaned_data.get("new_credits")
-        if new_credits:
-            credits, created = Credits.objects.get_or_create(name=new_credits)
-            self.instance.credits = credits
+        instance = super().save(commit=False)
+        instance.credits = self.cleaned_data['credits']
+        if commit:
+            instance.save()
+        return instance
 
-        return super().save(commit)
 
+class UserProfileForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=30, required=False)
+    last_name = forms.CharField(max_length=30, required=False)
+    username = forms.CharField(max_length=150, required=False)
+    profile_picture = forms.ImageField(required=False)
 
-class ProfilePictureForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ["profile_picture"]
+        fields = ['first_name', 'last_name', 'username', 'profile_picture']
+        
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].initial = self.instance.user.first_name
+        self.fields['last_name'].initial = self.instance.user.last_name
+        self.fields['username'].initial = self.instance.user.username
+
+    def save(self, commit=True):
+        user_profile = super(UserProfileForm, self).save(commit=False)
+        user = user_profile.user
+
+        # Update user fields
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.username = self.cleaned_data['username']
+
+        # Save user and user_profile
+        if commit:
+            user.save()
+            user_profile.save()
+
+        return user_profile
