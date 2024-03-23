@@ -112,7 +112,7 @@
         // Fallback for browsers that do not support Web Share API
         const shareInput = document.createElement('input');
         document.body.appendChild(shareInput);
-        shareInput.value = `/rom_detail/${id}`;
+        shareInput.value = `/rom_detail/${slug}`;
         shareInput.select();
         document.execCommand('copy');
         document.body.removeChild(shareInput);

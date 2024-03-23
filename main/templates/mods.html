@@ -143,15 +143,15 @@
               <!-- Download Button-->
               <a href="{{mod.link}}">
                 <button
-                class="hidden lg:flex transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-[var(--primary)] px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]"
+                class="border border-[var(--text)] lg:flex inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-[var(--primary)] px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]"
               >
-                  <span class="h-3 me-2 text-[var(--background)] hidden md:flex">
+                  <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                     <i class="fa-solid fa-arrow-down"></i> </span
-                  ><span class="text-[var(--background)]">Download</span>
+                  ><span class="text-[var(--text)]">Download</span>
               </button></a>
               <a href="{{mod.link}}">
               <button
-                class="block lg:hidden bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--background)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2"
+                class="block lg:hidden bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2"
               >
               <i class="fa-solid fa-download"></i>
               </button></a>
@@ -160,7 +160,7 @@
               <button
                 id="shareButton"
                 onclick="shareLink('{{mod.name}}', '{{mod.slug}}')"
-                class="block bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--background)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2"
+                class="block bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2"
               >
                 <i class="fa-solid fa-share-from-square"></i>
               </button>
@@ -168,7 +168,7 @@
               <!-- Details Button -->
               <a href="{% url 'mod_details' mod.slug %}">
                 <button
-                  class="bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--background)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2"
+                  class="bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -301,26 +301,26 @@
               <a href="${mod.link}">
                 <button
                 class="hidden lg:flex transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-[var(--primary)] px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
-                <span class="h-3 me-2 text-[var(--background)] hidden md:flex">
+                <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                   <i class="fa-solid fa-arrow-down"></i>
-                </span><span class="text-[var(--background)]">Download</span>
+                </span><span class="text-[var(--text)]">Download</span>
               </button></a>
               <a href="${mod.link}">
               <button
-                class="block lg:hidden bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--background)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class="block lg:hidden bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-download"></i>
               </button></a>
 
               <!-- Share Button -->
               <button id="shareButton" onclick="shareLink('${mod.name}', '${mod.id}')"
-                class="block bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--background)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class="block bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-share-from-square"></i>
               </button>
 
               <!-- Details Button -->
               <a href="/mod_detail/${mod.slug}">
                 <button
-                  class=" bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--background)] border hover:border-gray-500 border-gray-700 hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  class=" bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
