@@ -2,9 +2,7 @@ from typing import Iterable
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-from autoslug import AutoSlugField
 import uuid
-import requests
 import markdown
 
 def convert_to_html(text):
