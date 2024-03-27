@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+SITE_ID = 2
 
 # Application definition
 
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount', 
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +70,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '670992351831-2pais2gp3nj42muel009mj0m2ispevil.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
 
 ROOT_URLCONF = 'XtraROMs.urls'
 
@@ -201,8 +218,6 @@ ACCOUNT_EMAIL_REQUIRED = True
         }
     }
 } """
-
-SITE_ID = 2  # Replace with the actual ID of the Site object
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Ensure it's set to 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7  # Set a suitable expiration period

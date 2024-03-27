@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% load static %} {% block css %}
+{% extends 'base.html' %} {% load static %}
+{% load socialaccount %}
+{% block css %}
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
 
@@ -66,6 +68,10 @@
           </div>
           <ul><li>{{form.errors}}</li></ul>
           </form>
+          <div class="flex justify-center mb-2">Or</div>
+          <div class="flex justify-center mb-2">
+            <a href="{% provider_login_url 'google' %}" class="bg-[var(--primary)] text-[var(--text)] p-2 px-4 rounded-2xl">Google</a>
+          </div>
           <div class="flex -mx-3 items-center justify-center w-full px-3">
             <p>Forget Password ?</p>
             <a href="{% url 'account_reset_password' %}" class="ms-2 text-[var(--accent-600)]">Reset Password</a>
