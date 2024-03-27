@@ -76,16 +76,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '670992351831-2pais2gp3nj42muel009mj0m2ispevil.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        }
-    }
-}
-
 ROOT_URLCONF = 'XtraROMs.urls'
 
 TEMPLATES = [
@@ -200,6 +190,18 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email',
+        ],
+        'AUTH_PARAMS': {'access_type': 'offline'},  # Request a refresh token for long-term access
+        'KEY': '670992351831-2pais2gp3nj42muel009mj0m2ispevil.apps.googleusercontent.com',
+        'SECRET': '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',
+    }
+}
+
 # Additional configuration settings
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 SOCIALACCOUNT_QUERY_EMAIL = True
@@ -207,17 +209,6 @@ ACCOUNT_LOGOUT_ON_GET= True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 
-""" SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-} """
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Ensure it's set to 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7  # Set a suitable expiration period
