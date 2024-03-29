@@ -257,7 +257,8 @@
         roms.forEach((rom) => {
           const romCard = `
           <div
-      class="max-w-sm w-full bg-[var(--secondary)] shadow-lg rounded-xl md:hover:scale-105 duration-300 my-1 md:my-4">
+      class="max-w-sm w-full bg-[var(--secondary)] shadow-lg rounded-xl my-1 md:my-4 border-2 border-[var(--accent)]"
+    >
       <div class="flex flex-col">
         <div class="">
           <div class="relative h-24 md:h-48 w-full mb-3">
@@ -274,7 +275,7 @@
             <img src="${rom.image_url}" alt="${rom.name}"
               class="h-24 md:h-48 w-full object-cover object-center rounded-2xl" />
           </div>
-          <div class="flex-auto justify-evenly">
+          <div class="flex-auto justify-evenly p-2 md:p-6">
             <div class="flex flex-wrap">
               <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 20 20"

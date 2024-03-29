@@ -94,7 +94,7 @@
   <body class="bg-[var(--background)] mt-10">
     <!-- Navigation Bar -->
     <section class="container w-full fixed top-0 z-20">
-      <nav class="bg-[var(--secondary)] md:bg-transparent md:backdrop-blur-xl">
+      <nav class="bg-transparent backdrop-blur-xl">
         <div
           class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
         >
@@ -103,14 +103,14 @@
             class="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="{% static 'images/logo.png' %}"
-              class="h-8"
+              src="{% static 'images/xlogo.png' %}"
+              class="h-10 rounded-full"
               alt="XtraROMs Logo"
             />
-            <span
+            <!-- <span
               class="self-center text-[var(--text)] text-2xl font-semibold whitespace-nowrap"
               >XtraROMs</span
-            >
+            > -->
           </a>
           <div
             class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
@@ -118,7 +118,7 @@
             {% if request.user.is_authenticated %}
             <button
               type="button"
-              class="flex items-center gap-2 text-sm bg-[var(--secondary)] rounded-full md:me-0 md:py-1 md:px-2"
+              class="flex border-2 border-[var(--text)] items-center gap-2 text-sm bg-transparent rounded-full md:me-0 py-1 px-2"
               id="user-menu-button"
               aria-expanded="false"
               data-dropdown-toggle="user-dropdown"
@@ -136,7 +136,7 @@
             <a href="{% url 'login' %}">
               <button
                 type="button"
-                class="flex items-center gap-2 text-sm bg-[var(--secondary)] rounded-full md:me-0 md:py-1 md:px-2"
+                class="flex border-2 border-[var(--text)] items-center gap-2 text-sm bg-transparent rounded-full md:me-0 py-1 px-2"
                 id="user-menu-button"
               >
                 <span class="sr-only">Open user menu</span>
@@ -249,7 +249,7 @@
             id="navbar-user"
           >
             <ul
-              class="text-lg flex flex-col font-medium text-[var(--text)] p-4 md:p-0 mt-4 border border-[var(--secondary)] rounded-lg md:rounded-full bg-[var(--secondary)] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
+              class="text-lg flex flex-col font-medium text-[var(--text)] p-4 md:p-0 mt-4 border border-[var(--secondary)] rounded-lg md:rounded-full bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
             >
               <li>
                 <a
