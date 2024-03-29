@@ -136,7 +136,7 @@
             <div class="lg:flex py-4 text-sm text-[var(--text)]">
               <div class="flex-1 inline-flex items-center mb-3">
                 <div
-                  class="w-full flex-none text-sm flex items-center text-[var(--text)]"
+                  class="w-full flex-none text-sm flex items-center text-[var(--text)] truncate"
                 >
                   By {{mod.credits.name}}
                 </div>
@@ -363,7 +363,7 @@
       // Fallback for browsers that do not support Web Share API
       const shareInput = document.createElement("input");
       document.body.appendChild(shareInput);
-      shareInput.value = `/mod_detail/${slug}`;
+      shareInput.value = `https://${window.location.hostname}/mod_detail/${slug}`;
       shareInput.select();
       document.execCommand("copy");
       document.body.removeChild(shareInput);
