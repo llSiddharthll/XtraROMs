@@ -9,7 +9,7 @@ from allauth.account.views import SignupView, LoginView
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.safestring import mark_safe
 from django.contrib import messages
-import json
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class HomeView(generic.View):
     template_name = "home.html"
@@ -130,32 +130,29 @@ class DashboardView(generic.View):
         # If form is not valid, render the dashboard page with the form
         return render(request, self.template_name, {"user_form": form})
     
-class RomsView(generic.View):
+class RomsView(generic.ListView):
     template_name = 'roms.html'
-    
-    def get(self, request, *args, **kwargs):
-        context = {}
-        roms = CustomROM.objects.all().order_by('-upload_date')
-        context['roms'] = roms
-        
-        # Add a flag indicating whether the user has liked each ROM
-        roms = context.get('roms')
-        if roms:
-            if request.user.is_authenticated:
-                liked_rom_ids = set(ROMLike.objects.filter(rom__in=roms, user=request.user).values_list('rom_id', flat=True))
-                context['liked_rom_ids'] = liked_rom_ids
+    model = CustomROM
+    paginate_by = 12
+    context_object_name = 'roms'
+
+    def get_queryset(self):
+        queryset = super().get_queryset().order_by('-upload_date')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            liked_rom_ids = set(ROMLike.objects.filter(rom__in=context['roms'], user=self.request.user).values_list('rom_id', flat=True))
+            context['liked_rom_ids'] = liked_rom_ids
             
-            # Dictionary to store likes count for each ROM
-            likes_count_dict = {}
+        likes_count_dict = {}
+        for rom in context['roms']:
+            likes_count = ROMLike.objects.filter(rom=rom).count()
+            likes_count_dict[rom.id] = likes_count
+        context['likes'] = likes_count_dict
 
-            # Calculate likes count for each ROM
-            for rom in roms:
-                likes_count = ROMLike.objects.filter(rom=rom).count()
-                likes_count_dict[rom.id] = likes_count
-
-            context['likes'] = likes_count_dict
-
-        return render(request, self.template_name, context)
+        return context
     
     def post(self, request, *args, **kwargs):
         rom_id = request.POST.get("romID")
@@ -204,37 +201,35 @@ class ROMDetailsView(generic.View):
 
         return JsonResponse({"error": "Invalid POST request"})
     
-class ModsView(generic.View):
+class ModsView(generic.ListView):
     template_name = 'mods.html'
+    model = CustomMOD
+    context_object_name = 'mods'
+    paginate_by = 12
     
-    def get(self, request, *args, **kwargs):
-        context = {}
-        mods = CustomMOD.objects.all().order_by('-upload_date')
-        context['mods'] = mods
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         
         # Add a flag indicating whether the user has liked each mod
-        mods = context.get('mods')
-        if mods:
-            if request.user.is_authenticated:
-                liked_mod_ids = set(MODLike.objects.filter(mod__in=mods, user=request.user).values_list('mod_id', flat=True))
-                context['liked_mod_ids'] = liked_mod_ids
+        if self.request.user.is_authenticated:
+            liked_mod_ids = set(MODLike.objects.filter(mod__in=context['mods'], user=self.request.user).values_list('mod_id', flat=True))
+            context['liked_mod_ids'] = liked_mod_ids
             
-            # Dictionary to store likes count for each mod
-            likes_count_dict = {}
+        # Dictionary to store likes count for each mod
+        likes_count_dict = {}
+        
+        # Calculate likes count for each mod
+        for mod in context['mods']:
+            likes_count = MODLike.objects.filter(mod=mod).count()
+            likes_count_dict[mod.id] = likes_count
+        
+        context['likes'] = likes_count_dict
 
-            # Calculate likes count for each mod
-            for mod in mods:
-                likes_count = MODLike.objects.filter(mod=mod).count()
-                likes_count_dict[mod.id] = likes_count
-
-            context['likes'] = likes_count_dict
-
-        return render(request, self.template_name, context)
+        return context
     
     def post(self, request, *args, **kwargs):
         mod_id = request.POST.get("modID")
         if mod_id is not None:
-            # Rest of your code...
             mod = get_object_or_404(CustomMOD, id=mod_id)
             like, created = MODLike.objects.get_or_create(user=request.user, mod=mod)
 
@@ -246,7 +241,7 @@ class ModsView(generic.View):
                 return JsonResponse({"status": "liked"})
         else:
             return JsonResponse({"status": "error", "message": "'modID' not found in POST data"})
-    
+        
 class MODDetailsView(generic.View):
     template_name = 'mod_details.html'
     context_object_name = 'mod'
