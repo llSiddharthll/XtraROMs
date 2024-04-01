@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette:700|Poppins:400');
 
 
+*{
+  scroll-behavior: smooth;
+}
 body {
   font-family: 'Space Grotesk';
   font-weight: 400;
