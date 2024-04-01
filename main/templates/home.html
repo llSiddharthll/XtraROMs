@@ -1,66 +1,32 @@
-{% extends 'base.html' %} {% load static %} {% load custom_filters %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load custom_filters %} 
+{% block css %}
+<style>
+  .hero{
+    background: #ffffff26;
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3px );
+-webkit-backdrop-filter: blur( 3px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+</style>
+{% endblock css %}
+{% block content %}
 
 <!-- Hero Section -->
-<!-- <main class="">
-  <div class="content">
-    <h2>Welcome to XtraROMs</h2>
-    <p>
-      XtraROMs is a customized Android operating system that brings advanced
-      features and increased flexibility to your device for an optimized user
-      experience. Explore enhanced customization and performance with XtraROMs.
-    </p>
-    <ul class="counter">
-      <li>
-        <h3><i class="fab fa-android"></i>{{total_items}}</h3>
-        <span>Items collections</span>
-      </li>
-      <li>
-        <h3><i class="fas fa-user"></i>{{total_users}}</h3>
-        <span>Total Users</span>
-      </li>
-    </ul>
 
-    <a href="{% url 'mods' %}">
-      <button class="btn">
-        Let's Customize <i class="fas fa-arrow-right"></i>
-      </button></a>
-  </div>
-
-  <div class="swiper-container">
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide swiper-slide--one">
-          <span>Most Downloaded</span>
-        </div>
-        <div class="swiper-slide swiper-slide--two">
-          <span>Most Downloaded</span>
-        </div>
-        <div class="swiper-slide swiper-slide--three">
-          <span>Most Downloaded</span>
-        </div>
-        <div class="swiper-slide swiper-slide--four">
-          <span>Most Downloaded</span>
-        </div>
-        <div class="swiper-slide swiper-slide--five">
-          <span>Most Downloaded</span>
-        </div>
-        <div class="swiper-slide swiper-slide--six">
-          <span>Most Downloaded</span>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
-  </div>
-  <div class="circle"></div>
-</main> -->
-
-<section class="md:mt-20">
+<section class="">
   <div
-    class="flex justify-center text-center items-center h-screen bg-[url('static/images/mbg.png')] md:bg-[url('static/images/xtrabg.png')] bg-center bg-cover bg-no-repeat">
-    <div class="w-full md:w-1/2 mb-10 md:mb-8">
-      <div class="mb-6">
-        <h2 class="text-7xl md:text-8xl mb-4 text-white font-semibold font-sans"><span>Xtra</span><span class="text-green-800">ROMs</span></h2>
-        <p class="text-md md:text-xl px-5 md:px-0 font-light leading-relaxed text-gray-200 font-[600] tracking-wide">
+    class="relative flex justify-center text-center items-center h-screen">
+    <div class="w-full md:w-1/2 mb-10 md:mb-8 bg-[#ffffff26] shadow-lg backdrop-blur-sm mx-6 py-4 rounded-2xl px-0 md:px-4">
+      <div class="absolute -top-20 md:-top-8 -right-6 md:-right-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-center rotate-12"><i class="p-6 fa-brands fa-telegram"></i></div>
+      <div class="absolute -top-20 md:-top-8 -left-6 md:-left-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-center -rotate-12"><i class="p-6 fa-brands fa-github"></i></div>
+      <div class="absolute -bottom-14 md:-bottom-8 -right-6 md:-right-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-bottom -rotate-12"><i class="p-4 fa-solid fa-code"></i></div>
+      <div class="absolute -bottom-14 md:-bottom-8 -left-6 md:-left-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-bottom rotate-12"><i class="p-4 fa-solid fa-terminal"></i></div>
+
+      <div class="mb-6 z-10">
+        <h2 class="text-6xl md:text-8xl mb-4 text-[var(--text)] font-semibold"><span>Xtra</span><span class="text-green-800">ROMs</span></h2>
+        <p class="text-md md:text-xl px-5 md:px-0 font-light leading-relaxed text-[var(--text-800)] tracking-wide">
           A site full of customizations and eye-candy you have never seen before! You can find ROMs that can either give
           you performance, or give you customizations - you choose! You can find Modules that can either be
           overclocking, adding customization, A.I. and so much more!
@@ -68,7 +34,7 @@
       </div>
       <div class="">
         <a href="{% url 'mods' %}">
-          <button class="py-1 px-3 rounded-full text-gray-900 text-lg font-sans bg-gray-200">
+          <button class="py-2 px-3 rounded-full text-gray-900 text-lg bg-[#ffffff60]">
             Let's Customize <i class="fas fa-arrow-right"></i>
           </button></a>
       </div>
@@ -77,14 +43,14 @@
 </section>
 <!-- Recently Added -->
 <section class="recent container mt-8 ">
-  <h2 class="text-center fs-2 text-[var(--text)] py-4 mb-8">
+  <h2 class="text-center text-4xl text-[var(--text)] py-4 mb-8">
     Recently Added
   </h2>
   <div class="pt-8 md:pt-0 px-8 md:px-0 flex flex-wrap justify-center items-center gap-8 lg:gap-32">
     {% for rom in roms %}
     <a href="{% url 'rom_details' rom.slug %}">
       <div
-        class="max-w-80 bg-[var(--secondary)] rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+        class="max-w-80 bg-[#ffffff30] backdrop-blur-sm rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
         <img class="w-full rounded-lg cursor-pointer object-cover min-h-40 max-h-40 min-w-80 max-w-80"
           src="{{ rom.image.url }}" alt="">
         <div class="p-4 justify-between gap-32 md:gap-0">
@@ -140,7 +106,7 @@
 
 <!-- Screenshot Section -->
 <section id="Screenshot" style="margin-top: 50px; margin-bottom: 50px" class="container p-2">
-  <h2 class="text-center fs-2 pt-4 text-[var(--text)]">Screenshots</h2>
+  <h2 class="text-center text-4xl pt-4 text-[var(--text)]">Screenshots</h2>
   <div id="Screenshot-1">
     <div class="grid grid-cols-2 justify-evenly" style="margin-top: 50px">
       <div class="">
@@ -211,27 +177,23 @@
 <!-- About Us -->
 <section id="about" class="py-5 text-[var(--text)]">
   <div class="container mx-auto px-4">
-    <div class="block md:flex align-items-center">
+    <div class="flex flex-col md:flex-row align-items-center">
       <div class="">
         <img src="{% static 'images/about.png' %}" alt="Community" class="img-fluid mb-4" />
       </div>
-      <div class="" style="display: grid">
-        <h2 class="text-center mb-4 fs-2">About Us</h2>
-        <p>
-          Empowering users with device customization. Discover custom ROMs and
-          Magisk modules for unique needs.
-        </p>
-        <p>
-          Our community offers support, guidance, and solutions. XtraROMs
-          welcomes modders and newbies alike.
-        </p>
-        <p>
-          Join us today to elevate your device experience. Unleash potential and
-          beauty, inside and out.
-        </p>
+      <div class="ms-4 ps-4">
+        <h2 class="text-center mb-4 text-4xl">About Us</h2>
+        <ul class="list-outside list-disc mb-4">
+          <li>Empowering users with device customization. Discover custom ROMs and
+            Magisk modules for unique needs.</li>
+          <li>Our community offers support, guidance, and solutions. XtraROMs
+            welcomes modders and newbies alike.</li>
+          <li>Join us today to elevate your device experience. Unleash potential and
+            beauty, inside and out.</li>
+        </ul>
         <p style="text-align: center; margin-top: 10px">
           <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl"
-            class="text-[var(--text)] bg-[var(--primary)] hover:bg-[var(--accent)] focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Join
+            class="text-[var(--text)] bg-[#ffffff35] backdrop-blur-sm hover:bg-[var(--accent)] focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Join
             the Community</a>
         </p>
       </div>

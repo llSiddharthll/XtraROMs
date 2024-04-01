@@ -35,10 +35,10 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
+    <link rel="icon" type="image/png" href="{% static 'images/xlogo.png' %}" />
     <meta
       property="og:image"
-      content="{% static 'images/logo.png' %}"
+      content="{% static 'images/xlogo.png' %}"
       itemprop="thumbnailUrl"
     />
 
@@ -82,18 +82,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Kurale&family=Nunito+Sans&family=Averia+Gruesa+Libre&family=Courgette&family=Delius+Swash+Caps&family=Karla:ital,wght@0,200..800;1,200..800&family=Snippet&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Space+Grotesk&family=Kurale&family=Nunito+Sans&family=Averia+Gruesa+Libre&family=Courgette&family=Delius+Swash+Caps&family=Karla:ital,wght@0,200..800;1,200..800&family=Snippet&display=swap"
       rel="stylesheet"
     />
 
-    {% block css %} {% endblock css %}
+    {% block css %} 
+    <style>
+    </style>
+    {% endblock css %}
 
     <title>XtraROMs</title>
   </head>
 
-  <body class="bg-[var(--background)] mt-10">
+  <body class="bg-[url('https://images.unsplash.com/photo-1557683311-eac922347aa1?q=80&w=1658&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-fixed bg-center bg-cover bg-no-repeat">
     <!-- Navigation Bar -->
-    <section class="container w-full fixed top-0 z-20">
+    <section class="container w-full sticky top-0 z-20">
       <nav class="bg-transparent backdrop-blur-xl">
         <div
           class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
@@ -107,10 +110,6 @@
               class="h-10 rounded-full"
               alt="XtraROMs Logo"
             />
-            <!-- <span
-              class="self-center text-[var(--text)] text-2xl font-semibold whitespace-nowrap"
-              >XtraROMs</span
-            > -->
           </a>
           <div
             class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
@@ -118,7 +117,7 @@
             {% if request.user.is_authenticated %}
             <button
               type="button"
-              class="flex border-2 border-[var(--text)] items-center gap-2 text-sm bg-transparent rounded-full md:me-0 py-1 px-2"
+              class="flex items-center gap-2 text-sm bg-[#ffffff26] backdrop-blur-sm shadow-md rounded-full md:me-0 py-1 px-2"
               id="user-menu-button"
               aria-expanded="false"
               data-dropdown-toggle="user-dropdown"
@@ -136,7 +135,7 @@
             <a href="{% url 'login' %}">
               <button
                 type="button"
-                class="flex border-2 border-[var(--text)] items-center gap-2 text-sm bg-transparent rounded-full md:me-0 py-1 px-2"
+                class="flex border-[1px] border-[var(--text)] items-center gap-2 text-sm bg-transparent rounded-full md:me-0 py-1 px-2"
                 id="user-menu-button"
               >
                 <span class="sr-only">Open user menu</span>
@@ -165,7 +164,7 @@
                 <li>
                   <a
                     href="{% url 'dashboard' %}"
-                    class="block px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--primary)]"
+                    class="block px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--primary)] font-light"
                     >Dashboard</a
                   >
                 </li>
@@ -173,7 +172,7 @@
                 <li>
                   <a
                     href="{% url 'admin:index' %}"
-                    class="block px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--primary)]"
+                    class="block px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--primary)] font-light"
                     >Admin</a
                   >
                 </li>
@@ -181,44 +180,13 @@
                 <li>
                   <a
                     href="{% url 'account_logout' %}"
-                    class="block px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--primary)]"
+                    class="block px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--primary)] font-light"
                     >Sign out</a
                   >
                 </li>
               </ul>
             </div>
-            <button
-              id="theme-toggle"
-              type="button"
-              class="text-[var(--text)] hover:bg-[transparent] focus:outline-none rounded-lg text-sm p-2.5 inline-flex items-center"
-            >
-              <svg
-                id="theme-toggle-dark-icon"
-                title="Change to Light Mode"
-                class="hidden w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                ></path>
-              </svg>
-              <svg
-                id="theme-toggle-light-icon"
-                title="Change to Dark Mode"
-                class="hidden w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
+            
             <button
               data-collapse-toggle="navbar-user"
               type="button"
@@ -245,37 +213,37 @@
             </button>
           </div>
           <div
-            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 "
             id="navbar-user"
           >
             <ul
-              class="text-lg flex flex-col font-medium text-[var(--text)] p-4 md:p-0 mt-4 border border-[var(--secondary)] opacity-50 md:opacity-100 rounded-lg md:rounded-full bg-[var(--background)] md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
+              class="text-lg flex flex-col font-medium text-[var(--text-800)] p-4 md:p-0 mt-4 border border-[var(--secondary)] opacity-50 md:opacity-100 rounded-lg md:rounded-full bg-[var(--background)] md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
             >
               <li>
                 <a
                   href="{% url 'home' %}"
-                  class="block py-2 px-3 text-[var(--text)] rounded md:hover:bg-[var(--primary)] md:hover:rounded-full"
+                  class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#ffffff26] md:hover:rounded-full"
                   >Home</a
                 >
               </li>
               <li>
                 <a
                   href="{% url 'roms' %}"
-                  class="block py-2 px-3 text-[var(--text)] rounded md:hover:bg-[var(--primary)] md:hover:rounded-full"
+                  class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#ffffff26] md:hover:rounded-full"
                   >Custom Roms</a
                 >
               </li>
               <li>
                 <a
                   href="{% url 'mods' %}"
-                  class="block py-2 px-3 text-[var(--text)] rounded md:hover:bg-[var(--primary)] md:hover:rounded-full"
+                  class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#ffffff26] md:hover:rounded-full"
                   >Mods/Tools</a
                 >
               </li>
               <li>
                 <a
                   href="{% url 'xtraknowledge' %}"
-                  class="block py-2 px-3 text-[var(--text)] rounded md:hover:bg-[var(--primary)] md:hover:rounded-full"
+                  class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#ffffff26] md:hover:rounded-full"
                   >XtraKnowledge</a
                 >
               </li>
@@ -283,7 +251,7 @@
               <li>
                 <a
                   href="{% url 'signup' %}"
-                  class="block py-2 px-3 text-[var(--text)] rounded md:hover:bg-[var(--primary)] md:hover:rounded-full"
+                  class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#ffffff26] md:hover:rounded-full"
                   >Signup</a
                 >
               </li>
@@ -297,7 +265,7 @@
     {% block content %} {% endblock content %}
 
     <!-- Footer -->
-    <footer class="bg-[var(--secondary)] shadow">
+    <footer class="bg-[#ffffff26] backdrop-blur-sm rounded-t-xl shadow">
       <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
           <a
@@ -305,8 +273,8 @@
             class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="{% static 'images/logo.png' %}"
-              class="h-8"
+              src="{% static 'images/xlogo.png' %}"
+              class="h-8 rounded-3xl"
               alt="Flowbite Logo"
             />
             <span

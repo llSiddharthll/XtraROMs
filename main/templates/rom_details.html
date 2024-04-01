@@ -14,10 +14,10 @@
 
 {% block content %}
 
-<section class="rom_card mt-32 px-8 mb-10 flex flex-col md:flex-row gap-8 md:flex-wrap justify-center">
+<section class="rom_card mt-8 px-8 mb-10 flex flex-col md:flex-row gap-8 md:flex-wrap justify-center">
 
   <div class="flex flex-col md:w-[25rem]">
-    <div class="min-h-full bg-[var(--secondary)] border border-[var(--secondary-200)] rounded-lg shadow-lg shadow-[var(--accent)]">
+    <div class="min-h-full bg-[#ffffff50] backdrop-blur-sm border border-[var(--secondary-200)] rounded-lg shadow-lg">
       <a href="#">
         <img class="rounded-t-lg h-52 min-w-full object-cover" src="{{rom.image.url}}" alt="" />
       </a>
@@ -25,18 +25,18 @@
         <h5 class="mb-2 text-2xl font-['Snippet'] font-bold tracking-tight text-[var(--text)]">{{rom.name}} ({{ rom.device }})</h5>
         <div class="flex">
           <a href="{{rom.link}}"
-            class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+            class="text-[var(--text)] backdrop-blur-sm bg-[#ffffff20] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
             <i class="fa-solid fa-arrow-down me-1"></i>ROM
           </a>
           {% if request.user.userprofile.is_authorized %}
           <a href="{% url 'edit_rom' rom.slug %}"
-            class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+            class="text-[var(--text)] backdrop-blur-sm bg-[#ffffff20] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
             <i class="fa-solid fa-pen-to-square me-1"></i>Edit
           </a>
           {% endif %}
           <a onclick="shareLink('{{rom.name}}', '{{rom.slug}}')"
             href=""
-            class="text-[var(--text)] bg-gradient-to-r from-[var(--primary-400)] via-[var(--primary-500)] to-[var(--primary-600)] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+            class="text-[var(--text)] backdrop-blur-sm bg-[#ffffff20] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
             <i class="fa-solid fa-share-from-square me-1"></i>Share
           </a>
         </div>
@@ -46,7 +46,7 @@
 
   <div class="details flex flex-col md:w-[25rem]">
     <div
-      class="bg-[var(--secondary)] text-[var(--text)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full">
+      class="bg-[#ffffff50] backdrop-blur-sm text-[var(--text)] rounded-lg shadow-lg flex flex-col h-full">
       <div class="p-2 border-b-2 border-[var(--accent)]">
         <h3>Details :</h3>
       </div>
@@ -56,7 +56,7 @@
 
   <div class="comments flex flex-col md:w-[25rem]">
     <div
-      class="bg-[var(--secondary)] text-[var(--background)] rounded-lg shadow-lg shadow-[var(--accent)] flex flex-col h-full lg:relative">
+      class="bg-[#ffffff50] backdrop-blur-sm text-[var(--background)] rounded-lg shadow-lg flex flex-col h-full lg:relative">
       <div class="p-2 border-b-2 border-[var(--accent)] text-[var(--text)]">
         <h3>Comments:</h3>
       </div>

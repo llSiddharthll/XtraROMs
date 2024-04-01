@@ -16,9 +16,9 @@
 }
 
 #Screenshot p{
-    font-size: x-large;
-    color: var(--primary);
-    font-family: system-ui;
+    font-size: large;
+    font-weight: 500;
+    color: var(--text-800);
 }
 
 #Screenshot .text-even{
