@@ -206,6 +206,10 @@ class ModsView(generic.ListView):
     model = CustomMOD
     context_object_name = 'mods'
     paginate_by = 12
+
+    def get_queryset(self):
+        queryset = super().get_queryset().order_by('-upload_date')
+        return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
