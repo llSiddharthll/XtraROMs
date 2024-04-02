@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -42,36 +43,17 @@
       itemprop="thumbnailUrl"
     />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    {% compress css %}
+    <link rel="stylesheet"
+        href="{% static 'src/output.css' %}">
+    {% endcompress %}
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="{% static 'swiper.css' %}" />
-    <link rel="stylesheet" href="{% static 'screenshot.css' %}" />
-    <link rel="stylesheet" href="{% static 'main.css' %}" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-      if (
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        document.documentElement.setAttribute("data-theme", "light");
-      }
-    </script>
-    <link rel="stylesheet" href="{% static 'pygments.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -312,8 +294,8 @@
     <div id="toast-container" class="fixed top-20 right-0 z-50 p-4"></div>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="{% static 'main.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();
