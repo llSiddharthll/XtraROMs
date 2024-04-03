@@ -1,17 +1,19 @@
 {% extends 'base.html' %} {% load static %} {% load custom_filters %}
 {% block css %}
 <style>
-  :root{
+  :root {
     --text: black;
   }
+
   h2 {
     font-family: "Snippet";
   }
-  .mod-cards{
+
+  .mod-cards {
     background: #ffffff30;
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 </style>
 {% endblock css %} {% block content %}
@@ -50,157 +52,154 @@
   </div>
 </section>
 
-  <!-- Searched ROMs -->
-  <section class="mb-10">
-    <div id="searched-mods" class="container px-4 md:px-32 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4"></div>
-  </section>
+<!-- Searched ROMs -->
+<section class="mb-10">
+  <div id="searched-mods" class="container px-4 md:px-32 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4"></div>
+</section>
 
-  <!-- Rom Cards -->
-  <section class="mb-10">
-    <div class="container px-4 md:px-32 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4">
-      <!-- Card -->
+<!-- Rom Cards -->
+<section class="mb-10">
+  <div class="container px-4 md:px-32 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4">
+    <!-- Card -->
 
-      {% for mod in mods %}
-      <div
-        class="mod-cards max-w-sm w-full rounded-xl my-1 md:my-4">
-        <div class="flex flex-col">
-          <div class="">
-            <div class="relative h-24 md:h-48 w-full mb-3">
-              <div class="absolute flex flex-col top-0 right-0 p-3">
-                {% if request.user.is_authenticated %}
-                <button
-                  class="like-button bg-white hover:bg-gray-200 shadow hover:shadow-md text-red-700 rounded-full w-7 h-7 text-center p-1"
-                  onclick="like('{{mod.id}}')">
-                  <i id="heartIcon-{{mod.id}}"
-                    class="fa-heart {% if mod.id in liked_mod_ids %}fa-solid{% else %}fa-regular{% endif %}"></i>
-                </button>
-                {% endif %}
-              </div>
-              <img data-src="{{mod.image.url}}" src="{% static 'images/xlogo.png' %}" alt="{{mod.name}}"
-                class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
+    {% for mod in mods %}
+    <div class="mod-cards max-w-sm w-full rounded-xl my-1 md:my-4">
+      <div class="flex flex-col">
+        <div class="">
+          <div class="relative h-24 md:h-48 w-full mb-3">
+            <div class="absolute flex flex-col top-0 right-0 p-3">
+              {% if request.user.is_authenticated %}
+              <button
+                class="like-button bg-white hover:bg-gray-200 shadow hover:shadow-md text-red-700 rounded-full w-7 h-7 text-center p-1"
+                onclick="like('{{mod.id}}')">
+                <i id="heartIcon-{{mod.id}}"
+                  class="fa-heart {% if mod.id in liked_mod_ids %}fa-solid{% else %}fa-regular{% endif %}"></i>
+              </button>
+              {% endif %}
             </div>
-            <div class="flex-auto justify-evenly p-2 md:p-6">
-              <div class="flex flex-wrap">
-                <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path
-                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  <span class="text-[var(--text)] whitespace-nowrap mr-3">
-                    {% if mod.id in likes.keys %} {{ likes|get_key:mod.id }} {% endif %}
-                  </span><span class="mr-2 text-[var(--text)]">Likes</span>
-                </div>
-                <div class="flex items-center w-full justify-between min-w-0">
-                  <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] truncate">
-                    {{mod.name}}
-                  </h2>
-                </div>
+            <img data-src="{{mod.image.url}}" src="{% static 'images/xlogo.png' %}" alt="{{mod.name}}"
+              class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
+          </div>
+          <div class="flex flex-col justify-evenly p-2 md:p-6">
+            <div class="flex flex-wrap gap-2">
+              <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span class="text-[var(--text)] whitespace-nowrap mr-3">
+                  {% if mod.id in likes.keys %} {{ likes|get_key:mod.id }} {% endif %}
+                </span><span class="mr-2 text-[var(--text)]">Likes</span>
               </div>
-              <div class="lg:flex py-4 text-sm text-[var(--text)]">
-                <div class="flex-1 inline-flex items-center mb-3">
-                  <div class="w-full flex-none text-sm flex items-center text-[var(--text)] truncate">
-                    By {{mod.credits.name}}
-                  </div>
-                </div>
+              <div class="flex items-center w-full min-w-0">
+                <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] truncate">
+                  {{mod.name}}
+                </h2>
               </div>
-              <div class="flex gap-2 text-sm font-medium justify-start">
-                <!-- Download Button-->
-                <a class="hidden lg:flex " target="_blank" href="{{mod.link}}">
-                  <button
-                    class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
 
-                    <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
-                      <i class="fa-solid fa-arrow-down"></i> </span><span class="text-[var(--text)]">Download</span>
-                  </button></a>
-                <a class="block lg:hidden " target="_blank" href="{{mod.link}}">
-                  <button
-                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
-                    <i class="fa-solid fa-download"></i>
-                  </button></a>
-
-                <!-- Share Button -->
-                <button id="shareButton" onclick="shareLink('{{mod.name}}', '{{mod.slug}}')"
-                  class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
-                  <i class="fa-solid fa-share-from-square"></i>
-                </button>
-
-                <!-- Details Button -->
-                <a href="{% url 'mod_details' mod.slug %}">
-                  <button
-                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg></button></a>
+              <div class="flex items-center w-full min-w-00">
+                <p class="text-sm md:text-lg font-light mr-auto cursor-pointer text-[var(--text)] truncate">By
+                  {{mod.credits.name}}</p>
               </div>
+            </div>
+            <div class="flex gap-2 text-sm font-medium justify-start mt-4">
+              <!-- Download Button-->
+              <a class="hidden lg:flex " target="_blank" href="{{mod.link}}">
+                <button
+                  class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
+
+                  <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
+                    <i class="fa-solid fa-arrow-down"></i> </span><span class="text-[var(--text)]">Download</span>
+                </button></a>
+              <a class="block lg:hidden " target="_blank" href="{{mod.link}}">
+                <button
+                  class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  <i class="fa-solid fa-download"></i>
+                </button></a>
+
+              <!-- Share Button -->
+              <button id="shareButton" onclick="shareLink('{{mod.name}}', '{{mod.slug}}')"
+                class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                <i class="fa-solid fa-share-from-square"></i>
+              </button>
+
+              <!-- Details Button -->
+              <a href="{% url 'mod_details' mod.slug %}">
+                <button
+                  class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg></button></a>
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
-    <nav aria-label="Page navigation" class="flex justify-center items-center mt-6">
-      <ul class="pagination justify-center flex w-fit bg-[#ffffff30] glass rounded-lg shadow-md">
-          {% if page_obj.has_previous %}
-              <li class="page-item p-2">
-                  <a class="page-link" href="?page=1" aria-label="First">
-                      <i class="fas fa-angle-double-left"></i>
-                  </a>
-              </li>
-              <li class="page-item p-2">
-                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                      <i class="fas fa-angle-left"></i>
-                  </a>
-              </li>
-          {% else %}
-              <li class="page-item disabled p-2">
-                  <span class="page-link" aria-hidden="true">
-                      <i class="fas fa-angle-double-left"></i>
-                  </span>
-              </li>
-              <li class="page-item disabled p-2">
-                  <span class="page-link" aria-hidden="true">
-                      <i class="fas fa-angle-left"></i>
-                  </span>
-              </li>
-          {% endif %}
-          
-          <li class="page-item p-2">
-              <span class="page-link">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-              </span>
-          </li>
-          
-          {% if page_obj.has_next %}
-              <li class="page-item p-2">
-                  <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                      <i class="fas fa-angle-right"></i>
-                  </a>
-              </li>
-              <li class="page-item p-2">
-                  <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
-                      <i class="fas fa-angle-double-right"></i>
-                  </a>
-              </li>
-          {% else %}
-              <li class="page-item disabled p-2">
-                  <span class="page-link" aria-hidden="true">
-                      <i class="fas fa-angle-right"></i>
-                  </span>
-              </li>
-              <li class="page-item disabled p-2">
-                  <span class="page-link" aria-hidden="true">
-                      <i class="fas fa-angle-double-right"></i>
-                  </span>
-              </li>
-          {% endif %}
-      </ul>
-  </nav>   
-  </section>
+    {% endfor %}
+  </div>
+  <nav aria-label="Page navigation" class="flex justify-center items-center mt-6">
+    <ul class="pagination justify-center flex w-fit bg-[#ffffff30] glass rounded-lg shadow-md">
+      {% if page_obj.has_previous %}
+      <li class="page-item p-2">
+        <a class="page-link" href="?page=1" aria-label="First">
+          <i class="fas fa-angle-double-left"></i>
+        </a>
+      </li>
+      <li class="page-item p-2">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+          <i class="fas fa-angle-left"></i>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled p-2">
+        <span class="page-link" aria-hidden="true">
+          <i class="fas fa-angle-double-left"></i>
+        </span>
+      </li>
+      <li class="page-item disabled p-2">
+        <span class="page-link" aria-hidden="true">
+          <i class="fas fa-angle-left"></i>
+        </span>
+      </li>
+      {% endif %}
+
+      <li class="page-item p-2">
+        <span class="page-link">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+      </li>
+
+      {% if page_obj.has_next %}
+      <li class="page-item p-2">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+          <i class="fas fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="page-item p-2">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+          <i class="fas fa-angle-double-right"></i>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled p-2">
+        <span class="page-link" aria-hidden="true">
+          <i class="fas fa-angle-right"></i>
+        </span>
+      </li>
+      <li class="page-item disabled p-2">
+        <span class="page-link" aria-hidden="true">
+          <i class="fas fa-angle-double-right"></i>
+        </span>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</section>
 {% endblock content %} {% block script %}
 <script>
   function like(modID) {
@@ -245,6 +244,7 @@
         console.log(response.data.results);
         mods = response.data.results;
         const searchedRoms = document.getElementById("searched-mods");
+        searchedRoms.classList.add("border-b-2", "border-black", "pb-6");
         searchedRoms.innerHTML = ""; // Clear previous content
 
         if (mods.length === 0) {
@@ -269,7 +269,7 @@
               </button>
               {% endif %}
             </div>
-            <img data-src="${mod.image.url}" src="{% static 'images/xlogo.png' %}" alt="${mod.name}"
+            <img data-src="${mod.image}" src="{% static 'images/xlogo.png' %}" alt="${mod.name}"
               class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
           </div>
           <div class="flex-auto justify-evenly p-2 md:p-6">
@@ -289,15 +289,12 @@
                   ${mod.name}
                 </h2>
               </div>
+            <div class="flex items-center w-full min-w-00">
+                <p class="text-sm md:text-lg font-light mr-auto cursor-pointer text-[var(--text)] truncate">By
+                  ${mod.credits}</p>
             </div>
-            <div class="lg:flex py-4 text-sm text-[var(--text)]">
-              <div class="flex-1 inline-flex items-center mb-3">
-                <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
-                  By ${mod.credits}
-                </div>
-              </div>
             </div>
-            <div class="flex gap-2 text-sm font-medium justify-start">
+            <div class="flex gap-2 text-sm font-medium justify-start mt-4">
 
               <!-- Download Button-->
               <a href="${mod.link}" class="hidden lg:flex ">
@@ -340,9 +337,6 @@
           });
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
   }
 
   function shareLink(name, slug) {
