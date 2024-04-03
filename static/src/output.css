@@ -3758,6 +3758,22 @@ input:checked + .toggle-bg {
   background-color: rgb(99 49 18 / var(--tw-bg-opacity));
 }
 
+.bg-\[\] {
+  background-color: ;
+}
+
+.bg-\[\#\] {
+  background-color: #;
+}
+
+.bg-\[\#ffffff26\] {
+  background-color: #ffffff26;
+}
+
+.bg-\[\#ff\] {
+  background-color: #ff;
+}
+
 .bg-opacity-0 {
   --tw-bg-opacity: 0;
 }
@@ -6867,6 +6883,10 @@ main .circle {
 
   .md\:bg-transparent {
     background-color: transparent;
+  }
+
+  .md\:bg-\[var\(--secondary-200\)\] {
+    background-color: var(--secondary-200);
   }
 
   .md\:p-0 {
