@@ -92,12 +92,7 @@
   a{
     text-decoration: none;
   }
-  
-  .hero {
-    height: 100vh;
-    background-image: url('https://images.pexels.com/photos/1069798/pexels-photo-1069798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-    /* Replace with your image URL */
-  }
+
   
   .hero-content {
     z-index: 1;
@@ -543,3 +538,11 @@ main {
     opacity: 0.7;
   }
   
+  .glass{
+    background: #ffffff26;
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3px );
+-webkit-backdrop-filter: blur( 3px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }

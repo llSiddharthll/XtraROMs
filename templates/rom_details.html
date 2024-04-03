@@ -14,10 +14,10 @@
 
 {% block content %}
 
-<section class="rom_card mt-8 px-8 mb-10 flex flex-col md:flex-row gap-8 md:flex-wrap justify-center">
+<section class="mt-8 px-8 mb-10 flex flex-col md:flex-row gap-8 md:flex-wrap justify-center">
 
   <div class="flex flex-col md:w-[25rem]">
-    <div class="min-h-full bg-[#ffffff50] backdrop-blur-sm border border-[var(--secondary-200)] rounded-lg shadow-lg">
+    <div class="min-h-full glass border border-[var(--secondary-200)] rounded-lg shadow-lg">
       <a href="#">
         <img class="rounded-t-lg h-52 min-w-full object-cover" src="{{rom.image.url}}" alt="" />
       </a>
@@ -46,7 +46,7 @@
 
   <div class="details flex flex-col md:w-[25rem]">
     <div
-      class="bg-[#ffffff50] backdrop-blur-sm text-[var(--text)] rounded-lg shadow-lg flex flex-col h-full">
+      class="glass text-[var(--text)] rounded-lg shadow-lg flex flex-col h-full">
       <div class="p-2 border-b-2 border-[var(--accent)]">
         <h3>Details :</h3>
       </div>
@@ -56,7 +56,7 @@
 
   <div class="comments flex flex-col md:w-[25rem]">
     <div
-      class="bg-[#ffffff50] backdrop-blur-sm text-[var(--background)] rounded-lg shadow-lg flex flex-col h-full lg:relative">
+      class="glass text-[var(--background)] rounded-lg shadow-lg flex flex-col h-full lg:relative">
       <div class="p-2 border-b-2 border-[var(--accent)] text-[var(--text)]">
         <h3>Comments:</h3>
       </div>

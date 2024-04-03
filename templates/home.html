@@ -18,11 +18,11 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 <section class="">
   <div
     class="relative flex justify-center text-center items-center h-screen">
-    <div class="w-full md:w-1/2 mb-10 md:mb-8 bg-[#ffffff26] shadow-lg backdrop-blur-sm mx-6 py-4 rounded-2xl px-0 md:px-4">
-      <div class="absolute -top-20 md:-top-8 -right-6 md:-right-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-center rotate-12"><i class="p-6 fa-brands fa-telegram"></i></div>
-      <div class="absolute -top-20 md:-top-8 -left-6 md:-left-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-center -rotate-12"><i class="p-6 fa-brands fa-github"></i></div>
-      <div class="absolute -bottom-14 md:-bottom-8 -right-6 md:-right-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-bottom -rotate-12"><i class="p-4 fa-solid fa-code"></i></div>
-      <div class="absolute -bottom-14 md:-bottom-8 -left-6 md:-left-8 text-5xl bg-[#ffffff26] backdrop-blur-sm rounded-2xl shadow-md z-0 origin-bottom rotate-12"><i class="p-4 fa-solid fa-terminal"></i></div>
+    <div class="w-full md:w-1/2 mb-10 md:mb-8 hero mx-6 py-4 rounded-2xl px-0 md:px-4 h-fit">
+      <div class="absolute -top-20 md:-top-8 -right-6 md:-right-8 text-5xl hero rounded-2xl shadow-md z-0 origin-center rotate-12"><i class="p-6 fa-brands fa-telegram"></i></div>
+      <div class="absolute -top-20 md:-top-8 -left-6 md:-left-8 text-5xl hero rounded-2xl shadow-md z-0 origin-center -rotate-12"><i class="p-6 fa-brands fa-github"></i></div>
+      <div class="absolute -bottom-14 md:-bottom-8 -right-6 md:-right-8 text-5xl hero rounded-2xl shadow-md z-0 origin-bottom -rotate-12"><i class="p-4 fa-solid fa-code"></i></div>
+      <div class="absolute -bottom-14 md:-bottom-8 -left-6 md:-left-8 text-5xl hero rounded-2xl shadow-md z-0 origin-bottom rotate-12"><i class="p-4 fa-solid fa-terminal"></i></div>
 
       <div class="mb-6 z-10">
         <h2 class="text-6xl md:text-8xl mb-4 text-[var(--text)] font-semibold"><span>Xtra</span><span class="text-green-800">ROMs</span></h2>
@@ -193,7 +193,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
         </ul>
         <p style="text-align: center; margin-top: 10px">
           <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl"
-            class="text-[var(--text)] bg-[#ffffff35] backdrop-blur-sm hover:bg-[var(--accent)] focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Join
+            class="text-[var(--text)] glass hover:bg-[var(--accent)] focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Join
             the Community</a>
         </p>
       </div>
@@ -202,6 +202,11 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 </section>
 
 {% endblock content %} {% block script %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    
 <script>
   var swiper = new Swiper(".swiper", {
     effect: "coverflow",

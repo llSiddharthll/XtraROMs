@@ -16,7 +16,7 @@
 <section class="search-bar">
   <div>
     <div class="flex p-2 py-6 px-4 md:px-32">
-      <div class="backdrop-blur-sm rom-cards items-center justify-between w-full flex rounded-full shadow-lg p-2 mb-5 sticky"
+      <div class="rom-cards items-center justify-between w-full flex rounded-full shadow-lg p-2 mb-5 sticky"
         style="top: 5px">
         <div>
           <div class="p-2 mr-1 rounded-full hover:bg-[var(--primary-300)] cursor-pointer">
@@ -107,27 +107,27 @@
                 <!-- Download Button-->
                 <a class="hidden lg:flex " href="{{rom.link}}">
                   <button
-                    class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0 backdrop-blur-sm px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
+                    class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
 
                     <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                       <i class="fa-solid fa-arrow-down"></i> </span><span class="text-[var(--text)]">Download</span>
                   </button></a>
                 <a class="block lg:hidden " href="{{rom.link}}">
                   <button
-                    class="backdrop-blur-sm hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                     <i class="fa-solid fa-download"></i>
                   </button></a>
 
                 <!-- Share Button -->
                 <button id="shareButton" onclick="shareLink('{{rom.name}}', '{{rom.slug}}')"
-                  class="block backdrop-blur-sm hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <i class="fa-solid fa-share-from-square"></i>
                 </button>
 
                 <!-- Details Button -->
                 <a href="{% url 'rom_details' rom.slug %}">
                   <button
-                    class="backdrop-blur-sm hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -143,7 +143,7 @@
       {% endfor %}
     </div>
     <nav aria-label="Page navigation" class="flex justify-center items-center mt-6">
-      <ul class="pagination justify-center flex w-fit bg-[#ffffff30] backdrop-blur-sm rounded-lg shadow-md">
+      <ul class="pagination justify-center flex w-fit bg-[#ffffff30] glass rounded-lg shadow-md">
           {% if page_obj.has_previous %}
               <li class="page-item p-2">
                   <a class="page-link" href="?page=1" aria-label="First">
@@ -304,27 +304,27 @@
               <!-- Download Button-->
               <a href="${rom.link}" class="hidden lg:flex ">
                 <button
-                class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 backdrop-blur-sm px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
+                class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
                 <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                   <i class="fa-solid fa-arrow-down"></i>
                 </span><span class="text-[var(--text)]">Download</span>
               </button></a>
               <a href="${rom.link}" class="block lg:hidden ">
                 <button
-                class="backdrop-blur-sm hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-download"></i>
               </button></a>
 
               <!-- Share Button -->
               <button id="shareButton" onclick="shareLink('${rom.name}', '${rom.slug}')"
-                class="block backdrop-blur-sm hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-share-from-square"></i>
               </button>
 
               <!-- Details Button -->
               <a href="/rom_detail/${rom.slug}">
                 <button
-                  class=" backdrop-blur-sm hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  class=" glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
