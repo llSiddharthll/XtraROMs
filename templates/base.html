@@ -359,6 +359,62 @@
         });
       }
     </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Select all elements with the 'lazyload' class
+    var lazyloadImages = document.querySelectorAll('.lazyload');
+
+    function lazyload() {
+      var scrollTop = window.pageYOffset;
+      lazyloadImages.forEach(function(img) {
+        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+          // Load the image by setting its 'src' attribute to the value of its 'data-src' attribute
+          img.src = img.dataset.src;
+          // Add the 'lazyloaded' class to trigger the CSS transition
+          img.classList.add('lazyloaded');
+          // Remove the 'lazyload' class
+          img.classList.remove('lazyload');
+        }
+      });
+      
+      // Remove scroll, resize, and orientation change event listeners if all images are loaded
+      if (document.querySelectorAll('.lazyload').length === 0) {
+        document.removeEventListener("scroll", lazyload);
+        window.removeEventListener("resize", lazyload);
+        window.removeEventListener("orientationChange", lazyload);
+      }
+    }
+
+    // Add a delay before starting lazy loading
+    setTimeout(function() {
+      // Call the lazyload function after the delay
+      lazyload();
+
+      // Add event listeners for scroll, resize, and orientation change events to trigger lazy loading
+      document.addEventListener("scroll", lazyload);
+      window.addEventListener("resize", lazyload);
+      window.addEventListener("orientationChange", lazyload);
+    }, 3000); // 3000 milliseconds = 3 seconds
+
+    // Add 'load' event listeners to lazyloaded images to trigger CSS transition
+    lazyloadImages.forEach(function(img) {
+      img.addEventListener('load', function() {
+        img.classList.add('lazyloaded');
+      });
+    });
+
+    // Add 'error' event listeners to handle image loading errors
+    lazyloadImages.forEach(function(img) {
+      img.addEventListener('error', function() {
+        console.error('Error loading image:', img);
+      });
+    });
+  });
+</script>
+
+
+
     {% block script %} {% endblock script %}
   </body>
 </html>

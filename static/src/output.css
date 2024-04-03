@@ -4250,3 +4250,24 @@ backdrop-filter: blur( 3px );
 border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
+@media(max-width:777px){
+  .glass{
+    background: #ffffff35;
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    border-radius: 8px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+}
+
+.lazyload {
+  opacity: 0.5;
+  transition: opacity 1s ease;
+}
+
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 1s ease;
+}

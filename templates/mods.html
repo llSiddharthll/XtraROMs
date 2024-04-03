@@ -78,8 +78,8 @@
                 </button>
                 {% endif %}
               </div>
-              <img src="{{mod.image.url}}" alt="{{mod.name}}"
-                class="h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
+              <img data-src="{{mod.image.url}}" src="{% static 'images/xlogo.png' %}" alt="{{mod.name}}"
+                class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
             </div>
             <div class="flex-auto justify-evenly p-2 md:p-6">
               <div class="flex flex-wrap">
@@ -108,14 +108,14 @@
               </div>
               <div class="flex gap-2 text-sm font-medium justify-start">
                 <!-- Download Button-->
-                <a class="hidden lg:flex " href="{{mod.link}}">
+                <a class="hidden lg:flex " target="_blank" href="{{mod.link}}">
                   <button
                     class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
 
                     <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                       <i class="fa-solid fa-arrow-down"></i> </span><span class="text-[var(--text)]">Download</span>
                   </button></a>
-                <a class="block lg:hidden " href="{{mod.link}}">
+                <a class="block lg:hidden " target="_blank" href="{{mod.link}}">
                   <button
                     class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                     <i class="fa-solid fa-download"></i>
@@ -271,8 +271,8 @@
               </button>
               {% endif %}
             </div>
-            <img src="${mod.image_url}" alt="${mod.name}"
-              class="h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
+            <img data-src="${mod.image.url}" src="{% static 'images/xlogo.png' %}" alt="${mod.name}"
+              class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
           </div>
           <div class="flex-auto justify-evenly p-2 md:p-6">
             <div class="flex flex-wrap">
