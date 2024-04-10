@@ -9,7 +9,7 @@ from allauth.account.views import SignupView, LoginView
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.safestring import mark_safe
 from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import random
 
 class HomeView(generic.View):
     template_name = "home.html"
@@ -175,7 +175,10 @@ class ROMDetailsView(generic.View):
     context_object_name = 'rom'
 
     def get(self, request, slug):
+        
         rom = get_object_or_404(CustomROM, slug=slug)
+        suggested_roms = CustomROM.objects.filter(device__in=rom.device.all())
+
         formatted_details = mark_safe(
             rom.details.replace("\n", "<br>").replace("-", "&#8226;")
         )
@@ -184,7 +187,7 @@ class ROMDetailsView(generic.View):
         return render(
             request,
             self.template_name,
-            {"rom": rom, "formatted_details": formatted_details, "comments": comments, "form": form},
+            {"rom": rom, "formatted_details": formatted_details, "comments": comments, "form": form, "suggested_roms": suggested_roms},
         )
 
     def post(self, request, slug):
@@ -198,7 +201,6 @@ class ROMDetailsView(generic.View):
             rom.comments.add(comment)
             
             return redirect("rom_details", rom.slug)
-
         return JsonResponse({"error": "Invalid POST request"})
     
 class ModsView(generic.ListView):
@@ -252,6 +254,10 @@ class MODDetailsView(generic.View):
 
     def get(self, request, slug):
         mod = get_object_or_404(CustomMOD, slug=slug)
+        suggested_mods = CustomMOD.objects.all()
+        suggested_mods = list(suggested_mods)
+        random.shuffle(suggested_mods)
+        random_mods = random.sample(suggested_mods, 6)
         formatted_details = mark_safe(
             mod.details.replace("\n", "<br>").replace("-", "&#8226;")
         )
@@ -260,7 +266,7 @@ class MODDetailsView(generic.View):
         return render(
             request,
             self.template_name,
-            {"mod": mod, "formatted_details": formatted_details, "comments": comments, "form": form},
+            {"mod": mod, "formatted_details": formatted_details, "comments": comments, "form": form, "random_mods": random_mods},
         )
 
     def post(self, request, slug):
@@ -284,6 +290,15 @@ class XtraKnowledgeView(generic.ListView):
         blog = Blog.objects.all()
         context = {'blogs': blog}
         return render(request, self.template_name, context)
+    
+    
+    
+class DetailsView(generic.View):
+    template_name = "details.html"
+
+    def get(self, request, slug):
+        blog = get_object_or_404(Blog, slug=slug)
+        return render(request, self.template_name, {'blog': blog})
     
 class PolicyView(generic.TemplateView):
     template_name = "privacy_policy.html"

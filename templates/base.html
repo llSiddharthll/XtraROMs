@@ -1,4 +1,3 @@
-{% load compress %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +42,8 @@
       itemprop="thumbnailUrl"
     />
 
-    {% compress css %}
     <link rel="stylesheet"
-        href="{% static 'src/output.css' %}">
-    {% endcompress %}
+        href="{% static 'output.css' %}">
 
     <link
       rel="stylesheet"
@@ -67,6 +64,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins&family=Space+Grotesk&family=Kurale&family=Nunito+Sans&family=Averia+Gruesa+Libre&family=Courgette&family=Delius+Swash+Caps&family=Karla:ital,wght@0,200..800;1,200..800&family=Snippet&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {% block css %} 
     <style>
@@ -76,7 +75,7 @@
     <title>XtraROMs</title>
   </head>
 
-  <body class="bg-[url('/static/images/xtrabg.jpg')] bg-center bg-cover bg-no-repeat mt-20">
+  <body class="bg-gradient-to-b from-sky-500 to-purple-400 bg-fixed mt-20">
     <!-- Navigation Bar -->
     <section class="container w-full fixed top-0 z-20">
       <nav class="bg-transparent backdrop-blur-xl">
@@ -99,7 +98,7 @@
             {% if request.user.is_authenticated %}
             <button
               type="button"
-              class="flex items-center gap-2 text-sm glass shadow-md rounded-full md:me-0 py-1 px-2"
+              class="flex items-center gap-2 text-sm bg-[#ffffff26] backdrop-blur-sm shadow-lg border-2 border-[var(--accent)] rounded-full md:me-0 py-1 px-2"
               id="user-menu-button"
               aria-expanded="false"
               data-dropdown-toggle="user-dropdown"
@@ -117,7 +116,7 @@
             <a href="{% url 'login' %}">
               <button
                 type="button"
-                class="flex items-center gap-2 text-sm glass shadow-md rounded-full md:me-0 py-1 px-2"
+                class="flex items-center gap-2 text-sm bg-[#ffffff26] backdrop-blur-sm shadow-lg border-2 border-[var(--accent)] rounded-full md:me-0 py-1 px-2"
                 id="user-menu-button"
               >
                 <span class="sr-only">Open user menu</span>
@@ -309,6 +308,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       var messages = JSON.parse("{{ serialized_messages|escapejs }}");
       if (messages.length > 0) {
@@ -395,7 +395,7 @@
       document.addEventListener("scroll", lazyload);
       window.addEventListener("resize", lazyload);
       window.addEventListener("orientationChange", lazyload);
-    }, 3000); // 3000 milliseconds = 3 seconds
+    }, 1000); 
 
     // Add 'load' event listeners to lazyloaded images to trigger CSS transition
     lazyloadImages.forEach(function(img) {

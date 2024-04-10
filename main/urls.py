@@ -19,5 +19,6 @@ urlpatterns = [
     path('upload_roms/', fbv.upload_roms, name="upload_roms"),
     path('upload_mods/', fbv.upload_mods, name="upload_mods"),
     path('manage_users/', ManageUserView.as_view(), name='manage_users'),
-    path('xtraknowledge/', XtraKnowledgeView.as_view(), name='xtraknowledge')
+    path('xtraknowledge/', XtraKnowledgeView.as_view(), name='xtraknowledge'),
+    path('xtraknowledge/<slug:slug>/', DetailsView.as_view(), name='details'),
 ]

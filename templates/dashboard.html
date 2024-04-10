@@ -3,13 +3,7 @@
 {% block css %}
 <style>
   ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  @media (max-width: 956px) {
-    ::-webkit-scrollbar {
-      width: 0;
-    }
+    width: 0px;
   }
 
   #div_id_profile_picture {
@@ -182,10 +176,13 @@
             {{ rom_form.name }}
           </div>
           <div class="mb-4">
+            <label for="id_android" class="text-sm font-medium text-[var(--text)]">Android Version</label>
+            {{ rom_form.android }}
+          </div></div>
+          <div class="mb-4 flex flex-col">
             <label for="id_device" class="text-sm font-medium text-[var(--text)]">Device</label>
             {{ rom_form.device }}
           </div>
-        </div>
         <div class="flex gap-2 min-w-full">
           <div class="mb-4">
             <label for="id_credits" class="text-sm font-medium text-[var(--text)]">Credits</label>
@@ -309,6 +306,15 @@
 
 
 <script>
+  $(document).ready(function() {
+    $('.select2').select2({
+      placeholder: 'Choose Devices',
+      allow_clear: true
+    });
+});
+
+</script>
+<script>
   function romUploadForm() {
     var form = document.getElementById("romForm");
     var formData = new FormData(form);
@@ -374,5 +380,17 @@
         }
       })
   }
+</script>
+
+<script>
+  $(document).ready(function() {
+      $('#id_rom_credits').change(function() {
+          if ($(this).val() === 'credit') {
+              // User selected the "Enter a name or select from existing" option
+              // Show a text input field to allow them to enter a new name
+              $(this).replaceWith('<input type="text" name="credits" id="id_credits" class="placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]" placeholder="Enter a new credit name">');
+          }
+      });
+  });
 </script>
 {% endblock script %}

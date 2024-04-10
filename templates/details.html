@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="container mx-auto flex flex-col justify-start items-center">
+    <div class="flex flex-row justify-between">
+        <div class="flex gap-4">
+            <div><i class="fa-solid fa-left-long"></i></div>
+            <div><img src="" alt="" class="h-8 rounded-full object-center object-cover"></div>
+            <div>
+                <h3>{{blog.written_by}}</h3>
+            </div>
+            <div>
+                <small>{{blog.date}}</small>
+            </div>
+        </div>
+        <div>
+            <div>
+                <h4 class="px-3 py-2 rounded-full">{{blog.tag}}</h4>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1>{{blog.title}}</h1>
+    </div>
+    <div>
+        {{blog.description}}
+    </div>
+</section>
+
+{% endblock content %}

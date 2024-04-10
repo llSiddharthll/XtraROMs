@@ -7,27 +7,27 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'XtraROMs.settings')
 # Configure Django
 django.setup()
 
-from main.models import CustomROM, CustomMOD
+from main.models import *
 from django.utils.text import slugify
-import uuid
+import json
 
-roms_without_slugs = CustomROM.objects.all()
-for rom in roms_without_slugs:
-    # Generate slug from the ROM name
-    """ rom_slug = slugify(rom.name)
-    unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
-    rom_slug = f"{rom_slug}-{unique_id}"
-    rom.slug = rom_slug """
-    if rom.slug:
-        rom.slug = None
-    rom.save()
-mods_without_slugs = CustomMOD.objects.all()
-for mod in mods_without_slugs:
-    """ mod_slug = slugify(mod.name)
-    unique_id = uuid.uuid4().hex[:6]  # Generate a unique identifier
-    mod_slug = f"{mod_slug}-{unique_id}"
-    mod.slug = mod_slug """
-    if mod.slug:
-        mod.slug = None
-    mod.save()
+# Load data from JSON file
+with open("smartphones.json", "r") as file:
+    data = json.load(file)
+
+# Iterate over the data and create/update Device objects
+for item in data:
+    # Extract name and codename from the current item
+    name = item['name']
+    codename = item['codename']
     
+    # Check if a Device object with the given codename exists
+    device, created = Device.objects.get_or_create(codename=codename)
+    
+    # Update the Device object's modal (corrected from 'modal' to 'model')
+    device.name = name
+    
+    # Save the changes to the Device object
+    device.save()
+
+print("Data imported successfully.")

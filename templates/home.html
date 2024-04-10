@@ -17,10 +17,10 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   <div
     class="relative flex justify-center text-center items-center md:h-screen">
     <div class="w-full md:w-1/2 mb-10 md:mb-8 md:backdrop-blur-sm hero mx-6 py-4 rounded-2xl px-0 md:px-4 h-fit">
-      <div class="absolute -top-32 md:-top-8 right-6 md:-right-8 text-5xl hero rounded-2xl shadow-md z-0 origin-center rotate-12"><i class="p-6 fa-brands fa-telegram"></i></div>
-      <div class="absolute -top-40 md:-top-8 left-6 md:-left-8 text-5xl hero rounded-2xl shadow-md z-0 origin-center -rotate-12"><i class="p-6 fa-brands fa-github"></i></div>
-      <div class="absolute -bottom-14 md:-bottom-8 right-6 md:-right-8 text-5xl hero rounded-2xl shadow-md z-0 origin-bottom -rotate-12"><i class="p-4 fa-solid fa-code"></i></div>
-      <div class="absolute -bottom-20 md:-bottom-8 left-6 md:-left-8 text-5xl hero rounded-2xl shadow-md z-0 origin-bottom rotate-12"><i class="p-4 fa-solid fa-terminal"></i></div>
+      <div class="absolute -top-32 md:-top-20 right-6 md:-right-32 text-5xl hero rounded-2xl shadow-md z-0 origin-center rotate-12"><i class="p-6 fa-brands fa-telegram"></i></div>
+      <div class="absolute -top-40 md:-top-20 left-6 md:-left-32 text-5xl hero rounded-2xl shadow-md z-0 origin-center -rotate-12"><i class="p-6 fa-brands fa-github"></i></div>
+      <div class="absolute -bottom-14 md:-bottom-20 right-6 md:-right-32 text-5xl hero rounded-2xl shadow-md z-0 origin-bottom -rotate-12"><i class="p-4 fa-solid fa-code"></i></div>
+      <div class="absolute -bottom-20 md:-bottom-20 left-6 md:-left-32 text-5xl hero rounded-2xl shadow-md z-0 origin-bottom rotate-12"><i class="p-4 fa-solid fa-terminal"></i></div>
 
       <div class="mb-6 z-10">
         <h2 class="text-6xl md:text-8xl mb-4 text-[var(--text)] font-semibold"><span>Xtra</span><span class="text-green-800">ROMs</span></h2>
@@ -48,7 +48,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     {% for rom in roms %}
     <a href="{% url 'rom_details' rom.slug %}">
       <div
-        class="max-w-80 bg-[#ffffff30] backdrop-blur-sm rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+        class="max-w-80 bg-[#ffffff30] md:backdrop-blur-sm rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
         <img class="w-full rounded-lg cursor-pointer object-cover min-h-40 max-h-40 min-w-80 max-w-80"
           src="{{ rom.image.url }}" alt="">
         <div class="p-4 justify-between gap-32 md:gap-0">

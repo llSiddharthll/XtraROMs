@@ -14,7 +14,8 @@ def search_roms(request):
     if query:
         filtered_roms = CustomROM.objects.filter(
             Q(name__icontains=query)
-            | Q(device__icontains=query)
+            | Q(device__name__icontains=query)
+            | Q(device__codename__icontains=query)
         )
 
         roms_data = []
@@ -24,7 +25,8 @@ def search_roms(request):
             rom_data = {
                 "id": rom.id,
                 "name": rom.name,
-                "device": rom.device,
+                "android": rom.android,
+                "devices": [{"name": device.name, "codename": device.codename} for device in rom.device.all()],
                 "details": rom.details,
                 "link": rom.link,
                 "upload_date": rom.upload_date,
@@ -75,17 +77,13 @@ def edit_rom(request, slug):
     rom = get_object_or_404(CustomROM, slug=slug)
 
     if request.method == "POST":
-        edit_form = UploadROMForm(request.POST, request.FILES, instance=rom)
+        edit_form = EditROMForm(request.POST, request.FILES, instance=rom)
         if edit_form.is_valid():
-            new_image = edit_form.cleaned_data["image"]
-            credits = edit_form.cleaned_data["credits"]
-            edit_form.credits = credits
-            edit_form.image = new_image 
-            edit_form.save() 
+            edit_form.save()
             messages.success(request, f'{rom.name} modified successfully')
             return redirect("roms") 
     else:
-        edit_form = UploadROMForm(instance=rom)
+        edit_form = EditROMForm(instance=rom)
 
     context = {"edit_form": edit_form, "rom": rom}
     return render(request, "edit_rom.html", context)

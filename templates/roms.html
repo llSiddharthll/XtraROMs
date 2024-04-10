@@ -7,6 +7,9 @@
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
   }
+  .rom-cards ::-webkit-scrollbar{
+    width:0;
+  }
 </style>
 {% endblock css %} {% block content %}
 
@@ -17,6 +20,7 @@
       <div class="rom-cards items-center justify-between w-full flex rounded-full shadow-lg p-2 mb-5 sticky"
         style="top: 5px">
         <div>
+          <a href="{% url 'roms' %}">
           <div class="p-2 mr-1 rounded-full hover:bg-[var(--primary-300)] cursor-pointer">
             <svg class="h-6 w-6 text-[var(--text)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
               fill="currentColor">
@@ -25,6 +29,7 @@
                 clip-rule="evenodd" />
             </svg>
           </div>
+        </a>
         </div>
 
         <input
@@ -86,17 +91,24 @@
                   </span><span class="mr-2 text-[var(--text)]">Likes</span>
                 </div>
                 <div class="flex items-center w-full justify-between min-w-0">
-                  <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] truncate">
+                  <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] overflow-auto">
                     {{rom.name}}
                   </h2>
                 </div>
               </div>
-              <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1 truncate">
-                {{rom.device}}
+              <div class="h-20 overflow-auto">
+              <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1">
+                Android: {{rom.android}}
               </div>
-                  <div class="w-full flex-none text-sm flex items-center text-[var(--text)] my-2 truncate">
-                    <p class="text-sm md:text-lg font-light mr-auto cursor-pointer text-[var(--text)] truncate">By {{rom.credits.name}}</p>
-                  </div>
+              <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1">
+                {% for device in rom.device.all %}
+                        {{ device.name }} [{{ device.codename }}]{% if not forloop.last %} <br> {% endif %}
+                {% endfor %}
+              </div>
+              <div class="w-full flex-none text-sm flex items-center text-[var(--text)] my-2">
+                <p class="text-sm md:text-lg font-light mr-auto cursor-pointer text-[var(--text)] truncate">By {{rom.credits.name}}</p>
+              </div>
+            </div>
               <div class="flex gap-2 text-sm font-medium justify-start mt-4">
                 <!-- Download Button-->
                 <a class="hidden lg:flex " target="_blank" href="{{rom.link}}">
@@ -284,8 +296,11 @@
                 </h2>
               </div>
             </div>
+            <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1 truncate">
+                Android: ${rom.android}
+            </div>
             <div class="text-md text-[var(--text)] font-semibold mt-1">
-              ${rom.device}
+              ${rom.devices.map(device => `${device.name} (${device.codename})`).join('<br>')}
             </div>
             <div class="w-full flex-none text-sm flex items-center text-[var(--text)] my-2 truncate">
               <p class="text-sm md:text-lg font-light mr-auto cursor-pointer text-[var(--text)] truncate">By ${rom.credits}</p>

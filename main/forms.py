@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from .models import *
 from django import forms
 
-
 class SignupForm(UserCreationForm):
     class Meta:
         model = User
@@ -16,23 +15,31 @@ class CommentForm(forms.ModelForm):
         fields = ["text"]
 
 
+
 class UploadROMForm(forms.ModelForm):
 
-    credits = forms.CharField(
-        max_length=100,
-        required=True,
-        widget=forms.TextInput(
+    credits = forms.ModelChoiceField(
+        queryset=Credits.objects.all(),
+        widget=forms.Select(
             attrs={
-                "placeholder": "Enter a name or select from existing",
-                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
+                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]",
+                "id": "id_rom_credits"
             }
         ),
         label="Credits",
+        required=False
+    )
+
+    DEVICE_CHOICES = [(device.id, f"{device.name} ({device.codename})") for device in Device.objects.all().order_by('name')]
+    device = forms.MultipleChoiceField(
+        choices=DEVICE_CHOICES,
+        widget=forms.SelectMultiple(attrs={'class': 'select2'}),
+        label="Devices",
     )
 
     class Meta:
         model = CustomROM
-        fields = ["name", "device", "credits", "image", "link", "details"]
+        fields = ["name", "device", "android", "credits", "image", "link", "details"] 
         widgets = {
             "name": forms.TextInput(
                 attrs={
@@ -40,9 +47,9 @@ class UploadROMForm(forms.ModelForm):
                     "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
-            "device": forms.TextInput(
+             "android": forms.TextInput(
                 attrs={
-                    "placeholder": "Ruby/Fleur",
+                    "placeholder": "13/14/13+/13-14",
                     "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
                 }
             ),
@@ -78,10 +85,47 @@ class UploadROMForm(forms.ModelForm):
     def save(self, commit=True):
         instance = super().save(commit=False)
         instance.credits = self.cleaned_data['credits']
+        
         if commit:
             instance.save()
-        return instance
+            self.save_m2m()  # Save the many-to-many relationships
 
+        return instance
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Add custom option to the credits field
+        self.fields['credits'].widget.choices = [('credits', 'Enter new name')] + list(self.fields['credits'].widget.choices)
+    
+class EditROMForm(forms.ModelForm):
+    # Customizing the device field to allow multiple selection
+    device = forms.ModelMultipleChoiceField(
+        queryset=Device.objects.all(),
+        widget=forms.SelectMultiple(attrs={'class': 'select2'}),
+        label="Devices",
+        required=False  # Since it's optional
+    )
+
+    credits = forms.ModelChoiceField(
+        queryset=Credits.objects.all(),
+        widget=forms.Select(
+            attrs={
+                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]",
+                "id": "id_credits"
+            }
+        ),
+        label="Credits",
+        required=False
+    )
+
+    class Meta:
+        model = CustomROM
+        fields = ['name', 'android', 'device', 'credits', 'image', 'link', 'details']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Add custom option to the credits field
+        self.fields['credits'].widget.choices = [('', 'Enter new name')] + list(self.fields['credits'].widget.choices)
 
 class UploadMODForm(forms.ModelForm):
 

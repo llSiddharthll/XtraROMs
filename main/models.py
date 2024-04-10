@@ -31,15 +31,23 @@ class MODLike(models.Model):
     mod = models.ForeignKey('CustomMOD', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Device(models.Model):
+    name = models.CharField(max_length=100)
+    codename = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name} ({self.codename})"
+
 class CustomROM(models.Model):
     name = models.CharField(max_length=100)
-    device = models.CharField(max_length=50)
+    android = models.CharField(max_length=10, null=True)
+    device = models.ManyToManyField(Device, blank=True, related_name='custom_roms')
     credits = models.ForeignKey(Credits, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(upload_to="images")
     link = models.URLField(max_length=225)
     details = models.TextField()
     upload_date = models.DateField(auto_now_add=True)
-    likes = models.ManyToManyField(ROMLike, related_name='liked_roms')
+    likes = models.ManyToManyField(ROMLike, related_name='liked_roms', blank=True)
     comments = models.ManyToManyField(Comment, blank=True, related_name='rom_comments')
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True, null=True, default=None)
@@ -57,6 +65,7 @@ class CustomROM(models.Model):
 
 class CustomMOD(models.Model):
     name = models.CharField(max_length=100)
+    android = models.CharField(max_length=10, null=True)
     image = models.ImageField(upload_to="images")
     credits = models.ForeignKey(Credits, null=True, on_delete=models.SET_NULL)
     link = models.URLField()
@@ -96,11 +105,16 @@ class ModComment(models.Model):
 
 class Blog(models.Model):
     title = models.TextField()
+    tag = models.CharField(max_length=20)
     description = models.TextField()
-    written_by = models.CharField(max_length = 100, null=True, blank=True)
+    written_by = models.ForeignKey(User, null= True, blank=True , on_delete=models.CASCADE)
     date = models.DateField(auto_now = True)
-    link = models.URLField(null=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, null=True, default=None)
     
     def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify("blog")
+            unique_id = uuid.uuid4().hex[:6]
+            self.slug = f"{base_slug}-{unique_id}"
         self.description = convert_to_html(self.description)
-        return super().save(*args, **kwargs)
+        super().save(*args, **kwargs)

@@ -3,8 +3,9 @@ from .models import *
 
 # Register your models here.
 class CustomROMAdmin(admin.ModelAdmin):
-    list_display = ('name', 'device', 'credits', 'upload_date')
-    search_fields = ('name', 'device', 'credits')
+    filter_horizontal = ('device',)
+    list_display = ('name', 'credits', 'upload_date')
+    search_fields = ('name', 'credits')
 admin.site.register(CustomROM, CustomROMAdmin)
 
 class CustomMODAdmin(admin.ModelAdmin):
@@ -24,4 +25,8 @@ admin.site.register(Credits)
 
 admin.site.register(Comment)
 
-admin.site.register(Blog)
+# admin.site.register(Blog)
+
+class DeviceAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'codename')
+admin.site.register(Device, DeviceAdmin)
