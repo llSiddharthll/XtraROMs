@@ -115,7 +115,12 @@ class EditROMForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['credits'].widget.attrs.update({'class': 'placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]'})
+        self.fields['device'].choices = self.get_device_choices()
         
+    def get_device_choices(self):
+        if not self.DEVICE_CHOICES:
+            self.DEVICE_CHOICES = [(device.id, f"{device.name} ({device.codename})") for device in Device.objects.all().order_by('name')]
+        return self.DEVICE_CHOICES
         
     def clean_credits(self):
         credit_name = self.cleaned_data['credits']
