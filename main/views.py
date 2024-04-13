@@ -106,7 +106,7 @@ class DashboardView(generic.View):
         liked_roms = ROMLike.objects.filter(user=request.user)
         liked_mods = MODLike.objects.filter(user=request.user)
         blogs = Blog.objects.filter(written_by=request.user)
-        
+
         context = {
             "user_profile": user_profile,
             "liked_roms": liked_roms,

@@ -18,16 +18,16 @@ class CommentForm(forms.ModelForm):
 
 class UploadROMForm(forms.ModelForm):
 
-    credits = forms.ModelChoiceField(
-        queryset=Credits.objects.all(),
-        widget=forms.Select(
+    credits = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
             attrs={
-                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]",
-                "id": "id_rom_credits"
+                "placeholder": "JohnDoe",
+                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
             }
         ),
         label="Credits",
-        required=False
     )
 
     DEVICE_CHOICES = [(device.id, f"{device.name} ({device.codename})") for device in Device.objects.all().order_by('name')]
@@ -92,11 +92,7 @@ class UploadROMForm(forms.ModelForm):
 
         return instance
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Add custom option to the credits field
-        self.fields['credits'].widget.choices = [('credits', 'Enter new name')] + list(self.fields['credits'].widget.choices)
-    
+
 class EditROMForm(forms.ModelForm):
     device = forms.ModelMultipleChoiceField(
         queryset=Device.objects.all(),

@@ -87,12 +87,18 @@
       <div class="relative w-[90vw] h-[30vh] md:h-[50vh] md:w-[30vw] overflow-auto shadow-md rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-[var(--text-500)]">
           <thead class="sticky top-0 text-xs text-[var(--text-800)] uppercase bg-[var(--secondary-200)]">
+            {% if liked_roms == None and liked_mods == None %}
+            <tr>
+              <th class="font-semibold text-md px-6 py-4 text-[var(--text-700)]">You have Not Liked anything</th>
+            </tr>
+            {% else %}
             <tr class="">
               <th scope="col" class="px-6 py-3">Name</th>
               <th scope="col" class="px-6 py-3">Credits</th>
               <th scope="col" class="px-6 py-3">Category</th>
               <th scope="col" class="px-6 py-3">Link</th>
             </tr>
+            {% endif %}
           </thead>
           <tbody class="">
             {% for rom_like in liked_roms %}
@@ -129,18 +135,19 @@
       <div class="relative w-[90vw] h-[30vh] md:h-[50vh] md:w-[30vw] overflow-auto shadow-md rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-[var(--text-500)]">
           <thead class="text-xs text-[var(--text-800)] uppercase bg-[var(--secondary-200)]">
+            {% if blogs == None %}
+            <tr>
+              <td class="font-semibold text-md px-6 py-4 text-[var(--text-700)]">You have uploaded Nothing Yet</td>
+            </tr>
+            {% else %}
             <tr>
               <th scope="col" class="px-6 py-3">Title</th>
               <th scope="col" class="px-6 py-3">Tag</th>
               <th scope="col" class="px-6 py-3">Link</th>
             </tr>
+            {% endif %}
           </thead>
           <tbody>
-            {% if blogs == None %}
-            <tr>
-              <td class="font-semibold text-md px-6 py-4 text-[var(--text-700)]">You have uploaded Nothing Yet</td>
-            </tr>
-            {% endif %}
             {% for blog in blogs %}
             <tr class="bg-[var(--secondary)] border-b hover:bg-[var(--secondary-200)]">
               <th scope="row" class="px-6 py-4 max-w-64 font-medium text-[var(--text)] whitespace-nowrap truncate">
