@@ -46,21 +46,17 @@ class ManageUserView(generic.ListView):
     def post(self, request):
         id = request.POST.get("id")
         user = UserProfile.objects.get(id=id)
-        authorized = request.POST.get("request")
-        if authorized == "authorize":
-            if user.is_authorized == True:
-                return JsonResponse({"error": "already_authorized"})
-            else:
-                user.is_authorized = True
-                user.save()
-                return JsonResponse({"success": "success"})
+        if user.is_authorized:
+            user.is_authorized = False
+            user.save()
+            messages.success(request, f"{user.user.username} is unauthorized")
+            return JsonResponse({"success": "success"})
         else:
-            if user.is_authorized == False:
-                return JsonResponse({"error": "already_unauthorized"})
-            else:
-                user.is_authorized = False
-                user.save()
-                return JsonResponse({"success": "success"})
+            user.is_authorized =True
+            user.save()
+            messages.success(request, f"{user.user.username} is authorized")
+            return JsonResponse({"success": "success"})
+
         
 class SignupView(SignupView):
     template_name = 'account/signup.html'
@@ -105,9 +101,11 @@ class DashboardView(generic.View):
         user_profile = UserProfile.objects.get(user=request.user)
         rom_form = UploadROMForm()
         mod_form = UploadMODForm()
+        upload_blog = uploadBlogForm()
         user_form = UserProfileForm(instance=user_profile)  # Use instance=user_profile for the user form
         liked_roms = ROMLike.objects.filter(user=request.user)
         liked_mods = MODLike.objects.filter(user=request.user)
+        blogs = Blog.objects.filter(written_by=request.user)
         
         context = {
             "user_profile": user_profile,
@@ -115,7 +113,9 @@ class DashboardView(generic.View):
             "liked_mods": liked_mods,
             "rom_form": rom_form,
             "mod_form": mod_form,
+            "upload_blog": upload_blog,
             "user_form": user_form,
+            "blogs": blogs
         }
         return render(request, self.template_name, context)
 
@@ -215,7 +215,6 @@ class ModsView(generic.ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
         # Add a flag indicating whether the user has liked each mod
         if self.request.user.is_authenticated:
             liked_mod_ids = set(MODLike.objects.filter(mod__in=context['mods'], user=self.request.user).values_list('mod_id', flat=True))
@@ -288,9 +287,9 @@ class XtraKnowledgeView(generic.ListView):
     
     def get(self, request):
         blog = Blog.objects.all()
-        context = {'blogs': blog}
+        upload_blog = uploadBlogForm()
+        context = {'blogs': blog, 'upload_blog': upload_blog}
         return render(request, self.template_name, context)
-    
     
     
 class DetailsView(generic.View):

@@ -104,7 +104,7 @@ class ModComment(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
 
 class Blog(models.Model):
-    title = models.TextField()
+    title = models.CharField(max_length=225)
     tag = models.CharField(max_length=20)
     description = models.TextField()
     written_by = models.ForeignKey(User, null= True, blank=True , on_delete=models.CASCADE)

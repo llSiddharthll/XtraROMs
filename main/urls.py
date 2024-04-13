@@ -21,4 +21,5 @@ urlpatterns = [
     path('manage_users/', ManageUserView.as_view(), name='manage_users'),
     path('xtraknowledge/', XtraKnowledgeView.as_view(), name='xtraknowledge'),
     path('xtraknowledge/<slug:slug>/', DetailsView.as_view(), name='details'),
+    path('edit_details/<slug:slug>', fbv.edit_details, name='edit_details')
 ]

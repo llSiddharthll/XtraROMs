@@ -83,7 +83,11 @@ def edit_rom(request, slug):
             messages.success(request, f'{rom.name} modified successfully')
             return redirect("roms") 
     else:
-        edit_form = EditROMForm(instance=rom)
+        # Ensure that the credits field of the CustomROM instance is an instance of Credits
+        # You can do this by fetching the Credits instance associated with the CustomROM instance
+        # or passing None if there's no associated Credits instance
+        initial_credits = rom.credits if rom.credits else None
+        edit_form = EditROMForm(instance=rom, initial={'credits': initial_credits})
 
     context = {"edit_form": edit_form, "rom": rom}
     return render(request, "edit_rom.html", context)
@@ -91,21 +95,22 @@ def edit_rom(request, slug):
 
 def edit_mod(request, slug):
     mod = get_object_or_404(CustomMOD, slug=slug)
-    edit_form = UploadMODForm(instance=mod)
 
     if request.method == "POST":
-        edit_form = UploadMODForm(request.POST, request.FILES, instance=mod)
+        edit_form = EditMODForm(request.POST, request.FILES, instance=mod)
         if edit_form.is_valid():
-            new_image = edit_form.cleaned_data["image"]
-            credits = edit_form.cleaned_data["credits"]
-            edit_form.credits = credits
-            edit_form.image = new_image 
-            edit_form.save() 
+            edit_form.save()
             messages.success(request, f'{mod.name} modified successfully')
             return redirect("mods") 
+    else:
+        # Ensure that the credits field of the CustomROM instance is an instance of Credits
+        # You can do this by fetching the Credits instance associated with the CustomROM instance
+        # or passing None if there's no associated Credits instance
+        initial_credits = mod.credits if mod.credits else None
+        edit_form = EditMODForm(instance=mod, initial={'credits': initial_credits})
 
-    context = {"edit_form": edit_form, "mod": mod}
-    return render(request, "edit_mod.html", context)
+    context = {"edit_form": edit_form, "rom": mod}
+    return render(request, "edit_rom.html", context)
 
 def upload_roms(request):
     try:
@@ -146,3 +151,20 @@ def upload_mods(request):
         
     form = UploadMODForm()
     return render(request, 'dashboard.html', {'form': form})
+
+
+def edit_details(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+
+    if request.method == "POST":
+        edit_form = BlogEditForm(request.POST, instance=blog)
+        if edit_form.is_valid():
+            edit_form.written_by = request.user
+            edit_form.save()
+            messages.success(request, f'Blog modified successfully')
+            return redirect("xtraknowledge", slug) 
+    else:
+        edit_form = BlogEditForm(instance=blog)
+
+    context = {"edit_form": edit_form, "blog": blog}
+    return render(request, "edit_details.html", context)

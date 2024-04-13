@@ -5481,7 +5481,6 @@ h1, h2, h3, h4, h5 {
 
 p,a{
   font-family: "Poppins";
-  font-weight: 600;
 }
 
 .container{
@@ -7105,3 +7104,4 @@ main .circle {
 .rtl\:text-right:where([dir="rtl"], [dir="rtl"] *) {
   text-align: right;
 }
+

@@ -98,7 +98,6 @@ class UploadROMForm(forms.ModelForm):
         self.fields['credits'].widget.choices = [('credits', 'Enter new name')] + list(self.fields['credits'].widget.choices)
     
 class EditROMForm(forms.ModelForm):
-    # Customizing the device field to allow multiple selection
     device = forms.ModelMultipleChoiceField(
         queryset=Device.objects.all(),
         widget=forms.SelectMultiple(attrs={'class': 'select2'}),
@@ -106,17 +105,8 @@ class EditROMForm(forms.ModelForm):
         required=False  # Since it's optional
     )
 
-    credits = forms.ModelChoiceField(
-        queryset=Credits.objects.all(),
-        widget=forms.Select(
-            attrs={
-                "class": "placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]",
-                "id": "id_credits"
-            }
-        ),
-        label="Credits",
-        required=False
-    )
+    # Change the credits field to a CharField to accept any name
+    credits = forms.CharField(max_length=100, required=False, label="Credits")
 
     class Meta:
         model = CustomROM
@@ -124,9 +114,17 @@ class EditROMForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Add custom option to the credits field
-        self.fields['credits'].widget.choices = [('', 'Enter new name')] + list(self.fields['credits'].widget.choices)
+        self.fields['credits'].widget.attrs.update({'class': 'placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]'})
+        
+        
+    def clean_credits(self):
+        credit_name = self.cleaned_data['credits']
 
+        # Check if a Credits instance with the given name already exists
+        credit_instance, created = Credits.objects.get_or_create(name=credit_name)
+
+        return credit_instance
+    
 class UploadMODForm(forms.ModelForm):
 
     credits = forms.CharField(
@@ -187,6 +185,28 @@ class UploadMODForm(forms.ModelForm):
             instance.save()
         return instance
 
+class EditMODForm(forms.ModelForm):
+
+    # Change the credits field to a CharField to accept any name
+    credits = forms.CharField(max_length=100, required=False, label="Credits")
+
+    class Meta:
+        model = CustomMOD
+        fields = ['name', 'android', 'credits', 'image', 'link', 'details']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['credits'].widget.attrs.update({'class': 'placeholder-[var(--text-500)] mt-1 p-2 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]'})
+        
+        
+    def clean_credits(self):
+        credit_name = self.cleaned_data['credits']
+
+        # Check if a Credits instance with the given name already exists
+        credit_instance, created = Credits.objects.get_or_create(name=credit_name)
+
+        return credit_instance
+    
 
 class UserProfileForm(forms.ModelForm):
     first_name = forms.CharField(max_length=30, required=False)
@@ -220,3 +240,33 @@ class UserProfileForm(forms.ModelForm):
             user_profile.save()
 
         return user_profile
+    
+class uploadBlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        exclude = ['written_by', 'slug']
+        widgets ={
+            'title': forms.TextInput(
+                attrs={
+                    'placeholder': 'Blog title/heading..',
+                    "class": "placeholder-[var(--text-500)] mt-1 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
+                }
+            ),
+            'tag': forms.TextInput(
+                attrs={
+                    'placeholder': 'tutorial/flashing_guide/..',
+                    "class": "placeholder-[var(--text-500)] mt-1 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
+                }
+            ),
+            'description': forms.Textarea(
+                attrs={
+                    'placeholder': 'Use markups, html tags or tailwind classes and describe your blog beautifully..',
+                    "class": "placeholder-[var(--text-500)] p-2 mt-1 border border-gray-300 rounded-md w-full bg-[var(--text-800)] text-[var(--text-200)]"
+                }
+            )
+        }
+
+class BlogEditForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        exclude = ['written_by', 'slug']

@@ -25,7 +25,7 @@ admin.site.register(Credits)
 
 admin.site.register(Comment)
 
-# admin.site.register(Blog)
+admin.site.register(Blog)
 
 class DeviceAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'codename')
