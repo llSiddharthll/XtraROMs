@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.safestring import mark_safe
 from django.contrib import messages
 import random
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class HomeView(generic.View):
     template_name = "home.html"
@@ -38,7 +39,7 @@ class HomeView(generic.View):
         
         return render(request, self.template_name, context)
 
-class ManageUserView(generic.ListView):
+class ManageUserView(generic.ListView, LoginRequiredMixin):
     model = UserProfile
     context_object_name = 'users'
     template_name = 'manage_users.html'
@@ -94,7 +95,7 @@ class LoginView(LoginView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
-class DashboardView(generic.View):
+class DashboardView(generic.View, LoginRequiredMixin):
     template_name = "dashboard.html"
 
     def get(self, request, *args, **kwargs):
