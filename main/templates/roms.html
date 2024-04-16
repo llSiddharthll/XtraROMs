@@ -42,7 +42,7 @@
           class="font-bold uppercase rounded-full border-0 w-full py-2 pl-4 text-black bg-transparent backdrop-blur-xl leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs"
           type="text" placeholder="Search" oninput="search(this.value)" />
 
-        <div class="bg-[var(--accent-200)] p-2 hover:bg-[#36ae9060] cursor-pointer mx-2 rounded-full">
+        <div class="bg-[#36ae9060] p-2 hover:bg-[#36ae9080] cursor-pointer mx-2 rounded-full">
           <svg class="w-6 h-6 text-[var(--text-900)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
             fill="currentColor">
             <path fill-rule="evenodd"
@@ -84,7 +84,7 @@
               <img data-src="{{rom.image.url}}" src="{% static 'images/xlogo.png' %}" alt="{{rom.name}}"
                 class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
             </div>
-            <div class="flex-auto justify-evenly p-2 md:p-6">
+            <div class="flex-auto justify-evenly p-2 pt-1 md:pt-0 md:p-6 h-12 lg:h-20 overflow-auto">
               <div class="flex flex-wrap">
                 <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 20 20"
@@ -102,7 +102,7 @@
                   </h2>
                 </div>
               </div>
-              <div class="h-20 overflow-auto">
+              <div class="">
               <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1">
                 Android: {{rom.android}}
               </div>
@@ -284,7 +284,7 @@
             <img src="${rom.image_url}" alt="${rom.name}"
               class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
           </div>
-          <div class="flex-auto justify-evenly p-2 md:p-6">
+          <div class="flex-auto justify-evenly p-2 pt-1 md:pt-0 md:p-6 h-12 lg:h-20 overflow-auto">
             <div class="flex flex-wrap">
               <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 20 20"
