@@ -11,7 +11,7 @@
 {% block content %}
 
 <section class="flex flex-col lg:flex-row w-screen lg:h-[86vh] gap-4 mb-5">
-    <div class="left hidden lg:block lg:sticky lg:basis-1/4 bg-blue-300 backdrop-blur-sm rounded-2xl ms-4">
+    <div class="left hidden lg:block lg:sticky lg:basis-1/4 bg-[#36ae9040] backdrop-blur-sm rounded-2xl ms-4">
         <div> 
           <div class="p-2 border-b-2 border-[var(--accent)] text-[var(--text)]">
             <h3>Suggested ROMs:</h3>
@@ -34,7 +34,7 @@
             </ul>
         </div>
     </div>
-    <div class="center lg:basis-1/2 bg-blue-300 flex flex-col mx-4 lg:mx-0 items-center h-[90vh] lg:h-full overflow-y-scroll rounded-2xl">
+    <div class="center lg:basis-1/2 bg-[#36ae9040] flex flex-col mx-4 lg:mx-0 items-center h-[90vh] lg:h-full overflow-y-scroll rounded-2xl">
         <div class="px-10 py-5">
             <img src="{{rom.image.url}}" alt="{{rom.name}}" class="rounded-2xl h-auto w-auto object-center lg:h-64 lg:w-auto object-cover">
         </div>
@@ -52,17 +52,17 @@
         </div>
         <div class="flex">
             <a href="{{rom.link}}"
-                class="text-[var(--text)] backdrop-blur-sm bg-[#ffffff20] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                class="text-[var(--text)] backdrop-blur-sm bg-[#36ae9060] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
                 <i class="fa-solid fa-arrow-down me-1"></i>ROM
             </a>
             {% if request.user.userprofile.is_authorized %}
             <a href="{% url 'edit_rom' rom.slug %}"
-                class="text-[var(--text)] backdrop-blur-sm bg-[#ffffff20] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                class="text-[var(--text)] backdrop-blur-sm bg-[#36ae9060] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
                 <i class="fa-solid fa-pen-to-square me-1"></i>Edit
             </a>
             {% endif %}
             <a onclick="shareLink('{{rom.name}}', '{{rom.slug}}')" href=""
-                class="text-[var(--text)] backdrop-blur-sm bg-[#ffffff20] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                class="text-[var(--text)] backdrop-blur-sm bg-[#36ae9060] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-[var(--primary-400)]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
                 <i class="fa-solid fa-share-from-square me-1"></i>Share
             </a>
         </div>
@@ -70,7 +70,7 @@
             {{ formatted_details|safe }}
         </div>
     </div>
-    <div class="right lg:basis-1/4 bg-blue-300 rounded-2xl mx-4 lg:mx-0 lg:me-4 overflow-y-scroll">
+    <div class="right lg:basis-1/4 bg-[#36ae9040] rounded-2xl mx-4 lg:mx-0 lg:me-4 overflow-y-scroll">
         <div class="comments flex flex-col">
             <div
               class="text-black rounded-lg flex flex-col h-full lg:relative">

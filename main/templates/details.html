@@ -4,26 +4,27 @@
 {% block content %}
 
 <section class="container mx-auto px-4 md:px-20 flex flex-col">
+    <div class="text-center mb-2 text-2xl md:text-4xl font-bold tracking-tight text-[var(--text)] py-5">
+        <h1 class="">{{blog.title}}</h1>
+    </div>
     <div class="flex justify-between items-center py-5 text-lg">
-        <div class="flex gap-4">
-            <div><img src="{{blog.written_by.userprofile.profile_picture.url}}" alt="" class="h-8 w-8 rounded-full object-center object-cover"></div>
+        <div class="flex items-center gap-4">
+            <div><img src="{{blog.written_by.userprofile.profile_picture.url}}" alt="" class="h-10 w-10 rounded-full object-center object-cover"></div>
+            <div class="flex flex-col">
             <div>
                 <h3 class="text-xl font-bold">{{blog.written_by}}</h3>
             </div>
             <div>
-                <small>({{blog.date}})</small>
-            </div>
+                <p class="text-sm">({{blog.date}})</p>
+            </div></div>
         </div>
         <div>
             <div>
-                <h4 class="px-3 py-2 rounded-full bg-[#ffffff60] capitalize">{{blog.tag}}</h4>
+                <h4 class="px-3 py-2 rounded-full bg-[#36ae9060] capitalize">{{blog.tag}}</h4>
             </div>
         </div>
     </div>
-    <div class="text-center mb-2 text-2xl md:text-4xl font-bold tracking-tight text-[var(--text)] py-5">
-        <h1 class="">{{blog.title}}</h1>
-    </div>
-    <div class="bg-[#ffffff30] rounded-2xl p-6 text-lg my-5">
+    <div class="bg-[#36ae9040] rounded-2xl p-6 text-lg my-5">
         {{blog.description|safe}}
     </div>
 </section>
