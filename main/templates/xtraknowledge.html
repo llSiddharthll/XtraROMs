@@ -39,23 +39,16 @@
 
 <section class="container mx-auto px-10 h-screen md:mt-20">
     <div class="flex flex-col justify-center">
-        <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row justify-center items-center">
             <div class="">
-                <h2 class="text-3xl lg:text-4xl tracking-tight font-bold text-[var(--text)]">XtraKnowledge
+                <h2 class="text-3xl lg:text-4xl tracking-tight font-bold text-[var(--text)] underline decoration-[var(--accent-500)] underline-offset-4">XtraKnowledge
                 </h2>
             </div>
-            {% if request.user.is_authenticated %}
-            <div class="">
-                <div class="flex gap-4 justify-center items-center">
-                <h4 class="text-lg hidden md:block">Create new blog <i class="fa-solid fa-arrow-right"></i></h4>
-                <div data-modal-target="upload-blog" data-modal-toggle="upload-blog"><i class="fa-solid fa-plus text-2xl bg-[#ffffff30] px-[10px] py-1 rounded-2xl md:rounded-full"></i></div></div>
-            </div>
-            {% endif %}
         </div>
         <div class="flex flex-col md:flex-row gap-8 md:flex-wrap justify-center">
             {% for blog in blogs %}
             <article
-                class="p-6 bg-[#ffffff50] backdrop-blur-sm rounded-lg border border-[var(--accent)] shadow-md md:max-w-[35rem] my-10">
+                class="p-6 bg-[#36ae9041] backdrop-blur-sm rounded-lg border border-[var(--accent)] shadow-md md:max-w-[35rem] my-10">
                 <div class="flex justify-between items-center mb-5 text-gray-500">
                     <span
                         class="bg-primary-100 text-[var(--text-700)] text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">

@@ -2,8 +2,11 @@
 {% block css %}
 <style>
   .rom-cards{
-    background: #ffffff30;
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    background: #36ae9041;
+    box-shadow:
+  12.5px 12.5px 20.5px rgba(0, 0, 0, 0.15),
+  100px 100px 164px rgba(0, 0, 0, 0.075)
+;
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
   }
@@ -39,7 +42,7 @@
           class="font-bold uppercase rounded-full border-0 w-full py-2 pl-4 text-black bg-transparent backdrop-blur-xl leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs"
           type="text" placeholder="Search" oninput="search(this.value)" />
 
-        <div class="bg-[var(--accent-400)] p-2 hover:bg-[var(--accent-300)] cursor-pointer mx-2 rounded-full">
+        <div class="bg-[var(--accent-200)] p-2 hover:bg-[var(--accent-300)] cursor-pointer mx-2 rounded-full">
           <svg class="w-6 h-6 text-[var(--text-900)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
             fill="currentColor">
             <path fill-rule="evenodd"
@@ -116,27 +119,27 @@
                 <!-- Download Button-->
                 <a class="hidden lg:flex " target="_blank" href="{{rom.link}}">
                   <button
-                    class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
+                    class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0  px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
 
                     <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                       <i class="fa-solid fa-arrow-down"></i> </span><span class="text-[var(--text)]">Download</span>
                   </button></a>
                 <a class="block lg:hidden " target="_blank" href="{{rom.link}}">
                   <button
-                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                    class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                     <i class="fa-solid fa-download"></i>
                   </button></a>
 
                 <!-- Share Button -->
                 <button id="shareButton" onclick="shareLink('{{rom.name}}', '{{rom.slug}}')"
-                  class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  class="block  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <i class="fa-solid fa-share-from-square"></i>
                 </button>
 
                 <!-- Details Button -->
                 <a href="{% url 'rom_details' rom.slug %}">
                   <button
-                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                    class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -294,7 +297,7 @@
                 </span><span class="mr-2 text-[var(--text)]">Likes</span>
               </div>
               <div class="flex items-center w-full justify-between min-w-0">
-                <h2 class="text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] truncate">
+                <h2 class="text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] line-clamp-2">
                   ${rom.name}
                 </h2>
               </div>
@@ -313,27 +316,27 @@
               <!-- Download Button-->
               <a href="${rom.link}" class="hidden lg:flex ">
                 <button
-                class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
+                class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0  px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
                 <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                   <i class="fa-solid fa-arrow-down"></i>
                 </span><span class="text-[var(--text)]">Download</span>
               </button></a>
               <a href="${rom.link}" class="block lg:hidden ">
                 <button
-                class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-download"></i>
               </button></a>
 
               <!-- Share Button -->
               <button id="shareButton" onclick="shareLink('${rom.name}', '${rom.slug}')"
-                class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class="block  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-share-from-square"></i>
               </button>
 
               <!-- Details Button -->
               <a href="/rom_detail/${rom.slug}">
                 <button
-                  class=" glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  class="  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

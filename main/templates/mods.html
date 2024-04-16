@@ -2,7 +2,7 @@
 {% block css %}
 <style>
   .mod-cards{
-    background: #ffffff30;
+    background: #36ae9041;
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -94,7 +94,7 @@
                   </span><span class="mr-2 text-[var(--text)]">Likes</span>
                 </div>
                 <div class="flex items-center w-full justify-between min-w-0">
-                  <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] overflow-auto">
+                  <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] line-clamp-2">
                     {{mod.name}}
                   </h2>
                 </div>
@@ -111,27 +111,27 @@
                 <!-- Download Button-->
                 <a class="hidden lg:flex " target="_blank" href="{{mod.link}}">
                   <button
-                    class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
+                    class="border hover:border-gray-500 border-[var(--text)] inline-flex items-center text-sm font-medium mb-2 md:mb-0  px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
 
                     <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                       <i class="fa-solid fa-arrow-down"></i> </span><span class="text-[var(--text)]">Download</span>
                   </button></a>
                 <a class="block lg:hidden " target="_blank" href="{{mod.link}}">
                   <button
-                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                    class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                     <i class="fa-solid fa-download"></i>
                   </button></a>
 
                 <!-- Share Button -->
                 <button id="shareButton" onclick="shareLink('{{mod.name}}', '{{mod.slug}}')"
-                  class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  class="block  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <i class="fa-solid fa-share-from-square"></i>
                 </button>
 
                 <!-- Details Button -->
                 <a href="{% url 'mod_details' mod.slug %}">
                   <button
-                    class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                    class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -305,27 +305,27 @@
               <!-- Download Button-->
               <a href="${mod.link}" class="hidden lg:flex ">
                 <button
-                class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 glass px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
+                class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0  px-5 py-2 hover:shadow-lg tracking-wider text-[var(--text)] rounded-full hover:bg-[var(--accent)]">
                 <span class="h-3 me-2 text-[var(--text)] hidden md:flex">
                   <i class="fa-solid fa-arrow-down"></i>
                 </span><span class="text-[var(--text)]">Download</span>
               </button></a>
               <a href="${mod.link}" class="block lg:hidden ">
                 <button
-                class="glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-download"></i>
               </button></a>
 
               <!-- Share Button -->
               <button id="shareButton" onclick="shareLink('${mod.name}', '${mod.slug}')"
-                class="block glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                class="block  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-share-from-square"></i>
               </button>
 
               <!-- Details Button -->
               <a href="/mod_detail/${mod.slug}">
                 <button
-                  class=" glass hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  class="  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
