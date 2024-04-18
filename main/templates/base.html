@@ -61,9 +61,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&family=Space+Grotesk&family=Kurale&family=Nunito+Sans&family=Averia+Gruesa+Libre&family=Courgette&family=Delius+Swash+Caps&family=Karla:ital,wght@0,200..800;1,200..800&family=Snippet&display=swap"
+      href="https://fonts.googleapis.com/css2?&family=Poppins&family=Space+Grotesk&family=Kurale&family=Nunito+Sans&family=Averia+Gruesa+Libre&family=Courgette&family=Delius+Swash+Caps&family=Karla:ital,wght@0,200..800;1,200..800&family=Snippet&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -75,7 +76,7 @@
     <title>XtraROMs</title>
   </head>
 
-  <body class="mt-20">
+  <body class="mt-20 bg-[#c9f5ce]">
     <!-- Navigation Bar -->
     <section class="container w-full fixed top-0 z-20">
       <nav class="bg-transparent backdrop-blur-xl">
@@ -198,43 +199,48 @@
             id="navbar-user"
           >
             <ul
-              class="text-lg flex flex-col font-semibold text-[var(--text-800)] p-4 md:p-0 mt-4 border border-[var(--secondary)] opacity-50 md:opacity-100 rounded-lg md:rounded-full bg-[var(--background)] md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
+              class="font-['Exo 2'] text-lg flex flex-col font-bold text-[var(--text-800)] p-4 md:p-0 mt-4 border border-[var(--secondary)] opacity-50 md:opacity-100 rounded-lg md:rounded-full bg-[var(--background)] md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
             >
               <li>
+                <h2>
                 <a
                   href="{% url 'home' %}"
                   class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#36ae9041] md:hover:shadow-md md:hover:rounded-full"
                   >Home</a
-                >
+                ></h2>
               </li>
               <li>
+                <h2>
                 <a
                   href="{% url 'roms' %}"
                   class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#36ae9041] md:hover:shadow-md md:hover:rounded-full"
                   >Custom Roms</a
-                >
+                ></h2>
               </li>
               <li>
+                <h2>
                 <a
                   href="{% url 'mods' %}"
                   class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#36ae9041] md:hover:shadow-md md:hover:rounded-full"
                   >Mods/Tools</a
-                >
+                ></h2>
               </li>
               <li>
+                <h2>
                 <a
                   href="{% url 'xtraknowledge' %}"
                   class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#36ae9041] md:hover:shadow-md md:hover:rounded-full"
                   >XtraKnowledge</a
-                >
+                ></h2>
               </li>
               {% if not request.user.is_authenticated %}
               <li>
+                <h2>
                 <a
                   href="{% url 'signup' %}"
                   class="block py-2 px-3 rounded md:hover:backdrop-blur-sm md:hover:bg-[#36ae9041] md:hover:shadow-md md:hover:rounded-full"
                   >Signup</a
-                >
+                ></h2>
               </li>
               {% endif %}
             </ul>
