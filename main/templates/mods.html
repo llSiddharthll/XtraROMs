@@ -3,13 +3,26 @@
 <style>
   .mod-cards{
     background: #36ae9041;
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow:
+  12.5px 12.5px 20.5px rgba(0, 0, 0, 0.15),
+  100px 100px 164px rgba(0, 0, 0, 0.075)
+;
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
   }
   .mod-cards ::-webkit-scrollbar{
-    width:0;
+    width:5px;
   }
+  .mod-cards ::-webkit-scrollbar-thumb {
+        background: #28846de0;
+        border-radius: 10px;
+        /* Grey */
+    }
+    .mod-cards ::-webkit-scrollbar-track {
+        background: #55e2be7f;
+        border-radius: 10px;
+        /* Light grey */
+    }
   h2 {
     font-family: "Snippet";
   }
@@ -82,7 +95,8 @@
                 class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
             </div>
             <div class="flex-auto justify-evenly p-2 pt-1 md:pt-0 md:p-6 h-12 lg:h-20 overflow-auto">
-              <div class="flex flex-wrap">
+              <div class="flex justify-between">
+                <div>
                 <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 20 20"
                     fill="currentColor">
@@ -93,15 +107,33 @@
                     {% if mod.id in likes.keys %} {{ likes|get_key:mod.id }} {% endif %}
                   </span><span class="mr-2 text-[var(--text)]">Likes</span>
                 </div>
-                <div class="flex items-center w-full justify-between min-w-0">
-                  <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] line-clamp-2">
+                <div class="flex items-center w-full overflow-hidden">
+                  <h2 class="text-sm md:text-lg font-semibold mr-auto cursor-pointer text-[var(--text)]">
                     {{mod.name}}
                   </h2>
+                </div></div>
+                <div>
+                  <!-- Details Button -->
+                <a href="{% url 'mod_details' mod.slug %}">
+                  <button
+                    class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg></button></a>
                 </div>
               </div>
               <div class="">
               <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1">
                 Android: {{mod.android}}
+              </div>
+              <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1">
+                {% for device in mod.device.all %}
+                        {{ device.name }} [{{ device.codename }}]{% if not forloop.last %} <br> {% endif %}
+                {% endfor %}
               </div>
               <div class="w-full flex-none text-sm flex items-center text-[var(--text)] my-2">
                 <p class="text-sm font-light mr-auto cursor-pointer text-[var(--text)] truncate">By {{mod.credits.name}}</p>
@@ -127,18 +159,6 @@
                   class="block  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                   <i class="fa-solid fa-share-from-square"></i>
                 </button>
-
-                <!-- Details Button -->
-                <a href="{% url 'mod_details' mod.slug %}">
-                  <button
-                    class=" hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg></button></a>
               </div>
             </div>
           </div>
@@ -276,8 +296,9 @@
             <img src="${mod.image_url}" alt="${mod.name}"
               class="lazyload h-24 md:h-48 w-full object-cover object-center rounded-t-xl" />
           </div>
-          <div class="flex-auto justify-evenly p-2 pt-1 md:pt-0 md:p-6 h-12 lg:h-20 overflow-auto">
-            <div class="flex flex-wrap">
+          <div class="flex-auto justify-evenly p-2 pt-1 md:pt-0 md:p-6 h-14 lg:h-20 overflow-auto">
+            <div class="flex justify-between">
+              <div>
               <div class="w-full flex-none text-sm flex items-center text-[var(--text)]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 20 20"
                   fill="currentColor">
@@ -289,13 +310,30 @@
                 </span><span class="mr-2 text-[var(--text)]">Likes</span>
               </div>
               <div class="flex items-center w-full justify-between min-w-0">
-                <h2 class="text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] truncate">
+                <h2 class="text-lg font-semibold mr-auto cursor-pointer text-[var(--text)] line-clamp-2">
                   ${mod.name}
                 </h2>
               </div>
+              </div>
+              <div>
+                <!-- Details Button -->
+              <a href="/mod_detail/${mod.slug}">
+                <button
+                  class="  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </button></a></div>
             </div>
             <div class="text-sm md:text-md text-[var(--text)] font-semibold mt-1 truncate">
                 Android: ${mod.android}
+            </div>
+            <div class="text-md text-[var(--text)] font-semibold mt-1">
+              ${mod.devices.map(device => `${device.name} (${device.codename})`).join('<br>')}
             </div>
             <div class="w-full flex-none text-sm flex items-center text-[var(--text)] my-2 truncate">
               <p class="text-sm font-light mr-auto cursor-pointer text-[var(--text)] truncate">By ${mod.credits}</p>
@@ -321,19 +359,6 @@
                 class="block  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
                 <i class="fa-solid fa-share-from-square"></i>
               </button>
-
-              <!-- Details Button -->
-              <a href="/mod_detail/${mod.slug}">
-                <button
-                  class="  hover:bg-[var(--accent)] text-[var(--text)] border hover:border-gray-500 border-[var(--text)] hover:shadow-lg rounded-full w-9 h-9 text-center p-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </button></a>
             </div>
           </div>
         </div>
@@ -354,7 +379,7 @@
       navigator
         .share({
           title: name,
-          text: "Check out this link from Xtraroms!",
+          text: "Check out this link from XtraROMs!",
           url: `/mod_detail/${slug}`,
         })
         .then(() => console.log("Successful share"))
