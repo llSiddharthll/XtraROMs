@@ -16,7 +16,7 @@
           <div class="p-2 border-b-2 border-[var(--accent)] text-[var(--text)]">
             <h3>Suggested ROMs:</h3>
           </div>
-            <ul class="p-5 h-[80vh] overflow-y-auto">
+            <ul class="p-5 h-[90vh] md:h-[80vh] overflow-y-auto">
               {% for roms in suggested_roms %}
               <a href="{% url 'rom_details' roms.slug %}">
                 <li class="flex justify-between items-center gap-4 p-4 shadow-md">
