@@ -54,8 +54,6 @@ INSTALLED_APPS = [
     # Django-Allauth
     'allauth',
     'allauth.account',
-    'allauth.socialaccount', 
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -191,33 +189,23 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email',
-        ],
-        'AUTH_PARAMS': {'access_type': 'offline'},  # Request a refresh token for long-term access
-        'KEY': '670992351831-2pais2gp3nj42muel009mj0m2ispevil.apps.googleusercontent.com',
-        'SECRET': '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',
-    }
-}
+
 
 # Additional configuration settings
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET= True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 
-
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Ensure it's set to 'mandatory'
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7  # Set a suitable expiration period
-
-# email configs
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#for contact us give your gmail id and password
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'llsiddharthtiwarill@gmail.com'
-EMAIL_HOST_PASSWORD = 'jsjk lgqa eerc utyu' 
+EMAIL_HOST_USER = 'from@gmail.com' # this email will be used to send emails
+EMAIL_HOST_PASSWORD = 'xyz' # host email password required
+# now sign in with your host gmail account in your browser
+# open following link and turn it ON
+# https://myaccount.google.com/lesssecureapps
+# otherwise you will get SMTPAuthenticationError at /contactus
+# this process is required because google blocks apps authentication by default
+EMAIL_RECEIVING_USER = ['to@gmail.com'] # email on which you will receive messages sent from website

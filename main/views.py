@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
@@ -40,6 +40,7 @@ class HomeView(generic.View):
         return render(request, self.template_name, context)
 
 class ManageUserView(generic.ListView, LoginRequiredMixin):
+
     model = UserProfile
     context_object_name = 'users'
     template_name = 'manage_users.html'
@@ -58,8 +59,8 @@ class ManageUserView(generic.ListView, LoginRequiredMixin):
             messages.success(request, f"{user.user.username} is authorized")
             return JsonResponse({"success": "success"})
 
-        
 class SignupView(SignupView):
+
     template_name = 'account/signup.html'
     
     def form_valid(self, form):
@@ -86,7 +87,6 @@ class SignupView(SignupView):
 
         except Exception as e:
             print("Error creating UserProfile:", str(e))
-
     
 class LoginView(LoginView):
     template_name = 'account/login.html'

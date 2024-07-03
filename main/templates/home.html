@@ -2,7 +2,7 @@
 {% block css %}
 <style>
   .hero {
-    background: #36ae9041;
+    background: var(--secondary);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -49,7 +49,7 @@
   <div class="md:basis-2/5">
     <div class="md:mb-6 z-10">
       <h2 class="text-6xl lg:text-8xl text-[var(--text)] font-semibold mb-4 md:mb-6"><span>Xtra</span><span
-          class="text-[#7ee4b3]">ROMs</span></h2>
+          class="text-[var(--accent)]">ROMs</span></h2>
       <p class="text-xl font-light leading-relaxed text-[var(--text-800)] tracking-wide mb-4 md:mb-6">
         A site full of customizations and eye-candy you have never seen before! You can find ROMs that can either give
         you performance, or give you customizations - you choose! You can find Modules that can either be
@@ -58,8 +58,8 @@
     </div>
     <div class="">
       <a href="{% url 'mods' %}">
-        <button class="py-2 px-3 rounded-full text-gray-900 text-lg bg-[#36ae9060]">
-          Let's Customize <i class="fas fa-arrow-right"></i>
+        <button class="py-2 px-3 flex gap-2 items-center justify-center rounded-full font-semibold text-lg text-[var(--background-50)] bg-[var(--primary)] hover:bg-[var(--accent)]">
+          <span>Let's Customize</span> <i class="fas fa-arrow-right"></i>
         </button></a>
     </div>
   </div>
@@ -78,7 +78,7 @@
               </path>
               <path
                 d="M12,3 C13.3298,3 14.5838,3.32446 15.6872,3.89854 L16.2929,3.29289 C16.6834,2.90237 17.3166,2.90237 17.7071,3.29289 C18.0976,3.68342 18.0976,4.31658 17.7071,4.70711 L17.3564,5.05779 C18.9797,6.52196 20,8.64183 20,11 L20,19 C20,20.6569 18.6569,22 17,22 L7,22 C5.34315,22 4,20.6569 4,19 L4,11 C4,8.64183 5.02032,6.52196 6.64358,5.05779 L6.29289,4.70711 C5.90237,4.31658 5.90237,3.68342 6.29289,3.29289 C6.68342,2.90237 7.31658,2.90237 7.70711,3.29289 L8.31276,3.89854 C9.41616,3.32446 10.6702,3 12,3 Z M18,14 L6,14 L6,19 C6,19.5523 6.44772,20 7,20 L17,20 C17.5523,20 18,19.5523 18,19 L18,14 Z M12,5 C8.76160159,5 6.12242817,7.56557346 6.00413847,10.7750616 L6,11 L6,12 L18,12 L18,11 C18,7.68629 15.3137,5 12,5 Z M9,8 C9.55228,8 10,8.44772 10,9 C10,9.55228 9.55228,10 9,10 C8.44772,10 8,9.55228 8,9 C8,8.44772 8.44772,8 9,8 Z M15,8 C15.5523,8 16,8.44772 16,9 C16,9.55228 15.5523,10 15,10 C14.4477,10 14,9.55228 14,9 C14,8.44772 14.4477,8 15,8 Z"
-                id="形状" fill="#7ee4b3">
+                id="形状" fill="var(--accent)">
 
               </path>
             </g>
@@ -98,13 +98,13 @@
     {% for rom in roms %}
     <a href="{% url 'rom_details' rom.slug %}">
       <div
-        class="max-w-80 bg-[#36ae9041] md:backdrop-blur-sm rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+        class="max-w-80 bg-[var(--secondary)] md:backdrop-blur-sm rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
         <img class="w-full rounded-lg cursor-pointer object-cover min-h-40 max-h-40 min-w-80 max-w-80"
           src="{{ rom.image.url }}" alt="">
         <div class="p-4 justify-between gap-32 md:gap-0">
           <div>
             <h1
-              class="text-2xl text-left font-bold text-[var(--text)] cursor-pointer hover:text-gray-900 transition duration-100 truncate">
+              class="text-2xl text-left font-bold text-[var(--text)] cursor-pointer transition duration-100 truncate">
               {{ rom.name }}</h1>
           </div>
           <div class="flex space-x-2 justify-between">
@@ -156,12 +156,12 @@
 <section id="Screenshot" style="margin-top: 50px; margin-bottom: 50px" class="container p-2">
   <h2 class="text-center text-4xl pt-4 text-[var(--text)]">Screenshots</h2>
   <div id="Screenshot-1">
-    <div class="grid grid-cols-2 justify-evenly" style="margin-top: 50px">
-      <div class="">
-        <img src="{% static 'images/ss1.png' %}" data-aos="fade-left" data-aos-duration="600" />
+    <div class="flex flex-row gap-5 px-4" style="margin-top: 50px">
+      <div class="flex justify-center items-center w-1/2">
+        <img class=" h-96" src="{% static 'images/ss1.png' %}" data-aos="fade-left" data-aos-duration="600" />
       </div>
-      <div class="text-odd" data-aos="fade-right" data-aos-duration="600">
-        <h3><strong> Customize your Homescreen </strong></h3>
+      <div class="text-odd w-1/2 px-0 md:px-4 lg:px-10 text-md md:text-lg lg:text-2xl flex flex-col items-center justify-center" data-aos="fade-right" data-aos-duration="600">
+        <h3 class="text-xl md:text-2xl lg:text-4xl mb-8"><strong> Customize your Homescreen </strong></h3>
         <p>
           Using mods for homescreen customization elevates personalization.
           Unlock custom widgets, unique icons, and advanced theming for a unique
@@ -172,9 +172,9 @@
     </div>
   </div>
   <div id="Screenshot-2">
-    <div class="grid grid-cols-2 gap-5 justify-evenly" style="margin-top: 50px">
-      <div class="text-even" data-aos="fade-left" data-aos-duration="600">
-        <h3><strong> Modify your LockScreen </strong></h3>
+    <div class="flex flex-row gap-5 px-4" style="margin-top: 50px">
+      <div class="text-even w-1/2 px-0 md:px-4 lg:px-10 text-md md:text-lg lg:text-2xl flex flex-col items-center justify-center" data-aos="fade-left" data-aos-duration="600">
+        <h3 class="text-xl md:text-2xl lg:text-4xl mb-8"><strong> Modify your LockScreen </strong></h3>
         <p>
           Enhance your lock screen with mods for a personalized touch. Add
           custom widgets, unique clock styles, and background themes to
@@ -183,18 +183,18 @@
           truly yours.
         </p>
       </div>
-      <div class="">
-        <img src="{% static 'images/ss2.png' %}" data-aos="fade-right" data-aos-duration="600" />
+      <div class="flex justify-center items-center w-1/2">
+        <img class=" h-96" src="{% static 'images/ss2.png' %}" data-aos="fade-right" data-aos-duration="600" />
       </div>
     </div>
   </div>
   <div id="Screenshot-3">
-    <div class="grid grid-cols-2 justify-evenly" style="margin-top: 50px">
-      <div class="">
-        <img src="{% static 'images/ss3.png' %}" data-aos="fade-left" data-aos-duration="600" />
+    <div class="flex flex-row gap-5 px-4" style="margin-top: 50px">
+      <div class="flex justify-center items-center w-1/2">
+        <img class=" h-96" src="{% static 'images/ss3.png' %}" data-aos="fade-left" data-aos-duration="600" />
       </div>
-      <div class="text-odd" data-aos="fade-right" data-aos-duration="600">
-        <h3><strong> Customize your Android beyond limitations </strong></h3>
+      <div class="text-odd w-1/2 px-0 md:px-4 lg:px-10 text-md md:text-lg lg:text-2xl flex flex-col items-center justify-center" data-aos="fade-right" data-aos-duration="600">
+        <h3 class="text-xl md:text-2xl lg:text-4xl mb-8"><strong> Customize your Android beyond limitations </strong></h3>
         <p>
           Discover the world of custom ROMs and mods to unlock the full
           potential of your Android device. Dive into a realm of endless
@@ -205,9 +205,9 @@
     </div>
   </div>
   <div id="Screenshot-4">
-    <div class="grid grid-cols-2 gap-5 justify-evenly" style="margin-top: 50px">
-      <div class="text-even" data-aos="fade-left" data-aos-duration="600">
-        <h3><strong> Latest Android Updates Eariler </strong></h3>
+    <div class="flex flex-row gap-5 px-4" style="margin-top: 50px">
+      <div class="text-even w-1/2 px-0 md:px-4 lg:px-10 text-md md:text-lg lg:text-2xl flex flex-col items-center justify-center" data-aos="fade-left" data-aos-duration="600">
+        <h3 class="text-xl md:text-2xl lg:text-4xl mb-8"><strong> Latest Android Updates Eariler </strong></h3>
         <p>
           Stay ahead with the latest Android updates. By staying informed and
           proactive, you can access new features, security enhancements, and
@@ -215,8 +215,8 @@
           feature-rich mobile experience.
         </p>
       </div>
-      <div class="">
-        <img src="{% static 'images/ss4.png' %}" data-aos="fade-right" data-aos-duration="600" />
+      <div class="flex justify-center items-center w-1/2">
+        <img class=" h-96" src="{% static 'images/ss4.png' %}" data-aos="fade-right" data-aos-duration="600" />
       </div>
     </div>
   </div>
@@ -241,7 +241,7 @@
         </ul>
         <p style="text-align: center; margin-top: 10px">
           <a href="https://telegram.me/+Z7TTTtZxvt9jZGZl"
-            class="text-[var(--text)] glass hover:bg-[var(--accent)] focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Join
+            class="text-[var(--background)] border-2 border-[var(--text)] bg-[var(--primary)] hover:bg-[var(--accent)] focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Join
             the Community</a>
         </p>
       </div>

@@ -64,17 +64,17 @@ class CustomROM(models.Model):
         return self.name
 
 class CustomMOD(models.Model):
-    name = models.CharField(max_length=100)
-    android = models.CharField(max_length=10, null=True)
-    image = models.ImageField(upload_to="images")
-    credits = models.ForeignKey(Credits, null=True, on_delete=models.SET_NULL)
-    link = models.URLField()
-    details = models.TextField()
-    upload_date = models.DateField(auto_now=True)
-    likes = models.ManyToManyField(MODLike, related_name='liked_mods')
-    comments = models.ManyToManyField(Comment, blank=True, related_name='mod_comments')
-    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    slug = models.SlugField(unique=True, blank=True, null=True, default=None)
+    name            = models.CharField(max_length=100)
+    android         = models.CharField(max_length=10, null=True)
+    image           = models.ImageField(upload_to="images")
+    credits         = models.ForeignKey(Credits, null=True, on_delete=models.SET_NULL)
+    link            = models.URLField()
+    details         = models.TextField()
+    upload_date     = models.DateField(auto_now=True)
+    likes           = models.ManyToManyField(MODLike, related_name='liked_mods')
+    comments        = models.ManyToManyField(Comment, blank=True, related_name='mod_comments')
+    uploaded_by     = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    slug            = models.SlugField(unique=True, blank=True, null=True, default=None)
 
     def save(self, *args, **kwargs):
         if not self.slug:
