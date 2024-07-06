@@ -1,11 +1,15 @@
 from django.urls import path
 from .views import *
+from . import views
 from . import fbv
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
-    path("account/signup/", SignupView.as_view(), name="signup"),
-    path("account/login/", LoginView.as_view(), name="login"),
+    path("account/signup/", views.signup, name="signup"),
+    path("createuser/", views.createuser, name="createuser"),
+    path("account/login/", views.loginuser, name="login"),
+    path("logout/", views.logout_view, name="logout"),
+    path("authentication/", views.login_view, name="login_view"),
     path("dashboard/", DashboardView.as_view(), name="dashboard"),
     path("custom_roms/", RomsView.as_view(), name="roms"),
     path("magisk_modules/", ModsView.as_view(), name="mods"),

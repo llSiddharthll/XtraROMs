@@ -7,12 +7,25 @@
   @import url("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css");
 </style>
 <style>
-  
-  [multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea{
-   color: var(--text);
-   background-color: var(--background-50);
+  [multiple],
+  [type=date],
+  [type=datetime-local],
+  [type=email],
+  [type=month],
+  [type=number],
+  [type=password],
+  [type=search],
+  [type=tel],
+  [type=text],
+  [type=time],
+  [type=url],
+  [type=week],
+  select,
+  textarea {
+    color: var(--text);
+    background-color: var(--background-50);
   }
- </style>
+</style>
 {% endblock css %} {% block content %}
 <div class="min-w-screen h-screen flex items-center justify-center px-5 py-8 md:-mt-10">
   <div class="bg-[var(--secondary)] text-[var(--text)] rounded-3xl shadow-xl w-full overflow-hidden"
@@ -24,51 +37,48 @@
           <p>Enter your information to signin</p>
         </div>
         <div>
-          <form class="login" method="post">
+          <form class="login" method="post" id="loginForm">
             {% csrf_token %}
-          <div class="flex -mx-3">
-            <div class="w-full px-3 mb-5">
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-5">
 
-              <label for="" class="text-xs font-semibold px-1">Username</label>
-              <div class="flex">
-                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                  <i class="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                <label for="" class="text-xs font-semibold px-1">Username</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                  </div>
+                  <input type="text"
+                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 outline-none focus:border-indigo-500"
+                    placeholder="johnsmith" name="username" />
                 </div>
-                <input type="text"
-                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 outline-none focus:border-indigo-500"
-                  placeholder="johnsmith"
-                  name="login" />
               </div>
             </div>
-          </div>
-          <div class="flex -mx-3">
-            <div class="w-full px-3 mb-12">
-              <label for="" class="text-xs font-semibold px-1">Password</label>
-              <div class="flex">
-                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                  <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-12">
+                <label for="" class="text-xs font-semibold px-1">Password</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+                  </div>
+                  <input type="password"
+                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 outline-none focus:border-indigo-500"
+                    placeholder="************" name="password" />
                 </div>
-                <input type="password"
-                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 outline-none focus:border-indigo-500"
-                  placeholder="************"
-                  name="password" />
               </div>
             </div>
-          </div>
-          <div class="flex -mx-3">
-            <div class="w-full px-3 mb-5">
-              <button
-              type="submit"
-                class="block w-full max-w-xs mx-auto bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text-100)] rounded-lg px-3 py-3 font-semibold">
-                LOGIN NOW
-              </button>
+            <div class="py-2 px-2 text-center text-[var(--text)] text-sm font-semibold" id="error-message"></div>
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-5">
+                <button type="submit"
+                  class="block w-full max-w-xs mx-auto bg-[var(--primary)] hover:bg-[var(--accent)] text-[var(--text-100)] rounded-lg px-3 py-3 font-semibold">
+                  LOGIN NOW
+                </button>
+              </div>
             </div>
-          </div>
-          <ul><li>{{form.errors}}</li></ul>
           </form>
           <div class="flex -mx-3 items-center justify-center w-full px-3">
             <p>Forget Password ?</p>
-            <a href="{% url 'account_reset_password' %}" class="ms-2 text-[var(--primary-800)]"><strong>Reset Password</strong></a>
+            <a href="" class="ms-2 text-[var(--primary-800)]"><strong>Reset Password</strong></a>
           </div>
           <div class="flex -mx-3 items-center justify-center w-full px-3">
             <p>Wanna join us ?</p>
@@ -159,4 +169,42 @@
   </div>
 </div>
 
-{% endblock content %} {% block script %} {% endblock script %}
+{% endblock content %}
+{% block script %}
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();  // Prevent the default form submission
+
+      const formData = new FormData(loginForm);
+      const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+      axios.post("{% url 'login_view' %}",formData, {
+        headers: {
+          'X-CSRFToken': csrfToken,
+        }
+      })
+        .then(response => {
+          if (response.data.status === 'success') {
+            console.log('User logged in successfully:', response.data.message);
+            window.location.href = '/';
+          }
+        })
+        .catch(error => {
+          let err = error.response.data.message
+          console.error('Error creating user:', err);
+          displayError(`*${err}`);
+        });
+    });
+
+    function displayError(message) {
+      const errorElement = document.getElementById('error-message');
+      errorElement.innerText = message;
+      errorElement.style.display = message ? 'block' : 'none';
+    }
+  });
+
+</script>
+{% endblock script %}

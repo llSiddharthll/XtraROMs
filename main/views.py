@@ -4,13 +4,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from .models import *
 from .forms import *
-from django.db.models import Count
-from allauth.account.views import SignupView, LoginView
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.safestring import mark_safe
 from django.contrib import messages
 import random
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+import re
+import mimetypes
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class HomeView(generic.View):
     template_name = "home.html"
@@ -59,42 +66,119 @@ class ManageUserView(generic.ListView, LoginRequiredMixin):
             messages.success(request, f"{user.user.username} is authorized")
             return JsonResponse({"success": "success"})
 
-class SignupView(SignupView):
+def signup(request):
+    return render(request, "account/signup.html")
 
-    template_name = 'account/signup.html'
-    
-    def form_valid(self, form):
+def createuser(request):
+    if request.method == "POST":
         try:
-            # Call the parent class's form_valid method to create the user
-            response = super().form_valid(form)
+            # Log the request
+            logger.debug("Received POST request: %s", request.POST)
 
-            # Set the authentication backend
-            self.user.backend = "django.contrib.auth.backends.ModelBackend"
-            self.user.save()
+            # Get form data
+            username = request.POST.get("username")
+            firstname = request.POST.get("first_name")
+            lastname = request.POST.get("last_name")
+            email = request.POST.get("email")
+            password = request.POST.get("password")
+            profile_picture = request.FILES.get("profile_picture")
 
-            # Create UserProfile
-            user_profile = UserProfile.objects.create(
-                user=self.user,
-                # Add other fields as needed
-            )
+            # Validate email
+            try:
+                validate_email(email)
+            except ValidationError:
+                logger.error("Invalid email address: %s", email)
+                return JsonResponse({'status': 'error_400', 'message': 'Invalid email address'}, status=400)
 
-            # Log the user in
-            login(self.request, self.user)
+            # Validate username (e.g., no special characters)
+            if not re.match("^[A-Za-z0-9_]*$", username):
+                logger.error("Invalid username: %s", username)
+                return JsonResponse({'status': 'error_400', 'message': 'Username can only contain letters, numbers, and underscores'}, status=400)
 
-            print("UserProfile created:", user_profile)
+            # Validate password (e.g., at least 8 characters, at least one letter and one number)
+            if len(password) < 8 or not re.search("[a-zA-Z]", password) or not re.search("[0-9]", password):
+                logger.error("Invalid password")
+                return JsonResponse({'status': 'error_400', 'message': 'Password must be at least 8 characters long and contain both letters and numbers'}, status=400)
 
-            return response
+            # Check if username already exists
+            if User.objects.filter(email=email).exists():
+                logger.error("Email already in use: %s", username)
+                return JsonResponse({'status': 'error_400', 'message': 'Email already in use, try different one!'}, status=400)
 
+            if User.objects.filter(username=username).exists():
+                logger.error("Username already taken: %s", username)
+                return JsonResponse({'status': 'error_400', 'message': 'Username already taken'}, status=400)
+            
+            # Validate profile picture file type
+            allowed_types = ['image/jpeg', 'image/jpg', 'image/webp', 'image/png']
+            if profile_picture:
+                mime_type, _ = mimetypes.guess_type(profile_picture.name)
+                if mime_type not in allowed_types:
+                    logger.error("Invalid image format: %s", mime_type)
+                    return JsonResponse({'status': 'error_400', 'message': 'Invalid image format. Allowed formats: jpg, jpeg, webp, png'}, status=400)
+
+            # Create and save user
+            user = User.objects.create_user(username=username, first_name=firstname, last_name=lastname, email=email)
+            user.set_password(password)  # Hash the password
+            user.save()
+
+            # Save profile picture
+            user_profile = UserProfile.objects.create(user=user)
+            if profile_picture:
+                user_profile.profile_picture = profile_picture
+                user_profile.save()
+
+            logger.debug("User created successfully: %s", username)
+            return JsonResponse({'status': 'success', 'message': 'User created successfully'}, status=201)
         except Exception as e:
-            print("Error creating UserProfile:", str(e))
+            logger.error("Error creating user: %s", str(e))
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    else:
+        logger.error("Invalid request method")
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
     
-class LoginView(LoginView):
-    template_name = 'account/login.html'
+def loginuser(request):
+    return render(request, "account/login.html")
 
-    @csrf_exempt
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
+def login_view(request):
+    if request.method == "POST":
+        try:
+            # Log the request
+            logger.debug("Received POST request for login: %s", request.POST)
+
+            # Get form data
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+
+            # Authenticate user
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                logger.debug("User logged in successfully: %s", username)
+                return JsonResponse({'status': 'success', 'message': 'Logged in successfully'}, status=200)
+            else:
+                logger.error("Invalid credentials for username: %s", username)
+                return JsonResponse({'status': 'error', 'message': 'Invalid username or password'}, status=400)
+        except Exception as e:
+            logger.error("Error logging in user: %s", str(e))
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    else:
+        logger.error("Invalid request method for login")
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
     
+def logout_view(request):
+    if request.method == "POST":
+        try:
+            logout(request)
+            logger.debug("User logged out successfully")
+            return JsonResponse({'status': 'success', 'message': 'Logged out successfully'}, status=200)
+        except Exception as e:
+            logger.error("Error logging out user: %s", str(e))
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    else:
+        logger.error("Invalid request method for logout")
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
+
 class DashboardView(generic.View, LoginRequiredMixin):
     template_name = "dashboard.html"
 
