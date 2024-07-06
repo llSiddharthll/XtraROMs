@@ -68,7 +68,7 @@
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {% if request.user.is_authenticated %}
           <button type="button"
-            class="flex items-center gap-2 text-sm bg-[var(--primary)] backdrop-blur-sm shadow-lg border-1 border-[var(--accent)] rounded-full md:me-0 py-1 px-2"
+            class="flex items-center gap-2 text-sm bg-[var(--primary-200)] backdrop-blur-sm shadow-lg border-1 border-[var(--accent)] rounded-full md:me-0 py-1 px-2"
             id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
             data-dropdown-placement="bottom">
             <i class="fa-solid fa-caret-down text-lg text-[var(--text)]"></i>
@@ -79,7 +79,7 @@
           {% else %}
           <a href="{% url 'login' %}">
             <button type="button"
-              class="flex items-center gap-2 text-sm border-2 border-[var(--text)] bg-[var(--primary-300)] backdrop-blur-sm shadow-lg border-1 border-[var(--accent)] rounded-full md:me-0 py-1 px-2"
+              class="flex items-center gap-2 text-sm border-2 border-[var(--text)] bg-[var(--primary-200)] backdrop-blur-sm shadow-lg border-1 border-[var(--accent)] rounded-full md:me-0 py-1 px-2"
               id="user-menu-button">
               <span class="sr-only">Open user menu</span>
               <i class="fa-solid fa-caret-down text-lg text-[var(--text)]"></i>
@@ -88,7 +88,7 @@
           {% endif %}
           <!-- Dropdown menu -->
           <div
-            class="z-50 hidden my-4 text-base list-none bg-[var(--secondary-100)] border border-[var(--accent)] divide-y divide-[#36ae90] rounded-lg shadow"
+            class="z-50 hidden my-4 text-base list-none bg-[var(--secondary-100)] border border-[var(--accent)] divide-y divide-[var(--primary-500)] rounded-lg shadow"
             id="user-dropdown">
             <div class="px-4 py-3">
               <span class="block text-sm text-[var(--text)]">{{ request.user.username }}</span>
@@ -106,7 +106,7 @@
               </li>
               {% endif %}
               <li>
-                <a href="{% url 'account_logout' %}"
+                <a href=""
                   class="block px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--accent-200)] font-light">Sign
                   out</a>
               </li>
